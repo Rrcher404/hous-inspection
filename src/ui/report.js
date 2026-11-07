@@ -46,7 +46,7 @@ export function createReport(ctx) {
       h('dl', { class: 'rp-meta' },
         meta('Client', ADDRESS.client),
         meta('Date of inspection', dateStr),
-        meta('Inspector', `Trainee · ${rank.title}`),
+        meta('Inspector', rank.title === 'Trainee' ? 'Trainee inspector' : `Trainee inspector (${rank.title})`),
         meta('Report no.', S.id),
         meta('Property', `${ADDRESS.style}. Built ${ADDRESS.built}, about ${ADDRESS.sqft.toLocaleString()} sq ft.`),
         meta('Standard', 'Written to the format of the NC Home Inspector Standards of Practice (training exercise).')),

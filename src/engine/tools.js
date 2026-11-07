@@ -79,7 +79,10 @@ export function createTools({ scene, camera, fixtures, reducedMotion }) {
     hemi.intensity = cur.hemi; sun.intensity = cur.sun;
     for (let i = 0; i < pool.length; i++) pool[i].intensity = 4.2 * cur.pool * poolTargets[i];
     const fl = tool === 'flashlight';
-    spot.intensity = fl ? (dark ? 26 : 3.5) : 0;
+    // Headlamp: in dark zones the meter and tester are used with a dimmer light on,
+    // the way a real inspector works. Eyes-only stays dark so the flashlight lesson holds.
+    const headlamp = dark && (tool === 'moisture' || tool === 'tester');
+    spot.intensity = fl ? (dark ? 26 : 3.5) : headlamp ? 11 : 0;
     glow.intensity = dark && !fl && !thermalOn ? 0.35 : 0;
   }
 
