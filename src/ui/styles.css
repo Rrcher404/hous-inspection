@@ -382,6 +382,7 @@ html.wi, html.wi body { margin: 0; height: 100%; overflow: hidden; background: #
 .qz-choice[disabled] { cursor: default; }
 .qz-feedback { margin-top: 14px; padding: 12px 14px; border-radius: 12px; animation: rise .25s var(--ease); }
 .qz-feedback.good { background: var(--good-soft); } .qz-feedback.bad { background: var(--bad-soft); }
+.qz-feedback.hint { background: #fff4e0; border: 1px solid #f2c23a66; }
 .qz-feedback p { margin: 4px 0 0; font-size: 14.5px; }
 .qz-xp { font-weight: 750; color: var(--accent-ink); margin-top: 6px; }
 .qz-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 16px; }

@@ -1,0 +1,417 @@
+{
+  "q-ai-01": {
+    "Its R-value and the year it was installed": "Ask whether the SOP expects you to measure performance, or to know a history you cannot observe in the attic.",
+    "Its chemical composition and fire rating": "Could you confirm a chemical makeup or a fire rating with only your eyes and a flashlight?",
+    "Its upgrade cost and the R-value to add": "Pricing and upgrade advice sit outside an inspector's scope. Think about describing conditions, not designing improvements."
+  },
+  "q-ai-02": {
+    "A roof leak above that ceiling; refer to a roofer": "A thermal camera shows temperature, not wetness. Did the stem mention stains, drips, or wet framing anywhere?",
+    "A plumbing leak in the ceiling; call a plumber": "Ask what evidence of water the stem gives you. A cold patch alone shows a temperature difference, not a pipe failure.",
+    "Nothing, because NC excludes measuring R-values": "Not measuring R-values is different from ignoring what you can see. Does that exclusion cover observed conditions too?"
+  },
+  "q-ai-03": {
+    "Acceptable, because the attic itself is vented to outdoors": "Attic vents are sized for slow air exchange. Could they clear a steady stream of warm, wet bathroom air before it condenses?",
+    "Acceptable as long as the duct run is insulated": "Insulating the duct changes the temperature inside it. Does it change anything about where the moisture lands afterward?",
+    "Not reportable; exhaust fans are not in NC scope": "Check what NC says about bathroom venting systems before deciding exhaust fans sit outside your scope."
+  },
+  "q-ai-04": {
+    "Stop wind-driven rain from entering through the soffits": "Baffles sit inside the attic, not at the soffit face. What could a part in that position do about rain outside?",
+    "Hold the insulation tight against the roof deck": "Insulation does its job lying on the attic floor. Ask why anyone would want it pressed up against the roof deck at the eave.",
+    "Block birds and insects from nesting in the eaves": "Screens on vent openings handle pests. Baffles sit further inside the attic, so think about what they touch there."
+  },
+  "q-ai-05": {
+    "1 sq ft per 50 sq ft, or 1 per 100 with a ridge vent": "Those ratios call for far more vent area than real attics carry. The base number sits in the hundreds, not the fifties.",
+    "1 sq ft per 1,500 sq ft, or 1 per 3,000 with soffits": "Picture one square foot of vent serving a 1,500 square foot attic. Would that small an opening move much air at all?",
+    "1 sq ft per 300 sq ft, or 1 per 600 with a vapor retarder": "A vapor retarder does appear in the venting rule. Recheck whether both numbers here match the IRC base and reduced ratios."
+  },
+  "q-ai-06": {
+    "No; moving insulation is outside the inspection scope": "NC does name situations where you must move insulation. Ask what would make you look underneath it.",
+    "In each attic, at several spots, to check the drywall": "The SOP does not set a routine sampling quota. Think about what should trigger moving insulation instead.",
+    "When the client asks and is present to watch": "The client's presence does not change your duty. Ask what you might see in the attic itself that should prompt you."
+  },
+  "q-ai-07": {
+    "Acceptable if the ladder holds your full weight when you test it": "One successful climb proves little about brittle fasteners under shear. What happens on the hundredth trip with a heavy box?",
+    "Cosmetic, since the ladder still folds and unfolds": "Folding is not the concern here. Ask what holds the ladder to the framing while someone is standing on it.",
+    "Not reportable, because attic stairs are excluded": "Ask whether any exclusion would really stop you from reporting a ladder that could detach under a person's weight."
+  },
+  "q-ai-08": {
+    "14 in by 20 in": "Picture an adult with a flashlight squeezing through 14 by 20 in. Would that fit a body comfortably?",
+    "18 in by 24 in": "Close to some figures you may know, but the course number is larger on both sides. Picture an adult with tools fitting through.",
+    "30 in by 36 in": "That is near doorway size, not a ceiling hatch. Recall that one number in this rule belongs to the headroom above."
+  },
+  "q-ai-09": {
+    "Each one in the house": "Operating every door and window is thorough, but ask whether the NC SOP actually demands all of them.",
+    "Those in the bedrooms": "Bedrooms matter for egress, but ask whether NC limits this duty to one type of room.",
+    "One per floor of the house": "A whole floor can hold many rooms with different problems. Ask what unit NC actually counts by."
+  },
+  "q-ai-10": {
+    "Repair item; recommend sanding and repainting the edge": "Ask whether worn edge paint changes how the door works, and what kind of condition paint wear really is.",
+    "Monitor for structural movement around the frame": "Movement shows up as binding, sticking, or gaps. What did the stem say about how this door swings and latches?",
+    "Refer to a carpenter to evaluate the door": "A referral needs a reason. Ask what defect a carpenter would actually be evaluating on this door."
+  },
+  "q-ai-11": {
+    "Nothing more; a fan that pulls air is working": "Pulling air at the grille shows the motor works. Ask what happens to that air after it leaves the room.",
+    "The fan motor's amperage, using a clamp meter": "Clamp meter readings on a fan motor go beyond a visual inspection. What could you check just by looking?",
+    "The fan's noise rating, printed on the housing label": "Noise is a comfort spec, not a defect. Think about what failure could make a working fan still a problem."
+  },
+  "q-ai-12": {
+    "Call it mold and recommend remediation by a mold specialist": "Check what NC says about determining mold. Can you name a substance you cannot confirm by sight?",
+    "Call it normal aging of the plywood sheathing": "Plywood ages fairly evenly. Ask why darkening would cluster near the eaves if age alone caused it.",
+    "Call it a roof leak and recommend roof replacement": "Is one patch of discoloration enough to diagnose a leak, let alone justify a whole new roof?"
+  },
+  "q-dk-01": {
+    "Acceptable if there are many nails at close spacing along it": "More nails still means the same kind of fastener. Ask what kind of connection holds a ledger to the house framing.",
+    "Acceptable on smaller decks, under about 10 ft wide": "Ask whether the fastener rule changes with deck size, or whether a small crowded deck still loads its ledger hard.",
+    "Monitor it, unless the ledger is visibly pulling away": "Waiting until the ledger visibly pulls away means waiting for the failure itself. How do nailed ledgers usually fail?"
+  },
+  "q-dk-02": {
+    "To give the deck a finished look where it meets the siding": "Flashing hides under the siding laps. Ask what job a hidden part does, rather than how it looks.",
+    "To keep termites and carpenter ants out of the ledger": "Termite shields exist, but this flashing sits at the top of the ledger. Think about what arrives there from above.",
+    "To stop the ledger from swelling and expanding in heat": "Wood movement from heat is small. Ask what slow, repeated exposure at the top of a ledger would cause."
+  },
+  "q-dk-03": {
+    "Brick is acceptable as long as the through-bolts are galvanized": "Galvanizing protects a bolt from rust. Does it change what the bolt is anchored into?",
+    "Bolts through brick hold better than lag screws in wood": "A bolt is only as good as what it grips. Ask how brick veneer is tied to the house behind it.",
+    "It is a cosmetic concern, since the mortar may crack": "Cracked mortar is the small worry. Ask what a deck full of people pulls on through those bolts."
+  },
+  "q-dk-04": {
+    "Acceptable if most of the holes are filled with nails": "A hanger's rated strength assumes a full fastener schedule. Ask what partial filling does to that rating.",
+    "Acceptable, because screws are stronger than nails": "Stronger in what way? Think about how drywall screws behave under sideways shear, not just pull-out.",
+    "Cosmetic, as long as the hangers are not bent": "A straight hanger can still fail. Ask where the load actually transfers from the joist into the hanger."
+  },
+  "q-dk-05": {
+    "A 6 in sphere": "That size belongs to a different spot on a stair guard. Ask what the general baluster rule is protecting.",
+    "A 2 in sphere": "That gap would be tighter than needed. Ask what body part the sphere stands for and roughly how big it is.",
+    "A 5 in sphere": "Think about the size of a small child's head, and which sphere sizes code commonly uses."
+  },
+  "q-dk-06": {
+    "On each deck, whatever its height above the ground": "A deck one step above the lawn does not need a guard. Ask what height actually triggers one.",
+    "Above 48 in, measured at the deck's outer edge": "Ask whether 48 in is the trigger you remember, and whether measuring only at the edge handles sloping ground.",
+    "When the deck has stairs or is over 24 in high": "Stairs bring handrail rules, not guard rules. Check the height number you remember against the guard trigger."
+  },
+  "q-dk-07": {
+    "30 in": "That number is the height that triggers a guard, not the guard's own height. Keep the two apart.",
+    "32 in": "Ask where 32 in comes from. Compare it with the guard trigger height and the residential guard figures you learned.",
+    "48 in": "Ask whether that figure fits a residential deck, or whether you are thinking of taller guards in other building types."
+  },
+  "q-dk-08": {
+    "To make the rail stiffer at the spot where people grab it": "Stiffness comes from posts and brackets along the run. Ask what risk lives at the open end itself.",
+    "For appearance, so the rail looks neat and finished at the end": "Code cares little about looks. Think about what happens at the end of a rail as someone steps off the stairs.",
+    "To keep rainwater from soaking into the exposed cut end grain": "The return rule applies to metal rails too, which have no end grain. Think about the people using the rail."
+  },
+  "q-dk-09": {
+    "Acceptable, because ground-contact treated wood resists rot": "Treated wood resists rot, but the stem says the base is already soft. What does a soft probe tell you?",
+    "Monitor it, since the deck is not visibly leaning": "A post can lose strength before it leans. Ask what a soft base means for the load path right now.",
+    "Not reportable, since probing is an invasive test": "Check what NC says about probing where deterioration is suspected, for exterior wood and structural parts."
+  },
+  "q-dk-10": {
+    "10 psf": "Think of a crowded party on the deck. Would 10 pounds per square foot cover that crowd?",
+    "20 psf": "Ask what the design case is for a deck. A packed party loads it more than you might expect.",
+    "100 psf": "Ask whether a residential deck is really designed like a warehouse floor, or around people and furniture."
+  },
+  "q-rf-01": {
+    "Walk on the roofing when it is safe to do so": "Check whether NC makes walking the roof a duty, even when it looks safe to do so.",
+    "Inspect solar panels, antennas, and other accessories": "Ask whether add-ons mounted on the roof fall under the roofing inspection, or are things the SOP sets aside.",
+    "Certify the roof's remaining life for insurance": "Inspectors describe and report conditions. Ask whether certifying a roof's remaining life fits that role."
+  },
+  "q-rf-02": {
+    "It is cosmetic until the rubber falls away": "Ask what the boot is there to stop, and whether a crack already lets that through.",
+    "It restricts airflow through the plumbing vent": "The boot wraps the outside of the pipe. Does a crack in it change anything inside the vent?",
+    "Boots are part of plumbing, not the roof": "Ask which system keeps water out at a roof penetration. Who would you send to fix the boot?"
+  },
+  "q-rf-03": {
+    "1 in": "One inch barely clears the roofing. Recall the general extension figure, not the smallest number you can picture.",
+    "12 in": "Ask whether you are mixing up the general rule with the higher figures used in snow country.",
+    "3 ft": "That rise belongs to special cases, such as a vent near an openable window. What is the general figure?"
+  },
+  "q-rf-04": {
+    "Supplies combustion air to an attic furnace": "Ask whether a vent at the very top of the roof would make sense as a fresh air supply for a furnace.",
+    "Cools the shingles from below to slow their aging": "Ask what the ridge vent moves through the attic, rather than what it does to the shingles above it.",
+    "Lets the roof deck expand along the ridge in heat": "Ask whether an opening at the ridge is about wood movement, or about the attic's air path."
+  },
+  "q-rf-05": {
+    "Shingle granule loss on the north-facing slopes": "Granules sit on the top surface of the shingles. Where would you stand to see that?",
+    "Gutter condition and the downspout slope": "Gutters hang outside at the eaves. Ask which items you could see only from inside the house.",
+    "Chimney crown cracks and missing mortar caps": "The crown caps the chimney outdoors. Where would you need to be to see it?"
+  },
+  "q-rf-06": {
+    "Extend 1 ft above the landing, 1 ft out per 2 ft of rise": "Check both numbers. A ladder set that steep and barely above the edge is hard to step off safely.",
+    "Rest against the gutter, 1 ft out per 4 ft of height": "Ask whether a gutter is built to carry a ladder plus a person's weight.",
+    "Stand upright against the wall, 3 ft above the eave": "Ask what keeps a ladder from tipping backward when it stands straight up against a wall."
+  },
+  "q-rf-07": {
+    "The roof covering, flashing, and the ridge vents": "Those parts keep water out of the roof. Ask which parts handle water once it has left the roof surface.",
+    "Gutters, plus the municipal storm sewer at the street": "Ask where an inspector's scope ends. Is anything under the street part of the house you are inspecting?",
+    "Interior floor drains and the sump pump pit": "Ask whether these handle roof water, or water that is already inside or under the house."
+  },
+  "q-rf-08": {
+    "Antennae, satellite dishes, and their roof mounts": "Ask whether add-on accessories mounted on the roof are things the SOP requires or sets aside.",
+    "Lightning arrestors and their ground wiring": "Think about which items are roofing components and which are accessories attached to the roof.",
+    "De-icing cables along the eaves and gutters": "Ask whether these are part of the roof itself, or an electrical accessory added to it."
+  },
+  "q-ra-01": {
+    "Bond the shingles together into one sealed layer": "Granules sit on the top surface, exposed to weather. Ask what they shield, rather than what they join.",
+    "Seal around the nail holes when the sun warms them": "Nails are meant to be hidden under the next course. Would surface granules ever reach them?",
+    "Make the shingle waterproof, so underlayment is optional": "Ask whether a loose mineral coating could replace the underlayment layer. What is it shielding the asphalt from?"
+  },
+  "q-ra-02": {
+    "They are cosmetic once the heads have rusted": "Rust is a sign of water at the nail. Ask where that water goes next.",
+    "They matter in hurricane zones, not in normal weather": "Ask whether the problem needs extreme wind, or whether ordinary rain on an exposed nail head is enough.",
+    "Exposed nails are normal along the ridge and hips": "Ask what covers the nails at ridge and hip caps on a correct install. Should heads be showing anywhere?"
+  },
+  "q-ra-03": {
+    "Through the exposed tab, so the wind will not lift it": "Ask what happens each time rain hits a nail head left out in the open.",
+    "Above the nailing line, near the top edge of the shingle": "Nails set too high can miss the shingle below. Ask what that does to wind resistance.",
+    "On the exposed tab, as long as each head is sealed": "Sealant on an exposed head ages in the sun. Ask whether a properly placed nail ever needs that sealant."
+  },
+  "q-ra-04": {
+    "Supports the gutter and keeps it pitched toward the downspout": "Ask whether a thin metal strip at the roof edge is built to carry a gutter full of water.",
+    "Decorative trim that hides the cut edge of the deck": "Ask what would happen at the roof edge without it, beyond how the edge looks.",
+    "Vents the attic at the eave, like a soffit strip": "Drip edge is solid metal at the edge of the deck. Ask whether air passes through it at all."
+  },
+  "q-ra-05": {
+    "Shingles from both planes are woven together through the valley": "Weaving is its own valley method. Ask what the word cut in closed-cut suggests.",
+    "An open metal channel is left exposed, with shingles cut back": "Ask what the word closed suggests about whether any valley metal shows.",
+    "Shingles from each side meet at the center line with no underlayment": "Valleys collect water from two roof planes. Would any accepted method skip underlayment there?"
+  },
+  "q-ra-06": {
+    "1:12, with double underlayment below 3:12": "Asphalt shingles shed water by lapping. Ask whether a slope that flat lets them shed water at all.",
+    "3:12, with double underlayment above 6:12": "Ask whether steeper slopes need more protection or less. Water moves faster as the roof gets steeper.",
+    "4:12, with double underlayment from 4:12 to 6:12": "Ask where extra underlayment belongs: at the steeper end, or at the low-slope end where water slows down."
+  },
+  "q-ra-07": {
+    "6 in past the outer edge of the gutter": "The ice barrier is laid on the roof deck, not on the gutter. Where does an ice dam push water?",
+    "12 in up the roof from the drip edge": "Ice dams back water up the slope. Ask whether a foot of barrier reaches far enough past where it pools.",
+    "36 in up the slope from the eave edge": "Ask which reference point the rule uses. Distances measured from the eave edge change with every overhang width."
+  },
+  "q-ra-08": {
+    "A third layer is fine if longer nails reach the deck": "Longer nails fix how far a nail reaches. Do they fix the added weight, or the deck you can no longer see?",
+    "Re-covering is better, since the old layers add insulation": "Ask whether shingles are installed for insulation at all, and what the old layers hide underneath.",
+    "Layer count does not matter for asphalt shingles": "Ask what each extra layer adds to the roof framing, and what it hides from the roofer."
+  },
+  "q-fd-01": {
+    "Normal shrinkage of the mortar as it slowly cures": "Ask whether curing shrinkage would follow a long, stepped diagonal path through many joints.",
+    "Lateral soil pressure pushing the wall inward": "Ask which crack pattern goes with a wall pushed inward. Is it stepped and diagonal, or does it run along one course?",
+    "Freeze-thaw damage to the block faces and joints": "Freeze-thaw tends to damage the faces of the blocks. Ask what a crack stepping through the joints points to."
+  },
+  "q-fd-02": {
+    "It is typical shrinkage of block walls as mortar cures": "Shrinkage does not push a wall out of plane. Ask what the inward bow tells you.",
+    "It comes from the house settling evenly on its footings": "Even settling moves the whole house down together. Would that bow one wall inward?",
+    "It is cosmetic once it has been painted and sealed": "Paint can hide a crack, but can it stop a wall that is still moving?"
+  },
+  "q-fd-03": {
+    "Mold growth on the block; recommend professional remediation": "Ask whether this deposit is living growth, and remember NC excludes determining mold.",
+    "Early structural failure of the block faces": "The stem says the wall is otherwise sound. Ask whether a surface deposit alone shows structural damage.",
+    "Termite mud tubes; refer to a pest control company": "Mud tubes are brown, earthy tunnels. Ask whether white powder on a wall face matches that."
+  },
+  "q-fd-04": {
+    "Acceptable, since masonry piers crack as they age": "Ask whether a crack running through several blocks is the same as minor aging in the mortar.",
+    "Patch it with mortar and note it as repaired": "Patching is repair work and hides the evidence. Ask what an inspector does instead of fixing.",
+    "Monitor it, since the pier is not leaning": "A pier can lose capacity before it leans. Ask what this pier carries and how much rests on it."
+  },
+  "q-fd-05": {
+    "Acceptable; stacked shims are a normal way to level it": "Shims can be used, but ask whether loose and crushed shims still give the girder solid support.",
+    "Cosmetic, as long as the floor above feels level": "A floor can feel level today and settle later. Ask what crushed shims mean for the support under the girder.",
+    "Not reportable without first calculating the load": "NC excludes calculating loads. Does that stop you from reporting what you can plainly see?"
+  },
+  "q-fd-06": {
+    "10 ft apart, with one within 36 in of each end": "Ask whether bolts that far apart would keep a house from sliding under lateral load. Recall both numbers.",
+    "4 ft apart, with two bolts at each plate end": "Ask whether the rule you remember calls for paired bolts at the ends, or a single bolt near each end.",
+    "8 ft apart, with one at the center of each plate": "Ask where a plate is most likely to lift or slide: at its middle, or near its ends?"
+  },
+  "q-fd-07": {
+    "The depth and width of the footings below grade": "Footings below grade are not visible. Ask what you can describe without digging.",
+    "The compressive strength of the foundation concrete": "Ask whether NC asks you to measure strength, or to describe something you can see.",
+    "The soil type and its bearing capacity below the footings": "Ask whether soil bearing capacity is something an inspector can judge by eye, or an engineer's job."
+  },
+  "q-fd-08": {
+    "Calculate the load on the pier to judge its adequacy": "Check what NC says about calculating strength or adequacy. Who does that work?",
+    "Specify the repair method so the seller can get bids": "Ask whether reporting methods of correction is part of your role, or someone else's.",
+    "Estimate the cost of a new pier for negotiations": "Ask whether NC lets inspectors report costs of correction, even when the client wants a number."
+  },
+  "q-rt-01": {
+    "Walk on the tiles near the center of each slope": "Ask what happens to clay tile under a person's weight, wherever on the slope you step.",
+    "Walk on the tiles along the ridge, where they are strong": "Ask whether any part of a clay tile roof is safe to walk, and who pays if a tile breaks.",
+    "Lift a few tiles to see the condition of the underlayment": "Lifting tile is a disruptive step that can break it. Ask what NC expects of a visual roof inspection."
+  },
+  "q-rt-02": {
+    "It is cosmetic, since tile is mostly there for looks": "Ask what job the tile does for the layer beneath it, beyond appearance.",
+    "Cracked tile still sheds water; replace it at resale": "A cracked tile may shed some water. Ask what it no longer shields underneath.",
+    "It matters on new roofs still under warranty, not older ones": "Ask whether the damage a crack allows depends on the roof's age or its warranty status."
+  },
+  "q-rt-03": {
+    "Normal thermal movement of the tiles in summer heat": "Ask whether ordinary heat movement would pull tiles fully out of their courses.",
+    "The roof slope is too steep to hold the tile in place": "Tile roofs are commonly installed on steep slopes. Ask what normally holds each tile in place.",
+    "An installation laid too tight, pushing the tiles out": "Ask which direction a too-tight fit would push tiles, and whether that matches tiles sliding down at the eave."
+  },
+  "q-rt-04": {
+    "The tiles themselves, which are fully waterproof": "Ask what reaches the deck through laps, cracks, and gaps between tiles in wind-driven rain.",
+    "The mortar packed between the tiles at the laps": "Ask whether mortar at the laps forms a continuous sheet across the whole roof deck.",
+    "The glaze or sealer coating on the tile surface": "A glaze sits on the tile face. Ask whether it covers the gaps between tiles."
+  },
+  "q-rt-05": {
+    "2:12; double underlayment up to 4:12": "That figure belongs to a different roof covering in this course. Ask whether tile shares it.",
+    "1-1/2:12; double underlayment up to 3:12": "Ask whether tile, which sheds by lapping, could handle a slope flatter than the asphalt shingle minimum.",
+    "3-1/2:12; double underlayment up to 6:12": "Check both numbers against the asphalt rule you know. Is tile's minimum really that far above it?"
+  },
+  "q-rt-06": {
+    "Major defect; mortar fails over time": "Ask whether a future possibility is the same as a defect you can see today.",
+    "Repair item; recommend repointing": "Repointing fixes mortar that is cracked or loose. What did the stem say about this mortar?",
+    "Monitor it and re-inspect yearly": "Ask what observed condition would justify a monitoring note on mortar described as intact."
+  },
+  "q-rt-07": {
+    "It is in scope and inspected the same as the main house": "Check what NC .1107 says about buildings that stand apart from the house.",
+    "It may not be inspected, even if the client asks": "Ask whether an exclusion forbids extra work, or just means it is not required by default.",
+    "Its electrical and roof are inspected, nothing else": "Ask whether the SOP carves out particular systems of a detached building, or treats the building as a whole."
+  },
+  "q-rt-08": {
+    "A roof that holds shingles will hold tile as well": "Ask whether shingles and tile weigh about the same per square foot of roof.",
+    "The underlayment needs upgrading, but not the framing": "Ask what carries the weight of the roof covering, and whether it was sized for something heavier.",
+    "Tile is lighter than asphalt, so framing is fine": "Picture lifting a single clay tile and a single shingle. Which one weighs more?"
+  },
+  "q-eg-01": {
+    "36 in above the floor": "Lower sills are allowed; the question asks for the highest permitted. Is that figure really this low?",
+    "48 in above the floor": "Picture a small child or an impaired adult trying to climb over a sill four feet up.",
+    "54 in above the floor": "Picture a small child trying to climb over a sill at an adult's chest height. Could they?"
+  },
+  "q-eg-02": {
+    "Bedrooms on upper floors, not the ground floor": "Ask whether a sleeping person on the ground floor is any less likely to be trapped by a fire.",
+    "Each habitable room, including the kitchen": "Ask who is most likely to be trapped in a fire, and which rooms they would be in.",
+    "The primary bedroom and the basement": "Ask whether a child asleep in a secondary bedroom faces less risk in a fire than the owners."
+  },
+  "q-eg-03": {
+    "4 sq ft, with 24 in of projection and width": "Picture an adult climbing into a 2 ft by 2 ft well. Would that leave room to climb back out?",
+    "10 sq ft, with 42 in of projection and width": "Recheck both numbers, and ask whether the projection and width you picked actually produce the area listed.",
+    "7 sq ft, with 32 in of projection and width": "Picture an adult in a winter coat climbing out of a well under 3 ft across. Is there room?"
+  },
+  "q-eg-04": {
+    "Acceptable, since the bars improve the bedroom's security": "Ask what those bars do to the window's job as an escape route in a fire.",
+    "Cosmetic, as long as the bars are painted and sound": "Ask whether paint condition matters when someone needs out through this window at night.",
+    "Acceptable if the bedroom door leads to two exits": "Ask whether a hallway full of smoke still counts as a way out from that bedroom."
+  },
+  "q-eg-05": {
+    "Mark them acceptable, since a release lever is present": "A lever you have not tried tells you it exists, not that it works. What should the client learn?",
+    "Operate the release yourself, using force if needed, to be sure": "Not required to operate does not mean you should force it. Ask what forcing a mechanism could break.",
+    "Report them as a code violation and recommend removal": "Inspectors are not code officials. Ask whether a release lever makes removal the right recommendation."
+  },
+  "q-eg-06": {
+    "A 4 in sphere must not pass": "The 4 in rule covers most of the guard. Ask whether the stair triangle is treated the same way.",
+    "A 2 in sphere must not pass": "That gap would be tighter than anywhere else on the guard. Ask whether the triangle is stricter or looser.",
+    "No test applies to the triangle": "Ask whether a child could slip through that triangle if no rule applied to it."
+  },
+  "q-eg-07": {
+    "A door from the garage into an inside hallway": "A hallway is a common garage connection. Ask what would make one connection more hazardous than another.",
+    "A solid 1-3/8 in door from the garage into the kitchen": "Notice the door spec given. Ask why a course would name a solid door of that thickness.",
+    "An overhead door with photo-eyes and an auto-reverse": "Photo-eyes and auto-reverse are safety features. Ask whether they sound like what the course calls hazardous."
+  },
+  "q-eg-08": {
+    "28 in of clear width and 72 in of height": "Six feet of height would make many adults duck. Recall the IRC minimums, which are larger on both counts.",
+    "36 in of clear width and 84 in of height": "Ask whether you are remembering a common door size rather than the minimum clear opening the IRC requires.",
+    "30 in of clear width and 80 in of height": "80 in is a common door height. Ask whether you are remembering the door slab, not the IRC clear opening figures."
+  },
+  "q-eg-09": {
+    "18 in": "Ask whether a step this low would really need a guard. Recall the height that triggers one.",
+    "24 in": "Ask whether you are remembering a figure from another rule. Recheck the guard trigger height.",
+    "42 in": "That is closer to guard heights in other building types. Ask what height above the floor triggers a residential guard."
+  },
+  "q-pl-01": {
+    "It drains too slowly and clogs more than a P-trap": "Ask what the trap's water seal is for, and how the S shape treats that seal as water rushes through.",
+    "It is a dated style choice with no real effect": "Model code prohibits S-traps. Ask what a mere style difference would fail to explain about that ban.",
+    "It wastes water each time the fixture is used": "Ask what happens to the water left in the trap after the fixture drains, rather than how much water flows."
+  },
+  "q-pl-02": {
+    "1/2 to 1 in": "Ask how long a shallow seal would last against evaporation or a siphoning pull.",
+    "4 to 6 in": "Ask what a deep seal collects over time at the bottom of the trap.",
+    "6 to 8 in": "A very deep seal holds standing water low in the trap. Ask what settles there over time."
+  },
+  "q-pl-03": {
+    "Yes, cycle each stop to prove it shuts off": "Ask what can happen when an old stop valve that has not moved in years gets turned.",
+    "Yes, but just the hot side, where scale builds up": "Ask whether the hot side is any safer to turn, and what NC actually requires for valves.",
+    "Yes, if the client asks you to check them": "Ask whether the client's request changes the leak risk of turning an old stop."
+  },
+  "q-pl-04": {
+    "It is the modern standard, replacing rigid PVC drain pipe": "Ask whether flexible corrugated pipe is listed as an approved trap or drain material.",
+    "It is acceptable if the run is short and well sloped": "Ask whether a short run changes what the inside ridges do to grease and food waste.",
+    "It matters at bathroom sinks, not at the kitchen sink": "Ask which sink sends more grease and food waste down the drain. Does that help the case?"
+  },
+  "q-pl-05": {
+    "Acceptable, since drain joints drip now and then": "Ask whether any active leak at a drain joint is normal, and what it does to the wood below.",
+    "Not reportable, because the crawlspace is excluded": "Ask whether NC excludes a crawlspace you can see into, or what you observe there.",
+    "Monitor it and re-check at the final walkthrough": "Ask what a hidden crawlspace leak does to the framing in the weeks before anyone looks again."
+  },
+  "q-pl-06": {
+    "Report it as polybutylene, a known failure-prone pipe": "Read the print on the pipe. Ask how polybutylene usually looks and whether this matches.",
+    "Report it as a defect, since plastic supply is not allowed": "Ask whether modern approved supply materials include any plastics.",
+    "Recommend replacing it with galvanized steel piping": "Ask why you would recommend replacing piping that is labeled, supported, and protected."
+  },
+  "q-pl-07": {
+    "6 to 12 in": "Ask what a short standpipe does when a washer pumps out water fast.",
+    "12 to 18 in": "Ask whether this range is tall enough to catch the surge from a washer's pump without spilling.",
+    "42 to 60 in": "Ask what a very tall standpipe does to the trap below as fast water falls through it."
+  },
+  "q-pl-08": {
+    "Acceptable, since toilets can rock a little": "Ask what sits under the toilet base that movement could disturb.",
+    "Cosmetic, once the caulk at the base is redone": "Caulk hides a gap but does not anchor anything. Ask what the rocking does underneath.",
+    "Tighten the flange bolts yourself and move on": "Ask whether repairs are an inspector's job, and what tightening could crack or hide."
+  },
+  "q-pl-09": {
+    "A flow rate of at least 5 gallons per minute at the main": "Ask whether NC defines this term by a measured number, or by how fixtures work in use.",
+    "Steady flow at the kitchen faucet with nothing else on": "Ask whether one fixture running alone tests the system the way a busy household uses it.",
+    "Static water pressure above 40 psi at the hose bib": "Static pressure is read with nothing flowing. Ask whether that tells you how fixtures perform in use."
+  },
+  "q-pl-10": {
+    "40 psi": "Ask whether that figure is the high or the low end of a comfortable pressure range.",
+    "60 psi": "Ask whether 60 psi would stress hoses and valves, or sits comfortably within the typical range.",
+    "120 psi": "Ask how long hoses and the water heater would sit under stress before pressure climbed that high."
+  },
+  "q-pl-11": {
+    "Whether the water supply is public or a private well": "Check whether NC asks you to decide the source of the supply, or to describe something you can see on site.",
+    "The water quality from the well, by test kit": "Ask whether testing water quality fits a visual inspection under NC rules.",
+    "Whether a backflow device is present at the main": "Check what NC says about backflow devices before listing one as a required description."
+  },
+  "q-pl-12": {
+    "To let rainwater in to flush the drain lines": "Ask whether anyone would want rainwater entering a drain system through the roof.",
+    "To cool the drain pipes when hot water is draining": "Ask whether drain pipes need cooling at all, and what else a vent might carry.",
+    "To raise water pressure at the upper fixtures": "Drains and supply are separate systems. Ask whether a drain vent could affect supply pressure."
+  },
+  "q-st-01": {
+    "Acceptable if the cut is small and near the end": "Ask whether a truss member has spare capacity to give up, even near its ends.",
+    "Acceptable if the ceiling below has no cracks": "Ask whether a ceiling that looks fine today proves the truss is carrying its load as designed.",
+    "Repair it by nailing a scrap board over the cut": "Ask who designs a truss repair, and whether an inspector should be fixing anything."
+  },
+  "q-st-02": {
+    "One-half of the joist depth (D/2)": "Picture a joist with half its depth cut away. Would the outer thirds still carry their load?",
+    "One-third of the joist depth (D/3)": "Ask whether you are remembering the hole rule rather than the notch rule. They use different fractions.",
+    "One-quarter of the joist depth (D/4)": "D/4 is a real notch figure. Ask which location along the span it applies to."
+  },
+  "q-st-03": {
+    "No larger than D/2, close to the top or bottom edge": "Ask where in a joist the fibers carry the most stress, and whether a hole belongs there.",
+    "No larger than D/6, at least 2 in from each edge": "D/6 belongs to a different rule. Ask whether holes and notches share the same limit.",
+    "As large as needed, as long as it is centered": "Centering helps, but ask whether a hole of any size leaves enough wood to carry the load."
+  },
+  "q-st-04": {
+    "Structural movement; refer to an engineer to evaluate": "Ask what signs of movement you would expect: offset, widening, binding doors. Does the stem show any?",
+    "Foundation failure; recommend underpinning the piers": "Ask whether a single hairline crack justifies a major repair, and whether recommending methods is your role.",
+    "Moisture damage; refer to a roofer to find the leak": "Ask what evidence of water the stem gives you. A taped joint crack alone shows no staining."
+  },
+  "q-st-05": {
+    "Dead load is snow on the roof; live load is the wind": "Model code treats snow and wind as their own load types. Ask what dead and live each describe.",
+    "Dead load is what a failed member carries; live, a sound one": "Ask whether these terms describe a member's condition, or the kinds of weight a building carries.",
+    "They are two names for the same total design load": "If the two terms meant the same thing, why would NC define a structural component as carrying both?"
+  },
+  "q-st-06": {
+    "Joists to trusses to walls to footings to soil": "Trusses carry the roof. Ask what floor joists rest on in a crawlspace house built on piers.",
+    "Girder to joists to piers to footings to soil": "Ask which member is larger and collects load from the others. Which one bears on which?",
+    "Joists to piers to girder to footings to soil": "Ask whether a pier sits under the girder or above it. Trace which member rests on which."
+  },
+  "q-st-07": {
+    "Foundation settlement under the interior wall each winter": "Ask whether settlement would open a gap in winter and close it again every summer.",
+    "Seasonal shrinkage of the drywall tape at the wall corner": "Ask whether tape shrinkage would reverse itself each summer. What could move back and forth with the seasons?",
+    "Roof leaks soaking and sagging the ceiling drywall": "A wet, sagging ceiling would show stains, and it would not close up on its own each summer."
+  },
+  "q-st-08": {
+    "The adequacy of the foundation anchor bolting": "Judging whether bolting is adequate takes calculation. Ask whether a visual SOP expects that from you.",
+    "The load capacity of each floor joist and girder": "Could you know a joist's load capacity just by looking at it with a flashlight?",
+    "The engineering design of the roof truss system": "Ask whether reviewing a truss system's engineering design is something an inspector does on site."
+  }
+}

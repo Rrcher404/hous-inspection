@@ -15,7 +15,7 @@ export const RANKS = [
 ];
 
 // Points
-const P = { sevExact: 10, sevNear: 5, recRight: 5, quizRight: 15, quizFirstTry: 5, findBonus: 2 };
+const P = { sevExact: 10, sevNear: 5, recRight: 5, quizRight: 15, quizFirstTry: 5, quizAssisted: 5, findBonus: 2 };
 
 // Deterministic PRNG so an inspection can be replayed from its seed.
 export function mulberry32(seed) {
@@ -179,13 +179,20 @@ export function createStore(bus) {
       return entry;
     },
 
-    answerQuiz(quiz, choiceIndex) {
+    /** opts.assisted: answered right only after a hint and a retry. That is practice, not mastery:
+     *  it never sets `correct` (so the question keeps coming back) and earns a small one-time XP. */
+    answerQuiz(quiz, choiceIndex, opts = {}) {
       const rec = data.quizzes[quiz.id] || { attempts: 0, correct: false, lastAt: 0 };
       const correct = choiceIndex === quiz.answer;
       const firstTry = rec.attempts === 0;
       rec.attempts += 1; rec.lastAt = Date.now();
-      const gained = correct && !rec.correct ? P.quizRight + (firstTry ? P.quizFirstTry : 0) : 0;
-      if (correct) rec.correct = true;
+      let gained = 0;
+      if (correct && !rec.correct) {
+        if (!opts.assisted) gained = P.quizRight + (firstTry ? P.quizFirstTry : 0);
+        else if (!rec.assisted) gained = P.quizAssisted;
+      }
+      if (correct && opts.assisted) rec.assisted = true;
+      if (correct && !opts.assisted) rec.correct = true;
       data.quizzes[quiz.id] = rec; save();
       if (gained) api.addXP(gained, 'quiz');
       bus.emit('quiz:answered', { quizId: quiz.id, correct, gained });

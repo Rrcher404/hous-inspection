@@ -3,6 +3,7 @@
 import * as CP from '../data/checkpoints.js';
 import * as QZ from '../data/quizzes.js';
 import * as LS from '../data/lessons.js';
+import * as QH from '../data/quiz-hints.js';
 import { SEVERITIES, RECOMMENDATIONS, TOOLS } from '../data/taxonomy.js';
 import { COURSE_BY_ID } from '../data/courses.js';
 import { CHECKPOINTS } from '../data/manifest.js';
@@ -25,6 +26,16 @@ export function cpState(id, state) {
 }
 
 export const allQuizzes = () => (Array.isArray(QZ.QUIZZES) ? QZ.QUIZZES : []).filter(q => q && q.id && Array.isArray(q.choices));
+/** Questions whose wrong options all dismiss the condition: any hint would give the key away, so no retry. */
+export const noRetry = (q) => !!(QH.NO_RETRY && QH.NO_RETRY.includes(q?.id));
+/** Hint aimed at one wrong option (by its text), or null. */
+export const hintFor = (q, choiceText) => (QH.QUIZ_HINTS || {})[q?.id]?.[choiceText] || null;
+/** A copy of the question with its choices in a fresh random order (the key moves with them). */
+export function shuffleChoices(q) {
+  const order = q.choices.map((_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  return { ...q, choices: order.map(i => q.choices[i]), answer: order.indexOf(q.answer) };
+}
 export const lessonFor = (courseId) => (LS.LESSONS || {})[courseId] || null;
 
 export function glossary() {

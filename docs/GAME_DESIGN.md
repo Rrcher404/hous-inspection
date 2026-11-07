@@ -79,6 +79,8 @@ Per checkpoint: severity exact 10, one step off 5 (never across Acceptable), rig
 Ranks: Trainee → Ride-Along Apprentice → Field Trainee → Associate → Licensed → Senior → Master.
 
 ## Learning layer
+- **Answers shuffle every time** a question is shown, in quizzes and Exam Mode, and no option gives the answer away by length (checked by `scripts/quiz-audit.mjs`).
+- **Hint, then one retry** (pop quizzes and room checks, not Exam Mode): a wrong first pick gets a hint aimed at that specific wrong option, then one more try, then the explanation. A right answer on the retry is practice, not mastery: it earns 5 XP once and the question comes back later. Questions whose wrong options all dismiss the problem skip the retry, since any hint would point at the answer.
 - **Pop quizzes** on first opening a component (licensing-exam style, linked by component; they wait until you have logged the component so they never spoil a finding).
 - **Room checks**: 3 questions when a room is fully logged.
 - **Exam Mode**: 25 random questions from the whole bank, against the NC Board exam's 70% pass mark.

@@ -1,0 +1,186 @@
+{
+  "q-sop-08": {
+    "Acceptable, provided the flap is rigid plastic and closes fully": "A flap that closes fully still replaces part of the solid door. Ask whether the door's original job survives that swap."
+  },
+  "q-sop-27": {
+    "A 100-question open-book exam on the IRC, 2 hours, 75% to pass": "Ask whether the NC licensing exam is a code-lookup test built on the IRC, or something else entirely."
+  },
+  "q-ea-02": {
+    "Neutrals and grounds each need their own terminal, with no sharing": "Ask whether the terminal rule treats the two conductor types alike, or gives one of them more room."
+  },
+  "q-ea-04": {
+    "When it is a separate white wire run in conduit, not in a cable": "Ask why the code allows a white wire to be taped as a hot at all, and whether a conduit run ever needs that shortcut."
+  },
+  "q-er-03": {
+    "It matters for 240 V appliances, not for ordinary plug-in lamps": "Ask whether polarity is a 240 V idea at all, given which two wires a 120 V receptacle uses."
+  },
+  "q-er-08": {
+    "Note it as informational, since GFCI rules changed later": "Ask whether a rule that changed later decides how you report a condition you can see today."
+  },
+  "q-er-13": {
+    "It is acceptable when the cable is a flexible appliance cord": "Ask whether calling it an appliance cord settles anything about how it is attached under the sink."
+  },
+  "q-ca-02": {
+    "15-lb roofing felt, lapped 2 in": "Ask whether roofing felt is made for ground contact, and what the code names for covering crawlspace soil."
+  },
+  "q-ca-06": {
+    "Perform and report a full wood-destroying insect inspection": "Ask whether a full wood-destroying insect inspection sits inside a home inspector's standard job in NC."
+  },
+  "q-ap-03": {
+    "To slow the drain so the pump does not run dry and burn out": "Ask whether a high loop in a drain hose changes flow speed much, and what else its height could do."
+  },
+  "q-ef-06": {
+    "Repair; recommend sealing or replacing the driveway now": "Ask what evidence would justify a repair call on these cracks: width, movement, or displacement."
+  },
+  "q-fp-03": {
+    "Leave it alone; dampers are outside the visual inspection": "Ask whether the NC fireplace section mentions dampers at all, and in what way."
+  },
+  "q-fp-07": {
+    "It is decorative trim that hides the top course of brick": "Ask whether anything at the very top of a chimney is there purely for looks, given what weather hits it."
+  },
+  "q-hv-10": {
+    "Returns mainly matter in winter, when the furnace runs": "Ask whether the cooling season uses the return ducts at all, before tying them to one season."
+  },
+  "q-hv-11": {
+    "Cosmetic; reattach it with tape the next time it is serviced": "Ask whether tape is a lasting duct connection, and whether this call can wait for a service visit.",
+    "Acceptable, because the vented attic will carry the air away": "Ask whether attic vents are sized for the air a cooling system moves, or only normal attic air exchange."
+  },
+  "q-wh-04": {
+    "Gas collects inside the tank and ignites from the burner": "Ask whether a tank water heater's burner shares space with the tank's contents, or sits sealed off below them."
+  },
+  "q-mo-02": {
+    "That mold is growing on the back side of the ceiling": "Ask whether any camera can identify a living organism behind drywall without sampling it."
+  },
+  "q-mo-05": {
+    "It is cosmetic, though buyers notice a stained caulk line": "Ask whether buyer opinion is what decides how an inspector classifies a condition."
+  },
+  "q-mo-10": {
+    "The two stains are unrelated, and each one has its own separate source": "Ask whether you have evidence of two separate sources, or are assuming it."
+  },
+  "q-ai-04": {
+    "Hold the insulation tight against the roof deck": "Ask whether a baffle is a fastener for insulation, or a shaped channel built for something else."
+  },
+  "q-dk-01": {
+    "Acceptable if there are many nails at close spacing along it": "Ask what a ledger has to resist besides gravity, and whether nail count alone settles that."
+  },
+  "q-dk-04": {
+    "Acceptable if most of the holes are filled with nails": "Ask who sets the count for a hanger's nail holes: the installer, or the hanger's maker.",
+    "Acceptable, because screws are stronger than nails": "Ask whether \"stronger\" means the same thing for a screw pulled straight out and one loaded sideways.",
+    "Cosmetic, as long as the hangers are not bent": "Ask whether a hanger's shape is what you are checking here, or what fastens it."
+  },
+  "q-dk-08": {
+    "To make the rail stiffer at the spot where people grab it": "Ask whether a return at the very end adds much stiffness to a rail already fixed along its run.",
+    "For appearance, so the rail looks neat and finished at the end": "Ask whether a code rule would exist only for a neat look, and what else a rail's end could affect."
+  },
+  "q-rf-01": {
+    "Certify the roof's remaining life for insurance": "Ask whether NC lets inspectors predict or certify life expectancy for any component."
+  },
+  "q-rf-02": {
+    "Boots are part of plumbing, not the roof": "Ask whether a part's trade decides if an inspector reports it, when the part sits on the roof.",
+    "It is cosmetic until the rubber falls away": "Ask whether a roof part has to fail completely before an inspector reports it."
+  },
+  "q-rt-08": {
+    "The underlayment needs upgrading, but not the framing": "Ask whether changing a roof covering affects only the layers right under it, or the structure too."
+  },
+  "q-eg-05": {
+    "Mark them acceptable, since a release lever is present": "Ask whether seeing a release lever tells you everything you need to report about these bars."
+  },
+  "q-pl-01": {
+    "It drains too slowly and clogs more than a P-trap": "Ask whether trap shape changes drain speed much, or matters for a different reason."
+  },
+  "q-pl-04": {
+    "It is the modern standard, replacing rigid PVC drain pipe": "Ask whether newer and flexible means a material is allowed for drains, and where you would check.",
+    "It is acceptable if the run is short and well sloped": "Ask whether a short run changes what kind of pipe this is, or only how much of it there is."
+  },
+  "q-pl-05": {
+    "Acceptable, since drain joints drip now and then": "Ask whether \"now and then\" describes a joint that is dripping while you watch.",
+    "Monitor it and re-check at the final walkthrough": "Ask whether a monitoring note is meant for a condition you suspect, or one already happening in front of you."
+  },
+  "q-pl-09": {
+    "Steady flow at the kitchen faucet with nothing else on": "Ask whether NC asks you to judge flow at one faucet, or something about the system as a whole."
+  },
+  "q-sop-18": {
+    "Cite the current code edition and section number for each defect listed": "Ask whether the statute leaves code citations to your judgment, or puts conditions on them."
+  },
+  "q-hv-08": {
+    "At the main panel, labeled for the condenser circuit": "Ask whether a panel breaker counts as the condenser's service disconnect, or whether a separate one is expected.",
+    "Inside the house, near the thermostat that controls the unit": "Ask whether the thermostat and the disconnect do the same job. One controls cooling; what does the other control?",
+    "Anywhere along the same circuit as the condenser": "Ask whether the rule sets a location for the disconnect, or accepts any switch on the circuit."
+  },
+  "q-ai-06": {
+    "When the client asks and is present to watch": "Ask whether a client's request is what sets an inspector's duties under the SOP."
+  },
+  "q-ra-07": {
+    "36 in up the slope from the eave edge": "Ask whether you are recalling the right distance, and whether more barrier always means the rule is met."
+  },
+  "q-wh-09": {
+    "Yes; NC requires testing it as part of the plumbing inspection": "Separate inspecting the valve from operating it. Ask whether NC makes operating it a blanket requirement."
+  },
+  "q-dk-03": {
+    "It is a cosmetic concern, since the mortar may crack": "Ask whether cracked mortar is the main risk this question is about, or a side effect."
+  },
+  "q-rt-06": {
+    "Monitor it and re-inspect yearly": "Ask whether NC asks inspectors to schedule future visits, and what a yearly re-inspection would add."
+  },
+  "q-sop-06": {
+    "A basement, a crawlspace, or an open-air carport": "Ask whether the trigger is about spaces below grade, or about something in the home that could foul the air."
+  },
+  "q-mo-09": {
+    "The duct is too warm, so it draws water out of the air": "Recheck how the stem describes the duct before choosing an explanation built on its temperature."
+  },
+  "q-er-02": {
+    "Monitor it, unless the receptacle shows corrosion": "Ask whether a monitor note fits a part that already fails to close."
+  },
+  "q-er-10": {
+    "Acceptable, as long as the tape is intact and the splice is off the joist": "Ask whether the splice rule is about the tape at all.",
+    "Acceptable in attics, since they are unoccupied and rarely entered": "Ask whether the splice rule changes from room to room, or applies wherever the splice sits.",
+    "Monitor it, unless the tape is brittle or loose": "Ask whether tape condition is the standard the splice rule uses, or a stand-in you picked."
+  },
+  "q-ap-06": {
+    "Acceptable if the run is short and the duct does not sag anywhere": "Ask whether run length is the only thing a dryer duct is judged on.",
+    "Acceptable as long as the lint filter is cleaned out after each load": "Ask whether owner habits like filter cleaning are something an inspector can rely on in a report.",
+    "Cosmetic; suggest a neater rigid duct the next time it is serviced": "Ask why anyone would suggest a rigid duct at all if the only issue were looks."
+  },
+  "q-ap-09": {
+    "Acceptable while it is not leaking; note it as a monitor item": "Ask whether a hose has to leak before its condition counts as reportable.",
+    "Not reportable, because a washer is not a built-in appliance": "Ask whether the supply hose belongs to the appliance or to the plumbing, and whether that changes reporting.",
+    "Note it as cosmetic wear on the hose cover, which is common with age": "Ask whether a bulge is a change to the hose's surface, or to its shape."
+  },
+  "q-eh-07": {
+    "Acceptable; exterior entry steps are exempt from handrail rules": "Ask whether the handrail rule sorts steps by indoor and outdoor, or by something you can count."
+  },
+  "q-hv-03": {
+    "Acceptable as long as the joist shows no charring or scorch": "Ask whether clearance rules are written around visible damage, or around a set distance.",
+    "Not reportable, since vent clearances are left to the HVAC trade": "Ask whether a clearance you can measure from where you stand is beyond a visual inspection."
+  },
+  "q-hv-07": {
+    "It mainly makes the fan louder, which neighbors may notice": "Ask whether neighbor noise is the kind of effect an inspector's report is built around."
+  },
+  "q-ai-03": {
+    "Acceptable, because the attic itself is vented to outdoors": "Ask whether the attic's own venting is part of the bath fan's required path, or a separate system.",
+    "Acceptable as long as the duct run is insulated": "Ask whether duct insulation is what the bath fan rule is about."
+  },
+  "q-ai-07": {
+    "Acceptable if the ladder holds your full weight when you test it": "Ask whether a single test climb is a method the SOP expects an inspector to rely on.",
+    "Cosmetic, since the ladder still folds and unfolds": "Ask whether folding and unfolding tests the part of the ladder the stem describes.",
+    "Not reportable, because attic stairs are excluded": "Ask whether NC's interior or attic sections mention pull-down stairs before treating them as excluded."
+  },
+  "q-dk-09": {
+    "Acceptable, because ground-contact treated wood resists rot": "Ask whether a treatment label outranks what your probe just found at the base.",
+    "Monitor it, since the deck is not visibly leaning": "Ask whether leaning is the first sign a post gives, or a late one."
+  },
+  "q-ra-02": {
+    "They are cosmetic once the heads have rusted": "Ask whether rust on a nail head is the issue itself, or a sign of something.",
+    "They matter in hurricane zones, not in normal weather": "Ask whether the concern with an exposed nail head depends on wind at all."
+  },
+  "q-fd-05": {
+    "Acceptable; stacked shims are a normal way to level it": "Ask whether shims being allowed means any shim condition is allowed.",
+    "Cosmetic, as long as the floor above feels level": "Ask whether a level-feeling floor is how an inspector judges what sits on a pier.",
+    "Not reportable without first calculating the load": "Ask whether reporting a support problem you can see requires any calculation under NC rules."
+  },
+  "q-eg-04": {
+    "Acceptable, since the bars improve the bedroom's security": "Ask whether security is the only job a bedroom window has under the rules you studied.",
+    "Cosmetic, as long as the bars are painted and sound": "Ask whether paint condition is what the stem's concern is about.",
+    "Acceptable if the bedroom door leads to two exits": "Ask whether the escape rule counts exits through the door, or treats the window on its own."
+  }
+}

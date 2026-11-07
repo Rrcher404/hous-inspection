@@ -4,7 +4,7 @@ import { h, clear, shuffled, append } from './dom.js';
 import { say } from './touch.js';
 import { icon } from './icons.js';
 import { closeButton, confirmDialog } from './modals.js';
-import { clean, courseShort, allQuizzes } from './content.js';
+import { clean, courseShort, allQuizzes, shuffleChoices } from './content.js';
 
 const N = 25;
 const SEC_PER_Q = 72; // NC Board exam: 200 questions in 4 hours
@@ -62,7 +62,7 @@ export function createExam(ctx) {
 
   function start() {
     ctx.sound.unlock(); ctx.sound.play('click');
-    const qs = shuffled(allQuizzes()).slice(0, N);
+    const qs = shuffled(allQuizzes()).slice(0, N).map(shuffleChoices); // answer order changes every attempt
     run = { qs, i: 0, answers: new Array(qs.length).fill(null), picked: null, locked: false, startedAt: Date.now(), done: false };
     if (opts.timed) {
       run.deadline = Date.now() + qs.length * SEC_PER_Q * 1000;

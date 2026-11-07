@@ -8,6 +8,7 @@ import { LESSONS } from '../src/data/lessons.js';
 import { COMPONENT_GUIDES, ZONE_GUIDES } from '../src/data/guides.js';
 import { TOOLS } from '../src/data/taxonomy.js';
 import { audit, asItems } from './quiz-audit.mjs';
+import { QUIZ_HINTS } from '../src/data/quiz-hints.js';
 
 const sev = new Set(SEVERITIES.map(s => s.id));
 const rec = new Set(RECOMMENDATIONS.map(r => r.id));
@@ -105,6 +106,26 @@ for (const z of ZONES) {
   if (qa.longestPct > 35) warns.push(`quizzes: right answer is strictly the longest option in ${qa.longestPct}% of items (chance is 25%; keep <= 35%)`);
   if (qa.shortestPct < 10) warns.push(`quizzes: right answer is strictly the shortest option in only ${qa.shortestPct}% of items (overcorrected; "never the longest" becomes the cue)`);
   for (const id of qa.flagged) warns.push(`quiz ${id}: right answer stands out by length`);
+}
+
+// Quiz hints (Lindqvist's ladder): one per wrong option, never echoing the right answer.
+{
+  const cw = (t) => String(t).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(w => w.length > 2 && !STOP.has(w));
+  let missing = 0;
+  for (const q of QUIZZES) {
+    const key = q.choices[q.answer], hs = QUIZ_HINTS[q.id] || {};
+    for (const w of q.choices.filter((_, i) => i !== q.answer)) {
+      const t = hs[w];
+      if (!t) { missing++; continue; }
+      const n = words(t);
+      if (n < 6 || n > 30) warns.push(`hint ${q.id}: ${n} words`);
+      if (/\u2014/.test(t)) warns.push(`hint ${q.id}: em dash`);
+      const k = cw(key), hw = cw(t);
+      for (let i = 0; i + 2 < k.length; i++) { const tri = k.slice(i, i + 3).join(' '); if (hw.join(' ').includes(tri)) { errs.push(`hint ${q.id}: echoes the right answer ("${tri}")`); break; } }
+    }
+    for (const w of Object.keys(hs)) if (!q.choices.includes(w) || w === key) warns.push(`hint ${q.id}: keyed to an option that is not a wrong choice`);
+  }
+  if (missing) warns.push(`quiz hints: ${missing} wrong options have no hint (a generic one is shown)`);
 }
 
 const answerDist = [0, 0, 0, 0]; QUIZZES.forEach(q => { if (q.answer < 4) answerDist[q.answer]++; });

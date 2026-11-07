@@ -1,0 +1,357 @@
+{
+  "q-ap-01": {
+    "The range sits unlevel, so the oven bakes unevenly and burns food": "Ask what the bracket physically holds in place, and whether a cooking complaint would make this a safety item at all.",
+    "The bracket grounds the range, so without it the frame can shock you": "Think about what actually carries a ground path to an appliance frame. Is that a job for a metal bracket at the floor?",
+    "It voids the manufacturer's warranty, which the client should know": "The stem asks about safety. A paperwork or warranty concern does not explain how anyone could get hurt."
+  },
+  "q-ap-02": {
+    "Operating the cooktop burners": "Burners are the core job of a cooktop. Check what the SOP says about the basic functions of built-in appliances.",
+    "Running the dishwasher through a complete cycle": "NC spells out how an installed dishwasher is run. Ask whether something the rule describes doing could also be excluded.",
+    "Operating the range hood": "Ask whether a range hood fan is a basic function of a built-in appliance, and what the SOP says about basic functions."
+  },
+  "q-ap-03": {
+    "To slow the drain so the pump does not run dry and burn out": "Think about whether a loop in the hose changes how fast water flows, or does something else when the pump stops.",
+    "To keep the hose from kinking where it bends behind the cabinet": "A loop is a deliberate bend, so it is not there to prevent bends. Ask what the height of that loop accomplishes.",
+    "To keep the hose up and away from the disposal's electrical connection": "The loop's height is measured against the countertop, not the disposal's wiring. Ask what rising that high would stop."
+  },
+  "q-ap-04": {
+    "Through the drain cycle": "Think about how many of the dishwasher's functions one phase alone would let you observe.",
+    "Through a short rinse cycle": "A short rinse saves time. Ask whether NC wrote this rule around saving the inspector time.",
+    "Not operated; it is excluded": "Built-in appliances get their basic functions checked under NC. Ask where an installed dishwasher falls."
+  },
+  "q-ap-05": {
+    "Major defect; a kitchen hood has to exhaust outdoors": "Ask whether a design that manufacturers sell and install this way is a defect, or simply a different type of hood.",
+    "Safety hazard; refer to an HVAC contractor for ducting": "Think about who gets hurt by a hood that filters instead of venting. Is that an injury risk, or a comfort difference?",
+    "Not reportable, since the hood was working when tested": "Ask whether reports describe only what works, or also what a system is and how it behaves for the client."
+  },
+  "q-ap-06": {
+    "Acceptable if the run is short and the duct does not sag anywhere": "A short, straight run helps airflow. Think about what else could happen in a duct carrying hot, lint-laden air.",
+    "Acceptable as long as the lint filter is cleaned out after each load": "A filter catches most lint, not all of it. Think about where the lint that slips past ends up over months.",
+    "Cosmetic; suggest a neater rigid duct the next time it is serviced": "Ask whether the concern with this duct is how it looks, or what could happen inside it over years of drying."
+  },
+  "q-ap-07": {
+    "25 ft": "25 ft is the starting point. Ask what the two bends in the stem do to that number before calling it the maximum.",
+    "20 ft": "Check how much each 90 degree bend costs you, and make sure you counted both bends in the stem.",
+    "10 ft": "Check the deduction per 90 degree bend. You may have taken off more per bend than the course standard does."
+  },
+  "q-ap-08": {
+    "Into the attic, which is vented and carries the moisture away": "Attic vents move some air, but think about what warm, wet, lint-laden air does to framing over time.",
+    "Into the crawlspace, below the insulation, away from living space": "Crawlspaces already fight moisture. Ask what adding a dryer's output, every load, would do to the wood down there.",
+    "Outdoors, through a hood with a fine screen to stop pests": "Pests are a fair worry. Ask what a fine mesh does after many loads of lint-laden air pass through it."
+  },
+  "q-ap-09": {
+    "Acceptable while it is not leaking; note it as a monitor item": "A bulge is not surface wear. Ask what has to give way inside a hose for it to swell under pressure.",
+    "Not reportable, because a washer is not a built-in appliance": "You need not inspect a freestanding washer. Ask whether that stops you from mentioning a hazard you can plainly see.",
+    "Note it as cosmetic wear on the hose cover, which is common with age": "Cover wear stays flat. Think about what a bulge tells you about the layers holding back water pressure inside."
+  },
+  "q-ap-10": {
+    "Required to be inspected for temperature": "Measuring temperature is a performance test. Ask whether the NC appliance section asks for performance numbers from anything.",
+    "Required to be operated through a defrost cycle": "A defrost cycle can take hours. Think about whether an SOP would ask you to run one during a visual inspection.",
+    "Required if it is a built-in model": "Ask whether being built in changes what kind of appliance a refrigerator is, under the NC exclusions."
+  },
+  "q-ef-01": {
+    "2 in of fall within the first 5 ft": "Picture a heavy rain on that gentle slope. Would so little fall move water away before it soaks in at the wall?",
+    "3 in of fall within the first 10 ft": "Ask whether that much fall would keep water moving across grass and soil, or let it pool near the wall.",
+    "12 in of fall within the first 3 ft": "That is a steep bank right at the wall. Think about how far from the foundation the water needs to travel."
+  },
+  "q-ef-02": {
+    "The slope makes the lawn look uneven, which hurts the curb appeal": "NC inspects grading for its effect on the building. Does how the lawn looks affect the building?",
+    "Runoff will slowly erode the mulch beds along the east wall over time": "Ask whether the main concern here is landscaping, or something the inspection is actually responsible for.",
+    "No concern; grading is outside the NC inspection, so leave it out": "Check the NC exterior section: grading and drainage are named in it. Ask in what way they are inspected."
+  },
+  "q-ef-03": {
+    "1 in": "Think about splashback and soil moisture. Would a finger's width keep the siding edge dry and termite trails visible?",
+    "2 in": "Picture rain splashing off mulch. Ask whether 2 in leaves room to see termite tubes and keep the wall base dry.",
+    "12 in": "You may be thinking of a larger figure from another rule. Recheck the minimum taught for siding above soil."
+  },
+  "q-ef-04": {
+    "Determine its R-value and note whether insulation is behind it": "Ask whether an inspector can see behind finished cladding, and whether insulation value is a cladding duty at all.",
+    "Probe the vinyl panels with an awl to check for hidden decay behind them": "Probing is for a material that can rot. Ask whether vinyl decays the way wood does.",
+    "Inspect it and report on safety glazing in the windows it surrounds": "Recall NC's exterior exclusions. Ask whether safety glazing is something NC asks you to report."
+  },
+  "q-ef-05": {
+    "Vinyl is the waterproof layer, so a crack leaks straight into the wall": "Recheck the stem: it says vinyl is not the main water barrier. Does this option agree with that?",
+    "The crack is cosmetic, but buyers expect it to be noted anyway": "Ask whether a crack only changes how the wall looks, or also changes how the wall system performs over time.",
+    "Cracked vinyl gives off fumes in the sun that are harmful to breathe": "Ask whether there is any evidence behind a health claim like this, and what the siding's real job on the wall is."
+  },
+  "q-ef-06": {
+    "Major defect; refer to a structural engineer for evaluation": "Ask what an engineer would find in cracks with no displacement. What would make a crack structural?",
+    "Safety hazard; the cracks will become a trip edge soon": "The stem says no trip edge exists. Ask whether you report a hazard that is not there.",
+    "Repair; recommend sealing or replacing the driveway now": "Ask whether hairline cracks from curing are something to fix, or something concrete normally does."
+  },
+  "q-ef-07": {
+    "Hairline cracks running across the full width of the driveway slab": "Ask whether how far a crack runs tells you anything about safety, or whether something else matters more.",
+    "Oil and rust stains near the garage that have soaked into the concrete": "Stains change how concrete looks. Ask whether that affects anyone's safety or the building itself.",
+    "Concrete that has darkened and weathered with age and exposure": "Ask whether color and age by themselves change how the driveway performs or how safe it is to walk on."
+  },
+  "q-ef-08": {
+    "For landscaping quality and the health of trees and shrubs nearby": "Ask whether a home inspector is trained to judge plant health, and why the SOP would mention vegetation at all.",
+    "For compliance with the local storm water and erosion ordinance": "A home inspection is not a code or ordinance inspection. Ask what the SOP does want from you here.",
+    "Not inspected, since site work is outside the home inspection": "Check NC .1107: vegetation, grading, and drainage are named in it. So ask how they are inspected, not whether."
+  },
+  "q-ef-09": {
+    "8 in, or 6 in where masonry veneer is used": "Recheck the model IRC minimum. You may be carrying a larger number over from another clearance rule.",
+    "4 in, or 2 in where brick veneer is used": "Think about what exposed foundation does: keeps wood off wet soil and shows termite tubes. Would 2 in do that?",
+    "12 in, or 8 in where masonry veneer is used": "A foot of exposed wall is generous. Ask whether the IRC minimum is really set that high."
+  },
+  "q-eh-01": {
+    "Acceptable; gutters are a maintenance item outside the NC SOP": "Recall what NC says about roof drainage. Are gutters part of the system you must inspect?",
+    "Major defect; recommend replacing the gutters with larger, deeper ones": "Ask whether these gutters failed by being too small, or whether something is filling them.",
+    "Monitor and recheck after the next heavy rain for overflow": "The stem already shows the problem: leaves and plants. Ask what waiting for rain would tell you that you do not know now."
+  },
+  "q-eh-02": {
+    "Acceptable; downspouts are designed to end at the foundation wall": "Think about how much roof area drains into one downspout, and where all that water goes when it lands at the wall.",
+    "Recommend removing the downspout so water spreads along the eave": "Ask whether spreading roof water along the eave keeps it off the foundation, or just spreads the problem around the house.",
+    "Not reportable, since the gutter system itself is working": "A working gutter collects water. Ask whether the system has finished its job once water reaches the downspout."
+  },
+  "q-eh-03": {
+    "Both standards require testing the seal on each insulated window": "Ask whether testing every seal fits a visual inspection, and compare what each SOP actually lists for windows.",
+    "Neither standard lets you mention fogged glass in the report": "Ask whether an SOP ever forbids reporting something you plainly see. Exclusions limit your duty, not what you may say.",
+    "NC requires reporting it and recommending the sash be replaced": "Check which SOP is which. You may have given NC a duty that comes from a different standard."
+  },
+  "q-eh-04": {
+    "It sits level so water can drain off both the inside and outside": "Ask where water draining off the inside of a sill would end up, and whether you want any of it going there.",
+    "It slopes inward toward the sash so rain stays off the siding below": "Follow a raindrop down that slope. Where does it end up, and what sits at the bottom of the slope?",
+    "It relies on paint alone, so no sealant is needed at the joints": "Paint protects the wood surface. Ask whether it can also seal a joint between two pieces of trim."
+  },
+  "q-eh-05": {
+    "You report it as a code violation and cite the plumbing code": "A home inspection is not a code inspection. Ask whether NC wants you citing plumbing code here.",
+    "You recommend a backflow test by the water utility before closing": "Think about scale: is a utility backflow test the usual next step for one hose bib at an inspection?",
+    "It is excluded, so you leave it out of the report entirely": "An exclusion means you need not do something. Ask whether it also forbids reporting a risk you notice."
+  },
+  "q-eh-06": {
+    "A pipe that crosses another pipe without a fitting between them": "The name sounds like pipe layout. Ask why NC would bother to define two pipes touching without a fitting.",
+    "A direct connection between the hot and cold water supply lines": "Ask what harm a hot to cold link would do. Is that a health risk, or a comfort and control problem?",
+    "Two fixture drains that share one trap under the same sink": "Drains carry waste out of the house. Ask which side of the plumbing a cross connection rule protects."
+  },
+  "q-eh-07": {
+    "Acceptable; exterior entry steps are exempt from handrail rules": "Ask whether a fall on outdoor steps hurts less than one indoors. Why would entry steps get an exemption?",
+    "Acceptable; a handrail is required starting at 6 or more risers": "Recheck the riser count that triggers a handrail. Is it the number you remember, or a different one?",
+    "Acceptable, because concrete steps do not need a handrail": "Ask whether the material a step is made of changes how a person falls on it."
+  },
+  "q-eh-08": {
+    "30 to 34 in above the tread nosings": "Picture bracing a fall on the way down. This range sits a bit low for most adult hands; recheck it.",
+    "36 to 42 in above the tread nosings": "You may be blending handrail height with guard height. Ask which one this range belongs to.",
+    "28 to 32 in above the tread nosings": "Think about where an adult's hand rests when walking down stairs. Would this range help someone catch a fall?"
+  },
+  "q-eh-09": {
+    "Decks and appurtenant railings": "Decks carry people and can fail. Ask whether NC would leave out an attached structure that people stand on.",
+    "Entryway doors": "Entry doors are part of the house itself. Check the required list in .1107 before calling them excluded.",
+    "Eaves, soffits, and fascias": "These trim the roof edge and help keep water out of the house. Check whether .1107 names them as required."
+  },
+  "q-eh-10": {
+    "Step (sidewall) flashing": "Step flashing works along the sidewall. Ask what happens to the water at the very end of that run.",
+    "Drip edge (eave) flashing": "Drip edge lines the eave, not a wall. Ask where the stem's roof edge meets the house.",
+    "Valley (open metal) flashing": "Valleys form where two roof planes meet. Does the stem describe two roof planes, or a roof against a wall?"
+  },
+  "q-fp-01": {
+    "12 in in front and 6 in on each side": "Ask whether this extension would catch a rolling log. Recheck the figures for openings under 6 sq ft.",
+    "20 in in front and 12 in on each side": "Those figures belong to bigger openings. Check where the size cutoff falls and which side of it 5 sq ft sits on.",
+    "8 in in front and 4 in on each side": "Picture an ember popping out onto the floor. Would 8 in of hearth in front catch it?"
+  },
+  "q-fp-02": {
+    "It is cosmetic, though the client may want it repointed later": "Ask whether gaps in the part of the house that holds the fire are a looks issue or a job issue.",
+    "It mainly weakens the draft, so smoke may roll into the room": "Ask what the firebox's own job is, and whether draft is the first thing that job protects.",
+    "Firebox masonry is excluded, so report it as a courtesy note": "Check whether the SOP really excludes the firebox, or whether you are thinking of the flue interior."
+  },
+  "q-fp-03": {
+    "Leave it alone; dampers are outside the visual inspection": "Ask whether moving a readily accessible handle is beyond a visual inspection, or part of it.",
+    "Remove the damper plate so you can inspect the smoke shelf above": "Ask whether removing parts fits a visual inspection, or belongs to a chimney sweep.",
+    "Close it and tape it shut for safety until a sweep visits": "Think about what happens if someone lights a fire under a damper that has been sealed shut. Is that safer?"
+  },
+  "q-fp-04": {
+    "Stage 1, sooty and brushable": "Sooty deposits are soft and powdery. Ask whether shiny and hard describes something a brush would sweep off.",
+    "Stage 2, crunchy and flaky": "Crunchy flakes break apart under a tool. Does the stem's description sound like that texture?",
+    "It is not creosote, just heat discoloration": "Discoloration is a color change in the surface. Ask whether a tar-like deposit you can see is just color."
+  },
+  "q-fp-05": {
+    "A Level I visual inspection by the homeowner": "Ask who is qualified to inspect a chimney at sale, and how much a basic homeowner look could show.",
+    "A smoke test performed by the home inspector": "The stem says your SOP does not require the flue interior. Ask whether testing the flue fits your role.",
+    "No recommendation; the flue is outside the SOP": "Outside the SOP means not required, not off limits. Ask how you would help a client cover that gap."
+  },
+  "q-fp-06": {
+    "3 ft from the ridge, 2 ft from walls, 10 ft from trees": "Ask what problem a chimney rule like this solves. Would trees and walls be the main thing it measures against?",
+    "3 ft wide, 2 ft deep, and 10 ft tall at the minimum": "These sound like sizing numbers. Ask whether the 3-2-10 rule is about the chimney's size or its position.",
+    "3 in clearance, 2 in air space, and a 10 in flue": "Check the units. Ask whether this rule is measured in inches or in feet."
+  },
+  "q-fp-07": {
+    "It holds the spark arrestor screen and the rain cap in place": "Spark arrestors and rain caps are their own part. Ask what the crown's job is by itself.",
+    "It narrows the flue outlet at the top to speed up the draft": "Ask whether choking a flue outlet would help or hurt draft, and whether the crown sits in the gas path at all.",
+    "It is decorative trim that hides the top course of brick": "Think about the top of the masonry through rain and freeze-thaw. Is the crown only there for looks?"
+  },
+  "q-fp-08": {
+    "Nothing; caps are decorative and optional on masonry chimneys": "Ask what an open flue top lets in when no fire is burning, over many seasons.",
+    "The fireplace should not be used until a cap is installed": "Ask whether a missing cap changes how a fire burns today. Is it really a stop-use condition?",
+    "The chimney needs to be rebuilt with a taller flue extension": "A taller flue addresses draft. Does the stem describe a draft problem, or something missing at the top?"
+  },
+  "q-fp-09": {
+    "A kickout flashing to turn water into the gutter": "Kickouts work at a roof edge beside a wall. Is this chimney at a roof edge, or out on the slope?",
+    "A wider apron flashing to spread water around the base": "Ask where an apron flashing sits on a chimney, and whether that is the side the stem is asking about.",
+    "Nothing extra, if the step flashing is sealed": "Ask whether the chimney width in the stem triggers an extra requirement under the course standard."
+  },
+  "q-fp-10": {
+    "1/2 in": "Think about years of heat conducting through brick. Would half an inch let it dissipate before the wood suffers?",
+    "1 in": "You may be recalling the figure for a chimney outside the exterior walls. Where does the stem put this one?",
+    "6 in": "Ask whether you are borrowing the clearance taught for single-wall metal vent connectors instead of masonry."
+  },
+  "q-fp-11": {
+    "The damper opening creates suction that pulls smoke upward": "A damper is an opening you control. Ask whether an opening can create pull on its own.",
+    "Wind blowing across the chimney top pulls the smoke out": "Ask whether a chimney still draws on a still, windless night. If it does, what drives it?",
+    "The firebox's sloped back wall forces the smoke upward": "Ask whether a short sloped wall in the firebox could push smoke up a whole flue on its own."
+  },
+  "q-hv-01": {
+    "Filters are excluded, but a dirty one is worth a courtesy note": "Check NC's list of heating distribution items. Ask whether air filters appear on that list.",
+    "The furnace safety switch will lock out until it is changed": "Ask whether every furnace has a switch tied to filter condition, or whether that is a guess.",
+    "A dirty filter makes the furnace produce carbon monoxide": "Carbon monoxide comes from combustion problems. Ask whether the filter sits on the combustion side or the air side."
+  },
+  "q-hv-02": {
+    "Downward toward the chimney at least 1/4 in per foot": "Hot gases rise. Ask which way a pipe should run to let them do what they naturally do.",
+    "Level, so the gases flow evenly into the chimney": "Ask what hot gases do in a flat pipe once they start to cool. Does level help them move along?",
+    "Upward toward the chimney at least 1 in per foot": "Recheck the minimum rise per foot. You may be remembering a larger figure than the one usually taught."
+  },
+  "q-hv-03": {
+    "Acceptable; 2 in is the standard clearance for vent pipe": "Ask whether you are thinking of a double-wall vent. Does the pipe in the stem run cooler or hotter than that?",
+    "Acceptable as long as the joist shows no charring or scorch": "Ask whether heat damage to wood always shows today, or can build up over years of exposure.",
+    "Not reportable, since vent clearances are left to the HVAC trade": "Ask whether you can stay silent about a fire risk you can see and measure, even when a trade fixes it."
+  },
+  "q-hv-04": {
+    "Inspect the heat exchanger with a mirror and a flashlight": "Check the NC exclusions at the furnace. Ask whether heat exchangers are something you must inspect.",
+    "Relight the pilot if it is out so the furnace can be tested": "Ask whether lighting a pilot is an inspector's task under NC, or something left to the owner or a technician.",
+    "Determine whether each room gets enough heat from its registers": "Ask whether you can judge heat adequacy in one visit. Check whether NC lists it among exclusions."
+  },
+  "q-hv-05": {
+    "Its temperature at the time of the inspection": "A temperature on inspection day changes by the hour. Ask what fixed fact about the room NC wants recorded.",
+    "The BTU rating needed to heat that room's size": "Sizing a system is an engineering calculation. Ask whether NC asks home inspectors for load numbers.",
+    "Whether the room's thermostat is calibrated and working": "Recall what NC excludes about calibration elsewhere in the SOP. Ask whether this would be required room by room."
+  },
+  "q-hv-06": {
+    "The smaller liquid line, since it carries the coldest refrigerant": "On a running condenser, ask which line feels warm to the touch and which feels cool. Which one would sweat?",
+    "Neither, since both lines run near the outdoor temperature": "Touch both lines on a running system. Ask whether they really feel the same temperature as the outdoor air.",
+    "The condensate drain line running from the indoor coil": "The stem asks about refrigerant lines at the condenser. Ask whether a condensate drain is one of those."
+  },
+  "q-hv-07": {
+    "It is cosmetic, though the pad should be leveled at the next service call": "Ask whether a leaning machine only looks off, or also stresses the parts connected to it.",
+    "It mainly makes the fan louder, which neighbors may notice": "Noise is a nuisance. Ask whether there is a mechanical reason a tilted unit would be a concern.",
+    "Not reportable, since the condenser itself is outside the SOP": "Ask whether NC's cooling section really leaves out the outdoor unit, or whether that is an assumption."
+  },
+  "q-hv-08": {
+    "At the main panel, labeled for the condenser circuit": "Picture a technician at the condenser. Could they see whether someone flips that breaker back on?",
+    "Inside the house, near the thermostat that controls the unit": "Ask who needs to control the disconnect, and where that person is standing while they work.",
+    "Anywhere along the same circuit as the condenser": "Ask whether a disconnect the technician cannot find or see would protect them while their hands are in the unit."
+  },
+  "q-hv-09": {
+    "32 F": "Freezing is a common cutoff. Ask whether a compressor is safe to run on a cool day well above freezing.",
+    "50 F": "Recheck the InterNACHI figure. Ask whether a compressor could be harmed on a day many people would call mild.",
+    "75 F": "That is a warm day. Ask whether a cutoff that high would leave cooling untested for much of the year."
+  },
+  "q-hv-10": {
+    "Returns mainly matter in winter, when the furnace runs": "Ask whether the same blower and ducts move air in summer too. Is the return part of both seasons?",
+    "Returns are mostly decorative grilles that balance the look": "Ask what would happen to airflow if you taped over every return grille in the house.",
+    "Returns carry exhaust gases out of the living space": "Ask whether combustion gases ever enter the house air ducts by design, or leave through a flue."
+  },
+  "q-hv-11": {
+    "Acceptable, because the vented attic will carry the air away": "Ask what the room below loses, and what cold air does in a warm attic, before calling it acceptable.",
+    "Cosmetic; reattach it with tape the next time it is serviced": "Ask whether a disconnected duct is about looks, or about where the air the owner pays to condition ends up.",
+    "Not reportable, since attic ductwork is outside the NC SOP": "Ask whether NC's heating and cooling sections cover distribution, and whether ducts are part of distribution."
+  },
+  "q-wh-01": {
+    "12 in": "Picture scalding water leaving a pipe at knee height. Who could it hit on the way down?",
+    "18 in": "You may be thinking of the garage ignition height. Recheck the TPR termination figure.",
+    "24 in": "Ask how far scalding water sprays when it leaves a pipe that high, and who might be standing nearby."
+  },
+  "q-wh-02": {
+    "Pipe the same size as the valve outlet": "Ask whether a pipe that matches the valve outlet is a problem, or whether a reduction in size would be.",
+    "Termination 4 in above the floor": "Recall the maximum height above the floor for the termination. Is 4 in inside that limit or outside it?",
+    "Pipe running downhill by gravity in the same room": "Ask which way water should flow in a discharge pipe so nothing traps it along the way."
+  },
+  "q-wh-03": {
+    "The tank wall is thickest there and protects the probe": "Ask whether the probe is placed for its own protection, or to sense something about the water.",
+    "The cold water inlet is at the top of the tank": "Ask what the probe is meant to sense. Would sitting beside incoming cold water help it do that?",
+    "It keeps the probe clear of sediment at the bottom": "Ask whether avoiding sediment explains a rule about the top 6 in specifically, rather than just staying off the bottom."
+  },
+  "q-wh-04": {
+    "Gas collects inside the tank and ignites from the burner": "Ask what is actually stored inside the tank under pressure. Is it gas?",
+    "Sediment reacts with the steel lining and explodes when it is overheated": "Ask whether there is any explosive chemistry between sediment and steel, or whether you are guessing at a cause.",
+    "Cold water hitting the hot steel cracks it open like glass": "Ask whether a steel tank behaves like glass, and what stored energy inside it could be released when it fails."
+  },
+  "q-wh-05": {
+    "You are required to estimate the remaining service life in years": "Check NC's exclusions about life expectancy. Ask whether an estimate is a required item.",
+    "You are required to recommend replacing it before the closing": "Ask whether age alone is a defect, or information the client can use for planning.",
+    "You may not mention the age, since that would predict failure": "An exclusion limits what you must report. Ask whether it also forbids sharing useful context."
+  },
+  "q-wh-06": {
+    "6 in": "You may be thinking of the TPR discharge figure. Ask where gasoline vapor collects in a garage.",
+    "12 in": "Gasoline vapor is heavier than air. Ask whether 12 in clears the layer that pools near the floor.",
+    "36 in": "Ask whether the rule really requires that much height, or whether you are adding a safety margin of your own."
+  },
+  "q-wh-07": {
+    "It drains condensed water out of the bottom of the tank": "Ask which system the drip leg belongs to. Is it on the tank's water side or on the gas supply?",
+    "It slows the gas flow so the burner lights more smoothly": "Ask whether a short capped pipe off the line could meter gas flow. What else could it do?",
+    "It works as a second shutoff valve right beside the appliance": "A shutoff has a handle or valve. Ask whether a drip leg has any way to stop the flow."
+  },
+  "q-wh-08": {
+    "Normal heat from a draft hood that is working as designed": "Ask whether scorching is ever normal on a working appliance. What would have to escape to cause it?",
+    "The thermostat is set too high and the burner runs hot": "Ask whether water temperature inside the tank would scorch the outside top, right at the draft hood.",
+    "The TPR valve has discharged steam onto the top of the tank": "Ask whether steam leaves scorch marks or water and rust stains, and where the TPR pipe sends its discharge."
+  },
+  "q-wh-09": {
+    "Yes; NC requires testing it as part of the plumbing inspection": "Check NC's plumbing exclusions about automatic safety controls before deciding testing is required.",
+    "Yes, if the client is present to watch the discharge": "Ask whether having a witness changes what can happen to an old valve after you lift its lever.",
+    "Yes, if the tank is under 10 years old and has a drain pan": "Ask whether age and a drain pan change your duty under NC, or only change how a leak gets caught."
+  },
+  "q-wh-10": {
+    "Its age, remaining life, and the condition of the anode rod": "Ask whether NC requires life expectancy, and whether an anode rod is visible without taking things apart.",
+    "Its recovery rate in gallons per hour and its efficiency": "Ask whether NC asks you to judge capacity adequacy or performance at all during a visual inspection.",
+    "Whether a thermal expansion tank is present and charged": "Check NC's water heater exclusions. Ask whether expansion tanks are on the required list or the excluded one."
+  },
+  "q-mo-01": {
+    "Report nothing, since a dry reading shows the leak is fixed": "Ask what a dry reading proves about the next storm, or a leak that only shows up in certain weather.",
+    "Report it as an active leak and refer to a roofer for repair": "Ask whether a dry reading supports calling the leak active, and whether you know the source is the roof.",
+    "Recommend replacing the roof covering above the stained area of ceiling": "Ask whether one stain, reading dry, justifies a roof replacement before anyone has found the source."
+  },
+  "q-mo-02": {
+    "That the drywall behind the cool spot is wet from a leak": "Ask what else besides water can make a ceiling spot read cool on a thermal camera.",
+    "That mold is growing on the back side of the ceiling": "Ask whether a camera that sees surface temperature could tell you anything about what is growing out of sight.",
+    "That the insulation above that spot is missing or thin": "Missing insulation is one possible cause. Ask whether it is the only thing that could read cool."
+  },
+  "q-mo-03": {
+    "8 percent": "Ask where dry framing lumber usually reads. Could a decay threshold sit that low?",
+    "12 percent": "Ask whether that figure is a warning level, or closer to where normal dry lumber sits.",
+    "50 percent": "Ask whether decay waits until wood is that soaked, or can start at a much lower reading."
+  },
+  "q-mo-04": {
+    "Acceptable; sink cabinets often get wet from normal use": "Ask whether normal use would swell a cabinet floor and leave it reading wet.",
+    "Recommend replacing the countertop and sink above the cabinet": "Ask whether you know the source yet, and whether the counter is what got damaged.",
+    "Monitor it and recheck the reading after a few days": "Ask whether a swollen particleboard floor that reads wet today needs more evidence before you act."
+  },
+  "q-mo-05": {
+    "It is cosmetic, though buyers notice a stained caulk line": "Ask what the caulk joint is there to stop, and where water goes when the joint opens.",
+    "It mainly affects how the grout looks along the tub edge": "Caulk and grout are different materials with different jobs. Ask what this particular joint's job is.",
+    "Caulk is outside the NC SOP, but it is a courtesy note": "Ask whether the SOP really excludes caulk, or whether you are assuming small items are out of scope."
+  },
+  "q-mo-06": {
+    "Normal moisture after a recent shower, so no report is needed": "Look at the pattern in the stem. Would shower splash leave one wet spot with dry tile all around it?",
+    "A failed shower pan liner, which you should confirm by testing": "Ask whether NC asks you to test shower pan liners, and whether a soap dish sits where a pan would be.",
+    "Mold behind the tile, which you should identify and report": "Check NC's exclusions on environmental conditions. Ask whether naming mold is part of your job."
+  },
+  "q-mo-07": {
+    "A cracked tank lid dripping onto the floor": "A lid sits on top of the tank and holds no water. Ask what a cracked lid could drip.",
+    "Condensation from the tank on a humid day": "Condensation could wet the floor. Ask whether it explains the toilet rocking.",
+    "A clogged vent stack forcing water back up": "Ask whether a vent problem explains the toilet itself rocking on the floor."
+  },
+  "q-mo-08": {
+    "As mold growth that needs remediation by a mold contractor": "Check NC's exclusions on mold and other environmental conditions. Can you name a stain as mold?",
+    "As acceptable, since crawlspace wood often reads that high": "Compare 24 percent with the reading commonly treated as elevated for wood. Which side of it does this joist sit on?",
+    "As a structural failure of the joist; refer to an engineer": "Ask whether the stem describes sagging, cracking, or failure, or only moisture and staining."
+  },
+  "q-mo-09": {
+    "The duct is leaking water that drains from the indoor coil": "Supply ducts carry air, not condensate. Ask where water on the outside of the duct is coming from.",
+    "The duct is too warm, so it draws water out of the air": "Check the stem: it says a cold supply duct. Ask which way temperature has to go for air to give up water.",
+    "Rainwater is entering through the foundation vents and collecting": "Ask whether rain entering vents explains water forming on the duct itself, all along its length."
+  },
+  "q-mo-10": {
+    "The two stains are unrelated, and each one has its own separate source": "Ask how likely it is that two wet stains line up exactly, one above the other, by chance.",
+    "The ceiling drywall below has to be replaced before the closing": "Ask whether the question is about repair scope, or about what the attic stain tells you.",
+    "Nothing reportable, since the attic sheathing is outside the SOP": "Ask whether NC leaves attic sheathing out, or asks you to report how the attic was inspected."
+  }
+}
