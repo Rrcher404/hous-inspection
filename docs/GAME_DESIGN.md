@@ -52,6 +52,13 @@ has something to stand on). 14 zones, 74 components, 119 checkpoints.
 | Attic | Attic, Structural, HVAC | 3-in insulation, fan vented into attic, cut truss, open splice, rodents |
 | Crawlspace | Crawlspaces, Foundations, Structural, Moisture | torn vapor retarder, cracked pier, notched joist, mud tubes, fallen duct |
 
+## Touch (phones and tablets)
+On a touch screen a stick appears bottom left for walking (push further to stride out). One finger
+drags to look or orbit, a tap inspects, press-and-hold inspects a door, hatch, or ladder instead of
+going through it, and two fingers pinch to zoom up close. On phones the inspect panel and the
+finding card become bottom sheets so the object stays in view above them, and portrait screens get
+a wider camera so the view isn't a sliver.
+
 ## Tools (keys 1 to 5)
 Eyes & Hands · Flashlight (dark zones) · Moisture Meter (%WME) · Receptacle Tester (3-light + GFCI
 button) · Thermal Camera (false-colour, never a stand-alone diagnosis).

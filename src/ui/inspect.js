@@ -1,5 +1,6 @@
 // Inspect panel: what you are looking at, what there is to judge, and a way back.
 import { h, clear, append } from './dom.js';
+import { say } from './touch.js';
 import { icon } from './icons.js';
 import { COMPONENT_BY_ID } from '../data/manifest.js';
 import { clean, courseShort, allQuizzes, SEV } from './content.js';
@@ -51,7 +52,7 @@ export function createInspectPanel(ctx) {
         h('div', { class: 'chips' }, comp.courses.map(c =>
           h('button', { class: 'chip chip-btn chip-course', type: 'button', title: 'Open Field Notes', onclick: () => ctx.notebook.openCourse(c) }, courseShort(c))))),
       cps.length
-        ? h('p', { class: 'insp-help' }, 'Click a part of it to examine, or pick one below.', h('span', { class: 'muted' }, ` ${n} of ${cps.length} logged.`))
+        ? h('p', { class: 'insp-help' }, say('Click a part of it to examine, or pick one below.', 'Tap a part of it to examine, or pick one below. Pinch to zoom.'), h('span', { class: 'muted' }, ` ${n} of ${cps.length} logged.`))
         : h('p', { class: 'insp-help' }, 'Nothing to judge here. Have a look around it, then head back.'),
       h('ul', { class: 'cp-list' }, cps.map(cp => {
         const e = store.inspection.logged[cp.id];

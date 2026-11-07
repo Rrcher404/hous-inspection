@@ -1,5 +1,6 @@
 // Toasts: XP, rank up, zone entered, room complete. Top-centre band, never the middle of the view.
 import { h, append } from './dom.js';
+import { say } from './touch.js';
 import { icon } from './icons.js';
 import { ZONE_BY_ID, CHECKPOINTS } from '../data/manifest.js';
 import { courseShort } from './content.js';
@@ -81,7 +82,7 @@ export function createToasts(ctx) {
       h('div', { class: 'toast-title' }, z.name),
       h('div', { class: 'chips' }, z.courses.map(c => h('span', { class: 'chip chip-course' }, courseShort(c)))),
       h('div', { class: 'toast-sub' }, z.dark && store.tool !== 'flashlight'
-        ? `It's dark in here. Press 2 for the flashlight. ${total} checkpoints.`
+        ? `It's dark in here. ${say('Press 2 for the flashlight.', 'Tap the flashlight on the belt.')} ${total} checkpoints.`
         : `${total} checkpoints in this area`),
       note ? h('p', { class: 'toast-note-line' }, note) : null);
     push(el, note ? 6500 : 4200);

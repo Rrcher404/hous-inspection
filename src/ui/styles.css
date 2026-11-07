@@ -652,3 +652,79 @@ html.wi, html.wi body { margin: 0; height: 100%; overflow: hidden; background: #
 .wi-root [tabindex="-1"]:focus-visible { outline: none; box-shadow: none; }
 .wi-root .search:focus-visible { outline: none; box-shadow: none; }
 .search-row:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(242, 128, 58, .45); }
+
+/* ── touch screens (phones, tablets): .touch is set on the UI root by touch.js ── */
+html.wi, html.wi body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; }
+html.wi body { touch-action: manipulation; }
+#world, #world canvas { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+
+.joy { display: none; position: absolute; left: 24px; bottom: 24px; width: 128px; height: 128px; touch-action: none; -webkit-user-select: none; user-select: none; }
+.touch .joy { display: block; }
+.hud.inspecting .joy { display: none; }
+.joy-ring { position: absolute; inset: 0; border-radius: 50%; background: rgba(255, 253, 249, .26); border: 2px solid rgba(255, 255, 255, .8); box-shadow: var(--shadow-sm); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.joy-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(255, 253, 249, .96); border: 2px solid transparent; box-shadow: var(--shadow); transition: transform .14s var(--ease); pointer-events: none; }
+.joy.active .joy-knob { transition: none; background: var(--accent-soft); border-color: var(--accent); }
+.touch .help { display: none; }
+.touch .coach { bottom: 172px; }
+.touch .belt-btn:hover { background: transparent; }
+.touch .belt-btn.on:hover { background: var(--accent-soft); }
+
+/* phone portrait */
+@media (max-width: 640px) {
+  .hud-tl { top: 8px; left: 8px; width: calc(100vw - 180px); padding: 8px 12px; }
+  .hud-addr { display: none; }
+  .hud-zone { font-size: 15px; margin: 0 0 6px; }
+  .hud-prog-text { font-size: 11.5px; margin-top: 4px; }
+  .hud-tr { top: 8px; right: 8px; bottom: auto; gap: 6px; }
+  .hud-rankcard { width: 160px; padding: 6px 6px 6px 12px; }
+  .hud-rankcard .bar, .hud-xp-text { display: none; }
+  .hud-rank-row { margin: 0; }
+  .hud-rank { font-size: 13px; }
+  .hud-finish { font-size: 13px; padding: 6px 10px; }
+  .belt-wrap { bottom: 10px; }
+  .belt-name { display: none; }
+  .minimap { display: block; right: 8px; bottom: 84px; }
+  .minimap:not(.collapsed) { left: 8px; width: auto; max-height: calc(100vh - 180px); overflow: auto; z-index: 3; }
+  .joy { left: 14px; bottom: 80px; width: 116px; height: 116px; }
+  .touch .coach, .coach { top: 92px; bottom: auto; left: 8px; right: 8px; width: auto; }
+  .inspect { bottom: 80px; max-height: 44vh; }
+}
+
+/* phone landscape: short screen, keep the edges thin */
+@media (max-height: 500px) and (min-width: 641px) {
+  .hud-tl { top: 8px; left: 8px; width: 240px; padding: 8px 12px; }
+  .hud-addr, .help { display: none; }
+  .hud-zone { font-size: 15px; margin: 0 0 6px; }
+  .hud-tr { top: 8px; right: 8px; gap: 6px; }
+  .hud-rankcard { width: 200px; padding: 6px 8px 6px 12px; }
+  .hud-rankcard .bar, .hud-xp-text { display: none; }
+  .hud-rank-row { margin: 0; }
+  .belt-wrap { bottom: 8px; }
+  .belt-name { display: none; }
+  .belt-btn { width: 44px; height: 44px; }
+  .minimap { bottom: 8px; right: 8px; }
+  .minimap:not(.collapsed) { top: 8px; bottom: 8px; overflow: auto; z-index: 3; }
+  .joy { left: 16px; bottom: 16px; width: 112px; height: 112px; }
+  .touch .coach, .coach { bottom: auto; top: 96px; left: 8px; width: 300px; }
+  .inspect { top: 104px; right: 8px; width: min(300px, 42vw); max-height: calc(100vh - 170px); }
+}
+.joy.coach-target { border-radius: 50%; outline-offset: 2px; }
+.touch kbd.kbd-in, .touch .minimap kbd, .touch .belt-key { display: none; }
+@media (max-width: 640px) {
+  /* up close, the object is framed in the top half: keep the tour card small there */
+  .wi-root:has(.hud.inspecting) .coach { padding: 10px 12px 8px; }
+  .wi-root:has(.hud.inspecting) .coach .coach-dots,
+  .wi-root:has(.hud.inspecting) .coach .eyebrow { display: none; }
+  .wi-root:has(.hud.inspecting) .coach .coach-title { font-size: 15px; margin: 0 0 2px; }
+  .wi-root:has(.hud.inspecting) .coach .coach-body { font-size: 13px; margin: 0 0 4px; }
+}
+@media (max-width: 640px) {
+  /* the finding card is a bottom sheet so the object stays in view above it */
+  .modal-wrap.side { align-items: flex-end; padding: 8px; }
+  .modal-wrap.side .logcard { max-height: 58vh; }
+  .lc-head { padding: 12px 12px 8px 16px; }
+  .lc-title { font-size: 18px; }
+  .lc-body { padding: 12px 16px 6px; }
+  .lc-foot { padding: 10px 12px 12px 16px; }
+}
+.touch .minimap.collapsed .icon-btn.sm { display: none; }

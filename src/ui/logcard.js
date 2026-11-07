@@ -1,5 +1,6 @@
 // The log card: observe -> classify -> learn. The heart of the game.
 import { h, clear, append } from './dom.js';
+import { say } from './touch.js';
 import { icon } from './icons.js';
 import { closeButton } from './modals.js';
 import { CHECKPOINT_BY_ID, COMPONENT_BY_ID } from '../data/manifest.js';
@@ -108,7 +109,7 @@ export function createLogCard(ctx) {
     append(body, observeSection());
 
     // Severity pills
-    const hintLine = h('p', { class: 'sev-hint', 'aria-live': 'polite' }, choice.severity ? SEV[choice.severity].hint : 'Pick the one that fits. Hover or focus a choice to see what it means.');
+    const hintLine = h('p', { class: 'sev-hint', 'aria-live': 'polite' }, choice.severity ? SEV[choice.severity].hint : say('Pick the one that fits. Hover or focus a choice to see what it means.', 'Pick the one that fits. Its meaning shows here once you tap it.'));
     const sevGroup = h('div', { class: 'sev-pills', role: 'radiogroup', 'aria-label': 'Severity' });
     SEV_LIST.forEach((sv, i) => {
       const on = choice.severity === sv.id;
@@ -117,7 +118,7 @@ export function createLogCard(ctx) {
         tabindex: on || (!choice.severity && i === 0) ? 0 : -1, title: sv.hint, style: { '--sev': sv.color },
         onclick: () => pickSev(sv.id),
         onmouseenter: () => { hintLine.textContent = sv.hint; },
-        onmouseleave: () => { hintLine.textContent = choice.severity ? SEV[choice.severity].hint : 'Pick the one that fits. Hover or focus a choice to see what it means.'; },
+        onmouseleave: () => { hintLine.textContent = choice.severity ? SEV[choice.severity].hint : say('Pick the one that fits. Hover or focus a choice to see what it means.', 'Pick the one that fits. Its meaning shows here once you tap it.'); },
         onfocus: () => { hintLine.textContent = sv.hint; },
         onkeydown: (e) => radioKeys(e, sevGroup, (el) => pickSev(el.dataset.v)),
         'data-v': sv.id,
@@ -182,7 +183,7 @@ export function createLogCard(ctx) {
     }
     const prompt = cp.tool
       ? 'The reading above is your evidence. What does it tell you, and how serious is it?'
-      : `Look closely in the view. Drag to orbit and scroll to zoom${ring ? '; the orange ring marks the spot' : ''}. What do you see, and how serious is it?`;
+      : `Look closely in the view. Drag to orbit and ${say('scroll', 'pinch')} to zoom${ring ? '; the orange ring marks the spot' : ''}. What do you see, and how serious is it?`;
     return h('section', { class: 'observe observe-hidden' },
       h('div', { class: 'section-label' }, icon('eye', { size: 15 }), ' Your eyes first'),
       h('p', { class: 'observe-prompt' }, prompt),

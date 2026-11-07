@@ -254,7 +254,9 @@ export function createEngine({ container, bus, store }) {
   const PANEL_W = 360, BELT_H = 110, FILL = 0.7;
   function freeArea() {
     const r = cv.getBoundingClientRect(), W = r.width || 1, H = r.height || 1;
-    const dx = Math.min(PANEL_W / 2, W * 0.15), dy = Math.min(BELT_H / 2, H * 0.07);
+    let dx = Math.min(PANEL_W / 2, W * 0.15), dy = Math.min(BELT_H / 2, H * 0.07);
+    // phone portrait: the UI moves the panel to a bottom sheet, so frame in the top half instead
+    if (W <= 640 && H > W) { dx = 0; dy = H * 0.24; }
     return { W, H, dx, dy, x0: r.left + 12, x1: r.left + W - 2 * dx - 12, y0: r.top + 12, y1: r.top + H - 2 * dy - 12 };
   }
   const _occ = new THREE.Ray(), _hitP = new THREE.Vector3();
@@ -486,7 +488,7 @@ export function createEngine({ container, bus, store }) {
       if (!hit) return;
       if (hit.kind === 'portal') { travel(hit.portal.to); return; }
       const rec = hit.comp;
-      const inspectInstead = opts.button === 2 || opts.alt || opts.shift;
+      const inspectInstead = opts.button === 2 || opts.alt || opts.shift || opts.long;
       if (PORTAL_COMPONENTS[rec.id] && !inspectInstead) { travel(PORTAL_COMPONENTS[rec.id]); return; }
       openInspect(rec);
     } else if (controls.mode === 'inspect' && inspecting) {
@@ -519,7 +521,12 @@ export function createEngine({ container, bus, store }) {
   function resize() {
     const w = container.clientWidth || window.innerWidth, h = container.clientHeight || window.innerHeight;
     renderer.setSize(w, h, false);
-    camera.aspect = w / h; camera.updateProjectionMatrix();
+    camera.aspect = w / h;
+    // Portrait phones: a fixed vertical FOV leaves a ~30 deg sliver side to side. Widen the vertical
+    // FOV until the view is ~58 deg across (capped so it never goes fish-eye). Desktop stays at 62.
+    const want = 2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(29)) / camera.aspect);
+    camera.fov = THREE.MathUtils.clamp(THREE.MathUtils.radToDeg(want), 62, 95);
+    camera.updateProjectionMatrix();
   }
   function render() {
     renderer.clear();
@@ -592,6 +599,7 @@ export function createEngine({ container, bus, store }) {
     bus.on('ui:teleport', (e) => api.goToZone(e?.zoneId));
     bus.on('ui:goto-component', (e) => api.openComponent(e?.componentId));
     bus.on('ui:inspect-exit', () => exitInspect());
+    bus.on('ui:stick', (e) => controls.setStick(e?.x, e?.y));
     bus.on('ui:modal', ({ open }) => { modalOpen = !!open; controls.setModal(modalOpen); if (modalOpen) clearHover(); });
     bus.on('tool:changed', ({ tool }) => applyTool(tool));
     bus.on('finding:logged', () => { if (inspecting) hints.update((id) => store.isLogged(id), !!store.settings.hints); });

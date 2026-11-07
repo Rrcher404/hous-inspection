@@ -2,6 +2,9 @@
 // orbit camera. Drag semantics are "grab the world" (like a walkthrough panorama), which
 // matches a Mac trackpad; two-finger scroll looks around gently in walk mode and zooms in
 // inspect mode. Click vs drag is decided on pointerup (moved < 6 px and < 700 ms).
+// Touch: one finger drags to look / orbit, a tap clicks, a press-and-hold is a "long" click
+// (inspect a doorway instead of walking through it), two fingers pinch to zoom up close.
+// Walking on touch comes from the on-screen stick in the UI via setStick().
 import * as THREE from 'three';
 import { EYE, floorAt, headroomAt } from './layout.js';
 import { resolveCollision } from './zones.js';
@@ -19,6 +22,9 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     vx: 0, vz: 0, bob: 0, mode: 'walk', frozen: false,
   };
   const keys = new Set();
+  const stick = { x: 0, y: 0 };
+  const touches = new Map(); // pointerId -> {x, y} for active touch contacts
+  let pinch = null;          // { d } while two fingers are down
   const ptr = { down: false, id: -1, x: 0, y: 0, sx: 0, sy: 0, t: 0, moved: 0, button: 0, lastX: 0, lastY: 0, inside: false };
   const tween = { active: false, t: 0, dur: 0.6, fromP: new THREE.Vector3(), toP: new THREE.Vector3(), fromQ: new THREE.Quaternion(), toQ: new THREE.Quaternion(), done: null };
   const orbit = { target: new THREE.Vector3(), target0: new THREE.Vector3(), box: new THREE.Box3(), r: 1, theta: 0, phi: 1, theta0: 0, lim: 1.4, rMin: 0.15, rMax: 4, phiMin: 0.12, phiMax: 2.9 };
@@ -35,21 +41,47 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
   };
 
   // ── input ────────────────────────────────────────────────────────────────
+  const isTouch = (e) => e.pointerType === 'touch';
+  const pinchDist = () => { const [a, b] = [...touches.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
+  const pinchMid = () => { const [a, b] = [...touches.values()]; return [(a.x + b.x) / 2, (a.y + b.y) / 2]; };
   function onDown(e) {
     if (modal) return;
+    if (isTouch(e)) {
+      touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      try { dom.setPointerCapture(e.pointerId); } catch { /* ignore */ }
+      if (touches.size >= 2) {
+        // a second finger turns the gesture into a pinch: no look, no click
+        if (ptr.down) { ptr.down = false; callbacks.onDragState?.(false); }
+        if (touches.size === 2) pinch = { d: pinchDist() };
+        return;
+      }
+    }
     if (e.button !== 0 && e.button !== 2) return;
     ptr.down = true; ptr.id = e.pointerId; ptr.button = e.button;
     ptr.sx = ptr.lastX = e.clientX; ptr.sy = ptr.lastY = e.clientY; ptr.t = performance.now(); ptr.moved = 0;
     try { dom.setPointerCapture(e.pointerId); } catch { /* ignore */ }
   }
   function onMove(e) {
-    ptr.x = e.clientX; ptr.y = e.clientY; ptr.inside = true;
-    callbacks.onHoverMove?.(e.clientX, e.clientY);
+    if (isTouch(e)) {
+      const t = touches.get(e.pointerId);
+      if (t) { t.x = e.clientX; t.y = e.clientY; }
+      if (pinch && touches.size >= 2) {
+        if (modal) return;
+        const d = pinchDist();
+        if (st.mode === 'inspect') { const [mx, my] = pinchMid(); zoomBy(pinch.d / d, mx, my); }
+        pinch.d = d;
+        return;
+      }
+    } else {
+      // touch has no hover; only a real mouse/pen moves the hover glow
+      ptr.x = e.clientX; ptr.y = e.clientY; ptr.inside = true;
+      callbacks.onHoverMove?.(e.clientX, e.clientY);
+    }
     if (!ptr.down || modal) return;
     const dx = e.clientX - ptr.lastX, dy = e.clientY - ptr.lastY;
     ptr.lastX = e.clientX; ptr.lastY = e.clientY;
     ptr.moved += Math.abs(dx) + Math.abs(dy);
-    if (ptr.moved < 4) return;
+    if (ptr.moved < (isTouch(e) ? 8 : 4)) return;
     callbacks.onDragState?.(true);
     if (st.mode === 'walk' && !st.frozen) {
       st.yaw += dx * LOOK * sens();
@@ -60,28 +92,46 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     }
   }
   function onUp(e) {
+    if (isTouch(e)) {
+      touches.delete(e.pointerId);
+      if (pinch) {
+        if (touches.size < 2) { pinch = null; if (st.mode === 'inspect') settled(); }
+        try { dom.releasePointerCapture(e.pointerId); } catch { /* ignore */ }
+        if (e.pointerId !== ptr.id || !ptr.down) return;
+      }
+    }
     if (!ptr.down || e.pointerId !== ptr.id) return;
     ptr.down = false;
     try { dom.releasePointerCapture(e.pointerId); } catch { /* ignore */ }
     callbacks.onDragState?.(false);
     if (ptr.moved >= 6 && st.mode === 'inspect') settled();
-    if (modal) return;
+    if (modal || e.type === 'pointercancel') return;
     const dt = performance.now() - ptr.t;
-    if (ptr.moved < 6 && dt < 700) callbacks.onClick?.(e.clientX, e.clientY, { button: ptr.button, alt: e.altKey, shift: e.shiftKey });
+    const opts = { button: ptr.button, alt: e.altKey, shift: e.shiftKey, touch: isTouch(e) };
+    if (isTouch(e)) {
+      // a finger wobbles more than a mouse; press-and-hold is the touch stand-in for E / Shift-click
+      if (ptr.moved < 12 && dt < 450) callbacks.onClick?.(e.clientX, e.clientY, opts);
+      else if (ptr.moved < 12 && dt < 2500) callbacks.onClick?.(e.clientX, e.clientY, { ...opts, long: true });
+      return;
+    }
+    if (ptr.moved < 6 && dt < 700) callbacks.onClick?.(e.clientX, e.clientY, opts);
+  }
+  /** Inspect-mode zoom by factor k (<1 closer) about the surface under screen point (x, y). */
+  function zoomBy(k, x, y) {
+    k = THREE.MathUtils.clamp(orbit.r * k, orbit.rMin, orbit.rMax) / orbit.r; // effective scale after limits
+    // zoom about the surface point under the cursor: scaling camera and target about P keeps P
+    // fixed on screen (read a lug, a nail, a date stamp). Zooming out drifts back to the framing.
+    if (k < 1) { const pt = callbacks.pickPoint?.(x, y); if (pt) orbit.target.lerp(pt, 1 - k); }
+    else if (k > 1) orbit.target.lerp(orbit.target0, Math.min(1, (k - 1) * 1.2));
+    orbit.box.clampPoint(orbit.target, orbit.target);
+    orbit.r *= k;
+    settled();
   }
   function onWheel(e) {
     e.preventDefault();
     if (modal) return;
     if (st.mode === 'inspect') {
-      let k = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015));
-      k = THREE.MathUtils.clamp(orbit.r * k, orbit.rMin, orbit.rMax) / orbit.r; // effective scale after limits
-      // zoom about the surface point under the cursor: scaling camera and target about P keeps P
-      // fixed on screen (read a lug, a nail, a date stamp). Zooming out drifts back to the framing.
-      if (k < 1) { const pt = callbacks.pickPoint?.(e.clientX, e.clientY); if (pt) orbit.target.lerp(pt, 1 - k); }
-      else if (k > 1) orbit.target.lerp(orbit.target0, Math.min(1, (k - 1) * 1.2));
-      orbit.box.clampPoint(orbit.target, orbit.target);
-      orbit.r *= k;
-      settled();
+      zoomBy(Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)), e.clientX, e.clientY);
     } else if (st.mode === 'walk' && !st.frozen && !e.ctrlKey) {
       st.yaw -= e.deltaX * 0.0022 * sens();
       st.pitch = THREE.MathUtils.clamp(st.pitch - e.deltaY * 0.0016 * sens(), -1.35, 1.35);
@@ -142,8 +192,15 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
       if (keys.has('ArrowLeft')) turn += 1;
       if (keys.has('ArrowRight')) turn -= 1;
     }
+    // on-screen stick: analog, so a light push creeps and a full push strides out
+    let mag = 1;
+    if (!f && !s && (stick.x || stick.y) && !st.frozen && !modal) {
+      f = -stick.y; s = stick.x;
+      mag = Math.min(1, Math.hypot(f, s));
+      if (mag > 0.94) mag = 1.45;
+    }
     st.yaw += turn * 1.9 * dt;
-    const sp = SPEED[st.level] * (keys.has('Shift') ? RUN : 1);
+    const sp = SPEED[st.level] * (keys.has('Shift') ? RUN : 1) * mag;
     const len = Math.hypot(f, s) || 1;
     const sy = Math.sin(st.yaw), cy = Math.cos(st.yaw);
     // forward = (-sin yaw, -cos yaw); right = (cos yaw, -sin yaw)
@@ -200,7 +257,12 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     get tweening() { return tween.active; },
     get moving() { return Math.hypot(st.vx, st.vz) > 0.15; },
     moveDir,
-    setModal(v) { modal = v; if (v) { keys.clear(); ptr.down = false; } },
+    setModal(v) { modal = v; if (v) { keys.clear(); ptr.down = false; pinch = null; touches.clear(); stick.x = stick.y = 0; } },
+    /** Analog walk input from the on-screen stick: x right, y down, each -1..1. */
+    setStick(x, y) {
+      stick.x = Number.isFinite(x) ? THREE.MathUtils.clamp(x, -1, 1) : 0;
+      stick.y = Number.isFinite(y) ? THREE.MathUtils.clamp(y, -1, 1) : 0;
+    },
     setPose(p) {
       if (!p || (p.level && !(p.level in EYE)) || !Number.isFinite(p.x) || !Number.isFinite(p.z)) { console.warn('[engine] setPose ignored (bad pose)', p); return false; }
       st.level = p.level || st.level; st.x = p.x; st.z = p.z;
@@ -212,7 +274,7 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     freeze(v) { st.frozen = v; if (v) { st.vx = st.vz = 0; } },
     /** Ease into an orbit around target, starting from camera pose `frame`. */
     beginInspect({ target, framePos, lim, rMin, rMax, phiMin, phiMax, box }, onArrive) {
-      st.mode = 'toInspect'; st.vx = st.vz = 0; keys.clear();
+      st.mode = 'toInspect'; st.vx = st.vz = 0; keys.clear(); stick.x = stick.y = 0;
       orbit.target.copy(target); orbit.target0.copy(target);
       orbit.box.copy(box || new THREE.Box3(target, target)).expandByScalar(0.1);
       _v.subVectors(framePos, target);

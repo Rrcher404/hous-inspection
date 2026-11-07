@@ -1,6 +1,7 @@
 // Exam Mode: 25 random questions from the whole bank, paced like the NC Board exam
 // (HILB 905: 200 questions, 4 hours, closed book, 70% to pass), score at the end.
 import { h, clear, shuffled, append } from './dom.js';
+import { say } from './touch.js';
 import { icon } from './icons.js';
 import { closeButton, confirmDialog } from './modals.js';
 import { clean, courseShort, allQuizzes } from './content.js';
@@ -134,7 +135,7 @@ export function createExam(ctx) {
     const last = run.i === run.qs.length - 1;
     const btn = h('button', { class: 'btn btn-primary', type: 'button', disabled: run.picked == null, onclick: commit },
       run.locked || !opts.reveal ? (last ? 'Finish exam' : 'Next') : 'Check', icon('next', { size: 16 }));
-    append(card, h('footer', { class: 'qz-foot' }, h('span', { class: 'muted small' }, run.locked ? 'Press Enter to continue.' : 'Keys 1 to 4 choose. Enter confirms.'), btn));
+    append(card, h('footer', { class: 'qz-foot' }, h('span', { class: 'muted small' }, run.locked ? say('Press Enter to continue.', '') : say('Keys 1 to 4 choose. Enter confirms.', 'Tap an answer, then confirm.')), btn));
     requestAnimationFrame(() => (run.locked || run.picked != null ? btn : card.querySelector('#ex-q'))?.focus({ preventScroll: true }));
   }
 

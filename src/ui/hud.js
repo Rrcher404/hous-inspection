@@ -5,6 +5,8 @@ import { ADDRESS, ZONE_BY_ID, CHECKPOINTS, CHECKPOINT_BY_ID } from '../data/mani
 import { TOOLS } from '../data/taxonomy.js';
 import { clean } from './content.js';
 import { createMiniMap } from './minimap.js';
+import { createJoystick } from './joystick.js';
+import { isTouch } from './touch.js';
 import { RANKS } from '../core/store.js';
 
 export function createHUD(ctx) {
@@ -63,7 +65,17 @@ export function createHUD(ctx) {
     append(help, toggle);
     if (!helpOpen) return;
     const ins = !!ctx.state.inspecting;
-    const rows = ins ? [
+    const rows = isTouch() ? (ins ? [
+      ['Drag', 'Orbit around it'],
+      ['Pinch', 'Zoom in and out'],
+      ['Tap', 'A part to examine it'],
+      ['Back', 'Return to walking'],
+    ] : [
+      ['Stick', 'Walk (push further to stride)'],
+      ['Drag', 'Look around'],
+      ['Tap', 'Inspect something'],
+      ['Hold', 'Inspect a door or hatch'],
+    ]) : ins ? [
       ['Drag', 'Orbit around it'],
       ['Scroll', 'Zoom in and out'],
       ['Click', 'A part to examine it'],
@@ -116,8 +128,9 @@ export function createHUD(ctx) {
 
   // ── mini-map ──
   const map = createMiniMap(ctx);
+  const joy = createJoystick(ctx);
 
-  append(el, tl, tr, beltWrap, help, map.el);
+  append(el, tl, tr, beltWrap, help, map.el, joy.el);
 
   function renderProgress() {
     const total = CHECKPOINTS.length;

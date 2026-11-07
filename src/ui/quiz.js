@@ -1,5 +1,6 @@
 // Quiz modal: pop quizzes, room checks, and per-course practice. Instant feedback, keys 1 to 4.
 import { h, clear, append } from './dom.js';
+import { say } from './touch.js';
 import { icon } from './icons.js';
 import { closeButton } from './modals.js';
 import { ZONE_BY_ID } from '../data/manifest.js';
@@ -75,7 +76,7 @@ export function createQuiz(ctx) {
       append(card, list);
       if (picked == null) {
         append(card, h('footer', { class: 'qz-foot' },
-          h('span', { class: 'muted small' }, 'Press 1 to 4, or click an answer.'),
+          h('span', { class: 'muted small' }, say('Press 1 to 4, or click an answer.', 'Tap an answer.')),
           opts.allowSkip !== false ? h('button', { class: 'btn btn-ghost btn-sm', type: 'button', onclick: () => entry.close('skip') }, 'Skip for now') : null));
       } else {
         const ok = picked === q.answer;
@@ -85,7 +86,7 @@ export function createQuiz(ctx) {
           result?.gained ? h('div', { class: 'qz-xp' }, `+${result.gained} XP`) : ok ? h('div', { class: 'muted small' }, 'Already answered before, no new XP.') : null));
         const last = i === qs.length - 1;
         const btn = h('button', { class: 'btn btn-primary', type: 'button', onclick: next }, last ? (qs.length > 1 ? 'See how you did' : 'Continue') : 'Next question', icon('next', { size: 16 }));
-        append(card, h('footer', { class: 'qz-foot' }, h('span', { class: 'muted small' }, 'Press Enter to continue.'), btn));
+        append(card, h('footer', { class: 'qz-foot' }, h('span', { class: 'muted small' }, say('Press Enter to continue.', '')), btn));
         requestAnimationFrame(() => btn.focus({ preventScroll: true }));
       }
     }

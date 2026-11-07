@@ -1,5 +1,6 @@
 // Top-down mini-map of 417 Loblolly Lane (CONTEXT.md §6). Every room is a button that emits ui:teleport.
 import { h, s, clear, append } from './dom.js';
+import { isTouch } from './touch.js';
 import { icon } from './icons.js';
 import { ZONE_BY_ID, CHECKPOINTS } from '../data/manifest.js';
 
@@ -45,6 +46,8 @@ export function createMiniMap(ctx) {
     if (ctx.state.inspecting) bus.emit('ui:inspect-exit', {});
     ctx.sound.play('click');
     bus.emit('ui:teleport', { zoneId });
+    // on a small touch screen the open map hides the view, so fold it away once you have picked
+    if (isTouch() && window.innerWidth <= 640) toggle(false);
   }
 
   function zoneDone(zoneId) {
@@ -82,7 +85,7 @@ export function createMiniMap(ctx) {
         class: 'icon-btn sm', type: 'button', 'aria-expanded': String(expanded),
         'aria-label': expanded ? 'Collapse map (M)' : 'Expand map (M)', title: expanded ? 'Collapse map (M)' : 'Expand map (M)',
         onclick: () => toggle(),
-      }, h('kbd', null, 'M')),
+      }, isTouch() ? icon(expanded ? 'x' : 'map', { size: 16 }) : h('kbd', null, 'M')),
     );
     el.classList.toggle('collapsed', !expanded);
     if (!expanded) return;

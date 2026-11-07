@@ -6,6 +6,10 @@ as you go. Every inspection randomizes the house, so you learn the method, not t
 
 ## Play
 
+Online: **https://rrcher404.github.io/hous-inspection/** (works on a computer, phone, or tablet).
+
+To run it locally:
+
 ```bash
 npm install
 npm run dev
@@ -22,6 +26,10 @@ Open http://localhost:5173.
 | N | Notebook: Field Notes, Course Map, Glossary, Logbook |
 | M | Map / fast travel |
 | Esc | Back |
+
+On a phone or tablet: drag the stick (bottom left) to walk, drag one finger to look, tap to
+inspect, press and hold a door, hatch, or ladder to inspect it instead of going through, and pinch
+to zoom up close. Progress is saved in each browser separately.
 
 ## What's in the house
 14 zones, 74 components, 119 checkpoints, mapped to all 20 courses of the 120-hour NC program.

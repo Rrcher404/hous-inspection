@@ -147,6 +147,7 @@ Emitted by **UI**:
 | `ui:teleport` | `{ zoneId }` |
 | `ui:goto-component` | `{ componentId }` (travel to zone + open component) |
 | `ui:inspect-exit` | `{}` |
+| `ui:stick` | `{ x, y }` each -1..1 (y down) from the touch stick; `{0,0}` on release |
 | `ui:modal` | `{ open: boolean }` — engine ignores movement/clicks while any modal is open |
 
 Emitted by **store**: `tool:changed {tool}`, `finding:logged {checkpointId, entry, truth}`, `xp:gained`, `rank:up`, `quiz:answered`, `inspection:new`, `inspection:finished`, `settings:changed`.

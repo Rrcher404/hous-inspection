@@ -16,6 +16,7 @@ import { createTitle } from './title.js';
 import { createSettings } from './settings.js';
 import { createOnboarding } from './onboarding.js';
 import { createExam } from './exam.js';
+import { onTouchMode } from './touch.js';
 import { TOOLS } from '../data/taxonomy.js';
 import { CHECKPOINTS, CHECKPOINT_BY_ID, ZONE_BY_ID } from '../data/manifest.js';
 
@@ -55,6 +56,7 @@ export function createUI({ root, bus, store, engine }) {
   ctx.exam = createExam(ctx);
   ctx.title = createTitle(ctx);
   ctx.onboarding = createOnboarding(ctx);
+  onTouchMode(() => { root.classList.add('touch'); ctx.hud.refresh(); });
 
   // ── screen flow ──
   ctx.enterGame = () => {
