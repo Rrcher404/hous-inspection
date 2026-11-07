@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inside Models Viewer</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #1b1c1f; color: #e8e6e1; font: 13px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; overflow: hidden; }
+    #c { position: fixed; inset: 0; }
+    #ui { position: fixed; top: 10px; left: 10px; background: rgba(20,21,24,0.88); padding: 10px 12px; border-radius: 8px; width: 290px; max-height: calc(100% - 40px); overflow: auto; z-index: 2; }
+    #ui h1 { font-size: 14px; margin: 0 0 8px; }
+    #ui button { background: #2c2e33; color: #e8e6e1; border: 1px solid #44474e; border-radius: 5px; padding: 4px 8px; margin: 2px 2px 2px 0; cursor: pointer; }
+    #ui button.on { background: #f2803a; color: #111; border-color: #f2803a; }
+    #ui select { width: 100%; margin: 6px 0; background: #2c2e33; color: #e8e6e1; border: 1px solid #44474e; padding: 3px; }
+    #audit { font: 11px/1.4 ui-monospace, Menlo, monospace; white-space: pre-wrap; margin-top: 8px; }
+    #audit .bad { color: #ff7a6b; } #audit .good { color: #6fd39a; }
+    .lbl { position: fixed; transform: translate(-50%, -100%); background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 11px; white-space: nowrap; pointer-events: none; z-index: 1; }
+    .lbl b { color: #f2a36a; }
+    #hover { position: fixed; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 4px 8px; border-radius: 4px; z-index: 2; }
+  </style>
+</head>
+<body>
+  <div id="c"></div>
+  <div id="ui">
+    <h1>Isolde-B · inside.js</h1>
+    <div>States:
+      <button id="bDefect" class="on">All defect</button><button id="bOk">All ok</button></div>
+    <div>Light:
+      <button id="bLit" class="on">Lit</button><button id="bDark">Dark + flashlight</button><button id="bThermal">Thermal</button></div>
+    <div><button id="bLabels" class="on">Labels</button><button id="bOverview">Overview</button></div>
+    <select id="focus"><option value="">Focus component…</option></select>
+    <div id="audit">running audit…</div>
+  </div>
+  <div id="hover"></div>
+  <script type="module" src="./viewer-inside.js"></script>
+</body>
+</html>

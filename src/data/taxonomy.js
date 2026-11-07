@@ -10,7 +10,7 @@ export const SEVERITIES = [
     hint: 'Not functioning as intended or a deficiency that should be corrected, but not urgent or dangerous.' },
   { id: 'monitor', label: 'Monitor',              short: 'Monitor', color: '#4fa3e0', rank: 3,
     hint: 'Functioning now, but worth watching or budgeting for (age, minor wear, typical conditions).' },
-  { id: 'ok',      label: 'Acceptable — No Defect', short: 'OK',    color: '#3fb67a', rank: 4,
+  { id: 'ok',      label: 'Acceptable (No Defect)', short: 'OK',    color: '#3fb67a', rank: 4,
     hint: 'Inspected and functioning as intended. Do not over-call it.' },
 ];
 

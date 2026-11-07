@@ -209,6 +209,7 @@ export function createStore(bus) {
 
     finishInspection() {
       const s = api.summary();
+      if (data.inspection.finishedAt) return s; // idempotent: XP and history only once
       data.inspection.finishedAt = Date.now();
       data.history.unshift({ id: s.id, date: Date.now(), pct: s.pct, grade: s.grade, found: s.foundCount, defects: s.defectCount });
       data.history = data.history.slice(0, 30);

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Outside Models Viewer</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #20232a; color: #eee; font: 13px system-ui, sans-serif; overflow: hidden; }
+  #ui { position: fixed; top: 8px; left: 8px; z-index: 5; background: rgba(20,22,26,.88); padding: 8px 10px; border-radius: 8px; max-height: 92vh; overflow: auto; width: 250px; }
+  #ui button { margin: 2px; padding: 4px 8px; border: 0; border-radius: 4px; background: #3b4250; color: #fff; cursor: pointer; }
+  #ui button.on { background: #f2803a; }
+  #list a { display: block; color: #cfd6e4; text-decoration: none; padding: 1px 0; cursor: pointer; }
+  #list a:hover { color: #f2803a; }
+  #audit { white-space: pre-wrap; font: 11px monospace; color: #ffb28a; margin-top: 6px; }
+  .lbl { font: 11px system-ui; color: #fff; background: rgba(0,0,0,.55); padding: 1px 5px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
+  #pick { position: fixed; bottom: 8px; left: 8px; background: rgba(0,0,0,.7); padding: 4px 8px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div id="ui">
+  <div><b>Isolde-A outside models</b></div>
+  <div>
+    <button id="mDef" class="on">all defect</button><button id="mOk">all ok</button><br>
+    <button id="tTherm">thermal</button><button id="tHit">show hits</button><button id="tLbl" class="on">labels</button><button id="tAll">overview</button>
+  </div>
+  <div id="list"></div>
+  <div id="audit"></div>
+</div>
+<div id="pick">click a mesh to see its checkpoint</div>
+<script type="module" src="./viewer-outside.js"></script>
+</body>
+</html>

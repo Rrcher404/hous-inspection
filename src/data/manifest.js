@@ -108,7 +108,7 @@ export const COMPONENTS = [
   c({ id: 'ext-crawl-access', zone: 'exterior', name: 'Crawlspace access door', mount: 'wall', size: [0.8, 0.6, 0.1], courses: ['crawl-adv'],
     checkpoints: [
       { id: 'crawl-door', label: 'Access door & foundation vent', kind: 'ok' },
-    ] }),
+    ], portal: 'crawl' }),
   c({ id: 'ext-ladder', zone: 'exterior', name: 'Ladder to roof', mount: 'wall', size: [0.5, 3.6, 1.0], courses: ['roof'],
     checkpoints: [] , portal: 'roof' }),
 
@@ -319,7 +319,7 @@ export const COMPONENTS = [
   c({ id: 'gar-panel', zone: 'garage', name: 'Main electrical panel (dead front off)', mount: 'wall', size: [0.4, 0.75, 0.12], courses: ['elec-adv', 'elec-res'],
     checkpoints: [
       { id: 'panel-double-tap', label: 'Breaker terminals', kind: 'defect' },
-      { id: 'panel-knockouts', label: 'Dead front openings', kind: 'variable' },
+      { id: 'panel-knockouts', label: 'Cabinet / dead-front openings', kind: 'variable' },
       { id: 'panel-white-hot', label: 'Branch conductor colours', kind: 'variable' },
       { id: 'panel-labeling', label: 'Circuit directory', kind: 'defect' },
       { id: 'panel-rust', label: 'Panel interior / service entrance', kind: 'variable' },
