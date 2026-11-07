@@ -15,6 +15,7 @@ export function createModals({ bus, host }) {
   const sync = () => {
     const open = stack.some(e => !e.passThrough || e.blocking);
     if (open !== lastOpen) { lastOpen = open; bus.emit('ui:modal', { open }); }
+    bus.emit('ui:stack', { kinds: stack.map(e => e.kind || 'modal') }); // UI-internal: the field guide hides under other cards
   };
 
   function focusInto(entry) {

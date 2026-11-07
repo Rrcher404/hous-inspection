@@ -221,7 +221,7 @@ export function createLogCard(ctx) {
       : state === 'ok' ? { severity: 'ok', rec: 'none' }
         : { severity: choice.severity === 'ok' ? 'repair' : choice.severity, rec: choice.rec, recAlt: [] };
     const first = !store.isLogged(cp.id);
-    const result = store.logFinding(cp.id, { severity: choice.severity, rec: choice.rec, note: choice.note, hinted: first && !!choice.hinted }, answer);
+    const result = store.logFinding(cp.id, { severity: choice.severity, rec: choice.rec, note: choice.note, hinted: first && !!choice.hinted, guided: !!ctx.guide?.isOpen }, answer);
     cur.result = result; cur.firstLog = first && !result.practice; cur.reviewing = false; cur.answer = answer; cur.step = 'feedback';
     ctx.sound.play(VERDICT[result.sevScore]?.sfx || 'click');
     render();

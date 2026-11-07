@@ -252,12 +252,15 @@ export function createEngine({ container, bus, store }) {
   // The UI keeps an inspect panel on the right (~360 px) and a tool belt at the bottom (~110 px).
   // An off-axis view offset re-centres the image on the free area; framing fills ~60% of it.
   const PANEL_W = 360, BELT_H = 110, FILL = 0.7;
-  function freeArea() {
+  // The field guide bubble (desktop) sits on the left; the UI reports its width with ui:guide-layout.
+  let guideLeft = 0, guideLeftCur = 0;
+  function freeArea(target = false) {
     const r = cv.getBoundingClientRect(), W = r.width || 1, H = r.height || 1;
-    let dx = Math.min(PANEL_W / 2, W * 0.15), dy = Math.min(BELT_H / 2, H * 0.07);
+    let right = 2 * Math.min(PANEL_W / 2, W * 0.15), left = Math.min(target ? guideLeft : guideLeftCur, W * 0.3), dy = Math.min(BELT_H / 2, H * 0.07);
     // phone portrait: the UI moves the panel to a bottom sheet, so frame in the top half instead
-    if (W <= 640 && H > W) { dx = 0; dy = H * 0.24; }
-    return { W, H, dx, dy, x0: r.left + 12, x1: r.left + W - 2 * dx - 12, y0: r.top + 12, y1: r.top + H - 2 * dy - 12 };
+    if (W <= 640 && H > W) { right = 0; left = 0; dy = H * 0.24; }
+    const dx = (right - left) / 2, fw = W - right - left;
+    return { W, H, dx, dy, fw, x0: r.left + left + 12, x1: r.left + W - right - 12, y0: r.top + 12, y1: r.top + H - 2 * dy - 12 };
   }
   const _occ = new THREE.Ray(), _hitP = new THREE.Vector3();
   function clearDistance(level, from, dir, maxD) {
@@ -275,7 +278,7 @@ export function createEngine({ container, bus, store }) {
     const upRef = Math.abs(fwd.y) > 0.97 ? new THREE.Vector3(0, 0, -1) : new THREE.Vector3(0, 1, 0);
     const right = new THREE.Vector3().crossVectors(fwd, upRef).normalize(), up = new THREE.Vector3().crossVectors(right, fwd);
     const tv = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const tanV = tv * (fa.H - 2 * fa.dy) / fa.H, tanH = tv * (fa.W / fa.H) * (fa.W - 2 * fa.dx) / fa.W;
+    const tanV = tv * (fa.H - 2 * fa.dy) / fa.H, tanH = tv * (fa.W / fa.H) * fa.fw / fa.W;
     const corners = [];
     for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) corners.push(new THREE.Vector3(x, y, z).sub(c));
     const frac = (d) => {
@@ -306,7 +309,7 @@ export function createEngine({ container, bus, store }) {
     // distance: fit the projected box to ~60% of the free area, capped (long thin parts are shown up close)
     const dims = [size.x, size.y, size.z].sort((p, q) => p - q);
     const dMax = rec.maxDist || THREE.MathUtils.clamp(1.6 + 3 * dims[1], 1.2, 3.0);
-    const fa = freeArea();
+    const fa = freeArea(true);
     let dist = fitDistance(rec.box, c, dir, fa, 0.35, dMax);
     // never park the camera behind a wall: try swinging around the vertical axis first
     const lvl = rec.level;
@@ -344,8 +347,11 @@ export function createEngine({ container, bus, store }) {
     const m = controls.mode;
     const sm = (t) => t * t * (3 - 2 * t);
     const k = !inspecting && m === 'walk' ? 0 : m === 'inspect' ? 1 : m === 'toInspect' ? sm(controls.tweenT) : m === 'toWalk' ? 1 - sm(controls.tweenT) : 0;
+    const gl0 = guideLeftCur;
+    guideLeftCur += (guideLeft - guideLeftCur) * (reducedMotion ? 1 : 0.18);
+    if (Math.abs(guideLeft - guideLeftCur) < 0.5) guideLeftCur = guideLeft;
     const fa = freeArea();
-    if (Math.abs(k - offK) < 1e-4 && fa.W === offW && fa.H === offH) return;
+    if (Math.abs(k - offK) < 1e-4 && fa.W === offW && fa.H === offH && gl0 === guideLeftCur) return;
     offK = k; offW = fa.W; offH = fa.H;
     if (k < 1e-4) camera.clearViewOffset();
     else camera.setViewOffset(fa.W, fa.H, fa.dx * k, fa.dy * k, fa.W, fa.H);
@@ -600,6 +606,8 @@ export function createEngine({ container, bus, store }) {
     bus.on('ui:goto-component', (e) => api.openComponent(e?.componentId));
     bus.on('ui:inspect-exit', () => exitInspect());
     bus.on('ui:stick', (e) => controls.setStick(e?.x, e?.y));
+    bus.on('ui:guide-layout', (e) => { guideLeft = Math.max(0, Number(e?.left) || 0); });
+    bus.on('ui:guide-focus', (e) => { if (inspecting) hints.focus(e?.checkpointId || null, e?.secs ?? 3); });
     bus.on('ui:modal', ({ open }) => { modalOpen = !!open; controls.setModal(modalOpen); if (modalOpen) clearHover(); });
     bus.on('tool:changed', ({ tool }) => applyTool(tool));
     bus.on('finding:logged', () => { if (inspecting) hints.update((id) => store.isLogged(id), !!store.settings.hints); });

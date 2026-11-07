@@ -223,3 +223,57 @@ Calm, warm, professional. Think "a senior inspector riding along with you", not 
 clean field-tablet aesthetic: off-white cards, dark ink, one accent (safety orange `#f2803a`), severity
 colours from taxonomy. System font stack or Inter-like. Respect `prefers-reduced-motion`.
 No em-dashes in player-facing copy (use commas, colons, periods).
+
+## 12. Field Guide (round 3): the inspector riding along
+
+Asked for by the player: when you open something (e.g. the attic supply duct) a speech bubble explains
+what you are looking at, what a pro checks on it, and how to describe it, with an option to turn it off.
+
+### Content — `src/data/guides-out.js` + `src/data/guides-in.js` (Henny), merged in `src/data/guides.js`
+- `guides-out.js`: zones exterior, roof, deck, shed, attic, crawl (40 components).
+- `guides-in.js`: zones living, kitchen, bath, primary, bed2, hall, laundry, garage (34 components).
+
+```js
+export const GUIDES_OUT = {
+  'att-duct': {
+    what: 'What it is and why it matters, in plain words. 1–2 sentences, <= 45 words.',
+    look: [ // one item PER CHECKPOINT (cp = checkpoint id), in the order a pro would check them,
+            // plus at most ONE extra item without cp for a general glance (rendered as "Also worth a glance").
+      { cp: 'attic-duct-joint', text: 'Neutral question + what good looks like vs what bad looks like. <= 32 words.' },
+      { cp: 'some-tool-cp', tool: 'moisture', text: '...' }, // REQUIRED: tool = manifest tool for tool-gated checkpoints
+    ],
+    pro: 'Optional. How a pro moves around this thing: order, angle, where to put the light. <= 30 words.',
+    watch: 'Optional. A judgement trap in general terms (over-calling, under-calling, what NOT to write). <= 30 words.',
+    terms: [{ term: 'Boot', means: 'The sheet-metal box behind a register that the duct connects to.' }], // 1–3 report words
+  },
+};
+export const ZONE_GUIDES_OUT = {
+  attic: { intro: 'Arriving here: what this space is, what a pro checks first, the safety rule. <= 50 words.' },
+};
+```
+
+**The golden rule.** Checkpoints are randomized per inspection. A guide must read *identically* whether the
+part rolled defective or fine, and for `defect`-kind and `ok`-kind checkpoints too. So: describe both what
+acceptable looks like and what a defect looks like, as a question the player answers by looking. Never
+"this one is…", never hint a part is a red herring, never quote the severity or referral (that is the
+player's call and is graded). The checkpoint content (`observe`/`why`/`report`/`tip`) is the reward after
+logging; the guide must not paraphrase it so closely that it gives the answer away.
+Facts must hold for an NC licensed inspector (11 NCAC 08 .1100 SOP). No em dashes. Plain words.
+
+### UI (Yuki) — `src/ui/guide.js` (new), wiring in `ui.js`, settings, styles
+- Bubble opens with inspect mode; zone intro on first entry to a zone per inspection.
+- Setting `store.settings.guide`: `'always' | 'fade' | 'ask' | 'off'` (missing = `'fade'`).
+  `fade` = opens by itself until you have judged every checkpoint of that component exactly, solo (no
+  description, guide not open), at least once; randomized checkpoints need a solo exact call in BOTH the
+  defect and the fine state (`store.mastery(cpId)` → `{ n, good, defect, ok }`). Then it starts folded as a
+  small "Guide" pill. `ask` = always folded. `off` = nothing.
+- No points are lost for reading the guide (unlike "Describe it for me", which halves points), but a log made
+  with the guide open is recorded `guided: true`, never counts toward mastery, and the report shows the count.
+- Desktop (>= 1180x600) floats the bubble left of the object; smaller screens show it as a "Guide" tab in the
+  inspect sheet. The UI announces the bubble width on `component:open` so the engine frames beside it.
+
+### Events
+| event | payload | |
+|---|---|---|
+| `ui:guide-focus` | `{ checkpointId \| null, secs? }` | UI → engine: pulse that checkpoint's ring (teal, even with hints off) for `secs` (default 3) |
+| `ui:guide-layout` | `{ left }` px | UI → engine: left inset taken by the open desktop bubble (0 when folded/docked) |

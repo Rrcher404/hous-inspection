@@ -80,6 +80,7 @@ export function createHUD(ctx) {
       ['Scroll', 'Zoom in and out'],
       ['Click', 'A part to examine it'],
       ['1 to 5', 'Switch tools'],
+      ['G', 'Open or fold the field guide'],
       ['Esc', 'Back to walking'],
     ] : [
       ['W A S D', 'Walk (Shift: faster)'],

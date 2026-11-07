@@ -728,3 +728,149 @@ html.wi body { touch-action: manipulation; }
   .lc-foot { padding: 10px 12px 12px 16px; }
 }
 .touch .minimap.collapsed .icon-btn.sm { display: none; }
+
+/* ── field guide: the inspector riding along (guide.js) ──
+   Teal is the guide's colour because the engine pulses the "show me where" ring in teal. */
+.wi-root { --guide: #1d7f76; --guide-soft: #e1f2ef; --guide-line: #bfe0da; }
+.gd-mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--guide-soft); color: var(--guide); flex: none; }
+.gd-mark.sm { width: 20px; height: 20px; }
+
+.guide-bubble {
+  position: absolute; left: 16px; top: var(--gd-top, 132px); width: 300px;
+  max-height: calc(100vh - var(--gd-top, 132px) - 72px);
+  display: flex; flex-direction: column; border: 1px solid var(--guide-line);
+  animation: rise .24s var(--ease);
+}
+/* the tail points right, toward the framed object */
+.guide-bubble::after {
+  content: ""; position: absolute; right: -8px; top: var(--tail-y, 60px); width: 15px; height: 15px; margin-top: -7px;
+  background: var(--card); border-top: 1px solid var(--guide-line); border-right: 1px solid var(--guide-line);
+  transform: rotate(45deg); border-radius: 0 3px 0 0;
+}
+.guide-pill {
+  position: absolute; left: 16px; top: var(--gd-top, 132px);
+  font: inherit; font-size: 13.5px; font-weight: 650; display: inline-flex; align-items: center; gap: 8px;
+  min-height: 40px; padding: 6px 12px 6px 7px; border-radius: 999px; cursor: pointer; color: var(--ink);
+  background: var(--card); border: 1px solid var(--guide-line); box-shadow: var(--shadow-sm); animation: rise .2s var(--ease);
+}
+.guide-pill:hover { background: #f3faf8; }
+.gd-pill-sub { font-weight: 500; font-size: 12.5px; color: var(--ink-3); }
+
+.gd-view { display: flex; flex-direction: column; min-height: 0; flex: 1; overflow: hidden; border-radius: inherit; }
+.gd-head { display: flex; align-items: center; gap: 8px; padding: 9px 8px 8px 12px; border-bottom: 1px solid var(--line); }
+.gd-title { flex: 1; font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: 0; }
+.gd-speak { gap: 4px; font: inherit; font-size: 12.5px; font-weight: 650; color: var(--ink-2); }
+.gd-speak.on { background: var(--guide-soft); color: var(--guide); }
+.gd-fold { color: var(--ink-2); }
+.gd-body { overflow: auto; padding: 12px 14px 6px; flex: 1; min-height: 0; overscroll-behavior: contain; }
+.gd-what { font-size: 15px; line-height: 1.5; margin: 0 0 12px; color: var(--ink); }
+.gd-sec { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); margin: 2px 0 2px; }
+.gd-sec.quiet { color: var(--ink-3); font-weight: 650; margin-top: 6px; }
+.gd-sec-n { font-size: 11.5px; letter-spacing: 0; text-transform: none; font-weight: 600; color: var(--ink-3); }
+.gd-sec-help { font-size: 12.5px; color: var(--ink-3); margin: 0 0 4px; }
+.gd-looks { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.gd-look-li { display: flex; flex-direction: column; align-items: flex-start; }
+.gd-look {
+  font: inherit; width: 100%; display: flex; align-items: flex-start; gap: 9px; text-align: left; margin: 0;
+  padding: 8px 8px; min-height: 44px; border-radius: 10px; border: 0; background: transparent; color: var(--ink);
+  font-size: 13.5px; line-height: 1.42; cursor: pointer; transition: background .15s, box-shadow .15s;
+}
+button.gd-look:hover { background: var(--card-2); }
+.gd-look.showing { background: var(--guide-soft); box-shadow: inset 0 0 0 1.5px var(--guide); }
+.gd-look-plain { cursor: default; color: var(--ink-2); }
+.gd-look-t { flex: 1; }
+.gd-st { width: 20px; height: 20px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin-top: 1px; color: var(--ink-3); }
+.gd-st .cp-empty { width: 12px; height: 12px; }
+.gd-st.done { background: var(--good-soft); color: var(--good); }
+.gd-where { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--guide); margin-top: 3px; }
+.gd-tool {
+  font: inherit; font-size: 12px; font-weight: 650; display: inline-flex; align-items: center; gap: 5px; margin: 0 0 6px 37px;
+  min-height: 30px; padding: 3px 10px 3px 8px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--card); color: var(--ink-2); cursor: pointer;
+}
+.gd-tool:hover { background: var(--card-2); color: var(--ink); }
+.gd-tool.on { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+
+.gd-more { border-top: 1px solid var(--line); }
+.gd-more > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px 2px;
+  font-size: 13.5px; font-weight: 650; color: var(--ink); border-radius: 8px;
+}
+.gd-more > summary::-webkit-details-marker { display: none; }
+.gd-more > summary .ico { color: var(--ink-3); transition: transform .15s; flex: none; }
+.gd-more[open] > summary .ico { transform: rotate(90deg); }
+.gd-more > p, .gd-more > div { font-size: 13.5px; color: var(--ink-2); margin: 0 0 10px; padding-left: 20px; }
+.gd-terms { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.gd-term.on { background: var(--guide); border-color: var(--guide); color: #fff; }
+.gd-means { margin: 0 0 6px; padding: 8px 10px; border-radius: 8px; background: var(--guide-soft); color: var(--ink); font-size: 13.5px; }
+.gd-terms-help { margin: 0; }
+
+.gd-foot { border-top: 1px solid var(--line); padding: 6px 12px 4px; background: #f5faf9; }
+.gd-free { display: flex; align-items: center; gap: 6px; margin: 2px 0 0; font-size: 12.5px; color: var(--ink-2); }
+.gd-free .ico { color: var(--good); flex: none; }
+.gd-foot .gd-more { border-top: 0; }
+.gd-foot .gd-more > summary { font-size: 12.5px; font-weight: 600; color: var(--ink-2); min-height: 34px; }
+.gd-foot .gd-more > div { padding-left: 0; }
+.gd-modes { display: flex; flex-direction: column; gap: 2px; }
+.gd-mode {
+  font: inherit; display: flex; align-items: flex-start; gap: 8px; text-align: left; padding: 6px 8px; min-height: 40px;
+  border: 0; border-radius: 8px; background: transparent; cursor: pointer; color: var(--ink);
+}
+.gd-mode:hover { background: var(--card-2); }
+.gd-dot, .st-radio-dot { width: 16px; height: 16px; flex: none; border-radius: 50%; border: 2px solid var(--line-2); margin-top: 2px; background: var(--card); }
+.gd-mode.on .gd-dot, .st-radio.on .st-radio-dot { border-color: var(--guide); box-shadow: inset 0 0 0 3px var(--card); background: var(--guide); }
+.gd-mode-l { display: block; font-size: 13px; font-weight: 650; }
+.gd-mode-d { display: block; font-size: 12px; color: var(--ink-3); line-height: 1.35; }
+
+/* docked: a tab in the inspect sheet (phones, tablets, small windows) */
+.gd-tabs { display: flex; gap: 2px; padding: 4px 10px 0; border-bottom: 1px solid var(--line); flex: none; }
+.gd-tab {
+  flex: 1; font: inherit; font-size: 13.5px; font-weight: 650; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 42px; padding: 6px 8px; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--ink-3); cursor: pointer; border-radius: 8px 8px 0 0;
+}
+.gd-tab:hover { color: var(--ink); background: var(--card-2); }
+.gd-tab.on { color: var(--ink); border-bottom-color: var(--accent); }
+#gd-tab-guide.on { border-bottom-color: var(--guide); }
+.gd-tab-n { font-size: 12px; font-weight: 600; color: var(--ink-3); display: inline-flex; align-items: center; }
+.gd-view.docked { border-radius: 0; }
+.gd-dock-speak { float: right; margin: -4px -6px 4px 8px; }
+.gd-view.docked .gd-foot { margin: 6px -14px -6px; }
+.inspect.guide-on .gd-foot { border-radius: 0; }
+.inspect .gd-view .gd-foot { padding-bottom: 2px; }
+
+/* zone banner: the guide's intro line */
+.toast-intro { display: flex; gap: 8px; align-items: flex-start; text-align: left; margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--line); font-size: 13.5px; line-height: 1.45; color: var(--ink); max-width: 46ch; }
+.toast-intro .gd-mark { margin-top: 1px; }
+.toast-intro-btn { display: block; margin: 6px auto 0; color: var(--guide); font-weight: 650; }
+.toast-close { display: block; margin: 4px auto -4px; }
+
+/* settings: four radio rows */
+.st-radios { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+.st-radio { font: inherit; display: flex; align-items: flex-start; gap: 10px; text-align: left; padding: 8px 10px; min-height: 44px; border-radius: 10px; border: 1px solid transparent; background: transparent; cursor: pointer; color: var(--ink); }
+.st-radio:hover { background: var(--card-2); }
+.st-radio.on { background: #f3faf8; border-color: var(--guide-line); }
+.st-radio-l { display: block; font-weight: 650; font-size: 14px; }
+.st-radio-d { display: block; }
+
+@media (max-width: 640px) {
+  /* phone portrait: give the guide tab the room; the course chips come back on the parts tab */
+  .inspect.guide-on .insp-head .chips, .inspect.guide-on .insp-head .eyebrow { display: none; }
+  .inspect.guide-on .insp-head { padding: 10px 16px 0; }
+  .inspect.guide-on .insp-title { margin: 0 0 4px; }
+  .inspect.guide-on { max-height: 50vh; }
+  .gd-what { font-size: 14.5px; }
+  .toast-intro { font-size: 13px; }
+}
+@media (max-height: 500px) and (min-width: 641px) {
+  /* phone landscape: the guide tab takes the whole right column down to the floor, clear of the belt */
+  .inspect.guide-on { top: 104px; bottom: 8px; width: 280px; max-height: none; }
+  .inspect.guide-on .insp-head .chips, .inspect.guide-on .insp-head .eyebrow { display: none; }
+  .inspect.guide-on .insp-head { padding: 8px 14px 0; }
+  .inspect.guide-on .insp-title { font-size: 15px; margin: 0 0 2px; }
+  .inspect.guide-on .gd-tab { min-height: 36px; }
+  .inspect.guide-on .insp-foot { padding: 6px 10px 8px; }
+  .inspect.guide-on .insp-foot .btn { min-height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-bubble, .guide-pill { animation: none; }
+  .gd-look { transition: none; }
+}

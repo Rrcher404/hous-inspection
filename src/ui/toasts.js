@@ -4,6 +4,7 @@ import { say } from './touch.js';
 import { icon } from './icons.js';
 import { ZONE_BY_ID, CHECKPOINTS } from '../data/manifest.js';
 import { courseShort } from './content.js';
+import { zoneIntro, guideMode } from './guide.js';
 
 // One-line scope notes shown on entering a zone.
 const ZONE_NOTE = {
@@ -20,7 +21,8 @@ export function createToasts(ctx) {
   function push(el, ms = 2600) {
     append(host, el);
     requestAnimationFrame(() => el.classList.add('in'));
-    let t = setTimeout(dismiss, ms);
+    const auto = () => { if (!el.classList.contains('hold')) dismiss(); }; // .hold: the player opened it to read
+    let t = setTimeout(auto, ms);
     function dismiss() {
       clearTimeout(t);
       el.classList.remove('in');
@@ -28,7 +30,7 @@ export function createToasts(ctx) {
       setTimeout(() => el.remove(), 260);
     }
     el.addEventListener('mouseenter', () => clearTimeout(t));
-    el.addEventListener('mouseleave', () => { t = setTimeout(dismiss, 1400); });
+    el.addEventListener('mouseleave', () => { t = setTimeout(auto, 1400); });
     // keep the band short
     while (host.children.length > 4) host.firstElementChild.remove();
     return dismiss;
@@ -77,6 +79,16 @@ export function createToasts(ctx) {
     if (ctx.state.screen !== 'game') return;
     ctx.sound.play('zone');
     const total = CHECKPOINTS.filter(cp => cp.zone === zoneId).length;
+    // Field guide: the inspector's one-paragraph orientation for this space, once per inspection.
+    const gm = guideMode(store);
+    const intro = gm !== 'off' ? zoneIntro(zoneId) : null;
+    if (intro) ctx.mem.add('guideZones', zoneId);
+    let dismiss = null;
+    const introMs = intro ? Math.min(16000, 6000 + intro.split(/\s+/).length * 200) : 0;
+    const introEl = intro ? h('p', { class: 'toast-intro', hidden: gm === 'ask' }, h('span', { class: 'gd-mark sm', 'aria-hidden': 'true' }, icon('guide', { size: 13 })), h('span', null, intro)) : null;
+    const introBtn = intro && gm === 'ask' ? h('button', { class: 'link-btn toast-intro-btn', type: 'button', 'aria-expanded': 'false', onclick: (e) => {
+      introEl.hidden = false; e.currentTarget.remove(); el.classList.add('hold'); // stays until dismissed
+    } }, 'What a pro checks first here') : null;
     const el = h('div', { class: 'toast toast-zone', role: 'status' },
       h('div', { class: 'toast-eyebrow' }, 'Entering'),
       h('div', { class: 'toast-title' }, z.name),
@@ -84,8 +96,10 @@ export function createToasts(ctx) {
       h('div', { class: 'toast-sub' }, z.dark && store.tool !== 'flashlight'
         ? `It's dark in here. ${say('Press 2 for the flashlight.', 'Tap the flashlight on the belt.')} ${total} checkpoints.`
         : `${total} checkpoints in this area`),
-      note ? h('p', { class: 'toast-note-line' }, note) : null);
-    push(el, note ? 6500 : 4200);
+      note ? h('p', { class: 'toast-note-line' }, note) : null,
+      introEl, introBtn,
+      intro ? h('button', { class: 'link-btn toast-close', type: 'button', onclick: () => dismiss?.() }, 'Got it') : null);
+    dismiss = push(el, gm === 'ask' ? 9000 : Math.max(introMs, note ? 6500 : 4200));
   });
 
   return {

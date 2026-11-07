@@ -61,7 +61,8 @@ function freshProfile() {
     lessonsSeen: [],     // courseIds whose field notes were opened
     coursesTouched: {},  // courseId -> count of checkpoints logged
     history: [],         // finished inspections summary
-    settings: { hints: true, sound: true, mouseSensitivity: 1, quizFrequency: 'normal' },
+    settings: { hints: true, sound: true, mouseSensitivity: 1, quizFrequency: 'normal', guide: 'fade' },
+    mastery: {},         // checkpointId -> { n, good } across inspections (good = exact, unhinted first log)
     inspection: freshInspection(),
   };
 }
@@ -89,6 +90,8 @@ export function createStore(bus) {
 
     stateOf(cpId) { return data.inspection.states[cpId]; },
     isLogged(cpId) { return !!data.inspection.logged[cpId]; },
+    /** Field-guide mastery: { n, good, defect?, ok? } across every inspection on this device (solo exact calls). */
+    mastery(cpId) { return (data.mastery && data.mastery[cpId]) || { n: 0, good: 0 }; },
 
     rank() {
       let r = RANKS[0], next = null;
@@ -150,7 +153,7 @@ export function createStore(bus) {
       const prev = data.inspection.logged[cpId];
       const entry = {
         severity: choice.severity, rec: choice.rec, note: choice.note || '',
-        sevScore, recRight: recOk, points, at: Date.now(), hinted: !!choice.hinted,
+        sevScore, recRight: recOk, points, at: Date.now(), hinted: !!choice.hinted, guided: !!choice.guided,
         falsePositive: answer.severity === 'ok' && choice.severity !== 'ok' && sevScore !== 'exact',
         missedDefect: answer.severity !== 'ok' && choice.severity === 'ok' && sevScore !== 'exact',
       };
@@ -163,6 +166,10 @@ export function createStore(bus) {
       }
       data.inspection.logged[cpId] = entry;
       {
+        data.mastery = data.mastery || {};
+        const m = data.mastery[cpId] || (data.mastery[cpId] = { n: 0, good: 0 });
+        // mastery = an exact call made solo (no description, no field guide open), per rolled state
+        m.n++; if (sevScore === 'exact' && !entry.hinted && !entry.guided) { m.good++; m[truth] = (m[truth] || 0) + 1; }
         const cp = CHECKPOINT_BY_ID[cpId];
         for (const course of cp.courses) data.coursesTouched[course] = (data.coursesTouched[course] || 0) + 1;
         save();

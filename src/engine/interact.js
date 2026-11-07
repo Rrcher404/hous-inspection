@@ -196,12 +196,15 @@ export function createHints(scene) {
   const ringTex = ringTexture('#f2803a'), checkTex = checkTexture();
   const ringMat = new THREE.SpriteMaterial({ map: ringTex, depthTest: false, depthWrite: false, transparent: true, sizeAttenuation: false });
   const checkMat = new THREE.SpriteMaterial({ map: checkTex, depthTest: false, depthWrite: false, transparent: true, sizeAttenuation: false });
+  const focusMat = new THREE.SpriteMaterial({ map: ringTexture('#4fd1c5'), depthTest: false, depthWrite: false, transparent: true, sizeAttenuation: false });
   const group = new THREE.Group(); group.name = 'hints'; scene.add(group);
   group.layers.set(1);
   const items = []; // { cpId, ring, badge, pos }
   let t = 0;
+  // The field guide can point at one part ("show me where"): its ring shows even with hints off.
+  let focused = null, focusLeft = 0, lastLogged = () => false, lastHintsOn = true;
 
-  function clear() { for (const it of items) { group.remove(it.ring); group.remove(it.badge); } items.length = 0; }
+  function clear() { for (const it of items) { group.remove(it.ring); group.remove(it.badge); } items.length = 0; focused = null; focusLeft = 0; }
   /** anchors: [{ cpId, pos }] (see computeAnchors). */
   function show(anchors, isLogged, hintsOn) {
     clear();
@@ -228,21 +231,39 @@ export function createHints(scene) {
     return best;
   }
   function update(isLogged, hintsOn) {
+    lastLogged = isLogged; lastHintsOn = hintsOn;
     for (const it of items) {
       const logged = isLogged(it.cpId);
       it.badge.visible = logged;
-      it.ring.visible = hintsOn && !logged;
+      it.ring.visible = (hintsOn && !logged) || it.cpId === focused;
     }
+  }
+  /** Point at one checkpoint for `secs` seconds (null clears). Returns false if it has no ring here. */
+  function focus(cpId, secs = 3) {
+    const has = !!cpId && items.some((it) => it.cpId === cpId);
+    focused = has ? cpId : null;
+    focusLeft = has ? secs : 0;
+    update(lastLogged, lastHintsOn);
+    return has;
   }
   function tick(dt) {
     t += dt;
+    if (focused && (focusLeft -= dt) <= 0) focus(null);
     for (let i = 0; i < items.length; i++) {
       const it = items[i];
       if (!it.ring.visible) continue;
+      if (it.cpId === focused) {
+        // a bigger, faster beat so the pointed-at part stands out from the ordinary hint rings
+        const k = 0.5 + 0.5 * Math.sin(t * 7);
+        it.ring.scale.setScalar(0.05 + 0.025 * k);
+        it.ring.material = focusMat;
+        continue;
+      }
+      if (it.ring.material !== ringMat) it.ring.material = ringMat;
       const k = 0.5 + 0.5 * Math.sin(t * 3.2 + i * 0.9);
       it.ring.scale.setScalar(0.03 + 0.012 * k);
       it.ring.material.opacity = 0.55 + 0.4 * (1 - k);
     }
   }
-  return { show, update, clear, tick, pickAt, group, items, get count() { return items.length; } };
+  return { show, update, clear, tick, pickAt, focus, group, items, get count() { return items.length; }, get focused() { return focused; } };
 }

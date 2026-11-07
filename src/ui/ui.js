@@ -16,6 +16,7 @@ import { createTitle } from './title.js';
 import { createSettings } from './settings.js';
 import { createOnboarding } from './onboarding.js';
 import { createExam } from './exam.js';
+import { createGuide } from './guide.js';
 import { onTouchMode } from './touch.js';
 import { TOOLS } from '../data/taxonomy.js';
 import { CHECKPOINTS, CHECKPOINT_BY_ID, ZONE_BY_ID } from '../data/manifest.js';
@@ -51,6 +52,7 @@ export function createUI({ root, bus, store, engine }) {
   ctx.quiz = createQuiz(ctx);
   ctx.hud = createHUD(ctx);
   ctx.logcard = createLogCard(ctx);
+  ctx.guide = createGuide(ctx); // before the inspect panel: its inspect:entered handler must run first
   ctx.inspect = createInspectPanel(ctx);
   ctx.report = createReport(ctx);
   ctx.exam = createExam(ctx);
@@ -132,6 +134,11 @@ export function createUI({ root, bus, store, engine }) {
     if (e.key === 'Tab' && top) { ctx.modals.trap(e); return; }
     if (top) {
       if (top.onKey && top.onKey(e)) { e.preventDefault(); e.stopPropagation(); return; }
+      // G still folds the desktop guide bubble while judging: it sits beside the log card, not under it
+      if ((e.key === 'g' || e.key === 'G') && top.kind === 'logcard' && !ctx.guide.docked && !isTyping(e.target) && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        if (ctx.guide.toggle()) { e.preventDefault(); ctx.sound.play('click'); }
+        return;
+      }
       if (e.key === 'Escape') {
         e.preventDefault(); e.stopPropagation();
         if (top.dismissable !== false) { ctx.sound.play('click'); top.close('escape'); }
@@ -149,6 +156,7 @@ export function createUI({ root, bus, store, engine }) {
     }
     if (k === 'n' || k === 'N') { e.preventDefault(); ctx.sound.play('click'); ctx.notebook.open(); return; }
     if (k === 'm' || k === 'M') { e.preventDefault(); ctx.hud.map.toggle(); return; }
+    if (k === 'g' || k === 'G') { if (ctx.state.inspecting && ctx.guide.toggle()) { e.preventDefault(); ctx.sound.play('click'); } return; }
     if (k === 'r' || k === 'R') { e.preventDefault(); ctx.finishFlow(); return; }
     if (k === '?' || k === 'h' || k === 'H') { ctx.hud.toggleHelp(); }
   }, true);

@@ -1,6 +1,7 @@
-// Settings: hints, sound, quiz frequency, mouse sensitivity, tour replay, reset.
+// Settings: hints, field guide, sound, quiz frequency, mouse sensitivity, tour replay, reset.
 import { h, clear, append } from './dom.js';
 import { closeButton, confirmDialog } from './modals.js';
+import { GUIDE_MODES, guideMode } from './guide.js';
 
 export function createSettings(ctx) {
   const { store } = ctx;
@@ -27,6 +28,18 @@ export function createSettings(ctx) {
       }, h('span', { class: 'knob' })));
   }
 
+  function guideRow() {
+    const cur = guideMode(store);
+    return h('div', { class: 'st-row col' },
+      h('div', null, h('div', { class: 'st-label', id: 'st-guide' }, 'Field guide'),
+        h('div', { class: 'muted small' }, "A senior inspector's notes on what you are looking at up close. Reading it never costs points.")),
+      h('div', { class: 'st-radios', role: 'radiogroup', 'aria-labelledby': 'st-guide' }, GUIDE_MODES.map(m =>
+        h('button', {
+          class: `st-radio${cur === m.id ? ' on' : ''}`, type: 'button', role: 'radio', 'aria-checked': String(cur === m.id), 'data-guide': m.id,
+          onclick: () => { ctx.sound.play('click'); store.setSetting('guide', m.id); render(`.st-radio[data-guide="${m.id}"]`); },
+        }, h('span', { class: 'st-radio-dot', 'aria-hidden': 'true' }), h('span', null, h('span', { class: 'st-radio-l' }, m.label), h('span', { class: 'muted small st-radio-d' }, m.desc))))));
+  }
+
   function render(focusSel) {
     clear(card);
     const freq = store.settings.quizFrequency || 'normal';
@@ -39,6 +52,7 @@ export function createSettings(ctx) {
     append(card, 
       h('header', { class: 'dialog-head' }, h('h2', { id: 'st-title', class: 'dialog-title' }, 'Settings'), closeButton(() => entry?.close('x'))),
       toggleRow('hints', 'Hints', 'Soft rings on parts you have not logged yet, while you are up close.'),
+      guideRow(),
       toggleRow('sound', 'Sound', 'Small, quiet tones for right, wrong, and clicks.'),
       h('div', { class: 'st-row col' },
         h('div', null, h('div', { class: 'st-label', id: 'st-quiz' }, 'Pop quizzes'), h('div', { class: 'muted small' }, 'Short questions when you open something for the first time.')),
@@ -66,6 +80,7 @@ export function createSettings(ctx) {
     if (!ok) return;
     store.resetAll();
     try { localStorage.removeItem('hous-inspection:ui:v1'); } catch { /* ignore */ }
+    ctx.guide?.forgetSeen();
     entry?.close('reset');
     ctx.showTitle();
     ctx.toasts.info('Progress reset', 'A clean slate. Welcome back, Trainee.');

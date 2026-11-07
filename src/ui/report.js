@@ -60,6 +60,7 @@ export function createReport(ctx) {
           stat('Checkpoints logged', `${S.loggedCount} / ${S.totalCheckpoints}`),
           stat('Defects found', `${S.foundCount} / ${S.defectCount}`),
           stat('Over-calls', String(S.falsePositives.length)),
+          stat('Called with the guide open', String(Object.values(ins.logged).filter(e => e.guided).length)),
           stat('XP earned', `+${xpEarned + findingXP()}`)))));
 
     // Summary by severity (the player's own calls)

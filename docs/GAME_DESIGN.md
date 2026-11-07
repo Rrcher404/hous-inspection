@@ -59,6 +59,16 @@ going through it, and two fingers pinch to zoom up close. On phones the inspect 
 finding card become bottom sheets so the object stays in view above them, and portrait screens get
 a wider camera so the view isn't a sliver.
 
+## Field Guide (the inspector riding along)
+Open anything and a speech bubble explains what it is, what a pro checks on it (one row per part to judge,
+each with a "Show me where" that pulses that part on the model), which tool to bring, how a pro works it,
+the judgement trap to avoid, and the words to use in the report. Every room gets a short arrival intro.
+The text reads the same whether this inspection rolled the part defective or fine, so it teaches how to look
+without giving answers. It has four modes (G toggles it): Always open, Fades as you learn (default: folds
+once you've called every part right on your own, both ways for randomized parts), Only when I ask, and Off.
+Reading it never costs points, but calls made with it open are marked, don't count toward mastery, and the
+report shows how many you made with help, because the Board exam has no bubble.
+
 ## Tools (keys 1 to 5)
 Eyes & Hands · Flashlight (dark zones) · Moisture Meter (%WME) · Receptacle Tester (3-light + GFCI
 button) · Thermal Camera (false-colour, never a stand-alone diagnosis).

@@ -30,13 +30,16 @@ export function createOnboarding(ctx) {
   function start() {
     if (ctx.state.screen !== 'game') return;
     i = 0; show();
+    bus.emit('ui:tour', { active: true });
   }
 
   function stop(done) {
     clearTimeout(timer);
     offs.forEach(f => f()); offs = [];
     lastTarget?.classList.remove('coach-target'); lastTarget = null;
+    const was = i >= 0;
     el.hidden = true; i = -1;
+    if (was) bus.emit('ui:tour', { active: false });
     store.setSetting('onboarded', true);
     if (done) ctx.toasts.info('You are ready', say('Finish anytime with the report button, top right. Press N for your notebook.', 'Finish anytime with the report button, top right. Your notebook is the book icon.'), 4200);
   }

@@ -45,12 +45,26 @@ export function createInspectPanel(ctx) {
     clear(el);
     const cps = comp.checkpoints;
     const n = cps.filter(cp => store.isLogged(cp.id)).length;
+    // Small screens: the field guide lives in this sheet as a second tab, so it never covers the object.
+    const dock = ctx.guide?.dockInfo(compId) || null;
+    el.classList.toggle('has-guide-tab', !!dock);
+    el.classList.toggle('guide-on', !!dock?.open);
     append(el, 
       h('header', { class: 'insp-head' },
         h('div', { class: 'eyebrow' }, 'Inspecting'),
         h('h2', { class: 'insp-title' }, clean(comp.name)),
         h('div', { class: 'chips' }, comp.courses.map(c =>
           h('button', { class: 'chip chip-btn chip-course', type: 'button', title: 'Open Field Notes', onclick: () => ctx.notebook.openCourse(c) }, courseShort(c))))),
+      dock ? dock.tabs : null,
+      dock?.open ? dock.view : partsView(cps, n),
+      h('footer', { class: 'insp-foot' },
+        h('button', { class: 'btn btn-ghost', type: 'button', onclick: back }, icon('back', { size: 16 }), ' Back to walking', h('kbd', { class: 'kbd-in' }, 'Esc'))),
+    );
+  }
+
+  function partsView(cps, n) {
+    const comp = COMPONENT_BY_ID[compId];
+    return [
       cps.length
         ? h('p', { class: 'insp-help' }, say('Click a part of it to examine, or pick one below.', 'Tap a part of it to examine, or pick one below. Pinch to zoom.'), h('span', { class: 'muted' }, ` ${n} of ${cps.length} logged.`))
         : h('p', { class: 'insp-help' }, 'Nothing to judge here. Have a look around it, then head back.'),
@@ -68,9 +82,7 @@ export function createInspectPanel(ctx) {
       // The quiz waits until the player has judged something here, so it never spoils a finding.
       pendingQuiz && (n > 0 || !cps.length) ? h('button', { class: 'quiz-chip', type: 'button', onclick: () => takeQuiz() },
         icon('quiz', { size: 16 }), h('span', null, n === cps.length ? 'Bonus question unlocked' : 'A bonus question is waiting'), h('span', { class: 'muted small' }, '+20 XP')) : null,
-      h('footer', { class: 'insp-foot' },
-        h('button', { class: 'btn btn-ghost', type: 'button', onclick: back }, icon('back', { size: 16 }), ' Back to walking', h('kbd', { class: 'kbd-in' }, 'Esc'))),
-    );
+    ];
   }
 
   function maybePopQuiz(id) {
