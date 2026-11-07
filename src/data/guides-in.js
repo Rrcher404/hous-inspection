@@ -422,11 +422,11 @@ export const GUIDES_IN = {
   'gar-fire-door': {
     what: 'The door from the garage into the house. Together with the common wall it keeps car exhaust and a garage fire out of the living space, and it only does that when it is solid and closed.',
     look: [
-      { cp: 'fire-door-closer', text: 'Open it fully and let go, then try from halfway. Good: spring hinges or a closer pull it shut and latched. Bad: plain hinges, the door stays open or stops short.' },
+      { cp: 'fire-door-closer', text: 'Open it fully and let go, then try from halfway. Note what the hardware does: spring hinges or a closer pull it shut and latched, or plain hinges leave it where you let go.' },
       { cp: 'fire-door-pet', text: 'Look over the whole slab, both faces. Good: solid wood, solid steel, or fire-rated, with nothing cut through. Bad: a pet door, glass panel, or any hole cut into it.' },
       { text: 'Check the hinge edge for a fire label, and that the latch and weatherstrip seal the door tight.' },
     ],
-    watch: 'Report what the door does and why the separation matters. Requirements for this door have changed over the years, so describe it, do not quote code.',
+    watch: 'NC and the national model code differ on this door: NC sets the door type, the national code also wants it self-closing. Know which rule you are applying.',
     terms: [
       { term: 'Self-closing', means: 'A door that shuts and latches on its own from any open position.' },
       { term: 'Fire separation', means: 'The wall, ceiling, and door that slow fire and fumes between garage and house.' },

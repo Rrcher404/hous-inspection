@@ -1451,17 +1451,18 @@ export const CHECKPOINT_CONTENT = {
     course: 'sop-25',
     defect: {
       observe: "The door between the garage and the house hangs on three plain butt hinges. There is no spring hinge or closer, and when you let go of the open door, it stays where it is.",
-      severity: 'safety', sevAlt: ['repair'], rec: 'contractor', recAlt: [],
-      why: "The garage-to-house door is part of the fire and fume separation, and it only works when it is closed. A self-closing door keeps car exhaust and a garage fire out of the house when someone forgets to close it. Current model codes call for this door to be self-closing, but many older homes, like this 1987 house, predate that, so report it as a safety upgrade. Whether NC's current residential code keeps the self-closing language is not settled in our sources, and many inspectors grade this Repair, so Repair is accepted too. Spring hinges are an inexpensive fix.",
-      report: "The door between the garage and the living space is not self-closing. Recommend installing self-closing hinges or a closer as a safety upgrade, by a qualified contractor.",
+      severity: 'monitor', sevAlt: ['repair'], rec: 'contractor', recAlt: ['none'],
+      why: "In North Carolina this is not a defect. The 2018 NC Residential Code, still in force, sets the door type for R302.5.1 (1-3/8 in solid wood or honeycomb steel, or 20-minute rated) and, per the State Fire Marshal's interpretation, says nothing about a closer. The national model code does require self-closing, which is why many trainees over-call it. A closer still helps: the separation only works when the door is shut. So note it and suggest spring hinges as an optional safety upgrade. Repair is accepted too, but calling it a safety hazard or a code violation overstates NC's rule.",
+      report: "The door between the garage and the living space is not self-closing. This is not required by the NC Residential Code currently in effect; installing self-closing hinges is recommended as an optional safety upgrade.",
     },
     ok: {
       observe: "Opened fully and released, the door swings closed and latches on its own, pulled by spring hinges.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "A self-closing, latching door keeps the separation intact without relying on anyone remembering. That is the condition you want.",
+      why: "A self-closing, latching door keeps the separation intact without relying on anyone remembering. NC does not require a closer, so this goes beyond the minimum, and it is exactly the condition you want.",
       report: "The garage-to-house door is self-closing and latched when tested.",
     },
     tip: "Test from fully open and from halfway. Weak spring hinges often close a door partway and stop short of the latch.",
+    nc: "NC 2018 Residential Code R302.5.1 (OSFM interpretation, 2019): solid wood or honeycomb steel at least 1-3/8 in, or 20-minute rated; standard hardware allowed; no self-closer required. The 2024 NC code, not yet in effect, may change this.",
   },
 
   'fire-door-pet': {
