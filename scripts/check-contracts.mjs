@@ -7,6 +7,7 @@ import { QUIZZES } from '../src/data/quizzes.js';
 import { LESSONS } from '../src/data/lessons.js';
 import { COMPONENT_GUIDES, ZONE_GUIDES } from '../src/data/guides.js';
 import { TOOLS } from '../src/data/taxonomy.js';
+import { audit, asItems } from './quiz-audit.mjs';
 
 const sev = new Set(SEVERITIES.map(s => s.id));
 const rec = new Set(RECOMMENDATIONS.map(r => r.id));
@@ -96,6 +97,14 @@ for (const z of ZONES) {
   const zg = ZONE_GUIDES[z.id];
   if (!zg?.intro) errs.push(`zone guide missing: ${z.id}`);
   else if (words(zg.intro) > 60) warns.push(`zone guide ${z.id}: ${words(zg.intro)} words`);
+}
+
+// Quiz length cue (Lindqvist): the right answer must not be findable by picking the longest option.
+{
+  const qa = audit(asItems(QUIZZES));
+  if (qa.longestPct > 35) warns.push(`quizzes: right answer is strictly the longest option in ${qa.longestPct}% of items (chance is 25%; keep <= 35%)`);
+  if (qa.shortestPct < 10) warns.push(`quizzes: right answer is strictly the shortest option in only ${qa.shortestPct}% of items (overcorrected; "never the longest" becomes the cue)`);
+  for (const id of qa.flagged) warns.push(`quiz ${id}: right answer stands out by length`);
 }
 
 const answerDist = [0, 0, 0, 0]; QUIZZES.forEach(q => { if (q.answer < 4) answerDist[q.answer]++; });

@@ -100,9 +100,25 @@ export function createEngine({ container, bus, store }) {
 
   // ── components ─────────────────────────────────────────────────────────────
   const _bs = new THREE.Box3();
+  // Box of what the player can actually see. Box3.setFromObject counts every descendant, including the
+  // invisible hit boxes (opacity 0) that make small parts clickable, which framed objects too far away.
+  const _vb = new THREE.Box3();
+  function seenOpacity(m) { const ms = Array.isArray(m.material) ? m.material : [m.material]; return Math.max(...ms.map((x) => (x && x.visible !== false ? (x.transparent ? x.opacity : 1) : 0))); }
+  function visibleBox(root) {
+    const box = new THREE.Box3();
+    root.traverseVisible((o) => {
+      if (!o.isMesh || !o.geometry) return;
+      if (seenOpacity(o) < 0.05) return;
+      if (!o.geometry.boundingBox) o.geometry.computeBoundingBox();
+      _vb.copy(o.geometry.boundingBox).applyMatrix4(o.matrixWorld);
+      box.union(_vb);
+    });
+    return box.isEmpty() ? new THREE.Box3().setFromObject(root) : box;
+  }
   function buildAll() {
     const states = store.inspection.states;
     let meshesBefore = 0, meshesAfter = 0;
+    const shrunk = [], _v3a = new THREE.Vector3(), _v3b = new THREE.Vector3();
     for (const comp of COMPONENTS) {
       const g = buildComponent(comp.id, states);
       const st = optimizeComponent(g);
@@ -110,13 +126,16 @@ export function createEngine({ container, bus, store }) {
       const pose = applyPlacement(g, comp);
       compRoot.add(g);
       g.updateMatrixWorld(true);
-      const box = new THREE.Box3().setFromObject(g);
+      const box = visibleBox(g);
+      const full = new THREE.Box3().setFromObject(g);
+      if (full.getSize(_v3a).length() > box.getSize(_v3b).length() * 1.05) shrunk.push(comp.id);
       const sphere = box.getBoundingSphere(new THREE.Sphere());
       const rec = { id: comp.id, comp, group: g, box, sphere, zone: comp.zone, level: levelOfZone(comp.zone), front: pose?.front || new THREE.Vector3(0, 0, 1), normal: pose?.normal || new THREE.Vector3(0, 1, 0), view: pose?.view || null, dist: pose?.dist || 0, maxDist: pose?.maxDist || 0 };
       recs.set(comp.id, rec);
       componentObjects.set(comp.id, g);
     }
     api.debug.stats.meshes = { before: meshesBefore, after: meshesAfter };
+    api.debug.stats.hitBoxFramed = shrunk; // components whose framing box shrank once invisible hit boxes were ignored
     rebuildColliders();
   }
   function rebuildColliders() {
@@ -367,7 +386,7 @@ export function createEngine({ container, bus, store }) {
       anchors = [];
       for (const cp of rec.comp.checkpoints || []) {
         const ms = inspecting.cpMeshes.get(cp.id); if (!ms?.length) continue;
-        const bb = new THREE.Box3(); for (const m of ms) bb.expandByObject(m);
+        const bb = new THREE.Box3(); for (const m of ms) bb.union(visibleBox(m));
         anchors.push({ cpId: cp.id, pos: bb.getCenter(new THREE.Vector3()), resolved: false });
       }
     }

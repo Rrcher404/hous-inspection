@@ -1,0 +1,527 @@
+{
+  "q-ap-01": {
+    "right": "A child on the open door can tip the range, with hot pots on top",
+    "wrong": [
+      "The range sits unlevel, so the oven bakes unevenly and burns food",
+      "The bracket grounds the range, so without it the frame can shock you",
+      "It voids the manufacturer's warranty, which the client should know"
+    ],
+    "explain": "Tip-over injuries are well documented, especially for children standing on the open oven door, and hot pots on the cooktop come down with the range. The bracket is inexpensive and part of the manufacturer's installation. It does not ground anything; that is the cord or wiring."
+  },
+  "q-ap-03": {
+    "right": "To keep sink or disposal water from backing into the dishwasher",
+    "wrong": [
+      "To slow the drain so the pump does not run dry and burn out",
+      "To keep the hose from kinking where it bends behind the cabinet",
+      "To keep the hose up and away from the disposal's electrical connection"
+    ],
+    "explain": "Without the loop, dirty sink or disposal water can siphon or back up into the tub. The loop should rise to the underside of the countertop or connect through an air gap. Kinks are a separate routing problem the loop does not solve."
+  },
+  "q-ap-04": {
+    "right": "Through a complete cycle",
+    "wrong": [
+      "Through the drain cycle",
+      "Through a short rinse cycle",
+      "Not operated; it is excluded"
+    ]
+  },
+  "q-ap-05": {
+    "right": "Acceptable; note in the report that it recirculates",
+    "wrong": [
+      "Major defect; a kitchen hood has to exhaust outdoors",
+      "Safety hazard; refer to an HVAC contractor for ducting",
+      "Not reportable, since the hood was working when tested"
+    ],
+    "explain": "Recirculating hoods are a common, legitimate design. Describe it as recirculating rather than exhausting, so the client knows moisture and odors are not removed. Do not over-call it."
+  },
+  "q-ap-06": {
+    "right": "Report it; plastic duct can burn, and metal duct is the standard",
+    "wrong": [
+      "Acceptable if the run is short and the duct does not sag anywhere",
+      "Acceptable as long as the lint filter is cleaned after each load",
+      "Cosmetic; suggest a neater rigid duct the next time it is serviced"
+    ],
+    "explain": "Plastic duct is not suitable for dryer exhaust: it sags, traps lint, and burns. Smooth-wall metal duct is the standard. A clean lint filter does not stop lint from building up in the duct, and lint fires are a common dryer hazard."
+  },
+  "q-ap-08": {
+    "right": "Outdoors, through a hood with a backdraft damper and no screen",
+    "wrong": [
+      "Into the attic, which is vented and carries the moisture away",
+      "Into the crawlspace, below the insulation, away from living space",
+      "Outdoors, through a hood with a fine screen to stop pests"
+    ]
+  },
+  "q-ap-09": {
+    "right": "Report it for replacement; a burst hose can flood the house",
+    "wrong": [
+      "Acceptable while it is not leaking; note it as a monitor item",
+      "Not reportable, because a washer is not a built-in appliance",
+      "Note it as cosmetic wear on the hose cover, common with age"
+    ],
+    "explain": "A bulge means the reinforcement has failed, and a burst supply hose can flood the house quickly. You are not required to inspect a non built-in washer, but a visible hazard on its supply is worth reporting."
+  },
+  "q-ap-10": {
+    "right": "Not required to be inspected",
+    "wrong": [
+      "Required to be inspected for temperature",
+      "Required to be operated through a defrost cycle",
+      "Required if it is a built-in model"
+    ],
+    "explain": "NC excludes refrigeration units, non built-in appliances, and appliances that are in use or shut down. A built-in refrigerator is still a refrigeration unit."
+  },
+  "q-ef-01": {
+    "right": "6 in of fall within the first 10 ft",
+    "wrong": [
+      "2 in of fall within the first 5 ft",
+      "3 in of fall within the first 10 ft",
+      "12 in of fall within the first 3 ft"
+    ]
+  },
+  "q-ef-02": {
+    "right": "Water is directed at the foundation and can wet the crawlspace",
+    "wrong": [
+      "The slope makes the lawn look uneven, which hurts curb appeal",
+      "Runoff will erode the mulch beds along the east wall over time",
+      "No concern; grading is outside the NC inspection, so leave it out"
+    ],
+    "explain": "NC requires you to inspect grading and drainage for their effect on the building. Negative grade sends surface water toward the foundation and is one of the most common sources of crawlspace water. Recommend regrading so water runs away from the house."
+  },
+  "q-ef-04": {
+    "right": "Inspect it with flashing and trim, and describe its material",
+    "wrong": [
+      "Determine its R-value and note whether insulation is behind it",
+      "Probe the vinyl panels with an awl to check for hidden decay",
+      "Inspect it and report on safety glazing in the windows it surrounds"
+    ],
+    "explain": "You inspect the cladding with its flashings and trim, and describing the cladding material is required. Safety glazing is specifically excluded in NC, and probing applies to wood where deterioration is suspected, not vinyl."
+  },
+  "q-ef-05": {
+    "right": "It is a rain screen; a crack lets more water reach the barrier behind it",
+    "wrong": [
+      "Vinyl is the waterproof layer, so a crack leaks straight into the wall",
+      "The crack is cosmetic, but buyers expect it to be noted anyway",
+      "Cracked vinyl gives off fumes in the sun that are harmful to breathe"
+    ],
+    "explain": "This is the layered-wall idea: vinyl is a rain screen, and the barrier and flashings behind it do the waterproofing. Water that gets behind the siding is normal, but a crack lets in more water and pests than the system was designed for, which shortens its life."
+  },
+  "q-ef-06": {
+    "right": "Acceptable; typical concrete shrinkage, no referral needed",
+    "wrong": [
+      "Major defect; refer to a structural engineer for evaluation",
+      "Safety hazard; the cracks will become a trip edge soon",
+      "Repair; recommend sealing or replacing the driveway now"
+    ]
+  },
+  "q-ef-07": {
+    "right": "Displaced sections that form a trip edge or slope water at the house",
+    "wrong": [
+      "Hairline cracks running across the full width of the driveway slab",
+      "Oil and rust stains near the garage that have soaked into the concrete",
+      "Concrete that has darkened and weathered with age and exposure"
+    ],
+    "explain": "Report conditions that affect safety or the building: displaced slab sections that create a trip edge or slope water toward the garage or foundation. Hairline cracks are normal shrinkage, and stains and color are cosmetic."
+  },
+  "q-ef-08": {
+    "right": "Only for their effect on the condition of the building",
+    "wrong": [
+      "For landscaping quality and the health of trees and shrubs nearby",
+      "For compliance with the local storm water and erosion ordinance",
+      "Not inspected, since site work is outside the home inspection"
+    ]
+  },
+  "q-ef-09": {
+    "right": "6 in, or 4 in where masonry veneer is used",
+    "wrong": [
+      "8 in, or 6 in where masonry veneer is used",
+      "4 in, or 2 in where brick veneer is used",
+      "12 in, or 8 in where masonry veneer is used"
+    ]
+  },
+  "q-eh-01": {
+    "right": "Recommend cleaning; overflow soaks the foundation and rots the fascia",
+    "wrong": [
+      "Acceptable; gutters are a maintenance item outside the NC SOP",
+      "Major defect; recommend replacing the gutters with larger, deeper ones",
+      "Monitor and recheck after the next heavy rain for overflow"
+    ]
+  },
+  "q-eh-02": {
+    "right": "Recommend an extension that carries water away from the foundation",
+    "wrong": [
+      "Acceptable; downspouts are designed to end at the foundation wall",
+      "Recommend removing the downspout so water spreads along the eave",
+      "Not reportable, since the gutter system itself is working"
+    ],
+    "explain": "A whole roof section can drain into one downspout. Dumped at the wall, that water goes straight to the crawlspace. An extension, splash block, or underground drain that carries it well away from the foundation fixes it."
+  },
+  "q-eh-03": {
+    "right": "InterNACHI calls for reporting it; NC does not require inspecting seals",
+    "wrong": [
+      "Both standards require testing the seal on each insulated window",
+      "Neither standard lets you mention fogged glass in the report",
+      "NC requires reporting it and recommending the sash be replaced"
+    ],
+    "explain": "NC .1113(c)(4) excludes hermetic seals between panes, though you may report what you see. InterNACHI 3.10 lists obviously fogged windows as reportable. Reporting a visible condition is never wrong."
+  },
+  "q-eh-04": {
+    "right": "It sheds water outward, with intact sealant and flashing at joints",
+    "wrong": [
+      "It sits level so water can drain off both the inside and outside",
+      "It slopes inward toward the sash so rain stays off the siding below",
+      "It relies on paint alone, so no sealant is needed at the joints"
+    ],
+    "explain": "Water always wins against a flat or back-sloped sill. A sill that sheds water outward and away, with intact sealant and flashing at the joints, is acceptable; do not over-call it. Paint protects wood but does not seal a joint."
+  },
+  "q-eh-05": {
+    "right": "You need not determine backflow devices, but may report it as a risk",
+    "wrong": [
+      "You report it as a code violation and cite the plumbing code",
+      "You recommend a backflow test by the water utility before closing",
+      "It is excluded, so you leave it out of the report entirely"
+    ],
+    "explain": "NC .1109(d)(3) excludes determining backflow devices, but you may still report the missing vacuum breaker as a cross-connection risk. It is a cheap fix and worth a recommendation. A home inspection is not a code inspection."
+  },
+  "q-eh-06": {
+    "right": "A connection between potable water and a source of contamination",
+    "wrong": [
+      "A pipe that crosses another pipe without a fitting between them",
+      "A direct connection between the hot and cold water supply lines",
+      "Two fixture drains that share one trap under the same sink"
+    ],
+    "explain": "NC defines it as any physical connection or contact between potable water and a source of contamination. A hose left in a bucket of fertilizer is a cross connection. A pressure drop can pull that water back into the house supply."
+  },
+  "q-eh-07": {
+    "right": "Report it; stairs with 4 or more risers need a handrail",
+    "wrong": [
+      "Acceptable; exterior entry steps are exempt from handrail rules",
+      "Acceptable; handrails are required at 6 or more risers",
+      "Acceptable, because concrete steps do not need a handrail"
+    ]
+  },
+  "q-eh-08": {
+    "right": "34 to 38 in above the tread nosings",
+    "wrong": [
+      "30 to 34 in above the tread nosings",
+      "36 to 42 in above the tread nosings",
+      "28 to 32 in above the tread nosings"
+    ],
+    "explain": "Measured vertically from the line of the nosings. Too low or too high and the hand cannot brace a fall. 36 to 42 in is the guard height range people mix it up with."
+  },
+  "q-eh-10": {
+    "right": "Kickout (diverter) flashing",
+    "wrong": [
+      "Step (sidewall) flashing",
+      "Drip edge (eave) flashing",
+      "Valley (open metal) flashing"
+    ],
+    "explain": "Without a kickout, roof runoff pours down the wall behind the siding. The rot often shows up below the window next to it. Step flashing runs up the sidewall but does not turn water out into the gutter at the end."
+  },
+  "q-fp-02": {
+    "right": "Heat and embers can reach the framing behind the firebox",
+    "wrong": [
+      "It is cosmetic, though the client may want it repointed",
+      "It mainly weakens the draft, so smoke may roll into the room",
+      "Firebox masonry is excluded, so report it as a courtesy"
+    ],
+    "explain": "The firebox is the first barrier between fire and the house frame. Gaps defeat it. Refer to a CSIA-certified chimney sweep."
+  },
+  "q-fp-03": {
+    "right": "Operate it if accessible and manual, and report one that sticks",
+    "wrong": [
+      "Leave it alone; dampers are outside the visual inspection",
+      "Remove the damper plate so you can inspect the smoke shelf above",
+      "Close it and tape it shut for safety until a sweep visits"
+    ],
+    "explain": "Operate the damper if it is readily accessible and manually operable, and report one that does not open and close. A stuck-closed damper fills the room with smoke and CO; a stuck-open one wastes energy. Removing parts is beyond a visual inspection."
+  },
+  "q-fp-05": {
+    "right": "A Level II inspection by a CSIA-certified sweep",
+    "wrong": [
+      "A Level I visual inspection by the homeowner",
+      "A smoke test performed by the home inspector",
+      "No recommendation; the flue is outside the SOP"
+    ],
+    "explain": "NFPA 211 calls for a Level II chimney inspection on sale or transfer. Level II includes a camera inspection of the flue. It fills the gap your SOP leaves."
+  },
+  "q-fp-06": {
+    "right": "3 ft above the roof, 2 ft above anything within 10 ft",
+    "wrong": [
+      "3 ft from the ridge, 2 ft from walls, 10 ft from trees",
+      "3 ft wide, 2 ft deep, and 10 ft tall at the minimum",
+      "3 in clearance, 2 in air space, and a 10 in flue"
+    ],
+    "explain": "The chimney must be at least 3 ft above the roof where it passes through, and at least 2 ft higher than anything within 10 ft horizontally. The height keeps the flue top out of the roof's wind turbulence so draft does not reverse."
+  },
+  "q-fp-07": {
+    "right": "It sheds water off the masonry and seals around the flue liner",
+    "wrong": [
+      "It holds the spark arrestor screen and the rain cap in place",
+      "It narrows the flue outlet at the top to speed up the draft",
+      "It is decorative trim that hides the top course of brick"
+    ],
+    "explain": "The crown sheds water off the top of the masonry and seals around the flue liner. A cracked crown lets water into the masonry, where freeze-thaw cycles break it apart. Refer cracks for repair. The spark arrestor belongs to the cap, not the crown."
+  },
+  "q-fp-08": {
+    "right": "Rain, debris, and animals can enter the flue; recommend a cap",
+    "wrong": [
+      "Nothing; caps are decorative and optional on masonry chimneys",
+      "The fireplace should not be used until a cap is installed",
+      "The chimney needs to be rebuilt with a taller flue extension"
+    ],
+    "explain": "A cap with a spark arrestor screen is inexpensive protection. Water through the flue rusts dampers and erodes mortar. A missing cap is a recommendation, not a reason to stop using the fireplace."
+  },
+  "q-fp-09": {
+    "right": "A cricket (saddle) to divert water around the chimney",
+    "wrong": [
+      "A kickout flashing to turn water into the gutter",
+      "A wider apron flashing to spread water around the base",
+      "Nothing extra, if the step flashing is sealed"
+    ]
+  },
+  "q-fp-10": {
+    "right": "2 in",
+    "wrong": [
+      "1/2 in",
+      "1 in",
+      "6 in"
+    ],
+    "explain": "Heat conducts through masonry. The air space lets it dissipate before wood reaches ignition temperature over years of use. 1 in is the figure for a chimney outside the exterior walls; inside the building it is 2 in."
+  },
+  "q-fp-11": {
+    "right": "Hot gases are less dense than the cooler air, so they rise",
+    "wrong": [
+      "The damper opening creates suction that pulls smoke upward",
+      "Wind blowing across the chimney top pulls the smoke out",
+      "The firebox's sloped back wall forces the smoke upward"
+    ],
+    "explain": "Hot flue gases are less dense than the cooler air around them, so they rise and pull combustion air in behind them. This is the prerequisite behind chimney height, vent slope, and backdrafting. A cold flue or a house under negative pressure can stall or reverse it."
+  },
+  "q-hv-01": {
+    "right": "It restricts airflow, cutting efficiency and straining the blower",
+    "wrong": [
+      "Filters are excluded, but a dirty one is worth a courtesy note",
+      "The furnace safety switch will lock out until it is changed",
+      "A dirty filter makes the furnace produce carbon monoxide"
+    ],
+    "explain": "A clogged filter restricts airflow, cutting efficiency and stressing the blower and the cooling coil; recommend replacement. Air filters are listed among NC's heating distribution items. It is a maintenance item, but a starved system costs far more than a filter."
+  },
+  "q-hv-02": {
+    "right": "Upward toward the chimney at least 1/4 in per foot",
+    "wrong": [
+      "Downward toward the chimney at least 1/4 in per foot",
+      "Level, so the gases flow evenly into the chimney",
+      "Upward toward the chimney at least 1 in per foot"
+    ]
+  },
+  "q-hv-03": {
+    "right": "Report it; single-wall pipe commonly needs 6 in to combustibles",
+    "wrong": [
+      "Acceptable; 2 in is the standard clearance for vent pipe",
+      "Acceptable as long as the joist shows no charring or scorch",
+      "Not reportable, since vent clearances are left to the HVAC trade"
+    ],
+    "explain": "Single-wall connectors commonly need 6 in to combustibles, versus about 1 in for B-vent. Single-wall pipe runs hot, and years of heat can lower wood's ignition temperature, so no charring today does not make it safe. Refer to an HVAC contractor."
+  },
+  "q-hv-04": {
+    "right": "Open readily openable panels and report whether they were removed",
+    "wrong": [
+      "Inspect the heat exchanger with a mirror and a flashlight",
+      "Relight the pilot if it is out so the furnace can be tested",
+      "Determine whether each room gets enough heat from its registers"
+    ],
+    "explain": "Open readily openable access panels. Heat exchangers, pilot lighting, and heat adequacy are excluded. Your method, including panels removed, goes in the report."
+  },
+  "q-hv-05": {
+    "right": "The presence or absence of an installed heat source",
+    "wrong": [
+      "Its temperature at the time of the inspection",
+      "The BTU rating needed to heat that room's size",
+      "Whether the room's thermostat is calibrated and working"
+    ]
+  },
+  "q-hv-06": {
+    "right": "The larger suction (vapor) line returning to the compressor",
+    "wrong": [
+      "The smaller liquid line, since it carries the coldest refrigerant",
+      "Neither, since both lines run near the outdoor temperature",
+      "The condensate drain line running from the indoor coil"
+    ],
+    "explain": "The larger suction line carries cool refrigerant back to the compressor; the smaller liquid line runs warm. Uninsulated suction line sweats, drips, and gains heat, which cuts efficiency. Deteriorated insulation is a repair item."
+  },
+  "q-hv-07": {
+    "right": "Manufacturers call for level units; tilt strains the refrigerant lines",
+    "wrong": [
+      "It is cosmetic, though the pad should be leveled at the next service call",
+      "It mainly makes the fan louder, which neighbors may notice",
+      "Not reportable, since the condenser itself is outside the SOP"
+    ],
+    "explain": "Manufacturers call for level installation; tilt strains the refrigerant lines and can affect the compressor. Settling usually traces to fill soil next to the foundation. Refer to an HVAC contractor to re-level."
+  },
+  "q-hv-08": {
+    "right": "Within sight of and readily accessible from the condenser",
+    "wrong": [
+      "At the main panel, labeled for the condenser circuit",
+      "Inside the house, near the thermostat that controls the unit",
+      "Anywhere along the same circuit as the condenser"
+    ]
+  },
+  "q-hv-10": {
+    "right": "The blower can only push as much air as it can pull back",
+    "wrong": [
+      "Returns mainly matter in winter, when the furnace runs",
+      "Returns are mostly decorative grilles that balance the look",
+      "Returns carry exhaust gases out of the living space"
+    ],
+    "explain": "Air moves in a loop: return, blower, coil or heat exchanger, supply, rooms, back to return. A blocked or undersized return starves the system, in both seasons. Break any part and the rest suffers."
+  },
+  "q-hv-11": {
+    "right": "Report it; conditioned air is dumping into the attic. Refer to HVAC",
+    "wrong": [
+      "Acceptable, because the vented attic will carry the air away",
+      "Cosmetic; reattach it with tape the next time it is serviced",
+      "Not reportable, since attic ductwork is outside the NC SOP"
+    ],
+    "explain": "The room below loses its supply, the attic gains moisture (cold air there can cause condensation), and the energy bill climbs."
+  },
+  "q-wh-03": {
+    "right": "The hottest water collects at the top of the tank",
+    "wrong": [
+      "The tank wall is thickest there and protects the probe",
+      "The cold water inlet is at the top of the tank",
+      "It keeps the probe clear of sediment at the bottom"
+    ],
+    "explain": "Pressure is uniform throughout the tank, but temperature is not: the hottest water rises to the top. A probe lower down would sense cooler water and open too late. Location matters for temperature, not pressure."
+  },
+  "q-wh-04": {
+    "right": "Water above 212 F under pressure flashes to steam when the tank fails",
+    "wrong": [
+      "Gas collects inside the tank and ignites from the burner",
+      "Sediment reacts with the steel lining and explodes when it is overheated",
+      "Cold water hitting the hot steel cracks it open like glass"
+    ],
+    "explain": "Water held above 212 F under pressure flashes to steam the instant the tank ruptures, expanding enormously. At 50 psi water does not boil until about 298 F. The TPR (150 psi, 210 F maximum) is what keeps the water out of that zone."
+  },
+  "q-wh-05": {
+    "right": "Life expectancy is not required, but you may note the age",
+    "wrong": [
+      "You are required to estimate the remaining life in years",
+      "You are required to recommend replacing it before closing",
+      "You may not mention the age, since that predicts failure"
+    ],
+    "explain": "NC excludes life expectancy and predicting failure from required reporting, but useful context is allowed. Report age as information, not as a defect, and you may suggest the client budget for replacement."
+  },
+  "q-wh-07": {
+    "right": "It catches debris and moisture before they reach the gas control",
+    "wrong": [
+      "It drains condensed water out of the bottom of the tank",
+      "It slows the gas flow so the burner lights more smoothly",
+      "It works as a second shutoff valve right beside the appliance"
+    ],
+    "explain": "It is a capped tee below the appliance connection that catches debris and moisture in the gas line. Debris in a gas control can keep it from closing."
+  },
+  "q-wh-08": {
+    "right": "Combustion gases are spilling instead of venting, a CO risk",
+    "wrong": [
+      "Normal heat from a draft hood that is working as designed",
+      "The thermostat is set too high and the burner runs hot",
+      "The TPR valve has discharged steam onto the top of the tank"
+    ],
+    "explain": "A draft hood should pull room air in, not push flue gas out. Spillage means a blocked, disconnected, or poorly drafting vent; report it for evaluation."
+  },
+  "q-wh-09": {
+    "right": "No; NC does not require it, and an old valve may not reseat",
+    "wrong": [
+      "Yes; NC requires testing it as part of the plumbing inspection",
+      "Yes, if the client is present to watch the discharge",
+      "Yes, if the tank is under 10 years old and has a drain pan"
+    ]
+  },
+  "q-wh-10": {
+    "right": "Its fuel or power source, capacity (or tankless), and location",
+    "wrong": [
+      "Its age, remaining life, and the condition of the anode rod",
+      "Its recovery rate in gallons per hour and its efficiency",
+      "Whether a thermal expansion tank is present and charged"
+    ],
+    "explain": "Describe its fuel or power source, storage capacity (or tankless type), and location. NC expressly excludes reporting on expansion tanks and on whether the capacity is adequate, and life expectancy is not required."
+  },
+  "q-mo-01": {
+    "right": "Report the stain and dry reading, and ask the seller about its history",
+    "wrong": [
+      "Report nothing, since a dry reading shows the leak is fixed",
+      "Report it as an active leak and refer to a roofer for repair",
+      "Recommend replacing the roof covering above the stained area of ceiling"
+    ],
+    "explain": "Dry today proves only dry today. The source may be intermittent, such as wind-driven rain or a seasonal condensation problem, so also recommend monitoring it."
+  },
+  "q-mo-02": {
+    "right": "Only a temperature difference; a meter must confirm moisture",
+    "wrong": [
+      "That the drywall behind the cool spot is wet from a leak",
+      "That mold is growing on the back side of the ceiling",
+      "That the insulation above that spot is missing or thin"
+    ]
+  },
+  "q-mo-04": {
+    "right": "Report the wet, damaged cabinet floor and refer to a plumber",
+    "wrong": [
+      "Acceptable; sink cabinets often get wet from normal use",
+      "Recommend replacing the countertop and sink above the cabinet",
+      "Monitor it and recheck the reading after a few days"
+    ],
+    "explain": "Report the active moisture and damage, and refer to a plumber to find the leak. Look at traps, supply connections, the dishwasher hose, and the disposal. Particleboard does not recover once swollen."
+  },
+  "q-mo-05": {
+    "right": "Water running down the wall gets in and soaks the framing",
+    "wrong": [
+      "It is cosmetic, though buyers notice a stained caulk line",
+      "It mainly affects how the grout looks along the tub edge",
+      "Caulk is outside the NC SOP, but it is a courtesy note"
+    ],
+    "explain": "Water running down the wall enters the gap and soaks the wall and floor framing behind it. Caulk is the cheapest moisture barrier in the house and the most often neglected. Recommend repair."
+  },
+  "q-mo-06": {
+    "right": "Elevated moisture behind the tile; refer to a qualified contractor",
+    "wrong": [
+      "Normal moisture after a recent shower, so no report is needed",
+      "A failed shower pan liner, which you should confirm by testing",
+      "Mold behind the tile, which you should identify and report"
+    ],
+    "explain": "NC does not require inspecting shower pan liners or identifying mold. Report the reading and its likely implication, and recommend a qualified contractor evaluate the substrate for damage. A wet spot with dry tile around it is not shower splash."
+  },
+  "q-mo-07": {
+    "right": "A failed wax seal at the toilet flange",
+    "wrong": [
+      "A cracked tank lid dripping onto the floor",
+      "Condensation from the tank on a humid day",
+      "A clogged vent stack forcing water up"
+    ],
+    "explain": "Movement breaks the wax seal at the flange, letting water and sewer gas escape. Condensation does not explain a toilet that rocks. Refer to a plumber and recommend checking the subfloor for decay."
+  },
+  "q-mo-08": {
+    "right": "As elevated moisture conducive to decay, without diagnosing mold",
+    "wrong": [
+      "As mold growth that needs remediation by a mold contractor",
+      "As acceptable, since crawlspace wood often reads that high",
+      "As a structural failure of the joist; refer to an engineer"
+    ],
+    "explain": "NC excludes determining mold and other environmental conditions. Report elevated moisture conducive to decay, recommend the source be found, and describe the staining rather than naming it mold."
+  },
+  "q-mo-09": {
+    "right": "The duct surface is below the air's dew point, so vapor condenses",
+    "wrong": [
+      "The duct is leaking water that drains from the indoor coil",
+      "The duct is too warm, so it draws water out of the air",
+      "Rainwater is entering through the foundation vents and collecting"
+    ]
+  },
+  "q-mo-10": {
+    "right": "The source is likely above it, at the roof or a penetration",
+    "wrong": [
+      "The two stains are unrelated and each has a separate source",
+      "The ceiling drywall below has to be replaced before closing",
+      "Nothing reportable, since attic sheathing is outside the SOP"
+    ],
+    "explain": "Follow the water upward. Matching stains on both sides of the attic narrow the source to the roof system or a penetration, rather than plumbing."
+  }
+}

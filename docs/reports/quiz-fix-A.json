@@ -1,0 +1,508 @@
+{
+  "q-sop-01": {
+    "right": "A non-invasive visual examination of a home's accessible areas",
+    "wrong": [
+      "A code-compliance inspection of the home's major systems",
+      "A technically exhaustive evaluation with instruments and calculations",
+      "An appraisal of the home's overall condition and market value"
+    ]
+  },
+  "q-sop-03": {
+    "right": "Report presence or absence and operate the test function, except central systems",
+    "wrong": [
+      "Nothing; NC adopts the InterNACHI SOP smoke alarm wording unchanged",
+      "Verify each alarm is hardwired and interconnected, and test it with canned smoke",
+      "Report the battery type and replace each alarm with a low battery"
+    ]
+  },
+  "q-sop-04": {
+    "right": "Past its 10-year replacement interval; recommend replacement",
+    "wrong": [
+      "Acceptable, because the test button sounded when pressed",
+      "Not reportable, since alarm age is outside the inspection standards",
+      "Recommend replacing the battery and retesting the alarm"
+    ]
+  },
+  "q-sop-05": {
+    "right": "In each bedroom, outside each sleeping area, and on each story",
+    "wrong": [
+      "In the hallway outside the bedrooms and on each story",
+      "On each story at the top of the stairs, and one in the kitchen",
+      "In each bedroom and in the kitchen, but not in hallways"
+    ],
+    "explain": "The model code requires alarms inside every bedroom, outside each sleeping area in the immediate vicinity, and on every level. The hallway-and-story pattern is an older rule that leaves bedrooms out. Kitchens are avoided because cooking causes nuisance alarms."
+  },
+  "q-sop-06": {
+    "right": "A fireplace, fuel-fired appliances, or an attached garage",
+    "wrong": [
+      "A basement, a crawlspace, or an open-air carport",
+      "Bedrooms on more than one story, or a finished basement",
+      "An electric furnace, a heat pump, or a detached garage"
+    ],
+    "explain": "11 NCAC 08 .1110(d)(2) lists fireplaces, fuel-fired appliances, and attached garages, and you operate the test function. These are the sources of carbon monoxide; electric heat and a detached garage are not. 417 Loblolly Lane has all three."
+  },
+  "q-sop-07": {
+    "right": "1-3/8 in solid wood or steel (solid or honeycomb core), or 20-minute rated",
+    "wrong": [
+      "An exterior-grade door of whatever material, with full weatherstripping",
+      "Solid wood at least 2 in thick, or a 45-minute rated door",
+      "Hollow-core wood with a self-closer and weatherstripping"
+    ]
+  },
+  "q-sop-08": {
+    "right": "A deficiency: the opening defeats the door's fire separation",
+    "wrong": [
+      "Acceptable, provided the flap is rigid plastic and closes fully",
+      "A concern when a bedroom opens directly into the garage",
+      "Cosmetic damage to the door, which the SOP excludes"
+    ]
+  },
+  "q-sop-09": {
+    "right": "1/2 in gypsum board",
+    "wrong": [
+      "1/4 in gypsum board",
+      "3/8 in gypsum board",
+      "1 in gypsum board"
+    ]
+  },
+  "q-sop-10": {
+    "right": "At least No. 26 gauge steel, with no openings into the garage",
+    "wrong": [
+      "Flexible duct with a foil jacket, sealed where it passes through",
+      "Ductboard or flex, provided the penetration is fire-caulked",
+      "Thin aluminum duct, with a register to heat the garage"
+    ]
+  },
+  "q-sop-11": {
+    "right": "Failure to reverse on resistance or photo-eye, or no photo-eyes",
+    "wrong": [
+      "Operators over 10 years old, which should be replaced on age alone",
+      "Nothing, since garage door operators are excluded in NC",
+      "The condition of the remote transmitters and wall button"
+    ],
+    "explain": "NC lists three required reports: an operator that will not reverse on reasonable resistance, one that will not reverse when the photo-eyes are actuated, and one with no photoelectric safety device. Operator age is not a required report, and remote transmitters are specifically excluded."
+  },
+  "q-sop-13": {
+    "right": "Can be safely observed, in the inspector's judgment, without removing obstacles",
+    "wrong": [
+      "Can be reached by whatever means the inspector chooses, including ladders and tools",
+      "Is within 6 ft of the floor and not behind a locked door",
+      "Has been made available by the seller in writing before the inspection"
+    ],
+    "explain": "The InterNACHI definition: safely observed, in the inspector's judgment, without removing obstacles, detaching or disengaging securing devices, or other unsafe or difficult procedures. It is a safety and judgment term, not a question of what tools you own. NC's own definition adds: within reach, no ladder, not blocked by appliances, and enterable without damage."
+  },
+  "q-sop-17": {
+    "right": "A required disclaimer, plus items not functioning or needing more evaluation",
+    "wrong": [
+      "Cost estimates for each listed repair, grouped by system and urgency",
+      "The safety hazards alone, ranked from most to least urgent",
+      "A pass/fail grade for each system and an overall grade for the whole house"
+    ],
+    "explain": "G.S. 143-151.58(a1) prescribes a statement, word for word, that the summary is not the entire report, and requires listing components not functioning as intended or needing further investigation by a specialist. It may also list safety concerns, but they are not the whole summary."
+  },
+  "q-sop-18": {
+    "right": "Inspect to the code in force at installation; attach dated copies of the provisions",
+    "wrong": [
+      "Cite the current code edition and section number for each defect listed",
+      "Obtain written approval from the local building official before reporting",
+      "Nothing extra, since code citations are routine in NC home inspection reports"
+    ],
+    "explain": "G.S. 143-151.58(a2): determine the code in effect at construction or installation, inspect to that code, and include the dates and copies of the provisions used. Citing today's code is the tempting mistake. This is why most NC reports describe the condition and its implication instead of quoting code."
+  },
+  "q-sop-19": {
+    "right": "200 hours: 120 academic and 80 field, including at least 10 site visits",
+    "wrong": [
+      "120 hours of online academic instruction, with no field component",
+      "200 hours: 80 classroom and 120 field, including 10 ride-alongs",
+      "40 hours of classroom study plus 50 inspections under a licensed supervisor"
+    ],
+    "explain": "Rule .1021 requires at least 200 hours: 120 of academic instruction and 80 of field instruction with at least 10 site visits. The InterNACHI 120-hour online program covers the academic portion; the 80 field hours come from an approved field training partner."
+  },
+  "q-sop-20": {
+    "right": "Expires September 30 each year; 12 CE hours, including the 4-hour Board update",
+    "wrong": [
+      "Expires each second year on June 30; 24 CE hours, including ethics",
+      "Expires December 31 each year; 16 CE hours, including the 4-hour code update course",
+      "Expires each third year on your birthday; 48 hours of elective CE"
+    ],
+    "explain": "G.S. 143-151.55 sets the September 30 expiration and 11 NCAC 08 .1302, .1309, and .1318 set the hours: the 4-hour Board update course plus 8 elective hours. A licensee newly licensed on or after June 1 is exempt for the first period."
+  },
+  "q-sop-21": {
+    "right": "$250,000 general liability, plus a bond, net assets, or E&O coverage",
+    "wrong": [
+      "$100,000 errors and omissions coverage, with no general liability",
+      "$1,000,000 general liability, with no bond or other coverage",
+      "A $5,000 surety bond, with no liability insurance required"
+    ],
+    "explain": "G.S. 143-151.51(b) and .58(b): $250,000 general liability, plus net assets or a bond of $5,000 to $10,000, or $250,000 errors and omissions. A license lapses if the insurance is not continuously maintained."
+  },
+  "q-sop-22": {
+    "right": "Paying a real estate agent for referrals or a preferred-list spot",
+    "wrong": [
+      "Reporting a safety concern that goes beyond what the SOP requires",
+      "Telling a client you also hold an electrical contractor license",
+      "Excluding a system from the inspection at the client's written request"
+    ]
+  },
+  "q-sop-23": {
+    "right": "You may not offer to repair defects your inspection found",
+    "wrong": [
+      "You may, as long as your price is fair and in writing",
+      "You may not, unless you hold a general contractor license",
+      "You may, if you disclose the arrangement in the report"
+    ],
+    "explain": "11 NCAC 08 .1116(h) prohibits soliciting repairs of systems found defective in your own inspection. A contractor license does not change that. It protects your impartiality."
+  },
+  "q-sop-24": {
+    "right": "Four or fewer units",
+    "wrong": [
+      "One unit",
+      "Two or fewer units",
+      "Six or fewer units"
+    ],
+    "explain": "Both standards cover buildings of four or fewer dwelling units, including their attached garages or carports. Five or more units moves the property into commercial inspection territory."
+  },
+  "q-sop-25": {
+    "right": "One per room inside, and one per side of the building outside",
+    "wrong": [
+      "Half of each component type, spread across the whole house",
+      "Each readily accessible component, room by room and side by side",
+      "Three per floor inside, and two per side of the building outside"
+    ]
+  },
+  "q-sop-26": {
+    "right": "After 90 days",
+    "wrong": [
+      "After 7 days",
+      "After 30 days",
+      "After one year"
+    ]
+  },
+  "q-sop-27": {
+    "right": "The NC Board's own exam: 200 questions, 4 hours, closed book, 70% to pass",
+    "wrong": [
+      "The National Home Inspector Examination (NHIE), scaled-scored at a PSI test center",
+      "A 100-question open-book exam on the IRC, 2 hours, 75% to pass",
+      "A field practical exam graded on site by a Board-appointed inspector"
+    ],
+    "explain": "The Board's study guide (3/17/2026) and candidate bulletin (rev. 7.0, 05/26/2026) describe the Board's own exam: 200 multiple-choice questions, 4 hours, closed book, delivered by remote proctoring. 11 NCAC 08 .1007 sets the 70 percent pass mark. Some third-party pages still say NHIE; the Board's documents control."
+  },
+  "q-sop-28": {
+    "right": "Standards of Practice, Building, Electrical, Mechanical, Plumbing",
+    "wrong": [
+      "Building science, Business practices, Report writing, and Ethics",
+      "IRC chapters 1 through 11, plus the NC Building Code",
+      "Electrical, Plumbing, Mechanical, and Structural Pest Control"
+    ]
+  },
+  "q-sop-29": {
+    "right": "Describe, Determine, Implication, Direction",
+    "wrong": [
+      "Describe, Diagnose, Implication, Disclose",
+      "Document, Determine, Inspect, Direction",
+      "Detect, Describe, Implication, Deferral"
+    ]
+  },
+  "q-sop-30": {
+    "right": "No. NC sets the door type but not a closer; suggest one as an upgrade",
+    "wrong": [
+      "Yes, NC requires the garage-to-house door to self-close and self-latch",
+      "Yes, when the door has a glass panel or a pet door in it",
+      "Yes, for homes permitted after 2009, when NC adopted the IRC rule"
+    ],
+    "explain": "The national IRC requires self-closing, but the NC State Fire Marshal's interpretation of NC R302.5.1 lists only the door types (1-3/8 in solid wood or steel, or 20-minute rated). Reporting a missing closer as a code violation in NC overstates the rule; suggest one as an optional upgrade."
+  },
+  "q-sop-31": {
+    "right": "A signed written contract that states the SOP and the fee",
+    "wrong": [
+      "No contract, since the house is unoccupied and still being built",
+      "A copy of the building permit and the builder's written permission",
+      "A verbal agreement with the builder covering the scope and the price"
+    ]
+  },
+  "q-sop-33": {
+    "right": "Where the access is, whether all of it was accessible, and how you inspected it",
+    "wrong": [
+      "Whether you entered the space, and how long you spent inside",
+      "Nothing more, as long as you note that the space was not entered",
+      "The square footage of each space, plus the insulation type, depth, and R-value"
+    ]
+  },
+  "q-ea-01": {
+    "right": "Double tap: refer to a licensed electrician for correction",
+    "wrong": [
+      "Acceptable, as long as both conductors are the same wire gauge",
+      "Monitor it; double taps are common in older panels",
+      "Recommend replacing the main breaker with a larger one"
+    ],
+    "explain": "Most breakers are listed for one conductor; a second one cannot be clamped reliably, loosens, and heats. Recommend evaluation and correction by a licensed electrician. A few breakers are listed for two, so pros check the breaker label."
+  },
+  "q-ea-02": {
+    "right": "Each neutral needs its own terminal; grounds may share if the panel allows",
+    "wrong": [
+      "Each ground needs its own terminal; neutrals may share if they are the same size",
+      "Two same-size conductors may share a terminal if the screw is tight",
+      "Neutrals and grounds each need their own terminal, with no sharing"
+    ]
+  },
+  "q-ea-03": {
+    "right": "Fingers, tools, and pests can reach live parts; close them with listed plugs",
+    "wrong": [
+      "They lower the panel's amperage rating until a breaker is added",
+      "They ventilate the panel and should be left open for cooling",
+      "They are cosmetic, since the dead front cover still keeps hands off live parts"
+    ],
+    "explain": "Open holes in the enclosure let fingers, tools, pests, and debris reach energized parts; they should be closed with listed knockout closures. The dead front does not cover the side wall of the cabinet. The 25 Standards course says all unused openings in the panel should be closed: knockouts in the cabinet and empty breaker slots in the dead front alike."
+  },
+  "q-ea-04": {
+    "right": "When it is part of a cable and re-marked as a hot at its terminations",
+    "wrong": [
+      "When it is landed on a 15 A breaker serving a lighting circuit",
+      "When the panel is a subpanel, where white and black are interchangeable",
+      "When it is a separate white wire run in conduit, not in a cable"
+    ],
+    "explain": "In a two-wire cable feeding a 240 V load, the white can serve as a hot if it is re-marked with black or red tape at its terminations. That allowance is for cable; a loose white wire in conduit cannot be re-marked as a hot. An unmarked white on a breaker misleads the next person who works there."
+  },
+  "q-ea-05": {
+    "right": "Each circuit needs a specific label that won't change with occupants",
+    "wrong": [
+      "Residential panels do not require a circuit directory",
+      "The labels should be engraved or printed, not handwritten",
+      "The directory should list wire gauge and breaker size for each circuit"
+    ]
+  },
+  "q-ea-06": {
+    "right": "The water's path: service cable, mast, weatherhead, or a missing drip loop",
+    "wrong": [
+      "The panel's manufacture date and the recall history for its brand",
+      "Signs of a lightning strike or surge, and the seller's history of either",
+      "Nothing more; rust inside a panel is cosmetic and can be noted"
+    ]
+  },
+  "q-ea-07": {
+    "right": "Acceptable; stranded aluminum service conductors are normal",
+    "wrong": [
+      "Safety hazard; aluminum wiring should be replaced throughout",
+      "Major defect; refer for a derating calculation on the service",
+      "Report it as single-strand aluminum wiring under NC rules"
+    ],
+    "explain": "Large stranded aluminum feeders are common and acceptable when properly terminated. NC's required report targets single-strand (solid) aluminum branch wiring, which is where the fire history belongs."
+  },
+  "q-ea-08": {
+    "right": "Possible overheating at that breaker; refer to an electrician",
+    "wrong": [
+      "Normal, since breakers under load are expected to run warm",
+      "An overloaded circuit; recommend a larger breaker for it",
+      "A failed breaker that the seller should replace before closing"
+    ]
+  },
+  "q-ea-11": {
+    "right": "Water drips off the conductors instead of following them into the mast",
+    "wrong": [
+      "It absorbs thermal expansion and contraction of the service conductors",
+      "It gives the utility slack to disconnect power at the pole",
+      "It bonds the service drop to the house grounding system"
+    ]
+  },
+  "q-ea-14": {
+    "right": "Separated, with the neutral bar isolated and no bonding jumper",
+    "wrong": [
+      "Combined on one bar, the same way as in the main panel",
+      "Separated, with the neutral bar bonded to the enclosure",
+      "Combined, as long as the subpanel has its own main disconnect breaker"
+    ],
+    "explain": "Neutral and ground are bonded only once, at the service. In a subpanel the neutral bar is isolated from the enclosure and no bonding jumper is installed. Bonding again downstream puts normal current on ground paths and metal parts, even when the subpanel has its own main breaker. Subpanels are fed with four conductors for this reason."
+  },
+  "q-ea-15": {
+    "right": "Remove the cover and inspect inside, unless unsafe; no probing with tools",
+    "wrong": [
+      "Leave the cover on and judge the panel by its exterior and label",
+      "Remove the cover with a licensed electrician present to assist",
+      "Remove the cover when the client requests it in writing"
+    ],
+    "explain": "NC requires inspecting the panelboard interior with the cover removed, unless unsafe conditions are reported. You are not required to dismantle devices or insert tools inside."
+  },
+  "q-er-01": {
+    "right": "Near interior plumbing (within 6 ft), in the garage or carport, and outside",
+    "wrong": [
+      "Kitchen countertops and bathrooms, by room name, regardless of fixture distance",
+      "Those installed after 1990, when GFCI rules took full effect",
+      "Bathrooms, kitchens, and garages, but not exterior receptacles"
+    ],
+    "explain": "NC defines the zone by distance to interior plumbing fixtures (within 6 ft and not separated by a door), not by room name, and adds the garage or carport and the exterior."
+  },
+  "q-er-02": {
+    "right": "Report it: outdoor receptacles need an intact weatherproof cover",
+    "wrong": [
+      "Acceptable if the receptacle tests GFCI protected and shows no corrosion",
+      "Cosmetic damage to the cover, which the SOP excludes",
+      "Monitor it, unless the receptacle shows corrosion"
+    ],
+    "explain": "Outdoor receptacles need an intact weatherproof cover, and wet locations need an in-use (bubble) cover. GFCI protection reduces shock risk but does not keep water out of the box. Water in a receptacle corrodes contacts and trips or fails the device."
+  },
+  "q-er-03": {
+    "right": "A lamp shell or appliance case can be live even with the switch off",
+    "wrong": [
+      "The receptacle will not power anything until it is rewired correctly",
+      "It matters for 240 V appliances, not for ordinary plug-in lamps",
+      "It makes the upstream GFCI trip whenever a load is plugged in"
+    ],
+    "explain": "Reversed polarity puts the hot on the parts designed to be neutral, such as a lamp's screw shell or an appliance chassis. Devices still run, which is why it goes unnoticed."
+  },
+  "q-er-04": {
+    "right": "A bootleg ground: the neutral jumpered to the ground terminal",
+    "wrong": [
+      "Nothing; a 'correct' reading means the receptacle is grounded",
+      "Reversed polarity, which this tester does not detect",
+      "An open neutral hidden behind the tester's correct reading"
+    ],
+    "explain": "The tester only compares voltages between slots, so a jumper from neutral to ground fools it. It does detect reversed polarity and an open neutral. The wiring age is the clue to look closer."
+  },
+  "q-er-05": {
+    "right": "Report it and refer to an electrician: it implies a ground it lacks",
+    "wrong": [
+      "Acceptable, because the receptacle still powers devices",
+      "Correct it yourself with a three-to-two adapter plug",
+      "Acceptable if a surge protector is plugged in to absorb faults"
+    ],
+    "explain": "The third prong gives a false sense of grounding. Surge strips and appliances rely on that ground for fault current, so a surge strip cannot make up for it. A GFCI with a \"No equipment ground\" label is one recognized remedy an electrician may choose."
+  },
+  "q-er-06": {
+    "right": "The GFCI is not working; refer to an electrician for replacement",
+    "wrong": [
+      "Acceptable, because the receptacle still delivers power to both outlets",
+      "Reset it, retest once, and mark it acceptable if it resets",
+      "Recommend an AFCI breaker for the kitchen circuit instead"
+    ],
+    "explain": "A GFCI that will not trip offers no shock protection while looking protected. Recommend evaluation and replacement by an electrician. NC requires operating GFCIs within 6 ft of the floor."
+  },
+  "q-er-07": {
+    "right": "A GFCI guards against shock; an AFCI guards against arcing fires",
+    "wrong": [
+      "They are the same device, sold under two different names",
+      "A GFCI guards against overloads; an AFCI guards against short circuits",
+      "A GFCI is for 240 V circuits; an AFCI is for 120 V circuits"
+    ],
+    "explain": "A GFCI protects people from shock by comparing current out and back and tripping at a few milliamps of imbalance. An AFCI reduces fire risk by reading the electrical signature of an arc. Overload and short-circuit protection is the breaker's job. NC does not require you to test AFCIs."
+  },
+  "q-er-08": {
+    "right": "Report the missing GFCI as a safety concern and refer to an electrician",
+    "wrong": [
+      "Do not report it, because a 1987 house is grandfathered under older rules",
+      "Acceptable, because the receptacle's polarity tests correct",
+      "Note it as informational, since GFCI rules changed later"
+    ],
+    "explain": "NC requires reporting the presence or absence of ground-fault protection near plumbing fixtures regardless of the house's age. Inspectors report safety, not grandfather status; you may note that the condition may predate current standards."
+  },
+  "q-er-09": {
+    "right": "Open lamps near stored clothes are a fire hazard; use an enclosed fixture",
+    "wrong": [
+      "Closet lights are excluded unless the closet is a walk-in with a switch",
+      "It wastes energy; recommend an LED bulb as a repair item",
+      "Acceptable if the bulb is under 60 watts and has a pull chain"
+    ],
+    "explain": "A hot bulb against fabric can ignite it, whatever its wattage. Closet fixtures should be enclosed types with proper clearance, kept clear of storage."
+  },
+  "q-er-10": {
+    "right": "Report it: splices belong in an accessible, covered junction box",
+    "wrong": [
+      "Acceptable, as long as the tape is intact and the splice is off the joist",
+      "Acceptable in attics, since they are unoccupied and rarely entered",
+      "Monitor it, unless the tape is brittle or loose"
+    ]
+  },
+  "q-er-11": {
+    "right": "Single-strand (solid) aluminum branch circuit wiring",
+    "wrong": [
+      "Stranded aluminum service entrance conductors at the main",
+      "Copper nonmetallic sheathed cable from the 1970s",
+      "Low-voltage thermostat and doorbell wiring"
+    ]
+  },
+  "q-er-13": {
+    "right": "The cable can pull loose or chafe on the knockout edge in a wet area",
+    "wrong": [
+      "Disposals are plug-in appliances, which the SOP excludes from inspection",
+      "It is a concern if the disposal is noisy or vibrating badly",
+      "It is acceptable when the cable is a flexible appliance cord"
+    ],
+    "explain": "Without a clamp, the cable can pull loose or chafe on the sharp knockout edge and expose conductors. Cables and cords entering a box or appliance need strain relief and protection from the knockout edge. Under a sink, a nicked conductor sits next to water. Refer to an electrician."
+  },
+  "q-ca-01": {
+    "right": "To keep soil moisture from evaporating into the crawlspace",
+    "wrong": [
+      "To insulate the floor framing above from the cold ground below",
+      "To stop termites from tunneling up from the soil",
+      "To keep the soil from freezing under the house in winter"
+    ],
+    "explain": "Bare soil releases a steady supply of water vapor into the crawlspace air and framing. Torn or missing ground cover feeds high humidity and wet framing."
+  },
+  "q-ca-02": {
+    "right": "6-mil polyethylene, with seams lapped 6 in",
+    "wrong": [
+      "4-mil polyethylene, with seams butted and taped",
+      "15-lb roofing felt, lapped 2 in",
+      "Landscape fabric, pinned at the seams"
+    ]
+  },
+  "q-ca-03": {
+    "right": "Report it and refer the drainage and crawlspace to a contractor",
+    "wrong": [
+      "Normal for a vented crawlspace for a few weeks after heavy rain",
+      "Recommend a dehumidifier sized for the crawlspace, and nothing more",
+      "Not reportable, since standing water will evaporate on its own"
+    ],
+    "explain": "Recommend evaluation of the exterior drainage and the crawlspace by a qualified contractor. Standing water usually traces back to grading, gutters, or downspouts outside, so a dehumidifier treats the symptom. It raises humidity and invites decay and pests."
+  },
+  "q-ca-04": {
+    "right": "Where the access is, whether all areas were accessible, and your method",
+    "wrong": [
+      "The square footage of the crawlspace, its vent count, and the soil type",
+      "The type, depth, and R-value of the floor insulation above",
+      "The date and company name of the last termite treatment"
+    ]
+  },
+  "q-ca-05": {
+    "right": "1 sq ft per 150 sq ft, or 1 per 1,500 with a vapor retarder",
+    "wrong": [
+      "1 sq ft per 50 sq ft, or 1 per 500 with a vapor retarder",
+      "1 sq ft per 300 sq ft, with no reduction for a vapor retarder",
+      "1 sq ft per 1,500 sq ft, whether or not the soil is covered"
+    ]
+  },
+  "q-ca-06": {
+    "right": "Not required, but you may report it and refer to a licensed pest operator",
+    "wrong": [
+      "Identify the insect species in the report before referring",
+      "Perform and report a full wood-destroying insect inspection",
+      "Leave it out of the report entirely, because the SOP excludes pests"
+    ],
+    "explain": "Pests are excluded from required reporting, but excluded means not required, not forbidden. Reporting what you saw and referring it to a licensed pest control operator protects the client."
+  },
+  "q-ca-07": {
+    "right": "It dumps conditioned air into the crawlspace and adds moisture",
+    "wrong": [
+      "Ducts in crawlspaces are excluded from the inspection",
+      "It is cosmetic, as long as the insulation jacket is still intact",
+      "Flex duct is designed to rest on the soil in a crawlspace"
+    ],
+    "explain": "A disconnected duct wastes energy and dumps conditioned air into the crawlspace. Cold supply air into a humid crawlspace also means condensation on framing. Ducts should be connected, sealed, and supported off the ground; refer to an HVAC contractor."
+  },
+  "q-ca-09": {
+    "right": "When access is blocked, entry could damage property, or danger is suspected",
+    "wrong": [
+      "When the crawlspace is dirty, damp, or otherwise unpleasant to crawl through",
+      "When the client is not present to witness the entry",
+      "When the home is less than 10 years old and has a warranty"
+    ],
+    "explain": "11 NCAC 08 .1106(c)(2): access obstructed, entry that could damage the property, or dangerous or adverse situations suspected. Dirt and discomfort are not on the list. If you do not enter, the report must say so and why."
+  },
+  "q-sop-14": {
+    "right": "A four-foot stepladder",
+    "wrong": [
+      "A six-foot stepladder",
+      "An extension ladder at the eave",
+      "The ladder the inspector carries"
+    ]
+  }
+}

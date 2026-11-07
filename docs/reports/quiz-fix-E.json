@@ -1,0 +1,121 @@
+{
+ "q-ap-06": {
+  "wrong": [
+   "Acceptable if the run is short and the duct does not sag anywhere",
+   "Acceptable as long as the lint filter is cleaned out after each load",
+   "Cosmetic; suggest a neater rigid duct the next time it is serviced"
+  ]
+ },
+ "q-ap-09": {
+  "wrong": [
+   "Acceptable while it is not leaking; note it as a monitor item",
+   "Not reportable, because a washer is not a built-in appliance",
+   "Note it as cosmetic wear on the hose cover, which is common with age"
+  ]
+ },
+ "q-ef-04": {
+  "wrong": [
+   "Determine its R-value and note whether insulation is behind it",
+   "Probe the vinyl panels with an awl to check for hidden decay behind them",
+   "Inspect it and report on safety glazing in the windows it surrounds"
+  ]
+ },
+ "q-mo-10": {
+  "wrong": [
+   "The two stains are unrelated, and each one has its own separate source",
+   "The ceiling drywall below has to be replaced before the closing",
+   "Nothing reportable, since the attic sheathing is outside the SOP"
+  ]
+ },
+ "q-dk-08": {
+  "wrong": [
+   "To make the rail stiffer at the spot where people grab it",
+   "For appearance, so the rail looks neat and finished at the end",
+   "To keep rainwater from soaking into the exposed cut end grain"
+  ]
+ },
+ "q-ra-05": {
+  "wrong": [
+   "Shingles from both planes are woven together through the valley",
+   "An open metal channel is left exposed, with shingles cut back",
+   "Shingles from each side meet at the center line with no underlayment"
+  ]
+ },
+ "q-rt-03": {
+  "wrong": [
+   "Normal thermal movement of the tiles in summer heat",
+   "The roof slope is too steep to hold the tile in place",
+   "An installation laid too tight, pushing the tiles out"
+  ]
+ },
+ "q-ca-03": {
+  "wrong": [
+   "Normal for a vented crawlspace for a few weeks after a heavy rain",
+   "Recommend a dehumidifier sized for the crawlspace, and nothing more",
+   "Not reportable, since standing water will evaporate on its own in time"
+  ]
+ },
+ "q-ef-02": {
+  "wrong": [
+   "The slope makes the lawn look uneven, which hurts the curb appeal",
+   "Runoff will slowly erode the mulch beds along the east wall over time",
+   "No concern; grading is outside the NC inspection, so leave it out"
+  ]
+ },
+ "q-eh-07": {
+  "wrong": [
+   "Acceptable; exterior entry steps are exempt from handrail rules",
+   "Acceptable; a handrail is required starting at 6 or more risers",
+   "Acceptable, because concrete steps do not need a handrail"
+  ]
+ },
+ "q-fp-02": {
+  "wrong": [
+   "It is cosmetic, though the client may want it repointed later",
+   "It mainly weakens the draft, so smoke may roll into the room",
+   "Firebox masonry is excluded, so report it as a courtesy note"
+  ]
+ },
+ "q-wh-05": {
+  "wrong": [
+   "You are required to estimate the remaining service life in years",
+   "You are required to recommend replacing it before the closing",
+   "You may not mention the age, since that would predict failure"
+  ]
+ },
+ "q-mo-07": {
+  "wrong": [
+   "A cracked tank lid dripping onto the floor",
+   "Condensation from the tank on a humid day",
+   "A clogged vent stack forcing water back up"
+  ]
+ },
+ "q-fd-01": {
+  "wrong": [
+   "Normal shrinkage of the mortar as it slowly cures",
+   "Lateral soil pressure pushing the wall inward",
+   "Freeze-thaw damage to the block faces and joints"
+  ]
+ },
+ "q-rt-06": {
+  "wrong": [
+   "Major defect; mortar fails over time",
+   "Repair item; recommend repointing",
+   "Monitor it and re-inspect yearly"
+  ]
+ },
+ "q-sop-22": {
+  "wrong": [
+   "Reporting a safety concern that goes beyond what the SOP itself requires",
+   "Telling a client that you also hold an electrical contractor license",
+   "Excluding a system from the inspection at the client's written request"
+  ]
+ },
+ "q-ea-07": {
+  "wrong": [
+   "Safety hazard; the aluminum wiring should be replaced throughout",
+   "Major defect; refer for a derating calculation on the service",
+   "Report it as single-strand aluminum branch wiring under NC rules"
+  ]
+ }
+}

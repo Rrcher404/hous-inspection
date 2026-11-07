@@ -1,0 +1,33 @@
+{
+  "q-ca-02": {
+    "right": "A Class I vapor retarder, seams lapped 6 in and sealed",
+    "explain": "IRC R408.3 calls for a continuous Class I vapor retarder over the exposed earth, with joints overlapped 6 in and sealed or taped and the edges run 6 in up the wall. The code names a class, not a thickness; 6-mil polyethylene is the usual product. Butted seams, felt, and fabric let soil moisture through."
+  },
+  "q-sop-14": {
+    "explain": "11 NCAC 08 .1101(28) limits readily openable access panels to those within reach from the floor or a four-foot stepladder, with fasteners one person can remove and edges not painted in place. This is the one place the NC definitions allow a ladder: \"readily accessible\" in .1101(27) still means without one."
+  },
+  "q-eh-05": {
+    "explain": "NC .1109(d)(1) and (d)(3) say you need not state the need for anti-siphon devices or determine whether backflow devices are present. You still inspect the supply for cross connections, so report a missing vacuum breaker as a cross-connection risk and recommend one. It is a cheap fix, and a home inspection is not a code inspection."
+  },
+  "q-eh-08": {
+    "explain": "Measured vertically from the line of the nosings. Too low or too high and the hand cannot brace a fall. People mix it up with guard height, which starts at 36 in for a house."
+  },
+  "q-dk-09": {
+    "explain": "Refer to a qualified contractor. NC requires probing where deterioration is suspected: exterior wood under .1107(b)(7) and structural components under .1106(c)(1), even though the inspection is otherwise visual. A rotted post is a direct break in the load path."
+  },
+  "q-pl-01": {
+    "explain": "An S-trap lets the falling water siphon the seal out behind it. Model code prohibits S-traps, along with bell, drum, and crown-vented traps. A separate fixture trap is normally a vented P-trap; a toilet has its own built-in trap."
+  },
+  "q-rf-03": {
+    "explain": "The general roof extension is 6 in, higher in snow country and about 7 ft where the roof is occupied, such as a roof deck. A 3 ft rise applies only where the vent is within 10 ft of an openable window or door, and 3 ft is also the chimney height rule."
+  },
+  "q-rf-07": {
+    "wrong": ["The roof covering, flashing, and the ridge vents", "Gutters, plus the municipal storm sewer at the street", "Interior floor drains and the sump pump pit"]
+  },
+  "q-ra-03": {
+    "explain": "Place them on the manufacturer's nailing line, below the edge of the overlying course, so the next shingle covers them. Nails too high miss the shingle below and reduce wind resistance; nails too low are exposed. Model code sets a floor of four per strip shingle; manufacturers often call for six in high-wind areas."
+  },
+  "q-st-05": {
+    "explain": "Dead load is the weight of the building itself; live load is variable, such as people and furniture. NC defines a structural component as one that carries both. Model code treats snow as its own load, separate from live load. Every structural finding is about one of these loads losing its path."
+  }
+}

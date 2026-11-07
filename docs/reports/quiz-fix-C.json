@@ -1,0 +1,638 @@
+{
+ "q-ai-01": {
+  "right": "Its type and approximate average depth",
+  "wrong": [
+   "Its R-value and the year it was installed",
+   "Its chemical composition and fire rating",
+   "Its upgrade cost and the R-value to add"
+  ]
+ },
+ "q-ai-02": {
+  "right": "Missing insulation there; recommend it be restored",
+  "wrong": [
+   "A roof leak above that ceiling; refer to a roofer",
+   "A plumbing leak in the ceiling; call a plumber",
+   "Nothing, because NC excludes measuring R-values"
+  ]
+ },
+ "q-ai-03": {
+  "right": "Report it: the fan must vent outdoors, not into the attic",
+  "wrong": [
+   "Acceptable, because the attic itself is vented to outdoors",
+   "Acceptable as long as the duct run is insulated",
+   "Not reportable; exhaust fans are not in NC scope"
+  ],
+  "explain": "NC requires inspecting bathroom venting systems. Moist air dumped into the attic condenses on cold sheathing, and attic vents cannot carry it off fast enough. The dark sheathing near this duct is often the result."
+ },
+ "q-ai-04": {
+  "right": "Keep insulation off the soffit vents so eave air can flow",
+  "wrong": [
+   "Stop wind-driven rain from entering through the soffits",
+   "Hold the insulation tight against the roof deck",
+   "Block birds and insects from nesting in the eaves"
+  ],
+  "explain": "Baffles hold insulation back so air can flow from the eave to the ridge. Soffit intake plus ridge exhaust is a pair. Blocked intake means a ridge vent with nothing to pull."
+ },
+ "q-ai-05": {
+  "right": "1 sq ft per 150 sq ft, or 1 per 300 when conditions are met",
+  "wrong": [
+   "1 sq ft per 50 sq ft, or 1 per 100 with a ridge vent",
+   "1 sq ft per 1,500 sq ft, or 1 per 3,000 with soffits",
+   "1 sq ft per 300 sq ft, or 1 per 600 with a vapor retarder"
+  ],
+  "explain": "The base ratio is 1 sq ft of net free vent area per 150 sq ft of attic floor. The 1/300 option applies with balanced high and low venting or a vapor retarder in some climates. Describe what you see; you are not required to calculate it."
+ },
+ "q-ai-06": {
+  "right": "Where readily visible evidence indicates a problem",
+  "wrong": [
+   "No; moving insulation is outside the inspection scope",
+   "In each attic, at several spots, to check the drywall",
+   "When the client asks and is present to watch"
+  ]
+ },
+ "q-ai-07": {
+  "right": "A safety concern: recommend correction per the manufacturer",
+  "wrong": [
+   "Acceptable if the ladder holds your full weight when you test it",
+   "Cosmetic, since the ladder still folds and unfolds",
+   "Not reportable, because attic stairs are excluded"
+  ],
+  "explain": "The ladder may detach under load. Manufacturers specify fastener type and count, and drywall screws are brittle and snap under shear. Recommend correction per the manufacturer's installation instructions."
+ },
+ "q-ai-09": {
+  "right": "A representative number",
+  "wrong": [
+   "Each one in the house",
+   "Those in the bedrooms",
+   "One per floor of the house"
+  ]
+ },
+ "q-ai-10": {
+  "right": "Acceptable; worn paint is cosmetic and excluded",
+  "wrong": [
+   "Repair item; recommend sanding and repainting the edge",
+   "Monitor for structural movement around the frame",
+   "Refer to a carpenter to evaluate the door"
+  ]
+ },
+ "q-ai-11": {
+  "right": "Where the duct ends, by following it in the attic",
+  "wrong": [
+   "Nothing more; a fan that pulls air is working",
+   "The fan motor's amperage, using a clamp meter",
+   "The fan's noise rating, printed on the housing label"
+  ]
+ },
+ "q-ai-12": {
+  "right": "Describe it and recommend finding the moisture source",
+  "wrong": [
+   "Call it mold and recommend remediation by a mold specialist",
+   "Call it normal aging of the plywood sheathing",
+   "Call it a roof leak and recommend roof replacement"
+  ],
+  "explain": "NC excludes determining mold, so describe the discoloration without naming it and recommend finding the moisture source and further evaluation. Eave discoloration often points to poor ventilation or exhaust ducts venting into the attic."
+ },
+ "q-dk-01": {
+  "right": "Report it; nails are not an acceptable ledger connection",
+  "wrong": [
+   "Acceptable if there are many nails at close spacing along it",
+   "Acceptable on smaller decks, under about 10 ft wide",
+   "Monitor it, unless the ledger is visibly pulling away"
+  ],
+  "explain": "Ledgers need bolts or lag screws into the house framing. Nailed ledgers pulling away are a leading cause of deck collapse. Recommend evaluation and correction by a qualified contractor."
+ },
+ "q-dk-02": {
+  "right": "Water would sit behind the ledger and rot the rim joist",
+  "wrong": [
+   "To give the deck a finished look where it meets the siding",
+   "To keep termites and carpenter ants out of the ledger",
+   "To stop the ledger from swelling and expanding in heat"
+  ],
+  "explain": "Water running down the wall would otherwise sit between the ledger and the house, rotting the rim joist the ledger hangs on. Flashing laps behind the siding and over the ledger, shingle-fashion, so water always lands outside."
+ },
+ "q-dk-03": {
+  "right": "Veneer is not structural, so it cannot carry the ledger",
+  "wrong": [
+   "Brick is acceptable as long as the through-bolts are galvanized",
+   "Bolts through brick hold better than lag screws in wood",
+   "It is a cosmetic concern, since the mortar may crack"
+  ],
+  "explain": "Veneer is a cladding tied loosely to the wall. The ledger must bear on the house framing, or the deck should be freestanding. Under load the veneer can pull away with the deck attached."
+ },
+ "q-dk-04": {
+  "right": "Report it: every hole needs the specified fasteners",
+  "wrong": [
+   "Acceptable if most of the holes are filled with nails",
+   "Acceptable, because screws are stronger than nails",
+   "Cosmetic, as long as the hangers are not bent"
+  ],
+  "explain": "Hangers need every hole filled with the manufacturer's specified fasteners. A hanger is only as strong as its fasteners, and drywall screws are brittle and snap under shear."
+ },
+ "q-dk-06": {
+  "right": "Over 30 in above grade within 36 in horizontally",
+  "wrong": [
+   "On each deck, whatever its height above the ground",
+   "Above 48 in, measured at the deck's outer edge",
+   "When the deck has stairs or is over 24 in high"
+  ],
+  "explain": "A guard is required when the walking surface is more than 30 in above the grade below at any point within 36 in horizontally. The 36 in reach accounts for sloping ground beside the deck edge."
+ },
+ "q-dk-08": {
+  "right": "So sleeves and bag straps cannot catch on an open end",
+  "wrong": [
+   "To make the rail stiffer at the spot where people grab it",
+   "For appearance, so the rail looks finished at the end",
+   "To keep rainwater from soaking into the cut end grain"
+  ]
+ },
+ "q-dk-09": {
+  "right": "Report decay at the post base and refer to a contractor",
+  "wrong": [
+   "Acceptable, because ground-contact treated wood resists rot",
+   "Monitor it, since the deck is not visibly leaning",
+   "Not reportable, since probing is an invasive test"
+  ],
+  "explain": "Refer to a qualified contractor. NC requires probing wood where deterioration is suspected, even though the inspection is otherwise non-invasive. A rotted post is a direct break in the load path."
+ },
+ "q-rf-01": {
+  "right": "Report the methods used to inspect the roofing",
+  "wrong": [
+   "Walk on the roofing when it is safe to do so",
+   "Inspect solar panels, antennas, and other accessories",
+   "Certify the roof's remaining life for insurance"
+  ]
+ },
+ "q-rf-02": {
+  "right": "Water can run down the pipe into the attic",
+  "wrong": [
+   "It is cosmetic until the rubber falls away",
+   "It restricts airflow through the plumbing vent",
+   "Boots are part of plumbing, not the roof"
+  ],
+  "explain": "Water can run down the pipe through the crack into the attic, so recommend repair by a roofer. Pipe boots are a top leak source as rubber ages in sunlight. Check the sheathing below from the attic."
+ },
+ "q-rf-03": {
+  "right": "6 in",
+  "wrong": [
+   "1 in",
+   "12 in",
+   "3 ft"
+  ],
+  "explain": "Higher in snow country, and about 7 ft where the roof is occupied, such as a roof deck. The 3 ft figure is the chimney rule, not the vent rule."
+ },
+ "q-rf-04": {
+  "right": "Lets warm, moist attic air out at the highest point",
+  "wrong": [
+   "Supplies combustion air to an attic furnace",
+   "Cools the shingles from below to slow their aging",
+   "Lets the roof deck expand along the ridge in heat"
+  ],
+  "explain": "It is the exhaust, paired with intake at the soffits. Exhaust without intake does little. Inspect both ends of the air path."
+ },
+ "q-rf-05": {
+  "right": "The underside of the sheathing, for leak stains",
+  "wrong": [
+   "Shingle granule loss on the north-facing slopes",
+   "Gutter condition and the downspout slope",
+   "Chimney crown cracks and missing mortar caps"
+  ],
+  "explain": "From the attic you check the underside of the sheathing for leak stains and condensation. NC lists signs of leaks or abnormal condensation on building components as part of the roofing inspection."
+ },
+ "q-rf-06": {
+  "right": "Extend 3 ft above the landing, 1 ft out per 4 ft of height",
+  "wrong": [
+   "Extend 1 ft above the landing, 1 ft out per 2 ft of rise",
+   "Rest against the gutter, 1 ft out per 4 ft of height",
+   "Stand upright against the wall, 3 ft above the eave"
+  ]
+ },
+ "q-rf-07": {
+  "right": "Gutters, downspouts, leaders, and splash blocks",
+  "wrong": [
+   "The roof covering, flashing, and the ridge vents",
+   "Gutters and the underground storm drain lines",
+   "Interior floor drains and the sump pump pit"
+  ],
+  "explain": "Gutters, downspouts, leaders, splash blocks, and similar components. NC requires these to be inspected with the roof. Their job is to carry water off the roof and away from the building."
+ },
+ "q-rf-08": {
+  "right": "Skylights, chimneys, and other roof penetrations",
+  "wrong": [
+   "Antennae, satellite dishes, and their roof mounts",
+   "Lightning arrestors and their ground wiring",
+   "De-icing cables along the eaves and gutters"
+  ]
+ },
+ "q-ra-01": {
+  "right": "Protect the asphalt from UV and add fire resistance",
+  "wrong": [
+   "Bond the shingles together into one sealed layer",
+   "Seal around the nail holes when the sun warms them",
+   "Make the shingle waterproof, so underlayment is optional"
+  ],
+  "explain": "They protect the asphalt from sunlight (UV) and add fire and impact resistance. Once granules wash away, UV breaks down the asphalt fast. Heavy loss and granules in the gutters signal an ageing roof."
+ },
+ "q-ra-02": {
+  "right": "Each exposed nail is a leak path into the deck",
+  "wrong": [
+   "They are cosmetic once the heads have rusted",
+   "They matter in hurricane zones, not in normal weather",
+   "Exposed nails are normal along the ridge and hips"
+  ],
+  "explain": "Correct nails are hidden under the next course. Water follows the nail shank into the deck. Recommend sealing or correction by a roofer."
+ },
+ "q-ra-03": {
+  "right": "Where the next course covers them, on the nailing line",
+  "wrong": [
+   "Through the exposed tab, so the wind will not lift it",
+   "Above the nailing line, near the top edge of the shingle",
+   "On the exposed tab, as long as each head is sealed"
+  ],
+  "explain": "Place them on the manufacturer's nailing line, below the edge of the overlying course, so the next shingle covers them. Nails too high miss the shingle below and reduce wind resistance; nails too low are exposed. High-wind areas call for at least six per shingle."
+ },
+ "q-ra-04": {
+  "right": "Carries water into the gutter and protects the deck edge",
+  "wrong": [
+   "Supports the gutter and keeps it pitched toward the downspout",
+   "Decorative trim that hides the cut edge of the deck",
+   "Vents the attic at the eave, like a soffit strip"
+  ],
+  "explain": "It carries water off the roof edge into the gutter and protects the edge of the deck and fascia. Without it, water wicks back under the shingles and rots the deck edge and fascia."
+ },
+ "q-ra-05": {
+  "right": "One plane's shingles cross it; the other's are cut along it",
+  "wrong": [
+   "Shingles from both planes are woven together through the valley",
+   "An open metal channel is left exposed, with shingles cut back",
+   "Shingles meet at the center line with no underlayment below"
+  ],
+  "explain": "Shingles from one roof plane run across the valley, and the other plane's shingles are cut along the valley line. Closed-cut is a common and acceptable method. Know it so you do not call it a defect."
+ },
+ "q-ra-06": {
+  "right": "2:12, with double underlayment from 2:12 to 4:12",
+  "wrong": [
+   "1:12, with double underlayment below 3:12",
+   "3:12, with double underlayment above 6:12",
+   "4:12, with double underlayment from 4:12 to 6:12"
+  ]
+ },
+ "q-ra-07": {
+  "right": "24 in inside the exterior wall line",
+  "wrong": [
+   "6 in past the outer edge of the gutter",
+   "12 in up the roof from the drip edge",
+   "36 in up the slope from the eave edge"
+  ]
+ },
+ "q-ra-08": {
+  "right": "Model code does not allow a re-cover over two layers",
+  "wrong": [
+   "A third layer is fine if longer nails reach the deck",
+   "Re-covering is better, since the old layers add insulation",
+   "Layer count does not matter for asphalt shingles"
+  ],
+  "explain": "Model code does not allow a re-cover over two existing layers, and a tear-off also lets the roofer inspect the sheathing. Extra layers add weight and hide deck damage. The 25 Standards course recommends removing the old shingles."
+ },
+ "q-fd-01": {
+  "right": "Differential settlement of part of the wall",
+  "wrong": [
+   "Normal shrinkage of the mortar as it cures",
+   "Lateral soil pressure pushing the wall inward",
+   "Freeze-thaw damage to the block faces and joints"
+  ],
+  "explain": "Part of the wall has moved down relative to the rest. Report the pattern, width, and any displacement, and refer to a structural engineer if it is wide or offset."
+ },
+ "q-fd-02": {
+  "right": "Soil pressure is overcoming the wall; refer to an engineer",
+  "wrong": [
+   "It is typical shrinkage of block walls as mortar cures",
+   "It comes from the house settling evenly on its footings",
+   "It is cosmetic once it has been painted and sealed"
+  ],
+  "explain": "It indicates lateral soil pressure overcoming the wall; refer to a structural engineer. Block walls resist sideways pressure poorly. Bowing means the wall is moving, not just cracking."
+ },
+ "q-fd-03": {
+  "right": "Efflorescence: salts left by water; a moisture sign",
+  "wrong": [
+   "Mold growth on the block; recommend professional remediation",
+   "Early structural failure of the block faces",
+   "Termite mud tubes; refer to a pest control company"
+  ],
+  "explain": "Efflorescence is salt left behind as water moves through masonry. It is evidence of moisture, not structural damage by itself. Look for the water source, but do not over-call the deposit itself."
+ },
+ "q-fd-04": {
+  "right": "Report it and refer to a structural engineer",
+  "wrong": [
+   "Acceptable, since masonry piers crack as they age",
+   "Patch it with mortar and note it as repaired",
+   "Monitor it, since the pier is not leaning"
+  ]
+ },
+ "q-fd-05": {
+  "right": "Report inadequate bearing under the girder",
+  "wrong": [
+   "Acceptable; stacked shims are a normal way to level it",
+   "Cosmetic, as long as the floor above feels level",
+   "Not reportable without first calculating the load"
+  ],
+  "explain": "The girder needs full, solid bearing on the pier. Crushed or loose shims let the floor settle and concentrate the load on a small area."
+ },
+ "q-fd-06": {
+  "right": "6 ft apart, with one within 12 in of each plate end",
+  "wrong": [
+   "10 ft apart, with one within 36 in of each end",
+   "4 ft apart, with two bolts at each plate end",
+   "8 ft apart, with one at the center of each plate"
+  ]
+ },
+ "q-fd-07": {
+  "right": "The type of each structural system, foundation to roof",
+  "wrong": [
+   "The depth and width of the footings below grade",
+   "The compressive strength of the foundation concrete",
+   "The soil type and its bearing capacity below the footings"
+  ],
+  "explain": "NC lists the type of foundation, floor structure, wall structure, columns or piers, ceiling structure, and roof structure. For this house: block foundation walls and masonry piers over a vented crawlspace. Describing type is required; measuring strength is excluded."
+ },
+ "q-fd-08": {
+  "right": "Describe the lean, explain it, and refer to an engineer",
+  "wrong": [
+   "Calculate the load on the pier to judge its adequacy",
+   "Specify the repair method so the seller can get bids",
+   "Estimate the cost of a new pier for negotiations"
+  ],
+  "explain": "Describe the lean and its implications, and refer to a structural engineer. NC excludes calculating strength or adequacy and reporting methods or costs of correction. You report, explain, and refer."
+ },
+ "q-rt-01": {
+  "right": "From a ladder or the ground, without walking on the tiles",
+  "wrong": [
+   "Walk on the tiles near the center of each slope",
+   "Walk on the tiles along the ridge, where they are strong",
+   "Lift a few tiles to see the condition of the underlayment"
+  ],
+  "explain": "Inspect from a ladder, the ground, or another vantage point, and report the method. Clay tile breaks under foot, and you would own the damage. NC does not require walking any roof."
+ },
+ "q-rt-02": {
+  "right": "The underlayment below will deteriorate in sun and water",
+  "wrong": [
+   "It is cosmetic, since tile is mostly there for looks",
+   "Cracked tile still sheds water; replace it at resale",
+   "It matters on new roofs still under warranty, not older ones"
+  ],
+  "explain": "Tile is the armour; the underlayment is the waterproofing. A broken tile leaves the underlayment exposed to sun and water. Refer to a roofer experienced with tile."
+ },
+ "q-rt-03": {
+  "right": "Fastener or hanging failure; loose tiles can fall",
+  "wrong": [
+   "Normal thermal movement of the tiles in summer heat",
+   "The roof slope is too steep to hold tile in place",
+   "An installation laid too tight, pushing tiles out"
+  ],
+  "explain": "The gap exposes the underlayment. Slipped tiles are both a leak and a falling-object hazard over a walkway. Refer for repair."
+ },
+ "q-rt-04": {
+  "right": "The underlayment, which is the real water barrier",
+  "wrong": [
+   "The tiles themselves, which are fully waterproof",
+   "The mortar packed between the tiles at the laps",
+   "The glaze or sealer coating on the tile surface"
+  ],
+  "explain": "The tile sheds most water, but the underlayment is the real water barrier. This is why old tile roofs often need re-underlayment while the tiles themselves are reusable."
+ },
+ "q-rt-05": {
+  "right": "2-1/2:12; double underlayment up to 4:12",
+  "wrong": [
+   "2:12; double underlayment up to 4:12",
+   "1-1/2:12; double underlayment up to 3:12",
+   "3-1/2:12; double underlayment up to 6:12"
+  ],
+  "explain": "The minimum is 2-1/2:12, with double underlayment from 2-1/2:12 to 4:12. Like shingles, tile sheds water by lapping, and low slopes need extra underlayment. The 2:12 figure is the asphalt shingle rule."
+ },
+ "q-rt-06": {
+  "right": "Acceptable; no referral needed",
+  "wrong": [
+   "Major defect; mortar fails over time",
+   "Repair item; recommend repointing",
+   "Monitor and re-inspect yearly"
+  ]
+ },
+ "q-rt-07": {
+  "right": "Excluded; inspect it only if the written contract adds it",
+  "wrong": [
+   "It is in scope and inspected the same as the main house",
+   "It may not be inspected, even if the client asks",
+   "Its electrical and roof are inspected, nothing else"
+  ],
+  "explain": "NC .1107(c)(8) excludes detached buildings. A contract can expand scope, and once you inspect it, the report must cover it properly."
+ },
+ "q-rt-08": {
+  "right": "Tile is far heavier; have an engineer check the framing",
+  "wrong": [
+   "A roof that holds shingles will hold tile as well",
+   "The underlayment needs upgrading, but not the framing",
+   "Tile is lighter than asphalt, so framing is fine"
+  ],
+  "explain": "Tile is several times heavier than asphalt, so the framing must be evaluated by an engineer before conversion. Converting adds a large dead load the original framing may not have been designed for."
+ },
+ "q-eg-02": {
+  "right": "Basements and every sleeping room",
+  "wrong": [
+   "Bedrooms on upper floors, not the ground floor",
+   "Each habitable room, including the kitchen",
+   "The primary bedroom and the basement"
+  ]
+ },
+ "q-eg-03": {
+  "right": "9 sq ft, with 36 in of projection and width",
+  "wrong": [
+   "4 sq ft, with 24 in of projection and width",
+   "10 sq ft, with 42 in of projection and width",
+   "7 sq ft, with 32 in of projection and width"
+  ]
+ },
+ "q-eg-04": {
+  "right": "A safety hazard: the bars need an inside release",
+  "wrong": [
+   "Acceptable, since the bars improve the bedroom's security",
+   "Cosmetic, as long as the bars are painted and sound",
+   "Acceptable if the bedroom door leads to two exits"
+  ],
+  "explain": "Bars on an escape window must release from inside without a key, tool, or special knowledge. In a fire the window may be the only way out, and in the dark and smoke nobody can find a key."
+ },
+ "q-eg-05": {
+  "right": "Report the bars; recommend confirming the release works",
+  "wrong": [
+   "Mark them acceptable, since a release lever is present",
+   "Operate the release yourself, using force if needed, to be sure",
+   "Report them as a code violation and recommend removal"
+  ],
+  "explain": "Report the bars, note the release, and recommend confirming that it works easily from inside. Not required to operate means you describe, explain the stakes, and recommend verification."
+ },
+ "q-eg-07": {
+  "right": "A door from the garage straight into a sleeping room",
+  "wrong": [
+   "A door from the garage into an inside hallway",
+   "A solid 1-3/8 in door from the garage into the kitchen",
+   "An overhead door with photo-eyes and an auto-reverse"
+  ]
+ },
+ "q-eg-08": {
+  "right": "32 in of clear width and 78 in of height",
+  "wrong": [
+   "28 in of clear width and 72 in of height",
+   "36 in of clear width and 84 in of height",
+   "30 in of clear width and 80 in of height"
+  ]
+ },
+ "q-pl-01": {
+  "right": "It can siphon its own water seal and let in sewer gas",
+  "wrong": [
+   "It drains too slowly and clogs more than a P-trap",
+   "It is a dated style choice with no real effect",
+   "It wastes water each time the fixture is used"
+  ]
+ },
+ "q-pl-03": {
+  "right": "No; NC does not require operating stop valves",
+  "wrong": [
+   "Yes, cycle each stop to prove it shuts off",
+   "Yes, but just the hot side, where scale builds up",
+   "Yes, if the client asks you to check them"
+  ],
+  "explain": "NC .1109(d)(5) does not require operating valves other than flush valves, fixture faucets, and hose faucets, and old stops can leak once turned. Report visible corrosion or leaks at the stops instead."
+ },
+ "q-pl-04": {
+  "right": "The ridges trap debris, and it is not an approved drain",
+  "wrong": [
+   "It is the modern standard, replacing rigid PVC drain pipe",
+   "It is acceptable if the run is short and well sloped",
+   "It matters at bathroom sinks, not at the kitchen sink"
+  ],
+  "explain": "The ridges trap debris and clog easily, and it is not an approved trap or drain material; recommend smooth-wall pipe. Corrugated flex drains sag, collect grease, and can let the trap seal fail."
+ },
+ "q-pl-05": {
+  "right": "Report the active leak and refer to a plumber",
+  "wrong": [
+   "Acceptable, since drain joints drip now and then",
+   "Not reportable, because the crawlspace is excluded",
+   "Monitor it and re-check at the final walkthrough"
+  ],
+  "explain": "Check the wood below with the moisture meter. A leak in the crawlspace runs unseen for years. Follow it to the framing."
+ },
+ "q-pl-06": {
+  "right": "Describe it as PEX supply; acceptable as installed",
+  "wrong": [
+   "Report it as polybutylene, a known failure-prone pipe",
+   "Report it as a defect, since plastic supply is not allowed",
+   "Recommend replacing it with galvanized steel piping"
+  ]
+ },
+ "q-pl-08": {
+  "right": "A loose toilet; the wax seal may be broken",
+  "wrong": [
+   "Acceptable, since toilets can rock a little",
+   "Cosmetic, once the caulk at the base is redone",
+   "Tighten the flange bolts yourself and move on"
+  ],
+  "explain": "Refer to a plumber and check the subfloor. Movement breaks the seal, allowing hidden leaks and sewer gas. InterNACHI lists loose toilets as reportable."
+ },
+ "q-pl-09": {
+  "right": "Usable flow at the top fixture while another runs",
+  "wrong": [
+   "A flow rate of at least 5 gallons per minute at the main",
+   "Steady flow at the kitchen faucet with nothing else on",
+   "Static water pressure above 40 psi at the hose bib"
+  ],
+  "explain": "Functional flow is a usable flow at the highest fixture in the dwelling while another fixture is operated at the same time. NC defines it by use, not by measurement. Run the top-floor shower and flush a toilet at the same time."
+ },
+ "q-pl-11": {
+  "right": "The piping materials and the main shutoff location",
+  "wrong": [
+   "Whether the water supply is public or a private well",
+   "The water quality from the well, by test kit",
+   "Whether a backflow device is present at the main"
+  ],
+  "explain": "You describe the supply and distribution piping materials and the location of any main shutoff. NC excludes deciding public versus private supply, well water quality, and backflow devices."
+ },
+ "q-pl-12": {
+  "right": "To let air in so draining water does not siphon traps",
+  "wrong": [
+   "To let rainwater in to flush the drain lines",
+   "To cool the drain pipes when hot water is draining",
+   "To raise water pressure at the upper fixtures"
+  ],
+  "explain": "Vents let air into the drain so flowing water does not siphon the trap seals, and they carry sewer gas above the roof. This is the prerequisite for every trap question. No air in, and the falling water pulls the trap seal out behind it."
+ },
+ "q-st-01": {
+  "right": "Report it and refer to a structural engineer",
+  "wrong": [
+   "Acceptable if the cut is small and near the end",
+   "Acceptable if the ceiling below has no cracks",
+   "Repair it by nailing a scrap board over the cut"
+  ],
+  "explain": "Engineered trusses cannot be cut without an engineer's repair design. Every truss member is designed for a specific load. A cut web can redistribute forces in ways nobody calculated."
+ },
+ "q-st-02": {
+  "right": "One-sixth of the joist depth (D/6)",
+  "wrong": [
+   "One-half of the joist depth (D/2)",
+   "One-third of the joist depth (D/3)",
+   "One-quarter of the joist depth (D/4)"
+  ],
+  "explain": "No notches in the middle third, and no more than D/4 at the ends; D/4 is the end rule, not the outer-third rule. Engineered joists cannot be notched without the engineer."
+ },
+ "q-st-03": {
+  "right": "No larger than D/3, at least 2 in from each edge",
+  "wrong": [
+   "No larger than D/2, close to the top or bottom edge",
+   "No larger than D/6, at least 2 in from each edge",
+   "As large as needed, as long as it is centered"
+  ],
+  "explain": "No larger than one-third of the joist depth (D/3), and at least 2 in from the top and bottom edges. D/6 is the notch rule, not the hole rule. Holes near the edges cut the fibers carrying the most stress. Keep them centered and modest."
+ },
+ "q-st-04": {
+  "right": "Typical, not a structural defect; note it for monitoring",
+  "wrong": [
+   "Structural movement; refer to an engineer to evaluate",
+   "Foundation failure; recommend underpinning the piers",
+   "Moisture damage; refer to a roofer to find the leak"
+  ],
+  "explain": "Door and window corners concentrate stress, so hairline cracks there are common and NC treats cosmetic damage as excluded. It becomes a finding if it widens, offsets, or doors begin to bind; width, offset, binding doors, and sloped floors are what turn a crack into a movement finding."
+ },
+ "q-st-05": {
+  "right": "Dead load is the building's own weight; live load varies",
+  "wrong": [
+   "Dead load is snow on the roof; live load is the wind",
+   "Dead load is what a failed member carries; live, a sound one",
+   "They are two names for the same total design load"
+  ],
+  "explain": "Dead load is the weight of the building itself; live load is variable, such as people, furniture, and snow. A structural component, by NC definition, supports both. Every structural finding is about one of these loads losing its path."
+ },
+ "q-st-06": {
+  "right": "Joists to girder to piers to footings to soil",
+  "wrong": [
+   "Joists to trusses to walls to footings to soil",
+   "Girder to joists to piers to footings to soil",
+   "Joists to piers to girder to footings to soil"
+  ],
+  "explain": "Floor joists bear on the girder, the girder on the piers, the piers on the footings, and the footings on the soil. Tracing the load path is the prerequisite for judging any structural defect: find which link is weak."
+ },
+ "q-st-07": {
+  "right": "Truss uplift: the drier bottom chord bows up in winter",
+  "wrong": [
+   "Foundation settlement under the interior wall each winter",
+   "Seasonal shrinkage of the drywall tape at the wall corner",
+   "Roof leaks soaking and sagging the ceiling drywall"
+  ],
+  "explain": "The bottom chord, buried in insulation, stays warmer and drier than the top chords, so the truss bows upward seasonally. Uplift is common and usually not structural. Describe it, explain the seasonal pattern, and avoid over-calling."
+ },
+ "q-st-08": {
+  "right": "Wood touching or near soil, and cut or notched framing",
+  "wrong": [
+   "The adequacy of the foundation anchor bolting",
+   "The load capacity of each floor joist and girder",
+   "The engineering design of the roof truss system"
+  ],
+  "explain": "SOP 3.3 asks you to report wood in contact with or near soil, and cutting, notching, or boring of framing that may be a structural or safety concern. It asks for observed conditions, not engineering judgments on adequacy."
+ }
+}
