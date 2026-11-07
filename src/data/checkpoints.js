@@ -1541,7 +1541,7 @@ export const CHECKPOINT_CONTENT = {
     course: 'attic-interior',
     defect: {
       observe: "The insulation surface looks fairly even from where you stand, with a few low spots toward the far wall.",
-      reading: "Thermal camera: a sharp-edged rectangle roughly 2 by 3 ft near the far wall reads markedly different from the surrounding insulation, matching a spot where the insulation has been pushed aside down to bare drywall.",
+      reading: "Thermal camera (heating season): a sharp-edged rectangle roughly 2 by 3 ft near the far wall reads warm against the cooler insulation around it. Heat from the living space below is escaping where the insulation has been pushed aside down to bare drywall. From the room below, the same spot would read cold on the ceiling.",
       severity: 'repair', rec: 'contractor', recAlt: [],
       why: "A void is a thermal shortcut: heat flows through a small bare patch far faster than through the insulated area around it, and voids are common where someone has walked or worked in an attic. Thermal imaging needs a meaningful temperature difference between inside and outside to show this well. Confirm what the camera shows by looking at the spot before you write it up.",
       report: "An area of missing insulation was observed in the attic near the far wall, confirmed with thermal imaging and visual inspection. Recommend restoring insulation coverage by a qualified contractor.",

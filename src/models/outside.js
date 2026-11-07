@@ -1626,7 +1626,7 @@ const attic = {
     });
     const [rest, patch] = splitFaces(ig, inPatch);
     add(g, T(mesh(rest, VC({ roughness: 1 })), 'insulation-depth'));
-    const pm = T(mesh(patch, VC({ roughness: 1 })), 'insulation-void'); if (voidBad) thermal(pm, 'cold'); add(g, pm);
+    const pm = T(mesh(patch, VC({ roughness: 1 })), 'insulation-void'); if (voidBad) thermal(pm, 'warm'); add(g, pm);
     const vh = T(hit(1.0, 0.08, 0.8, [-0.95, 0.04, -0.55]), 'insulation-void'); add(g, vh);
     // Depth ruler: 0–12" card on a stake.
     const rul = tmat('ruler', () => ctex('ruler', 64, 384, (c, w, h) => {

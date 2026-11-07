@@ -64,8 +64,9 @@ export function createInspectPanel(ctx) {
         e ? sevPill(SEV[e.severity], 'sm') : h('span', { class: 'cp-state muted' }, 'Not logged'),
         h('span', { class: 'sr-only' }, e ? `, logged as ${SEV[e.severity]?.display}` : ', not logged')));
       })),
-      pendingQuiz ? h('button', { class: 'quiz-chip', type: 'button', onclick: () => takeQuiz() },
-        icon('quiz', { size: 16 }), h('span', null, 'A pop quiz is waiting'), h('span', { class: 'muted small' }, '+20 XP')) : null,
+      // The quiz waits until the player has judged something here, so it never spoils a finding.
+      pendingQuiz && (n > 0 || !cps.length) ? h('button', { class: 'quiz-chip', type: 'button', onclick: () => takeQuiz() },
+        icon('quiz', { size: 16 }), h('span', null, n === cps.length ? 'Bonus question unlocked' : 'A bonus question is waiting'), h('span', { class: 'muted small' }, '+20 XP')) : null,
       h('footer', { class: 'insp-foot' },
         h('button', { class: 'btn btn-ghost', type: 'button', onclick: back }, icon('back', { size: 16 }), ' Back to walking', h('kbd', { class: 'kbd-in' }, 'Esc'))),
     );
@@ -90,8 +91,21 @@ export function createInspectPanel(ctx) {
     ctx.mem.add('popped', id);
     pendingQuiz = pick;
     render();
-    // Let the player see the thing first, then ask.
-    popTimer = setTimeout(() => { if (compId === id && pendingQuiz === pick && ctx.modals.count === 0) takeQuiz(); }, 900);
+    // Nothing to judge (portals): ask after a beat. Otherwise wait until every checkpoint
+    // here is logged, so a question never gives away the answer to a finding.
+    if (!COMPONENT_BY_ID[id].checkpoints.length) {
+      popTimer = setTimeout(() => { if (compId === id && pendingQuiz === pick && ctx.modals.count === 0) takeQuiz(); }, 900);
+    }
+  }
+
+  function quizWhenFree(id) {
+    clearTimeout(popTimer);
+    const tick = () => {
+      if (compId !== id || !pendingQuiz) return;
+      if (ctx.modals.count === 0) takeQuiz();
+      else popTimer = setTimeout(tick, 350);
+    };
+    popTimer = setTimeout(tick, 600);
   }
 
   function takeQuiz() {
@@ -105,7 +119,12 @@ export function createInspectPanel(ctx) {
 
   bus.on('inspect:entered', ({ componentId }) => open(componentId));
   bus.on('inspect:exited', () => close());
-  bus.on('finding:logged', () => render());
+  bus.on('finding:logged', () => {
+    render();
+    if (!compId || !pendingQuiz) return;
+    const cps = COMPONENT_BY_ID[compId].checkpoints;
+    if (cps.every(cp => store.isLogged(cp.id))) quizWhenFree(compId);
+  });
   bus.on('inspection:new', () => close());
 
   return { open, close, back, render, get componentId() { return compId; } };

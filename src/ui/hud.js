@@ -95,12 +95,17 @@ export function createHUD(ctx) {
     hover.style.transform = `translate(${x}px, ${y}px)`;
   }
   bus.on('hover', (p) => {
-    const name = p && (p.componentId || p.checkpointId) ? p.name : null;
+    const name = p && (p.componentId || p.checkpointId || p.portal) ? p.name : null;
     if (!name || ctx.modals.count > 0) { hoverOn = false; hover.hidden = true; return; }
     clear(hover);
     const logged = p.checkpointId && store.isLogged(p.checkpointId);
     append(hover, logged ? icon('check', { size: 14 }) : null, h('span', null, clean(name)));
-    if (!p.checkpointId && !ctx.state.inspecting) append(hover, h('span', { class: 'hover-hint' }, 'click to inspect'));
+    if (!p.checkpointId && !ctx.state.inspecting) {
+      const dest = p.portal && ZONE_BY_ID[p.portal]?.name;
+      const hint = !dest ? 'click to inspect'
+        : p.componentId ? `click to go to ${dest} · E to inspect` : `click to go to ${dest}`;
+      append(hover, h('span', { class: 'hover-hint' }, hint));
+    }
     if (p.checkpointId) {
       const cp = CHECKPOINT_BY_ID[p.checkpointId];
       append(hover, h('span', { class: 'hover-hint' }, logged ? 'logged, click to review' : (cp ? 'click to examine' : '')));
