@@ -1,11 +1,13 @@
-// Exam Mode: 25 random questions from the whole bank, NHIE-style pacing, score at the end.
+// Exam Mode: 25 random questions from the whole bank, paced like the NC Board exam
+// (HILB 905: 200 questions, 4 hours, closed book, 70% to pass), score at the end.
 import { h, clear, shuffled, append } from './dom.js';
 import { icon } from './icons.js';
 import { closeButton, confirmDialog } from './modals.js';
 import { clean, courseShort, allQuizzes } from './content.js';
 
 const N = 25;
-const SEC_PER_Q = 72; // NHIE: 200 questions in 4 hours
+const SEC_PER_Q = 72; // NC Board exam: 200 questions in 4 hours
+const PASS = 70;      // NC Board exam pass mark (%)
 
 export function createExam(ctx) {
   const { store } = ctx;
@@ -46,9 +48,9 @@ export function createExam(ctx) {
         h('button', { class: `switch${on ? ' on' : ''}`, type: 'button', role: 'switch', 'aria-checked': String(on), 'aria-labelledby': `ex-${key}`, onclick: () => { opts[key] = !on; ctx.sound.play('click'); renderSetup(); card.querySelector(`[aria-labelledby="ex-${key}"]`)?.focus(); } }, h('span', { class: 'knob' })));
     };
     append(card, 
-      h('header', { class: 'dialog-head' }, h('div', null, h('div', { class: 'eyebrow' }, 'Exam Mode'), h('h2', { id: 'ex-title', class: 'dialog-title' }, 'A practice run at the NHIE')), closeButton(() => entry?.close('x'))),
+      h('header', { class: 'dialog-head' }, h('div', null, h('div', { class: 'eyebrow' }, 'Exam Mode'), h('h2', { id: 'ex-title', class: 'dialog-title' }, 'A practice run at the NC Board exam')), closeButton(() => entry?.close('x'))),
       bank.length
-        ? h('p', null, `${n} questions drawn at random from all 20 courses. The real National Home Inspector Examination is 200 questions in four hours, about 72 seconds each. This is a short, honest slice of that.`)
+        ? h('p', null, `${n} questions drawn at random from all 20 courses. The NC Board exam is 200 questions in four hours, closed book, about 72 seconds each, and passes at 70%. Its first content block is the NC Standards of Practice. This is a short, honest slice of that.`)
         : h('p', { class: 'muted' }, 'The question bank is still being written. Check back soon.'),
       sw('timed', `Timed (${Math.round((n * SEC_PER_Q) / 60)} minutes)`, 'Same pace as the real exam. Unanswered questions count as wrong when time runs out.'),
       sw('reveal', 'Show answers as I go', 'Off is exam-style: you only see results at the end.'),
@@ -139,7 +141,7 @@ export function createExam(ctx) {
   async function quit() {
     if (!run || run.done) { entry?.close('x'); return; }
     const answered = run.answers.filter(a => a != null).length;
-    const ok = await confirmDialog(ctx, { title: 'End the exam now?', body: h('p', null, `You've answered ${answered} of ${run.qs.length}. We'll score what you have.`), confirm: 'Score it', cancel: 'Keep going' });
+    const ok = await confirmDialog(ctx, { title: 'End the exam now?', body: h('p', null, `You've answered ${answered} of ${run.qs.length}. We'll score what you have.`), confirm: 'Score it', cancel: 'Keep going', focusCancel: true }); // Esc then Enter must not end the exam
     if (ok) finish(false);
   }
 
@@ -153,15 +155,16 @@ export function createExam(ctx) {
     const byCourse = {};
     run.qs.forEach((q, i) => { const c = (byCourse[q.course] ||= { n: 0, r: 0 }); c.n++; if (run.answers[i] === q.answer) c.r++; });
     const weak = Object.entries(byCourse).filter(([, v]) => v.r < v.n).sort((a, b) => (a[1].r / a[1].n) - (b[1].r / b[1].n)).slice(0, 4);
-    ctx.sound.play(pct >= 75 ? 'correct' : 'near');
+    ctx.sound.play(pct >= PASS ? 'correct' : 'near');
     clear(card);
     append(card, 
       h('header', { class: 'dialog-head' }, h('div', null, h('div', { class: 'eyebrow' }, timeUp ? 'Time is up' : 'Exam complete'), h('h2', { class: 'dialog-title', id: 'ex-title', tabindex: '-1' }, `${right} of ${total} correct`)), closeButton(() => entry?.close('x'))),
       h('div', { class: 'ex-score' },
-        h('div', { class: `grade ${pct >= 75 ? 'grade-A' : pct >= 60 ? 'grade-C' : 'grade-F'}` }, `${pct}%`),
+        h('div', { class: `grade ${pct >= PASS ? 'grade-A' : pct >= PASS - 10 ? 'grade-C' : 'grade-F'}` }, `${pct}%`),
         h('div', null,
-          h('p', null, pct >= 75 ? 'That is a passing-shaped score. Keep the streak going across a few runs before you trust it.' : pct >= 60 ? 'Getting there. A practice target of 75% is a sensible bar before the real exam.' : 'Plenty to learn from here. Review the explanations below, then read Field Notes for the weak spots.'),
-          h('p', { class: 'muted small' }, `${mins} min · The NHIE reports a scaled score, so treat this percentage as a study signal, not a prediction.`))),
+          h('p', { class: 'ex-pass' }, h('strong', null, `Pass mark: ${PASS}%. `), pct >= PASS ? 'You cleared it on this run.' : `You were ${PASS - pct} points short this run.`),
+          h('p', null, pct >= PASS ? 'Keep clearing it across several runs before you trust it.' : pct >= PASS - 10 ? 'Getting there. Review the misses below, then read Field Notes for the weak spots.' : 'Plenty to learn from here. Review the explanations below, then read Field Notes for the weak spots.'),
+          h('p', { class: 'muted small' }, `${mins} min · The NC Board exam passes at 70%. Treat this as a study signal: 25 questions from a bank you may have seen before is not a prediction.`))),
       weak.length ? h('div', { class: 'ex-weak' }, h('div', { class: 'section-label' }, 'Worth a review'),
         h('div', { class: 'chips' }, weak.map(([c, v]) => h('button', { class: 'chip chip-btn chip-course', type: 'button', onclick: () => ctx.notebook.openCourse(c) }, `${courseShort(c)} ${v.r}/${v.n}`)))) : null,
       h('details', { class: 'ex-review', open: true }, h('summary', null, 'Review every question'),

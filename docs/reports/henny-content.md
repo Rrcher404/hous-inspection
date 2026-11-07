@@ -57,3 +57,59 @@ File written: `src/data/checkpoints.js`. It holds `CHECKPOINT_CONTENT` (all 119 
 - NC frost depth
 
 General numbers are stated as "generally accepted" or "commonly taught" (4-in sphere, 36-in guard, 30-in trigger, 4+ risers, 44-in sill, 6-in TPR termination, 18-in ignition source, 6-in photo-eyes, 10-year smoke alarm, 19% WME, hearth 16/8 and 20/12, joist notch and hole limits, vent connector 1/4 in per ft).
+
+---
+
+## Round 2 (after Voss red-team)
+
+**Status:** `npm run check` shows zero ERR and zero WARN. `npx vite build` succeeds (49 modules). I edited only `src/data/checkpoints.js` and this report.
+
+### Changes, by item
+- **B1 `drywall-crack` ok state:** severity `ok` with `sevAlt ['monitor']`. The `why` and `report` now mention monitoring for widening, offset, or binding, so it matches q-st-04.
+- **B2 `wh-elevation`:** rewritten for the 06/2001 data plate. The copy now says the unit is pre-FVIR, explains the FVIR exception and its July 2003 effective date, and concludes the 18-in rule applies. The ok state now also mentions the 2001 plate.
+- **Minor 7 / item 3, `wh-age`:** now an `ok` state only. Severity `monitor`, `sevAlt ['ok']`, rec `none`, `recAlt ['plumber']`. It is about 25 years old and the defect state is removed.
+- **M2, copy rewritten to match the models:**
+  - `wh-tpr-discharge`: no discharge pipe at all, bare outlet with mineral crust.
+  - `service-drop-clearance`: conductors about 11 ft up running through a tree limb. The copy teaches that the height passes and the contact is the defect. Safety, with `sevAlt ['repair']`; electrician, with contractor (tree work) as `recAlt`.
+  - `panel-knockouts`: open knockouts in the cabinet walls with the dead front off.
+  - `dryer-duct`: white plastic/vinyl duct.
+  - `joist-hangers`: one hanger missing and one under-nailed.
+- **M3 hearth:** the opening is about 5-1/2 sq ft, so 16/8 applies. Defect state is about 8 in; ok state is about 18 in front and 10 in at the sides.
+- **M10 `fire-door-closer`:** Safety, with `sevAlt ['repair']`. The `why` says NC adoption is unsettled.
+- **Minor 2 `joist-notch` defect:** the observe text now mentions the split from the notch corner. Graded `major` with `sevAlt ['repair']`.
+- **Minor 1:** grading and downspout copy now say "front of the home" and "brick foundation".
+- **Minor 8:** the `sheathing-microbial` reading no longer claims the eave is packed with insulation. The `why` now says to check the eave ventilation path and the bath fan duct.
+- **Minor 9:** "rafter" changed to "truss top chord" or "truss bay" throughout (the glossary baffle entry covers both).
+- **sevAlt added to other contested calls:**
+  - `panel-double-tap`, `open-ground`, `firebox-brick`: Safety, or Repair.
+  - `damper`: Repair, or Safety.
+  - `joist-hangers`: Major, or Safety.
+  - `standing-water`: Repair, or Major.
+  - `window-igu-seal`: Repair, or Monitor.
+  - `efflorescence`: OK, or Monitor.
+  - **Not given sevAlt (one best answer only):** `ceiling-stain` and `sheathing-stain` dry states (Monitor; leaving them out of the report is the error being taught), `termite-tubes`, `egress-sill-height`, and every GFCI checkpoint.
+- **Item 8 (observe hidden until after the call):** `why` and `report` already carry the key facts (numbers, locations, mechanism). I expanded several thin ok-state `why` lines: `chimney-cap`, `tile-slipped`, `washer-hoses`, `wh-sediment-trap`, `panel-knockouts`, `joist-hangers`, and `joist-notch`.
+
+### M9: NC citations re-aligned to the Board compilation effective June 1, 2026
+Source: https://www.ncosfm.gov/home-inspector-licensure-act-and-board-rules-effective-june-1-2026/open. I extracted the PDF text and read .1101 to .1115 and G.S. 143-151.58 directly.
+
+**Numbering changes that affected this file:**
+- **.1109(d):** (1) anti-siphon devices, (3) backflow devices, (4) operating automatic safety controls, (5) operating valves. In the 2018 edition these were (1), (2), (3), and (4).
+- **.1110:**
+  - (a)(5): representative number of receptacles inside the house, garage, and on exterior walls.
+  - (a)(6): all readily accessible 120V receptacles within 6 ft of interior plumbing fixtures not separated by an operable door, plus all garage, carport, and exterior receptacles. The 2018 "polarity and grounding" wording is gone.
+  - (a)(7): GFCI operation within 6 ft of the floor or ground.
+  - Smoke alarms moved to (d)(1) and CO alarms to (d)(2).
+  - New (d)(3): report the presence or absence of ground fault protection.
+  - (e)(2): AFCI testing is not required.
+- **.1107:**
+  - (a)(3) now includes the automatic safety controls of garage door operators.
+  - (b)(4)-(6): report operators that fail contact reverse, doors that fail the photo-eye reverse, and operators without photo-eyes.
+  - Probing exterior wood moved to (b)(7).
+- **.1106(c)(3):** now also requires reporting access locations and whether the crawlspace or attic was fully accessible.
+- **Unchanged in number:** .1105 (new (b)(17): 240V receptacles not required), .1108, .1111, .1113, .1114, .1115, and the "representative number" definition (now .1101(30)).
+- **G.S. 143-151.58(a1):** summary page wording is unchanged from what I cited in round 1.
+
+### Still open, for other owners
+- **Store:** `falsePositive` is computed as `answer.severity === 'ok' && choice !== 'ok'`, so a learner who picks an accepted `sevAlt` of Monitor on `drywall-crack` or `efflorescence` is still flagged as an over-call in the report. Suggest excluding sevAlt picks from `falsePositive` (and from `missedDefect` for `wh-age`'s `sevAlt ['ok']`).
+- **Quizzes (Lindqvist):** q-wh-05 and any other quiz that cites the 2009 plate or "17 years" need to be updated to 2001 and about 25 years. q-ea-03 needs to say "open knockouts in the cabinet".

@@ -8,7 +8,7 @@ const STEPS = [
   { id: 'look', title: 'Look around', body: 'Press and drag anywhere on the view to turn your head. On a trackpad: click, hold, and slide.', target: null },
   { id: 'open', title: 'Inspect something', body: 'Move your pointer over things. When one lifts and shows its name, click it to get up close.', target: null },
   { id: 'log', title: 'Make your first call', body: 'Up close, click a part of it, or pick it from the list on the right. Read what you observe, then choose how serious it is and who to refer.', target: '.inspect' },
-  { id: 'tools', title: 'Reach for a tool', body: 'Some things only a tool can tell you. Press 1 to 5 or click the belt. In the attic and crawlspace, the flashlight (2) is a must.', target: '[data-coach="belt"]' },
+  { id: 'tools', title: 'Reach for a tool', body: 'Some things only a tool can tell you. Press 1 to 5 or click the belt. In the attic and crawlspace, the flashlight (2) is a must. Press M for the map to travel between rooms.', target: '[data-coach="belt"]' },
 ];
 
 export function createOnboarding(ctx) {

@@ -216,3 +216,37 @@ cabinet stain, creosote runs).
 - `dev/viewer-inside.html`, `dev/viewer-inside.js`: the viewer and audit.
 - Playwright left screenshots in `.playwright-mcp/` at the project root. I didn't delete them in case
   the parallel agent is using the same folder; they are safe to remove.
+
+## Round 2 (Voss red-team: M4, M6, minor 13)
+
+Mount origins are unchanged. `npx vite build` passes. The viewer audit is clean in both states, and it
+now includes an anchor raycast check (below).
+
+- **M6, vanity S-trap:** the trap is now laid out across the cabinet face, not front to back, so from a
+  head-on camera you see tailpiece, U, crown, and a leg straight down through the cabinet floor. There is
+  no trap arm to the wall and no vent tee. Doors open to 150°, and the spray bottle moved off the drop
+  leg. The supply stops stay plainly chrome and correct for contrast.
+- **M6, dryer duct:** the white vinyl accordion duct leaves the back, comes out the right side at floor
+  level (kinked flat at the turn), then sags up the wall beside the dryer to a vent box at about 1.2 m,
+  above the console. It is in view from the front framing. Lint sits at the hood.
+- **Minor 13, toilet:** the brown floor halo is gone. `toilet-base-moisture` now lives on a transparent
+  tagged disc at the base. It is invisible by eye and shows 'wet' in the thermal swap in the defect state.
+- **M6, bed2-wall-crack:** the crack texture now has a transparent background, so there's no paler wall
+  patch flagging the spot.
+- **M4, real bug in my model:** the fireplace brick face was one alpha-cut plane, and raycasts ignore
+  alpha, so every click or ring into the firebox hit untagged brick. That explains the dead
+  firebox-brick, damper and flue rings Voss saw. The face is now a ShapeGeometry with a real opening.
+- **M4, anchors:** every checkpoint in my 36 components now has one anchor: a 6 cm invisible tagged box
+  with `userData.anchor = true` and name `anchor:<cpId>`, placed in front of the thing to look at. **Kaz:**
+  put the hint ring at the anchor's world position instead of the union-bbox centre. In the viewer audit,
+  a ray from a framing camera (front-up for floor/wall mounts, below-front for ceiling mounts) through
+  each anchor must hit that checkpoint first, in both states. All pass. Fixing the occluded ones meant
+  moving anchors off the ajar back-door slab and the drawer front, shrinking the vapor-barrier hit box so
+  it no longer covers the standing-water area, and putting the flue anchor at the throat just behind the
+  lintel.
+- **M3 (hearth copy) and minor 2 (joist split):** the geometry is unchanged and consistent. The opening
+  is 0.80 × 0.65 m (about 5.6 sq ft, so 16/8 applies). The ok hearth is about 18 in front and 10 in at
+  the sides; the defect is about 8 in. **Henny:** set the copy to these numbers, and mention the split
+  at the joist notch (Major is defensible).
+- **M6 framing (hearth and threshold under the tool belt):** this is the engine's camera. The anchors
+  give it a target.

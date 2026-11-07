@@ -13,7 +13,7 @@ use real inspector tools, **classify** what they see (severity + who to refer), 
 feedback, take pop quizzes, and finish by generating an **inspection report** that is graded.
 
 It is mapped to the 20 courses of InterNACHI's 120-hour NC pre-licensing program
-(`src/data/courses.js`). The player is studying for the NHIE / NC licensing exam right now.
+(`src/data/courses.js`). The player is studying for the NC Home Inspector Licensure Board exam (the Board's own HILB exam, not the NHIE) right now.
 Every mechanic must teach something real. Accuracy beats flash.
 
 **Replayability:** checkpoints marked `variable` are randomized per inspection (seeded), so the
@@ -174,6 +174,15 @@ export const CHECKPOINT_CONTENT = {
 };
 ```
 `defect`-kind checkpoints need only `defect`; `ok`-kind only `ok`; `variable` needs both.
+Optional per state: `sevAlt: ['monitor']` = alternative severities that get full credit where licensed
+inspectors legitimately differ (use sparingly; there must still be a best answer).
+
+### Grading rules (round 2, after the Voss red-team)
+- The **first** log of a checkpoint is the graded record. Re-logs are practice and never change the grade.
+- `observe` is hidden until the player classifies. Revealing it ("Describe it for me") halves the points.
+  The player is meant to judge from the 3D model; tool readouts are the evidence for tool-gated items.
+- Referral points only count when the severity call is exact or one step off.
+- Variable checkpoints roll defective 40% of the time.
 Answers must be defensible to a licensed NC inspector. Where practice varies, accept alternatives with `recAlt` and say so in `why`.
 Report language: inspectors **observe and report**, recommend evaluation/repair by a qualified professional; they do not diagnose beyond the SOP or quote code as a code official would.
 
@@ -182,7 +191,7 @@ Report language: inspectors **observe and report**, recommend evaluation/repair 
 ```js
 export const QUIZZES = [
   { id: 'q-wh-01', course: 'water-heater', components: ['gar-water-heater'], difficulty: 1,
-    q: 'Question stem (NHIE style)', choices: ['A', 'B', 'C', 'D'], answer: 2, explain: 'Why, in 1–3 sentences.' },
+    q: 'Question stem (licensing-exam style)', choices: ['A', 'B', 'C', 'D'], answer: 2, explain: 'Why, in 1–3 sentences.' },
 ];
 export const LESSONS = {
   'water-heater': {

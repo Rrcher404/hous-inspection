@@ -9,7 +9,10 @@
 //  - report = how a licensed NC inspector would write it: observe, describe, refer. No code-official
 //    language ("violation"); numbers are given as "generally accepted" practice.
 //  - nc = only facts verified against the NC Home Inspector Standards of Practice
-//    (11 NCAC 08 .1101-.1116, rev. Oct 1 2018), G.S. 143-151.58, or NC OSFM interpretations.
+//    (11 NCAC 08 .1101-.1116, Board compilation effective June 1, 2026), G.S. 143-151.58, or NC OSFM
+//    interpretations.
+//  - sevAlt = other severities that earn full credit, used only where licensed inspectors
+//    legitimately differ. `severity` is still the best answer the copy teaches.
 //    Sources are listed in docs/reports/henny-content.md.
 //  - No em-dashes in player-facing copy.
 
@@ -19,13 +22,13 @@ export const CHECKPOINT_CONTENT = {
     title: "Grading at the foundation",
     course: 'ext-fund',
     defect: {
-      observe: "You lay a 4-ft level on the soil running out from the wall. The bubble shows the ground falling toward the house, and there is a dark, silty line on the block where water has puddled against it.",
+      observe: "You lay a 4-ft level on the soil running out from the wall. The bubble shows the ground falling toward the house, and there is a dark, silty line on the brick foundation where water has puddled against it.",
       severity: 'repair', rec: 'contractor', recAlt: [],
       why: "Negative grade sends roof and surface water to the foundation, where it soaks the soil beside the footing, wets the crawlspace, and feeds wood decay and termites. The generally accepted target is a fall of about 6 in within the first 10 ft from the house, or a swale that does the same job. Confirm it with a level, then look for the matching wet wall inside the crawlspace.",
-      report: "The inspector observed soil sloping toward the foundation (negative grade) along the east side of the home, with evidence of water pooling against the foundation. This condition can direct surface water toward the crawlspace. Recommend regrading so that soil slopes away from the home, by a qualified contractor.",
+      report: "The inspector observed soil sloping toward the foundation (negative grade) at the front of the home below the living room, with evidence of water pooling against the foundation. This condition can direct surface water toward the crawlspace. Recommend regrading so that soil slopes away from the home, by a qualified contractor.",
     },
     ok: {
-      observe: "Your level shows the soil dropping steadily away from the wall, roughly 6 in over the first 10 ft. There are no silt lines or puddle marks on the block.",
+      observe: "Your level shows the soil dropping steadily away from the wall, roughly 6 in over the first 10 ft. There are no silt lines or puddle marks on the brick.",
       severity: 'ok', rec: 'none', recAlt: [],
       why: "This is what you want to see: positive grade carries water away before it can load the soil beside the footing. Describe it, note that you checked it, and move on. Do not invent a defect where the drainage is doing its job.",
       report: "Grading adjacent to the foundation was observed to slope away from the home at the time of the inspection. No deficiencies were noted.",
@@ -41,7 +44,7 @@ export const CHECKPOINT_CONTENT = {
       observe: "The downspout ends at the base of the wall with no extension or splash block. The soil below it is washed out into a small hollow, and the siding just above grade is splashed with mud.",
       severity: 'repair', rec: 'contractor', recAlt: ['roofer'],
       why: "A downspout gathers all the rain from its section of roof. Dumping it at the foundation concentrates that water exactly where it does the most harm: saturated soil at the footing and a wet crawlspace. Common practice is to discharge at least 4 to 6 ft from the foundation onto ground that slopes away, or into a working drain line. The washed-out hollow is your evidence it has been happening for a while.",
-      report: "The downspout at the east side discharges directly at the foundation, and soil erosion was observed. Recommend installing an extension or splash block to carry roof water at least 4 to 6 feet away from the home, by a qualified contractor.",
+      report: "The downspout at the front of the home discharges directly at the foundation, and soil erosion was observed. Recommend installing an extension or splash block to carry roof water at least 4 to 6 feet away from the home, by a qualified contractor.",
     },
     ok: {
       observe: "The downspout turns into a rigid extension that carries water about 5 ft out onto a splash block, on ground that slopes away from the house.",
@@ -100,7 +103,7 @@ export const CHECKPOINT_CONTENT = {
     course: 'ext-how',
     defect: {
       observe: "Between the two panes of the lower sash you see a milky haze and dried water spots. It does not wipe off from either side of the glass.",
-      severity: 'repair', rec: 'contractor', recAlt: [],
+      severity: 'repair', sevAlt: ['monitor'], rec: 'contractor', recAlt: [],
       why: "Fogging between panes means the edge seal of the insulated glass unit has failed; humid air got into the space and left mineral deposits behind. The window still keeps weather out, but it loses insulating value and the haze usually worsens. The repair is replacing the glass unit or sash, not the whole window. Some inspectors grade a faint haze as Monitor, which is reasonable.",
       report: "Fogging was observed between the panes of the living room window lower sash, indicating a failed insulated glass seal. Recommend replacement of the insulated glass unit by a qualified window contractor.",
     },
@@ -142,19 +145,19 @@ export const CHECKPOINT_CONTENT = {
       report: "The exterior hose faucet was operated and has a vacuum breaker installed. No deficiencies were noted.",
     },
     tip: "Run every exterior faucet, then check the wall behind it, or the crawlspace below it, for a leak in the supply pipe.",
-    nc: "NC SOP .1109(c) requires operating all exterior faucets attached to the house. NC SOP .1109(d)(1)-(2) says you are not required to state the requirement for or effectiveness of anti-siphon devices, or the presence or absence of backflow devices, so reporting a missing vacuum breaker is permitted and common, but goes beyond the NC minimum.",
+    nc: "NC SOP .1109(c) requires operating all exterior faucets attached to the house. NC SOP .1109(d)(1) and (d)(3) say you are not required to state the requirement for or effectiveness of anti-siphon devices, or to determine the presence or absence of backflow devices, so reporting a missing vacuum breaker is permitted and common, but goes beyond the NC minimum.",
   },
 
   'service-drop-clearance': {
-    title: "Service drop clearance",
+    title: "Service drop and tree contact",
     course: 'elec-res',
     defect: {
-      observe: "The overhead service wires sag across the side yard. At their lowest point they hang about 8 ft above the walkway, low enough that someone carrying a ladder or pole could touch them.",
-      severity: 'safety', rec: 'electrician', recAlt: [],
-      why: "Service drop conductors are energized and, on the utility side, have no overcurrent protection at the house. Generally accepted minimum clearances are about 10 ft above grade where only pedestrians go, 12 ft over residential driveways, and 3 ft from windows, doors, and decks. The drop usually belongs to the utility, so the electrician typically coordinates the correction with the power company. Never touch or probe a drop; estimate its height against something you know.",
-      report: "The overhead service drop conductors were observed to have low clearance above the side yard walkway, approximately 8 feet at the lowest point. This is a safety hazard. Recommend evaluation and correction by a licensed electrician in coordination with the electric utility.",
+      observe: "The overhead service wires run nearly level across the side yard about 11 ft above the ground. Partway along, they pass straight through the limbs of a tree, and one branch rests on the conductors.",
+      severity: 'safety', sevAlt: ['repair'], rec: 'electrician', recAlt: ['contractor'],
+      why: "Height is not the problem here: about 11 ft over a yard clears the generally accepted 10-ft minimum where only pedestrians go (12 ft over a driveway). The problem is contact. Limbs that rub on service conductors wear through the insulation, wind can load and break the drop, and a wet branch touching a damaged conductor can become energized for anyone who climbs or prunes the tree. The drop usually belongs to the utility, which typically clears limbs around it, so the referral is an electrician or the utility, and a qualified tree contractor working with them. Never trim near a drop yourself, and never let your ladder or pole near it. Some inspectors grade tree contact as Repair; the shock and fire pathway makes Safety the stronger call.",
+      report: "Tree limbs were observed in contact with the overhead service drop conductors. This can damage the conductors and create a shock or fire hazard. Recommend contacting the electric utility to clear the conductors, with evaluation by a licensed electrician; tree trimming near the service drop should be performed only by qualified personnel.",
     },
-    tip: "Estimate height against a known reference, such as the gutter line of a one-story house or a measured ladder, and never extend a tape or pole toward the wires.",
+    tip: "Follow the drop with your eyes from the pole to the weatherhead. Height, contact, and the drip loop are three separate checks.",
   },
 
   'service-drip-loop': {
@@ -242,7 +245,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The exterior receptacle tested with correct wiring and is GFCI protected. No deficiencies were observed.",
     },
     tip: "A plug-in tester needs an equipment ground to create its test fault. On a two-wire circuit, use the GFCI's own test button instead.",
-    nc: "NC SOP .1110(a)(6)-(7) requires testing the polarity and grounding of all receptacles on the exterior of inspected structures, and the operation of ground fault circuit interrupters.",
+    nc: "NC SOP .1110(a)(6) requires inspecting all receptacles on the exterior of inspected structures, (a)(7) requires operating ground fault circuit interrupters within 6 ft of the floor or ground, and (d)(3) requires reporting the presence or absence of ground fault protection at exterior receptacles.",
   },
 
   'ext-receptacle-cover': {
@@ -299,11 +302,11 @@ export const CHECKPOINT_CONTENT = {
     ok: {
       observe: "The access door is a solid panel that latches tight in a framed opening in the block wall. The foundation vent beside it has an intact screen and no gaps.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "A crawlspace door is there to keep out animals and weather and to give you a way in. This one does both. Note the access location and how you inspected the crawlspace in your report.",
+      why: "A crawlspace door is there to keep out animals and weather and to give you a way in. This one does both. Your report should still say where the access is, whether every area was reachable, and how you inspected the crawlspace.",
       report: "Crawlspace access is through an exterior door on the north foundation wall. The door and adjacent foundation vent were observed to be in serviceable condition.",
     },
     tip: "Before you go in, look and smell. Standing water, sewage odor, or exposed wiring at the entry are reasons to pause and say why.",
-    nc: "NC SOP .1106(c)(2)-(3): enter crawlspaces unless access is obstructed, entry could damage the property, or dangerous conditions are suspected, and report the method used to inspect the crawlspace.",
+    nc: "NC SOP .1106(c)(2)-(3): enter crawlspaces unless access is obstructed, entry could damage the property, or dangerous conditions are suspected, and report the access location, whether the crawlspace was fully accessible or which areas were not, and the method used to inspect it.",
   },
 
   // ───────────────────────────── ROOF ─────────────────────────────
@@ -362,7 +365,7 @@ export const CHECKPOINT_CONTENT = {
     ok: {
       observe: "A metal cap with a mesh screen sits over the flue tile, secured with no gaps. The screen is clean.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "A secure cap with intact mesh keeps rain, animals, and sparks where they belong. Nothing to report.",
+      why: "A secure cap with intact mesh keeps rain off the damper and smoke chamber, keeps birds and animals out of the flue, and stops embers from landing on the roof. Nothing to report.",
       report: "A chimney cap with spark arrestor screen is installed and appeared serviceable.",
     },
     tip: "If the cap screen looks black and furry, it is choked with creosote and can restrict the draft. Recommend cleaning it with the flue.",
@@ -475,25 +478,25 @@ export const CHECKPOINT_CONTENT = {
       report: "Flashing is installed above the deck ledger. The adjacent framing probed solid. No deficiencies were noted.",
     },
     tip: "Probe the band joist below the ledger from the crawlspace too. That is where hidden rot shows first.",
-    nc: "NC SOP .1106(c)(1) and .1107(b)(5) require probing structural and exterior wood components where deterioration is suspected.",
+    nc: "NC SOP .1106(c)(1) and .1107(b)(7) require probing structural and exterior wood components where deterioration is suspected.",
   },
 
   'joist-hangers': {
     title: "Joist-to-ledger connections",
     course: 'deck',
     defect: {
-      observe: "Each deck joist butts against the ledger and is held only by two or three nails driven in at an angle. There are no metal hangers, and one joist end has split around a nail.",
-      severity: 'major', rec: 'contractor', recAlt: ['structural'],
-      why: "Toe-nails rely on a few nails loaded sideways in end grain; they split the joist end and pull loose. Joist hangers, installed with every manufacturer-specified nail, carry the load in bearing. Combined with a weak ledger attachment this adds up to a real collapse risk, so grading it a Safety Hazard is also defensible.",
-      report: "Deck joists are toe-nailed to the ledger without joist hangers, and splitting was observed at one joist end. Recommend installation of appropriate joist hangers and evaluation of the deck framing by a qualified deck contractor.",
+      observe: "Most joists sit in galvanized hangers, but one joist has no hanger at all and is held to the ledger only by a few nails driven in at an angle. The hanger on the next joist has only two of its many nail holes filled.",
+      severity: 'major', sevAlt: ['safety'], rec: 'contractor', recAlt: ['structural'],
+      why: "A deck is only as strong as its weakest joist connection. Toe-nails rely on a few nails loaded sideways in end grain; they split the joist end and pull loose. A hanger works only when every hole the manufacturer specifies is filled with the specified nails; with two nails it is closer to a decoration than a connector. One failed joist end drops a section of decking under whoever is standing on it. Major is the best fit for a localized framing deficiency; Safety is also defensible because the failure is sudden.",
+      report: "At the deck ledger, one joist is toe-nailed without a joist hanger and an adjacent joist hanger is missing most of its required fasteners. Recommend installation and full fastening of appropriate joist hangers, and evaluation of the remaining deck framing, by a qualified deck contractor.",
     },
     ok: {
       observe: "Each joist sits in a galvanized hanger with a nail in every hole. The hangers show only light surface rust.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "Fully nailed, corrosion-resistant hangers are the accepted connection. You checked the two things that usually go wrong: nails in every hole, and hangers that are not rusting away in contact with treated lumber.",
+      why: "Fully nailed, corrosion-resistant hangers are the accepted joist-to-ledger connection. The two things that usually go wrong are empty nail holes and hangers rusting away in contact with treated lumber; neither is present, so there is nothing to report.",
       report: "Deck joists are supported by metal joist hangers at the ledger. No deficiencies were observed.",
     },
-    tip: "Count the holes. A ten-hole hanger with two nails in it, or with drywall screws, is not doing a hanger's job.",
+    tip: "Check every hanger, not just the first one you see. Count the holes: a ten-hole hanger with two nails, or with drywall screws, is not doing a hanger's job.",
   },
 
   'baluster-spacing': {
@@ -582,7 +585,7 @@ export const CHECKPOINT_CONTENT = {
     ok: {
       observe: "The courses near the eave are straight and even, with each tile overlapping the one below by the same amount.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "Straight courses with consistent overlap mean the tiles are holding position. Nothing to report.",
+      why: "Straight courses with consistent overlap mean the tile fasteners are holding and the underlayment stays shaded and covered. Nothing to report.",
       report: "Tile courses at the eave appeared aligned and secure at the time of the inspection.",
     },
     tip: "Sight along a course from the rake edge. A slipped tile breaks the straight line, and that is easier to see than the gap itself.",
@@ -606,8 +609,8 @@ export const CHECKPOINT_CONTENT = {
     course: 'fireplace',
     defect: {
       observe: "Inside the firebox, several mortar joints on the back wall are eroded deep enough to slip a key into, and one firebrick has a crack running through it. Soot stains line the open joints.",
-      severity: 'safety', rec: 'chimney', recAlt: ['contractor'],
-      why: "The firebox is lined with firebrick set in refractory mortar so the heat of the fire stays inside the masonry. Open joints let heat and hot gases reach the surrounding structure and the cavity behind the firebox, where framing may be closer than you think. Repairs use refractory mortar, not ordinary mortar. Until repaired, the fireplace should not be used.",
+      severity: 'safety', sevAlt: ['repair'], rec: 'chimney', recAlt: ['contractor'],
+      why: "The firebox is lined with firebrick set in refractory mortar so the heat of the fire stays inside the masonry. Open joints let heat and hot gases reach the surrounding structure and the cavity behind the firebox, where framing may be closer than you think. Repairs use refractory mortar, not ordinary mortar. Until repaired, the fireplace should not be used. Some inspectors grade firebox mortar loss as Repair; because it is a fire pathway, Safety is the stronger call.",
       report: "Deteriorated mortar joints and a cracked firebrick were observed in the firebox. This is a fire safety concern. Recommend evaluation and repair by a CSIA-certified chimney professional prior to use.",
     },
     tip: "Hold your flashlight low and rake the beam across the firebox walls. Open joints that look fine head-on cast clear shadows at a low angle.",
@@ -617,18 +620,18 @@ export const CHECKPOINT_CONTENT = {
     title: "Hearth extension",
     course: 'fireplace',
     defect: {
-      observe: "The brick hearth in front of the firebox opening is about 8 in deep before the wood floor begins. The fireplace opening itself is a little over 6 sq ft.",
+      observe: "The brick hearth in front of the firebox opening is about 8 in deep before the wood floor begins. The fireplace opening itself is about 5-1/2 sq ft.",
       severity: 'safety', rec: 'chimney', recAlt: ['contractor'],
-      why: "Embers pop and logs roll out of fireplaces; the hearth extension is the noncombustible zone that catches them. The commonly taught minimums are 16 in in front and 8 in on each side for openings under 6 sq ft, and 20 in in front and 12 in on each side for openings of 6 sq ft or more. At 8 in, an ember that rolls out lands on the wood floor.",
-      report: "The hearth extension projects approximately 8 inches in front of the fireplace opening, less than generally accepted minimums. This is a fire hazard. Recommend evaluation and correction by a CSIA-certified chimney professional or qualified masonry contractor.",
+      why: "Embers pop and logs roll out of fireplaces; the hearth extension is the noncombustible zone that catches them. The commonly taught minimums are 16 in in front and 8 in on each side for openings under 6 sq ft, and 20 in in front and 12 in on each side for openings of 6 sq ft or more. This opening is under 6 sq ft, so 16 in in front applies, and at about 8 in an ember that rolls out lands on the wood floor.",
+      report: "The hearth extension projects approximately 8 inches in front of the fireplace opening, less than the generally accepted minimum of 16 inches for an opening of this size. This is a fire hazard. Recommend evaluation and correction by a CSIA-certified chimney professional or qualified masonry contractor.",
     },
     ok: {
-      observe: "The brick hearth projects about 20 in in front of the opening and about a foot past each side. It is all masonry, tight to the floor, with no gaps.",
+      observe: "The brick hearth projects about 18 in in front of the opening and about 10 in past each side. It is all masonry, tight to the floor, with no gaps. The opening is about 5-1/2 sq ft.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "For an opening of this size, about 20 in in front and 12 in to the sides is the commonly taught minimum, and this hearth meets it. Also check that rugs and furniture are not sitting on the hearth.",
-      report: "The hearth extension appeared adequate in size and was in serviceable condition.",
+      why: "For an opening under 6 sq ft, the commonly taught minimum is 16 in in front and 8 in on each side. About 18 in and 10 in exceeds both, so the hearth is adequate. Had the opening been 6 sq ft or larger, the bar would rise to 20 in and 12 in, which is why you measure the opening first. Also check that rugs and furniture are not sitting on the hearth.",
+      report: "The hearth extension appeared adequate in size for the fireplace opening and was in serviceable condition.",
     },
-    tip: "Measure the fireplace opening first. Its area decides which hearth numbers apply.",
+    tip: "Measure the fireplace opening first (width times height). Its area decides which hearth numbers apply: under 6 sq ft is 16/8, 6 sq ft or more is 20/12.",
   },
 
   'damper': {
@@ -636,7 +639,7 @@ export const CHECKPOINT_CONTENT = {
     course: 'fireplace',
     defect: {
       observe: "You pull the damper handle and it moves about an inch, then stops. With your light you see the cast-iron plate is rusted in place, mostly closed.",
-      severity: 'repair', rec: 'chimney', recAlt: ['contractor'],
+      severity: 'repair', sevAlt: ['safety'], rec: 'chimney', recAlt: ['contractor'],
       why: "A damper that will not open fully will push smoke and carbon monoxide into the room the first time someone lights a fire. A rusted damper also tells you water is coming down the flue, so connect this to the crown and cap above. Repair options include replacing the damper or installing a top-sealing damper at the chimney top.",
       report: "The fireplace damper is rusted and does not open fully. Recommend repair by a CSIA-certified chimney professional before the fireplace is used.",
     },
@@ -680,7 +683,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The living room smoke alarm is more than 10 years past its date of manufacture. Smoke alarms should be replaced 10 years from the date of manufacture. Recommend replacement of all aged smoke alarms. This is a life-safety item.",
     },
     tip: "If one alarm in a house is past ten years, assume they were all installed together and check every one you can reach.",
-    nc: "NC SOP .1110(a)(8) and (d): inspect smoke detectors, report in writing on their presence or absence, and operate their test function if readily accessible, except when they are part of a central system.",
+    nc: "NC SOP .1110(d)(1) requires reporting in writing the presence or absence of readily accessible installed smoke alarms and operating their test function, except when they are part of a central alarm system.",
   },
 
   'liv-polarity': {
@@ -701,7 +704,7 @@ export const CHECKPOINT_CONTENT = {
       report: "A representative number of receptacles in the living room were tested and found to have correct polarity and grounding.",
     },
     tip: "Light patterns differ between tester brands. Read the legend on your own tester, every time, and test both halves of the duplex.",
-    nc: "NC SOP .1110(a)(5) requires operating a representative number of receptacles (the NC definition is one per room), and (a)(6) requires polarity and grounding tests of all receptacles within 6 ft of interior plumbing fixtures, in the garage or carport, and on the exterior.",
+    nc: "NC SOP .1110(a)(5) requires inspecting the operation of a representative number of receptacles inside the house, garage, and on exterior walls (the NC definition of representative number is one per room), and (a)(6) covers all readily accessible 120V receptacles within 6 ft of interior plumbing fixtures not separated by an operable door, plus all garage, carport, and exterior receptacles.",
   },
 
   'ceiling-stain': {
@@ -864,7 +867,7 @@ export const CHECKPOINT_CONTENT = {
       report: "Kitchen countertop receptacles tested with correct wiring and are GFCI protected.",
     },
     tip: "When a receptacle trips and you cannot find which GFCI did it, check the garage and bathrooms. Builders often chained circuits in surprising ways.",
-    nc: "NC SOP .1110(a)(6)-(7): test polarity and grounding of all receptacles within 6 ft of interior plumbing fixtures, and the operation of GFCIs.",
+    nc: "NC SOP .1110(a)(6) covers all readily accessible 120V receptacles within 6 ft of interior plumbing fixtures not separated from the fixture by an operable door; (a)(7) requires operating GFCIs within 6 ft of the floor; and (d)(3) requires reporting the presence or absence of ground fault protection at those receptacles.",
   },
 
   'hood-recirc': {
@@ -947,7 +950,7 @@ export const CHECKPOINT_CONTENT = {
       report: "Fixture supply stops and lines at the hall bathroom vanity appeared serviceable with no leaks observed.",
     },
     tip: "Look, do not turn. An old stop valve that has not moved in years can start leaking the moment you touch it.",
-    nc: "NC SOP .1109(d)(4): inspectors are not required to operate any valve except water closet flush valves, fixture faucets, and hose faucets.",
+    nc: "NC SOP .1109(d)(5): inspectors are not required to operate any valve except water closet flush valves, fixture faucets, and hose faucets.",
   },
 
   'tub-caulk': {
@@ -1006,7 +1009,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The hall bathroom GFCI receptacle tested with correct wiring and tripped and reset normally.",
     },
     tip: "Reset every GFCI you trip before you leave the room, and write down where it was.",
-    nc: "NC SOP .1110(a)(6)-(7): test polarity and grounding of all receptacles within 6 ft of interior plumbing fixtures, and the operation of GFCIs.",
+    nc: "NC SOP .1110(a)(6) covers all readily accessible 120V receptacles within 6 ft of interior plumbing fixtures not separated from the fixture by an operable door; (a)(7) requires operating GFCIs within 6 ft of the floor; and (d)(3) requires reporting the presence or absence of ground fault protection at those receptacles.",
   },
 
   'bath-fan-operation': {
@@ -1052,7 +1055,7 @@ export const CHECKPOINT_CONTENT = {
       report: "A smoke alarm is present in the primary bedroom and responded to its test button.",
     },
     tip: "Press test buttons with a pole or the back of a pen, and warn the occupants first. A sounding alarm startles everyone.",
-    nc: "NC SOP .1110(d) requires reporting in writing on the presence or absence of smoke detectors and operating their test function if readily accessible, except when they are part of a central system.",
+    nc: "NC SOP .1110(d)(1) requires reporting in writing the presence or absence of readily accessible installed smoke alarms and operating their test function, except when they are part of a central alarm system.",
   },
 
   'open-ground': {
@@ -1061,12 +1064,12 @@ export const CHECKPOINT_CONTENT = {
     defect: {
       observe: "A 3-slot (grounding-type) receptacle in the primary bedroom. The cover plate is clean and nothing looks damaged.",
       reading: "3-light tester: the light pattern matches 'OPEN GROUND' on the tester's legend. Hot and neutral are correct; no equipment ground is present.",
-      severity: 'safety', rec: 'electrician', recAlt: [],
+      severity: 'safety', sevAlt: ['repair'], rec: 'electrician', recAlt: [],
       why: "A 3-slot receptacle promises a ground that is not there. Appliances with metal cases and surge protectors rely on that ground to carry fault current and trip the breaker; without it, a fault can leave the case energized. Accepted corrections are restoring the equipment ground, or adding GFCI protection with the receptacle labeled 'No Equipment Ground', which protects people but not surge suppressors. Some inspectors grade this Repair; Safety is the stronger call because the receptacle misleads users.",
       report: "The primary bedroom 3-prong receptacle tested with an open ground (no equipment ground present). Recommend evaluation and correction by a licensed electrician.",
     },
     tip: "One open ground usually means the whole circuit, or a whole era of wiring. Test the neighbors before you write it up as one receptacle.",
-    nc: "NC SOP .1110(a)(6) requires grounding tests for all receptacles within 6 ft of plumbing fixtures, in the garage or carport, and on the exterior. Bedroom receptacles fall under the representative-number rule of .1110(a)(5), but testing more is allowed and wise in an older home.",
+    nc: "NC SOP .1110(a)(6) covers all readily accessible 120V receptacles within 6 ft of interior plumbing fixtures, plus all garage, carport, and exterior receptacles. Bedroom receptacles fall under the representative-number rule of .1110(a)(5) (one per room), but testing more is allowed and wise in an older home.",
   },
 
   'closet-light': {
@@ -1111,9 +1114,9 @@ export const CHECKPOINT_CONTENT = {
     },
     ok: {
       observe: "A thin hairline crack runs from the corner of the door frame along the drywall tape joint. It is about the width of a pencil line, with no offset, and the door opens, closes, and latches freely.",
-      severity: 'ok', rec: 'none', recAlt: [],
-      why: "Hairline cracks at door and window corners are among the most common things you will see. Drywall seams meet at the weakest point of the wall, and normal framing shrinkage and seasonal humidity crack the tape. No width, no offset, and a door that works: not a structural sign. Writing this up as structural would scare a buyer out of a good house.",
-      report: "Minor hairline drywall cracking typical of normal settlement and shrinkage was observed at the Bedroom 2 door corner. This is considered cosmetic.",
+      severity: 'ok', sevAlt: ['monitor'], rec: 'none', recAlt: [],
+      why: "Hairline cracks at door and window corners are among the most common things you will see. Drywall seams meet at the weakest point of the wall, and normal framing shrinkage and seasonal humidity crack the tape. No width, no offset, and a door that works: not a structural sign. Many inspectors note it and suggest monitoring for widening, offset, or a door that starts to bind, and that answer is accepted too. Writing it up as structural would scare a buyer out of a good house.",
+      report: "Minor hairline drywall cracking typical of normal settlement and shrinkage was observed at the Bedroom 2 door corner. This is considered cosmetic; monitor for widening, offset, or door binding.",
     },
     tip: "Check the door before you judge the crack. A crack with a binding door is a story; a crack with a door that works is usually just a crack.",
     nc: "NC SOP .1105(a)(10): cosmetic damage is not required to be reported.",
@@ -1142,7 +1145,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The attic pull-down stairs are inadequately fastened, with missing hinge hardware and frame attachment using drywall screws, and the ladder sections do not rest properly on the floor. This is a fall hazard. Recommend repair or replacement by a qualified contractor.",
     },
     tip: "Look at the fasteners before you put weight on the ladder, every time. Your safety is part of the inspection.",
-    nc: "NC SOP .1106(c)(2)-(3): enter attics except when access is obstructed, entry could damage the property, or dangerous conditions are suspected, and report the method used to inspect the attic. An unsafe ladder is a valid reason not to enter; say so in the report.",
+    nc: "NC SOP .1106(c)(2)-(3): enter attics except when access is obstructed, entry could damage the property, or dangerous conditions are suspected, and report the access location, whether the attic was fully accessible, and the method used to inspect it. An unsafe ladder is a valid reason not to enter; say so in the report.",
   },
 
   'co-alarm': {
@@ -1161,7 +1164,7 @@ export const CHECKPOINT_CONTENT = {
       report: "A combination smoke and carbon monoxide alarm is installed in the hallway outside the bedrooms and responded to its test button.",
     },
     tip: "Read the label, not the shape. Smoke-only and combination alarms often look identical from the floor.",
-    nc: "NC SOP .1110(d) requires reporting in writing on the presence or absence of installed carbon monoxide alarms in any home with fireplaces, fuel-fired appliances, or attached garages, and operating their test function if readily accessible.",
+    nc: "NC SOP .1110(d)(2) requires reporting in writing the presence or absence of readily accessible installed carbon monoxide alarms in any home with fireplaces, fuel-fired appliances, or attached garages, and operating their test function, except when they are part of a central alarm system.",
   },
 
   'return-grille': {
@@ -1226,10 +1229,10 @@ export const CHECKPOINT_CONTENT = {
     title: "Dryer exhaust duct",
     course: 'appliances',
     defect: {
-      observe: "Behind the dryer, a silvery foil accordion duct runs to the wall, sagging into loops and crushed flat where the dryer was pushed back. Lint is packed around the joint at the dryer.",
+      observe: "Behind the dryer, a white plastic (vinyl) accordion duct runs to the wall, sagging into loops and squashed where the dryer was pushed back. Lint is packed around the joint at the dryer.",
       severity: 'safety', rec: 'contractor', recAlt: ['appliance'],
-      why: "Dryer fires are mostly lint fires. Foil accordion duct traps lint in its ridges, crushes easily, and can tear or melt, and a crushed duct makes the dryer run hotter and longer. Generally accepted practice is smooth rigid or semi-rigid metal duct, as short and straight as possible. Some manufacturers allow a short, listed flexible transition duct between dryer and wall, but never one that is concealed or crushed like this.",
-      report: "The clothes dryer is vented with flexible foil duct that is crushed and lint-laden. This is a fire hazard. Recommend replacement with smooth metal duct and cleaning of the vent system, by a qualified contractor.",
+      why: "Dryer fires are mostly lint fires. Plastic or vinyl accordion duct is combustible, traps lint in its ribs, and sags and crushes, which makes the dryer run hotter and longer; dryer manufacturers and current practice do not permit it. Generally accepted practice is smooth rigid or semi-rigid metal duct, as short and straight as possible. Some manufacturers allow a short, listed metal flexible transition duct between the dryer and the wall, but never plastic.",
+      report: "The clothes dryer is vented with plastic (vinyl) flexible duct, which is combustible and was observed to be crushed and lint-laden. This is a fire hazard. Recommend replacement with smooth metal duct and cleaning of the vent system, by a qualified contractor.",
     },
     tip: "Go outside and check the termination too. A running dryer should push the flap open, and the hood should have no screen to catch lint.",
     nc: "NC SOP .1114(a)(3) requires inspecting laundry venting systems.",
@@ -1247,7 +1250,7 @@ export const CHECKPOINT_CONTENT = {
     ok: {
       observe: "The washer connects with braided stainless steel hoses with no kinks, bulges, or drips at the fittings.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "Braided hoses in good condition with dry fittings: nothing to report.",
+      why: "Braided stainless hoses resist the bulging and splitting that make rubber hoses burst, and these show no kinks, bulges, or drips. Nothing to report, though turning the valves off during long absences is still good advice.",
       report: "Washing machine supply hoses were braided stainless steel and no leaks were observed.",
     },
     tip: "Look at the floor behind the washer and the drain standpipe while you are back there. Leaks hide behind laundry machines.",
@@ -1260,7 +1263,7 @@ export const CHECKPOINT_CONTENT = {
     course: 'elec-adv',
     defect: {
       observe: "On one single-pole breaker, two separate wires are clamped under the one terminal screw.",
-      severity: 'safety', rec: 'electrician', recAlt: [],
+      severity: 'safety', sevAlt: ['repair'], rec: 'electrician', recAlt: [],
       why: "Most breaker terminals are designed and listed for a single conductor. With two, the screw clamps tightly on one and loosely on the other, and a loose connection heats, arcs, and can start a fire inside the panel. A few breaker models are listed for two conductors and are marked that way, which is why you check the breaker's labeling before you write it up. The fix is usually a pigtail or an added breaker. Some inspectors grade this Repair; the mechanism of harm is fire, so Safety is the stronger call.",
       report: "Two conductors are connected to a single breaker terminal (double tap). Unless the breaker is listed for two conductors, this can result in loose connections and overheating. Recommend evaluation and correction by a licensed electrician.",
     },
@@ -1269,21 +1272,21 @@ export const CHECKPOINT_CONTENT = {
   },
 
   'panel-knockouts': {
-    title: "Dead front openings",
+    title: "Open knockouts in the panel cabinet",
     course: 'elec-adv',
     defect: {
-      observe: "With the dead front back on, two breaker slots are open with no filler plates. You can see the bus bar stabs through the gaps.",
-      severity: 'safety', rec: 'electrician', recAlt: [],
-      why: "The dead front is the barrier between fingers and energized parts. An open slot lets anyone touching the panel reach the bus, and lets sparks out of the enclosure if something fails. Filler plates matched to the panel brand are inexpensive.",
-      report: "Open breaker knockout slots were observed in the panel dead front, exposing energized parts. This is a shock hazard. Recommend installing approved filler plates by a licensed electrician.",
+      observe: "With the dead front off, you can see two round knockouts in the side and top walls of the panel cabinet that have been punched out and left open, with no cable, connector, or seal in them.",
+      severity: 'safety', sevAlt: ['repair'], rec: 'electrician', recAlt: [],
+      why: "A panel enclosure is meant to be closed on every side so that fingers, tools, rodents, and insects cannot reach energized parts, and so sparks or molten metal from a fault stay inside. Unused openings are expected to be closed with listed knockout seals or blanks. Open knockouts are cheap to fix and often appear after a circuit was removed. Some inspectors grade this Repair; because the hole leads straight to energized parts, Safety is the stronger call.",
+      report: "Open, unused knockouts were observed in the main electrical panel enclosure. These openings can allow contact with energized parts and entry by pests. Recommend installing approved knockout seals by a licensed electrician.",
     },
     ok: {
-      observe: "Every opening in the dead front is filled by a breaker handle or a filler plate.",
+      observe: "With the dead front off, every opening in the cabinet walls is either filled by a cable connector or still closed by its original knockout slug. The dead front itself has no open slots.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "No openings to energized parts. That is exactly what a dead front is for.",
-      report: "The panel dead front was intact with no open knockouts.",
+      why: "Every cable enters through a connector and every unused knockout is still closed, so the enclosure is intact on all sides. Check the dead front for open breaker slots too; both are part of keeping energized parts out of reach.",
+      report: "The panel enclosure and dead front were intact with no open knockouts or unfilled breaker slots.",
     },
-    tip: "Check the dead front before you remove it and after you replace it. Make sure all its screws are blunt-tipped panel screws, not sharp sheet-metal screws that can pierce wires.",
+    tip: "Look at all six sides of the cabinet, including the top and bottom edges you can only see with a light. Missing slugs often hide up where the service cable enters.",
   },
 
   'panel-white-hot': {
@@ -1372,44 +1375,44 @@ export const CHECKPOINT_CONTENT = {
     title: "TPR valve discharge",
     course: 'water-heater',
     defect: {
-      observe: "The temperature and pressure relief (TPR) valve's discharge pipe stops well above the garage floor, its open end pointing out toward where a person would stand.",
+      observe: "The temperature and pressure relief (TPR) valve on the tank has no discharge pipe at all. Its threaded outlet is open, crusted with white mineral deposits, and points out toward where a person would stand.",
       severity: 'safety', rec: 'plumber', recAlt: [],
-      why: "If controls fail, a water heater can overheat; when the TPR valve opens, it releases scalding water and steam. The discharge pipe exists to direct that safely: full size of the valve outlet, no threads on the end, no valve in it, draining by gravity, and terminating within about 6 in of the floor, or at an approved drain or the exterior. A pipe that ends at knee or waist height sprays scalding water on whoever is nearby. Do not test the TPR valve during an inspection; it may not reseat.",
-      report: "The water heater temperature and pressure relief valve discharge pipe terminates well above the floor. This is a scalding hazard. Recommend extending the discharge pipe to within 6 inches of the floor or to an approved location, by a licensed plumber.",
+      why: "If controls fail, a water heater can overheat; when the TPR valve opens, it releases scalding water and steam at full force. The discharge pipe exists to direct that safely: full size of the valve outlet, rated for hot water, no threads on the end, no valve in it, draining by gravity, and terminating within about 6 in of the floor, or at an approved drain or the exterior. With no pipe, the release sprays at waist height onto whoever is nearby. The mineral crust also hints that the valve has dripped or discharged before, which a plumber should look into. Do not test the TPR valve during an inspection; it may not reseat.",
+      report: "No discharge pipe is installed on the water heater temperature and pressure relief valve, and mineral deposits were observed at the valve outlet. This is a scalding hazard. Recommend installing a properly sized discharge pipe terminating within 6 inches of the floor or at an approved location, and evaluating the valve, by a licensed plumber.",
     },
-    tip: "Check the discharge pipe material too. It should be rated for hot water; a garden hose or thin plastic tube on a TPR valve is a defect.",
-    nc: "NC SOP .1109(a)(3) includes automatic safety controls in the hot water system inspection, while .1109(d)(3) says you are not required to operate them.",
+    tip: "Check the discharge pipe material whenever one is present. It should be rated for hot water; a garden hose or thin plastic tube on a TPR valve is a defect too.",
+    nc: "NC SOP .1109(a)(3) includes automatic safety controls in the hot water system inspection, while .1109(d)(4) says you are not required to operate them.",
   },
 
   'wh-age': {
     title: "Water heater age",
     course: 'water-heater',
-    defect: {
-      observe: "The data plate on the tank shows a manufacture date of 2009. The heater is working: the burner lights and the water at the kitchen tap runs hot.",
-      severity: 'monitor', rec: 'plumber', recAlt: ['none'],
-      why: "Tank-type gas water heaters commonly last somewhere around 8 to 12 years, depending on water quality and maintenance. At roughly 17 years, this one is well past that range. Age is not a malfunction: the heater is functioning as intended, so this is a budgeting item, not a repair. The risk is a tank leak; a garage location limits the damage, but buyers should plan for replacement. Some inspectors grade it Major as end of life; Monitor fits a unit that still works.",
-      report: "The water heater data plate indicates a manufacture date of 2009, making the unit approximately 17 years old, which is beyond the typical service life of tank-type water heaters. It was functioning at the time of the inspection. Recommend budgeting for replacement; a licensed plumber can advise.",
+    ok: {
+      observe: "The data plate on the tank reads MFG DATE 06/2001, 50 GAL, 40,000 BTU/HR, natural gas. The heater is working: the burner lights and the water at the kitchen tap runs hot.",
+      severity: 'monitor', sevAlt: ['ok'], rec: 'none', recAlt: ['plumber'],
+      why: "Age is information, not a defect. Tank-type gas water heaters commonly last somewhere around 8 to 12 years, depending on water quality and maintenance. At about 25 years, this one is far past that range, so a buyer should budget for replacement, but it is functioning as intended today. Report the manufacture date, say plainly that the unit is beyond typical service life, and recommend planning for replacement. Calling it a repair or a major defect is an over-call; leaving the age out entirely leaves the buyer without useful information.",
+      report: "The water heater data plate indicates a manufacture date of June 2001, making the unit approximately 25 years old, which is well beyond the typical service life of tank-type water heaters. It was functioning at the time of the inspection. Recommend budgeting for replacement; a licensed plumber can advise on timing.",
     },
     tip: "If there is no printed date, the serial number usually encodes it. Learn the common manufacturers' formats.",
-    nc: "NC SOP .1105(a)(1) and (b)(11): inspectors are not required to report the life expectancy of components or predict future failure. Reporting the manufacture date is still useful, and since the summary page (G.S. 143-151.58(a1)) is for components that do not function as intended, a working but old heater does not have to be listed there.",
+    nc: "NC SOP .1105(a)(1) and (b)(11): inspectors are not required to report the life expectancy of components or predict future failure, and .1109(b)(3) requires describing the water heating equipment, including fuel source, storage capacity, and location. The summary page (G.S. 143-151.58(a1)) is for components that do not function as intended, so a working but old heater does not have to be listed there.",
   },
 
   'wh-elevation': {
     title: "Ignition source height",
     course: 'water-heater',
     defect: {
-      observe: "The gas water heater sits directly on the garage slab. Its burner and pilot opening are only a few inches above the floor.",
+      observe: "The gas water heater sits directly on the garage slab. Its burner and pilot opening are only a few inches above the floor. The data plate shows a 2001 manufacture date and no FVIR marking.",
       severity: 'safety', rec: 'plumber', recAlt: [],
-      why: "Gasoline vapor is heavier than air and collects near a garage floor, where an open burner or pilot can ignite it. The traditional rule raises the ignition source at least 18 in above the garage floor. Many gas water heaters built since the mid-2000s are listed as flammable vapor ignition resistant (FVIR), and model codes accept that listing in place of elevation, so look for an FVIR label before you call it. Either way, the heater should be protected from vehicle impact.",
-      report: "The gas water heater rests on the garage floor with its ignition source less than 18 inches above the floor, and no flammable vapor ignition resistant (FVIR) listing was confirmed. This is a fire hazard. Recommend evaluation by a licensed plumber.",
+      why: "Gasoline vapor is heavier than air and collects near a garage floor, where an open burner or pilot can ignite it. The traditional rule raises the ignition source at least 18 in above the garage floor. Model codes exempt heaters listed as flammable vapor ignition resistant (FVIR), and FVIR construction became required for most new 30, 40, and 50 gal atmospheric gas water heaters in July 2003. This unit was built in 2001, before that requirement, and carries no FVIR listing, so the 18-in elevation applies and it is not met. It should also be protected from vehicle impact.",
+      report: "The gas water heater (manufactured 2001, no flammable vapor ignition resistant listing observed) rests on the garage floor with its ignition source less than 18 inches above the floor. This is a fire hazard. Recommend correction by a licensed plumber.",
     },
     ok: {
-      observe: "The water heater stands on a sturdy platform, with its burner opening about 18 in above the garage floor.",
+      observe: "The water heater stands on a sturdy platform, with its burner opening about 18 in above the garage floor. The data plate shows a 2001 manufacture date and no FVIR marking.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "Raised 18 in, the ignition source is above the layer where heavy fuel vapors collect. Also check that the platform is solid and that a car cannot hit the heater.",
-      report: "The water heater is elevated on a platform in the garage. No deficiencies were observed regarding ignition source height.",
+      why: "This heater predates FVIR construction, so elevation is what protects it, and raised 18 in its ignition source sits above the layer where heavy fuel vapors collect. Also check that the platform is solid and that a car cannot hit the heater.",
+      report: "The gas water heater is elevated on a platform in the garage with its ignition source approximately 18 inches above the floor. No deficiencies were observed regarding ignition source height.",
     },
-    tip: "Read the label before you write it up. An FVIR-listed heater on the floor is a different finding than an older unit on the floor.",
+    tip: "Read the data plate before you judge the height. A floor-mounted heater with an FVIR listing is a different finding than a pre-2003 unit on the floor.",
   },
 
   'wh-sediment-trap': {
@@ -1424,7 +1427,7 @@ export const CHECKPOINT_CONTENT = {
     ok: {
       observe: "A tee is installed in the gas supply just ahead of the control valve, with a short capped nipple extending down below it.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "That capped leg is the sediment trap, installed where it belongs, just ahead of the appliance.",
+      why: "That capped leg is the sediment trap, installed where it belongs, just ahead of the appliance's gas control, so debris and moisture drop into it instead of fouling the valve and burner. Nothing to report.",
       report: "A sediment trap is present on the gas supply at the water heater.",
     },
     tip: "While you are looking at the gas line, find the appliance shutoff valve and note it. Every gas appliance should have one within reach.",
@@ -1448,8 +1451,8 @@ export const CHECKPOINT_CONTENT = {
     course: 'sop-25',
     defect: {
       observe: "The door between the garage and the house hangs on three plain butt hinges. There is no spring hinge or closer, and when you let go of the open door, it stays where it is.",
-      severity: 'safety', rec: 'contractor', recAlt: [],
-      why: "The garage-to-house door is part of the fire and fume separation, and it only works when it is closed. A self-closing door keeps car exhaust and a garage fire out of the house when someone forgets to close it. Current model codes call for this door to be self-closing, but many older homes, like this 1987 house, predate that, so report it as a safety upgrade. Spring hinges are an inexpensive fix.",
+      severity: 'safety', sevAlt: ['repair'], rec: 'contractor', recAlt: [],
+      why: "The garage-to-house door is part of the fire and fume separation, and it only works when it is closed. A self-closing door keeps car exhaust and a garage fire out of the house when someone forgets to close it. Current model codes call for this door to be self-closing, but many older homes, like this 1987 house, predate that, so report it as a safety upgrade. Whether NC's current residential code keeps the self-closing language is not settled in our sources, and many inspectors grade this Repair, so Repair is accepted too. Spring hinges are an inexpensive fix.",
       report: "The door between the garage and the living space is not self-closing. Recommend installing self-closing hinges or a closer as a safety upgrade, by a qualified contractor.",
     },
     ok: {
@@ -1483,7 +1486,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The garage door opener did not reverse when meeting resistance during closing. This is an entrapment hazard. Recommend evaluation and repair or replacement by a qualified garage door technician.",
     },
     tip: "Test contact reverse and the photo-eyes separately; they are two different safety systems. Keep a hand on the wall button so you can stop the door instantly.",
-    nc: "NC SOP .1107(b)(4) requires reporting whether or not any garage door operator will automatically reverse or stop when meeting reasonable resistance during closing.",
+    nc: "NC SOP .1107(a)(3) includes garage door operators and their automatic safety controls, and .1107(b)(4)-(6) require reporting any operator that will not automatically reverse when meeting reasonable resistance during closing, any door that will not reverse when the photoelectric safety devices are actuated, and any operator without a photoelectric safety device.",
   },
 
   'door-photo-eyes': {
@@ -1502,6 +1505,7 @@ export const CHECKPOINT_CONTENT = {
       report: "The garage door photo-eye sensors are installed and reversed the door when the beam was interrupted.",
     },
     tip: "Break the beam with your foot, not a box. You are testing whether it sees something the size of a small child near the floor.",
+    nc: "NC SOP .1107(b)(5)-(6) require reporting any garage door that will not automatically reverse when the photoelectric safety devices are actuated, and any operator that does not use a photoelectric safety device.",
   },
 
   'firewall-penetration': {
@@ -1573,14 +1577,14 @@ export const CHECKPOINT_CONTENT = {
     title: "Roof decking stain",
     course: 'moisture',
     defect: {
-      observe: "On the underside of the roof decking near the plumbing vent there is a dark, irregular stain, with a water trail running downslope along a rafter.",
+      observe: "On the underside of the roof decking near the plumbing vent there is a dark, irregular stain, with a water trail running downslope along a truss top chord.",
       reading: "Moisture meter: 26% WME at the stain, elevated relative to the 12% reference on dry decking nearby.",
       severity: 'repair', rec: 'roofer', recAlt: [],
       why: "Wood moisture above about 19% is conducive to decay fungi. A wet reading at a roof penetration points to an active leak, most likely at the vent boot or flashing directly above. Match the stain to what you saw on the roof; that pairing makes your report credible.",
       report: "A water stain with elevated moisture readings was observed on the roof decking near the plumbing vent, indicating an active roof leak. Recommend evaluation and repair by a qualified roofing contractor.",
     },
     ok: {
-      observe: "On the underside of the roof decking near the plumbing vent there is a dark, irregular stain, with a water trail running downslope along a rafter.",
+      observe: "On the underside of the roof decking near the plumbing vent there is a dark, irregular stain, with a water trail running downslope along a truss top chord.",
       reading: "Moisture meter: 11% WME at the stain, the same as the reference on dry decking. Dry at the time of inspection.",
       severity: 'monitor', rec: 'none', recAlt: ['roofer'],
       why: "A dry stain at a penetration is evidence of a past leak; boots get replaced and the stain stays. Report it, note it was dry, and recommend monitoring, especially after heavy rain. If the roof above showed a fresh repair, say so.",
@@ -1595,9 +1599,9 @@ export const CHECKPOINT_CONTENT = {
     course: 'attic-interior',
     defect: {
       observe: "Near the eave on the north slope, the decking looks darker than elsewhere in the attic, but in the dim light you cannot tell whether it is discoloration or shadow.",
-      reading: "Flashlight: black, speckled growth across several sheets of decking near the eave, fuzzy in spots, with rust on the protruding nail tips. The eave below it is packed with insulation.",
+      reading: "Flashlight: black, speckled growth across several sheets of decking near the eave, fuzzy in spots, with rust on the protruding nail tips.",
       severity: 'repair', rec: 'contractor', recAlt: ['roofer'],
-      why: "This pattern, concentrated on the colder north slope near blocked eaves, is the signature of attic condensation: warm, moist air meets cold decking and condenses, feeding microbial growth and rusting nails. The cure is ventilation and control of moisture sources, such as cleared soffits and bath fans vented outside, not just cleaning. Describe it as microbial-like growth and refer; identifying mold is outside a home inspection.",
+      why: "This pattern, concentrated on the colder north slope near the eave, is the signature of attic condensation: warm, moist air meets cold decking and condenses, feeding microbial growth and rusting nails. Go find the cause before you write it up: check whether the eave ventilation path is open or blocked by insulation, and where the bath fan duct ends. The cure is ventilation and control of moisture sources, not just cleaning. Describe it as microbial-like growth and refer; identifying mold is outside a home inspection.",
       report: "Dark staining consistent with microbial growth and rusted nail tips were observed on the roof decking near the north eave, indicating attic condensation. Recommend evaluation of attic ventilation and moisture sources by a qualified contractor. Further evaluation by an environmental professional may be considered.",
     },
     ok: {
@@ -1633,9 +1637,9 @@ export const CHECKPOINT_CONTENT = {
       report: "Insulation is blocking the soffit vents at the eaves, and no baffles are installed. This restricts attic ventilation. Recommend installing baffles and clearing the vent path, by a qualified contractor.",
     },
     ok: {
-      observe: "Foam baffles run up from the top of the wall between the rafters, keeping a clear channel above the insulation. You can see daylight from the soffit vents.",
+      observe: "Foam baffles run up from the top of the wall between the truss top chords, keeping a clear channel above the insulation. You can see daylight from the soffit vents.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "An open intake path at every rafter bay lets the ventilation system work as designed.",
+      why: "An open intake path at every truss bay lets the ventilation system work as designed.",
       report: "Soffit ventilation baffles are installed and the intake path appeared clear.",
     },
     tip: "Turn off your flashlight at the eave for a moment. Daylight from the soffit is the simplest test of an open vent path.",
@@ -1711,7 +1715,7 @@ export const CHECKPOINT_CONTENT = {
     course: 'crawl-adv',
     defect: {
       observe: "In the low area near the rear wall, water stands in a shallow pool on top of the ground cover. The block wall above it shows a dark, damp band and a line of silt.",
-      severity: 'repair', rec: 'contractor', recAlt: [],
+      severity: 'repair', sevAlt: ['major'], rec: 'contractor', recAlt: [],
       why: "Standing water in a crawlspace is where most crawlspace problems start: high humidity, wet framing, decay, mold, and termites. The source is usually outside, from grading, downspouts, or groundwater, so look back outside at the grade and gutters above this wall. Corrections range from drainage fixes outside to interior drains and a sump. Some inspectors grade this Major; with an unknown source and a silt line showing repeated pooling, that is defensible.",
       report: "Standing water was observed in the crawlspace near the rear foundation wall, with silt and moisture staining on the wall. Recommend evaluation and correction of the water source and crawlspace drainage by a qualified contractor.",
     },
@@ -1760,18 +1764,18 @@ export const CHECKPOINT_CONTENT = {
     title: "Joist at plumbing run",
     course: 'structural',
     defect: {
-      observe: "Where the drain pipe crosses, a joist has a notch cut out of its bottom edge, about one third of the way through its depth, near the middle of its span. The floor above is not visibly sagging yet.",
-      severity: 'repair', rec: 'structural', recAlt: ['contractor'],
-      why: "The bottom edge of a joist at mid-span carries the most tension, so notching it there is the worst place to cut. The generally taught limits for sawn joists are notches no deeper than 1/6 of the joist depth and never in the middle third of the span, and bored holes no larger than 1/3 of the depth and at least 2 in from the top and bottom edges. A structural engineer can specify a repair, often sistering or a reinforcing plate, which a contractor then installs.",
-      report: "A floor joist has been notched at the bottom edge near mid-span to accommodate plumbing. This can reduce the joist's load capacity. Recommend evaluation by a licensed structural engineer and repair as specified.",
+      observe: "Where the drain pipe crosses, a joist has a notch cut out of its bottom edge, about one third of the way through its depth, near the middle of its span. A split runs lengthwise along the grain from the inside corner of the notch.",
+      severity: 'major', sevAlt: ['repair'], rec: 'structural', recAlt: ['contractor'],
+      why: "The bottom edge of a joist at mid-span carries the most tension, so notching it there is the worst place to cut, and the square inside corner concentrates stress. The split running from that corner is the joist telling you it is already failing at the cut, which is why this rises to Major rather than routine repair. The generally taught limits for sawn joists are notches no deeper than 1/6 of the joist depth and never in the middle third of the span, and bored holes no larger than 1/3 of the depth and at least 2 in from the top and bottom edges. A structural engineer can specify a repair, often sistering or a reinforcing plate, which a contractor then installs.",
+      report: "A floor joist has been notched at the bottom edge near mid-span to accommodate plumbing, and a split extends from the notch. This reduces the joist's load capacity. Recommend evaluation by a licensed structural engineer and repair as specified.",
     },
     ok: {
       observe: "The drain pipe passes through a neat bored hole in the middle of the joist's depth, a couple of inches across, well away from the top and bottom edges.",
       severity: 'ok', rec: 'none', recAlt: [],
-      why: "A modest hole near the center of the joist depth sits along the neutral axis, where the wood carries the least stress. That is the accepted way to run pipe through a joist.",
+      why: "A modest hole near the center of the joist depth sits along the neutral axis, where the wood carries the least stress. That is the accepted way to run pipe through a joist: within 1/3 of the depth and at least 2 in from either edge.",
       report: "Floor framing was observed to be in serviceable condition where plumbing passes through the joists.",
     },
-    tip: "Remember 'bottom middle is off limits.' The bottom edge in the middle third of a span is never cut.",
+    tip: "Remember 'bottom middle is off limits.' The bottom edge in the middle third of a span is never cut, and a split from a notch corner is damage, not a quirk.",
   },
 
   'joist-moisture': {
@@ -1817,8 +1821,8 @@ export const CHECKPOINT_CONTENT = {
     course: 'foundation',
     ok: {
       observe: "White, powdery deposits coat parts of the block wall near the bottom. They brush off with a gloved finger, and the block underneath is solid and uncracked.",
-      severity: 'ok', rec: 'none', recAlt: [],
-      why: "This is efflorescence: mineral salt left behind when water moves through masonry and evaporates at the surface. It tells you moisture is passing through the wall, which is worth connecting to the grading and gutters outside, but by itself it is not a structural defect and does not mean the wall is failing. Writing efflorescence up as structural damage is a classic over-call. Some inspectors note it as Monitor for moisture; that is a style choice, not a structural one.",
+      severity: 'ok', sevAlt: ['monitor'], rec: 'none', recAlt: [],
+      why: "This is efflorescence: mineral salt left behind when water moves through masonry and evaporates at the surface. It tells you moisture is passing through the wall, which is worth connecting to the grading and gutters outside, but by itself it is not a structural defect and does not mean the wall is failing. Writing efflorescence up as structural damage is a classic over-call. Some inspectors note it as Monitor for moisture, and that is accepted; what is not accepted is calling it structural.",
       report: "White mineral deposits (efflorescence) were observed on the foundation block. Efflorescence indicates moisture movement through the masonry and is common in crawlspaces; it is not, by itself, a structural concern. Maintain good exterior drainage.",
     },
     tip: "Separate the two questions: is the masonry sound (look for spalling and cracks), and where is the water coming from (go outside and look).",
@@ -1900,7 +1904,7 @@ export const GLOSSARY = [
   { term: "Air gap (dishwasher)", def: "A countertop fitting that breaks the connection between the dishwasher drain and the sink drain so dirty water cannot flow back into the dishwasher." },
   { term: "Antioxidant compound", def: "A paste applied to aluminum conductors at their terminals to prevent oxidation and keep the connection tight and cool." },
   { term: "Back-siphonage", def: "Reverse flow of contaminated water into the potable supply caused by a drop in supply pressure. Prevented by vacuum breakers and air gaps." },
-  { term: "Baffle (rafter vent)", def: "A channel installed between rafters at the eaves that keeps insulation from blocking soffit vents, preserving the attic ventilation path." },
+  { term: "Baffle (rafter vent)", def: "A channel installed between rafters or truss top chords at the eaves that keeps insulation from blocking soffit vents, preserving the attic ventilation path." },
   { term: "Cross connection", def: "Any physical connection between the drinking water supply and a source of contamination, such as a hose lying in a pool." },
   { term: "Counterflashing", def: "Flashing set into a masonry or wall joint and lapped over the base or step flashing so water cannot run behind it." },
   { term: "Creosote stages", def: "First stage: dry, powdery soot that brushes off. Second stage: flaky, crunchy, puffy deposits. Third stage: a glossy, tar-like glaze that is very hard to remove and very flammable." },

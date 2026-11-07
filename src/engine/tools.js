@@ -30,7 +30,10 @@ export function createTools({ scene, camera, fixtures, reducedMotion }) {
   spot.position.set(0.12, -0.12, 0.05); spot.target.position.set(0, -0.05, -1);
   camera.add(spot, spot.target);
   const glow = new THREE.PointLight('#9fb2d6', 0, 3.5, 2); camera.add(glow);
-  for (const l of [hemi, sun, spot, glow, ...pool]) l.layers.enableAll();
+  // inspect fill: follows the camera so shadowed parts (under the deck, inside cabinets) read
+  const fill = new THREE.PointLight('#fff4e6', 0, 0, 2); fill.position.set(0.25, 0.35, 0.1); camera.add(fill);
+  for (const l of [hemi, sun, spot, glow, fill, ...pool]) l.layers.enableAll();
+  const fillState = { on: false, dist: 1, cur: 0 };
 
   let tool = 'hand', dark = false, thermalOn = false;
   const target = { hemi: 1.0, sun: 2.6, pool: 0 };
@@ -84,6 +87,10 @@ export function createTools({ scene, camera, fixtures, reducedMotion }) {
     const headlamp = dark && (tool === 'moisture' || tool === 'tester');
     spot.intensity = fl ? (dark ? 26 : 3.5) : headlamp ? 11 : 0;
     glow.intensity = dark && !fl && !thermalOn ? 0.35 : 0;
+    // irradiance at the framed object stays roughly constant whatever the framing distance
+    const want = fillState.on ? (dark ? (fl ? 0.9 : 0.35) : 2.2) * fillState.dist * fillState.dist : 0;
+    fillState.cur += (want - fillState.cur) * Math.min(1, dt * 8);
+    fill.intensity = fillState.cur;
   }
 
   return {
@@ -92,6 +99,7 @@ export function createTools({ scene, camera, fixtures, reducedMotion }) {
     get dark() { return dark; },
     setTool(t) { tool = t; thermalOn = t === 'thermal'; },
     thermalFor, setProfile, update, sun, hemi,
+    setFill(on, dist) { fillState.on = on; if (dist) fillState.dist = Math.max(0.4, dist); },
     cursor(hovering, dragging) {
       if (dragging) return 'grabbing';
       if (tool === 'hand') return hovering ? 'pointer' : 'grab';

@@ -41,7 +41,7 @@ export function createLogCard(ctx) {
       append(ctx.layers.fx, ring);
     }
     entry = ctx.modals.open(wrap, {
-      kind: 'logcard', label: 'Log a finding', onKey, initialFocus: '#lc-title',
+      kind: 'logcard', label: 'Log a finding', onKey, initialFocus: '#lc-title', passThrough: true,
       onClose: () => { ring?.remove(); ring = null; entry = null; cur = null; ctx.inspect?.render(); },
     });
     cur.card = card;
@@ -105,10 +105,7 @@ export function createLogCard(ctx) {
       if (live) store.markToolRead(cp.id);
       append(body, readout(cp.tool, sc?.reading, { remembered: !live }));
     }
-    append(body, h('section', { class: 'observe' },
-      h('div', { class: 'section-label' }, icon('eye', { size: 15 }), ' What you observe'),
-      h('p', { class: 'observe-text' }, sc?.observe ? clean(sc.observe)
-        : 'Teaching notes for this item are still being written. Judge from the model in front of you.')));
+    append(body, observeSection());
 
     // Severity pills
     const hintLine = h('p', { class: 'sev-hint', 'aria-live': 'polite' }, choice.severity ? SEV[choice.severity].hint : 'Pick the one that fits. Hover or focus a choice to see what it means.');
@@ -148,13 +145,15 @@ export function createLogCard(ctx) {
     const note = h('textarea', { class: 'note', rows: 2, placeholder: 'Your words, if you want them in the report (optional)', 'aria-label': 'Note (optional)' });
     note.value = choice.note || '';
     note.addEventListener('input', () => { choice.note = note.value; });
+    note.addEventListener('focus', () => entry?.setBlocking(true));
+    note.addEventListener('blur', () => entry?.setBlocking(false));
     const noteWrap = h('details', { class: 'note-wrap', open: choice.note ? true : null },
       h('summary', null, 'Add a note (optional)'), note);
     append(body, noteWrap);
 
     const ready = choice.severity && choice.rec;
     const submit = h('button', { class: 'btn btn-primary btn-lg', type: 'button', disabled: !ready, onclick: submitFinding },
-      store.isLogged(cur.cp.id) ? 'Log it again' : 'Log finding');
+      store.isLogged(cur.cp.id) ? 'Log practice run' : 'Log finding');
     const why = h('span', { class: 'muted small' }, ready ? '' : !choice.severity ? 'Choose a severity first.' : 'Now choose who to refer.');
     append(card, body, h('footer', { class: 'lc-foot' }, why, submit));
 
@@ -169,6 +168,28 @@ export function createLogCard(ctx) {
       choice.rec = id;
       keepFocus(() => render(), `.rec-chip[data-v="${id}"]`);
     }
+  }
+
+  // M1: the observation text names the condition, so it stays hidden until the player has made
+  // their own call. The evidence is the model in the view (or the instrument readout above).
+  function observeSection() {
+    const { cp, sc, choice } = cur;
+    const practice = store.isLogged(cp.id); // re-logs are practice: the description is free
+    if (choice.hinted || practice) {
+      return h('section', { class: 'observe' },
+        h('div', { class: 'section-label' }, icon('eye', { size: 15 }), practice ? ' What a senior inspector saw' : ' Described for you (half points)'),
+        h('p', { class: 'observe-text', tabindex: '-1' }, sc?.observe ? clean(sc.observe) : 'No description has been written for this item yet.'));
+    }
+    const prompt = cp.tool
+      ? 'The reading above is your evidence. What does it tell you, and how serious is it?'
+      : `Look closely in the view. Drag to orbit and scroll to zoom${ring ? '; the orange ring marks the spot' : ''}. What do you see, and how serious is it?`;
+    return h('section', { class: 'observe observe-hidden' },
+      h('div', { class: 'section-label' }, icon('eye', { size: 15 }), ' Your eyes first'),
+      h('p', { class: 'observe-prompt' }, prompt),
+      sc?.observe ? h('button', {
+        class: 'btn btn-ghost btn-sm hint-btn', type: 'button',
+        onclick: () => { ctx.sound.play('click'); choice.hinted = true; keepFocus(() => render(), '.observe-text'); },
+      }, icon('help', { size: 15 }), ' Describe it for me', h('span', { class: 'muted small' }, ' (half points)')) : null);
   }
 
   function keepFocus(fn, sel) {
@@ -195,12 +216,12 @@ export function createLogCard(ctx) {
   function submitFinding() {
     const { cp, sc, choice, state } = cur;
     // If content has not landed yet, grade gently from the true state so the loop still works.
-    const answer = sc ? { severity: sc.severity, rec: sc.rec, recAlt: sc.recAlt || [] }
+    const answer = sc ? { severity: sc.severity, sevAlt: sc.sevAlt || [], rec: sc.rec, recAlt: sc.recAlt || [] }
       : state === 'ok' ? { severity: 'ok', rec: 'none' }
         : { severity: choice.severity === 'ok' ? 'repair' : choice.severity, rec: choice.rec, recAlt: [] };
     const first = !store.isLogged(cp.id);
-    const result = store.logFinding(cp.id, { severity: choice.severity, rec: choice.rec, note: choice.note }, answer);
-    cur.result = result; cur.firstLog = first; cur.reviewing = false; cur.answer = answer; cur.step = 'feedback';
+    const result = store.logFinding(cp.id, { severity: choice.severity, rec: choice.rec, note: choice.note, hinted: first && !!choice.hinted }, answer);
+    cur.result = result; cur.firstLog = first && !result.practice; cur.reviewing = false; cur.answer = answer; cur.step = 'feedback';
     ctx.sound.play(VERDICT[result.sevScore]?.sfx || 'click');
     render();
   }
@@ -208,7 +229,8 @@ export function createLogCard(ctx) {
   // ── Step 2: feedback, the teaching moment ──
   function renderFeedback(card) {
     const { cp, sc, content, result } = cur;
-    const answer = cur.answer || (sc ? { severity: sc.severity, rec: sc.rec, recAlt: sc.recAlt || [] } : null);
+    const answer = cur.answer || (sc ? { severity: sc.severity, sevAlt: sc.sevAlt || [], rec: sc.rec, recAlt: sc.recAlt || [] } : null);
+    const graded = store.inspection.logged[cp.id];
     const v = VERDICT[result.sevScore] || VERDICT.wrong;
     const recOk = result.recRight;
     const body = h('div', { class: 'lc-body' });
@@ -217,17 +239,33 @@ export function createLogCard(ctx) {
       h('div', { class: 'verdict-ico' }, icon(result.sevScore === 'wrong' ? 'x' : 'check', { size: 22 })),
       h('div', null, h('div', { class: 'verdict-title' }, v.title), h('div', { class: 'verdict-sub' }, v.sub)),
       h('div', { class: 'verdict-pts' }, cur.firstLog ? `+${result.points} XP`
-        : cur.reviewing ? h('span', { class: 'muted small' }, `logged earlier, ${result.points} pts`)
+        : cur.reviewing ? h('span', { class: 'muted small' }, `graded, ${result.points} pts`)
           : h('span', { class: 'muted small' }, 'practice, no XP'))));
+
+    // B3: a re-log never changes the graded call. Say so plainly.
+    if (result.practice === true && graded) append(body, h('p', { class: 'callout practice' },
+      h('strong', null, 'Practice run. '), 'Your graded call stays ', sevPill(SEV[graded.severity], 'sm'),
+      ` with ${REC[graded.rec]?.label || graded.rec}. Only your first log of an item counts toward the report.`));
+    if (cur.reviewing && graded?.practice) append(body, h('p', { class: 'callout practice' },
+      'Your latest practice run was ', sevPill(SEV[graded.practice.severity], 'sm'), '. The graded call below is your first one.'));
+    if (result.hinted) append(body, h('p', { class: 'callout' }, 'You asked for the description, so this call earned half points. Next time, trust your eyes first.'));
+    const viaAlt = answer && result.severity !== answer.severity && (answer.sevAlt || []).includes(result.severity);
+    if (viaAlt) append(body, h('p', { class: 'callout good' }, h('strong', null, 'Accepted: pros differ here. '), 'Full credit. The most common call is ', sevPill(SEV[answer.severity], 'sm'), ', and the why below explains the split.'));
+
+    // What was there to see (always shown after the call)
+    append(body, h('section', { class: 'observe' },
+      h('div', { class: 'section-label' }, icon('eye', { size: 15 }), ' What a senior inspector saw'),
+      h('p', { class: 'observe-text' }, sc?.observe ? clean(sc.observe) : 'No description has been written for this item yet.')));
 
     const yourSev = SEV[result.severity], wantSev = answer ? SEV[answer.severity] : null;
     const recList = answer ? [answer.rec, ...(answer.recAlt || [])].filter(Boolean) : [];
     append(body, h('table', { class: 'compare' },
-      h('thead', null, h('tr', null, h('th', null, ''), h('th', null, 'Your call'), h('th', null, 'Answer'))),
+      h('thead', null, h('tr', null, h('th', null, ''), h('th', null, result.practice === true ? 'This practice run' : 'Your call'), h('th', null, 'Answer'))),
       h('tbody', null,
         h('tr', null, h('th', { scope: 'row' }, 'Severity'),
           h('td', null, sevPill(yourSev), mark(result.sevScore === 'exact' ? 'good' : result.sevScore === 'near' ? 'near' : 'bad')),
-          h('td', null, wantSev ? sevPill(wantSev) : '')),
+          h('td', null, wantSev ? sevPill(wantSev) : '',
+            (answer?.sevAlt || []).length ? h('div', { class: 'muted small' }, `Also accepted: ${answer.sevAlt.map(s => SEV[s]?.display || s).join(', ')}`) : null)),
         h('tr', null, h('th', { scope: 'row' }, 'Referral'),
           h('td', null, REC[result.rec]?.label || result.rec, mark(recOk ? 'good' : 'bad')),
           h('td', null, recList.length ? REC[recList[0]]?.label || recList[0] : '',
@@ -252,7 +290,7 @@ export function createLogCard(ctx) {
     append(body, actions);
 
     append(card, body, h('footer', { class: 'lc-foot' },
-      h('button', { class: 'btn btn-ghost', type: 'button', onclick: () => { cur.step = 'observe'; render(); } }, 'Log it again'),
+      h('button', { class: 'btn btn-ghost', type: 'button', onclick: () => { cur.step = 'observe'; cur.reviewing = false; render(); } }, 'Practice again'),
       h('button', { class: 'btn btn-primary', type: 'button', 'data-autofocus': '', onclick: () => entry?.close('done') }, 'Done')));
     requestAnimationFrame(() => card.querySelector('[data-autofocus]')?.focus({ preventScroll: true }));
   }

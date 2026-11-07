@@ -10,8 +10,10 @@ export function createModals({ bus, host }) {
   const stack = [];
   let lastOpen = null;
 
+  // A pass-through entry (the log card) keeps focus and Esc but lets the engine keep orbiting,
+  // unless it asks to block (e.g. while the player types a note).
   const sync = () => {
-    const open = stack.length > 0;
+    const open = stack.some(e => !e.passThrough || e.blocking);
     if (open !== lastOpen) { lastOpen = open; bus.emit('ui:modal', { open }); }
   };
 
@@ -31,6 +33,7 @@ export function createModals({ bus, host }) {
     el.setAttribute('aria-modal', 'true');
     if (opts.label && !el.getAttribute('aria-label') && !el.getAttribute('aria-labelledby')) el.setAttribute('aria-label', opts.label);
     const entry = { el, dismissable: true, ...opts, prevFocus: document.activeElement, closed: false };
+    entry.setBlocking = (on) => { entry.blocking = !!on; sync(); };
     entry.close = (reason) => {
       if (entry.closed) return;
       entry.closed = true;
@@ -71,18 +74,19 @@ export function createModals({ bus, host }) {
   return {
     open, top, trap, closeWhere,
     get count() { return stack.length; },
+    get blocking() { return stack.some(e => !e.passThrough || e.blocking); },
     has: (kind) => stack.some(e => e.kind === kind),
   };
 }
 
 /** A calm confirm dialog. Resolves true/false. */
-export function confirmDialog(ctx, { title, body, confirm = 'Confirm', cancel = 'Cancel', danger = false }) {
+export function confirmDialog(ctx, { title, body, confirm = 'Confirm', cancel = 'Cancel', danger = false, focusCancel = danger }) {
   return new Promise((resolve) => {
     let result = false;
     const id = 'cf-' + Math.random().toString(36).slice(2, 7);
     const wrap = h('div', { class: 'modal-wrap center', 'aria-labelledby': id + '-t', role: 'alertdialog' });
-    const yes = h('button', { class: `btn ${danger ? 'btn-danger' : 'btn-primary'}`, type: 'button', 'data-autofocus': danger ? null : '' }, confirm);
-    const no = h('button', { class: 'btn btn-ghost', type: 'button', 'data-autofocus': danger ? '' : null }, cancel);
+    const yes = h('button', { class: `btn ${danger ? 'btn-danger' : 'btn-primary'}`, type: 'button', 'data-autofocus': focusCancel ? null : '' }, confirm);
+    const no = h('button', { class: 'btn btn-ghost', type: 'button', 'data-autofocus': focusCancel ? '' : null }, cancel);
     const card = h('div', { class: 'card dialog' },
       h('h2', { id: id + '-t', class: 'dialog-title' }, title),
       body ? h('div', { class: 'dialog-body' }, body) : null,

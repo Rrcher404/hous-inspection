@@ -6,7 +6,7 @@ and learn the "why" from the exact course you're studying, until the judgement i
 
 ## Who it's for
 One adult learner working through InterNACHI's 120-hour NC pre-licensing program, heading for
-the NHIE and the 80 hours of field training. Mac, trackpad, study sessions of 20 to 60 minutes.
+the NC Board licensing exam (200 questions, 70% to pass) and the 80 hours of field training. Mac, trackpad, study sessions of 20 to 60 minutes.
 
 ## Design pillars
 1. **Judgement over recall.** The core verb isn't "click the defect", it's *classify* it:
@@ -62,9 +62,9 @@ Per checkpoint: severity exact 10, one step off 5 (never across Acceptable), rig
 Ranks: Trainee → Ride-Along Apprentice → Field Trainee → Associate → Licensed → Senior → Master.
 
 ## Learning layer
-- **Pop quizzes** on first opening a component (NHIE-style, linked by component).
+- **Pop quizzes** on first opening a component (licensing-exam style, linked by component; they wait until you have logged the component so they never spoil a finding).
 - **Room checks**: 3 questions when a room is fully logged.
-- **Exam Mode**: 25 random questions from the whole bank.
+- **Exam Mode**: 25 random questions from the whole bank, against the NC Board exam's 70% pass mark.
 - **Field Notes**: every course in three sizes (one line, one paragraph, the field checklist),
   key numbers, and a "wobble" question you answer by doing something in the house.
 - **Course Map**: coverage of all 20 courses from what you've actually logged and answered.

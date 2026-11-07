@@ -113,13 +113,9 @@ function thermalStrip(text) {
   const delta = /(\d+(?:\.\d+)?)\s*°\s*[fc]?\s*(hotter|warmer|colder|cooler|higher|lower|above|below)/i.exec(text);
   const temps = delta ? [] : [...text.matchAll(/(-?\d+(?:\.\d+)?)\s*°\s*([FC])?/g)].map(m => parseFloat(m[1]));
   const spread = temps.length >= 2 ? Math.max(...temps) - Math.min(...temps) : 0;
-  const kind = /\b(uniform|evenly|even\b|consistent|no anomal)/.test(t) && !/not (uniform|even|consistent)/.test(t) ? 'even'
-    : /wet|damp|moist/.test(t) ? 'wet'
-      : /cold|cool|void|missing|gap|pushed aside|bare drywall|markedly different/.test(t) ? 'cold'
-        : /hot|overheat|elevated temp/.test(t) || spread >= 15 ? 'hot'
-          : /warm/.test(t) ? 'warm' : 'even';
+  const kind = thermalKind(t, spread);
   const spotLabel = delta ? `${/colder|cooler|lower|below/i.test(delta[2]) ? '−' : '+'}${delta[1]}°` : temps.length ? `${Math.max(...temps)}°` : null;
-  const frame = h('div', { class: `ir-frame ir-${kind}`, role: 'img', 'aria-label': `Thermal image: ${kind === 'even' ? 'even temperatures, no anomaly' : kind === 'cold' ? 'a sharp cold patch' : kind + ' spot'}` },
+  const frame = h('div', { class: `ir-frame ir-${kind}`, role: 'img', 'aria-label': `Thermal image: ${kind === 'even' ? 'even temperatures, no anomaly' : kind === 'cold' ? 'a cold patch' : kind === 'warm' ? 'a warm patch' : kind === 'wet' ? 'a cool, damp-looking patch' : 'a hot spot'}` },
     h('span', { class: 'ir-cross', 'aria-hidden': 'true' }),
     spotLabel ? h('span', { class: 'ir-spot' }, spotLabel) : null);
   let marks = null;
@@ -133,6 +129,24 @@ function thermalStrip(text) {
     h('div', { class: 'ir-scale' }, h('div', { class: 'ir-bar' }), marks,
       h('div', { class: 'ir-ends' }, h('span', null, 'cold'), h('span', null, 'hot'))),
     h('p', { class: 'ir-note' }, 'Thermal shows temperature differences only. Confirm with another tool before you call it.'));
+}
+
+/**
+ * Decide the false-colour look from prose (Voss M7). The anomaly is described by the verb phrase
+ * ("reads warm", "reads about 38°F hotter", "a cold patch"), not by whichever temperature word
+ * appears first: "reads warm against the cooler insulation" is a WARM anomaly.
+ */
+const TEMP_WORD = { hot: 'hot', hotter: 'hot', warm: 'warm', warmer: 'warm', cold: 'cold', colder: 'cold', cool: 'cold', cooler: 'cold', wet: 'wet', damp: 'wet', moist: 'wet' };
+export function thermalKind(t, spread = 0) {
+  if (/\b(uniform|evenly|even\b|consistent|no anomal)/.test(t) && !/not (uniform|even|consistent)/.test(t)) return 'even';
+  const verb = /\b(reads?|shows?|appears?|glows?|registers?|is|are)\s+(?:as\s+)?(?:about\s+|roughly\s+|nearly\s+)?(?:[\d.]+\s*°\s*[fc]?\s+)?(?:markedly\s+|noticeably\s+|much\s+|distinctly\s+|clearly\s+)?(hotter|hot|warmer|warm|colder|cold|cooler|cool|wet|damp)\b/.exec(t);
+  if (verb) return TEMP_WORD[verb[2]];
+  const noun = /\b(hot|warm|cold|cool|wet|damp)\s+(spot|patch|area|rectangle|stripe|band|zone|streak)/.exec(t);
+  if (noun) return TEMP_WORD[noun[1]];
+  const first = /\b(hotter|hot|warmer|warm|colder|cold|cooler|cool|wet|damp|moist)\b/.exec(t);
+  if (first) return TEMP_WORD[first[1]];
+  if (/void|missing|gap/.test(t)) return 'cold';
+  return spread >= 15 ? 'hot' : 'even';
 }
 
 // ── Flashlight: a raking beam sweeps the dark. ──

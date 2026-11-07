@@ -94,6 +94,10 @@ function hit(w, h, d, pos, rot = [0, 0, 0]) {
   m.position.set(...pos); m.rotation.set(rot[0], rot[1], rot[2]); m.userData.hit = true; m.castShadow = false; m.receiveShadow = false;
   return m;
 }
+/** Decoration that should never intercept a click (stains over tagged parts). */
+function noPick(m) { if (m) m.raycast = () => {}; return m; }
+/** Mark a mesh as a checkpoint's ring anchor (centre of its bounding box). */
+function anchor(m) { if (m) m.userData.anchor = true; return m; }
 function add(g, ...objs) { objs.forEach(o => o && g.add(o)); return g; }
 function T(obj, id) { if (obj) tag(obj, id); return obj; }
 /** Sub-group whose axes are world-aligned after the engine tilts a roof component. */
@@ -345,6 +349,7 @@ const ext = {
     ];
     for (const y of [2.3, 1.5, 0.75]) parts.push(gBox(dw + 0.01, 0.022, 0.006, [0, y, zc + dd / 2 + 0.003]), gBox(0.006, 0.022, dd + 0.01, [dw / 2 + 0.003, y, zc]), gBox(0.006, 0.022, dd + 0.01, [-dw / 2 - 0.003, y, zc]));
     const ds = T(merge(parts, WHITE_AL), id); add(g, ds);
+    add(g, T(anchor(hit(0.14, 0.2, 0.2, [0, 0.2, 0.13])), id));
     const hfn = (x, z) => {
       let y = 0.008 + 0.004 * Math.sin(x * 9 + z * 7);
       if (bad) { const d = (x * x) / 0.05 + ((z - 0.32) ** 2) / 0.06; if (d < 1) y = 0.003; else if (d < 1.6) y += 0.02 * (1.6 - d); }
@@ -490,6 +495,7 @@ const ext = {
     const ck = [gPipe([-0.8, 0.09, 0.003], [-0.8, 1.4, 0.003], 0.005, 6), gPipe([0.8, 0.09, 0.003], [0.8, 1.4, 0.003], 0.005, 6), gPipe([-0.8, 1.4, 0.003], [0.8, 1.4, 0.003], 0.005, 6),
       gPipe([-0.84, 0.035, 0.004], [0.84, 0.035, 0.004], 0.005, 6)];
     add(g, T(merge(ck, '#f4f3ee', { roughness: 0.4 }), 'window-sill-caulk'));
+    add(g, T(anchor(hit(0.7, 0.07, 0.07, [0.35, 0.05, 0.1])), 'window-sill-caulk'));
     return g;
   },
 
@@ -533,6 +539,7 @@ const ext = {
     const dome = mesh(gCyl(0.083, 0.083, 0.12, [0, 1.5, 0.186], [PI / 2, 0, 0], 24, true), mat('#dfe8ea', { transparent: true, opacity: 0.25, roughness: 0.05, metalness: 0.2, side: THREE.DoubleSide }));
     const cap = mesh(xf(new THREE.SphereGeometry(0.083, 20, 8, 0, PI * 2, 0, PI / 2), [0, 1.5, 0.246], [PI / 2, 0, 0], [1, 0.35, 1]), mat('#dfe8ea', { transparent: true, opacity: 0.25, roughness: 0.05, side: THREE.DoubleSide }));
     add(g, T(dome, 'meter-base'), T(cap, 'meter-base'));
+    add(g, T(anchor(hit(0.3, 0.42, 0.06, [0, 1.5, 0.26])), 'meter-base'));
     add(g, T(mesh(gBox(0.012, 0.03, 0.006, [0.09, 1.42, 0.13]), '#d8c13a'), 'meter-base'));
     // Mast + straps + weatherhead
     const GV = mat(C.galv, GALV);
@@ -556,7 +563,7 @@ const ext = {
       if (i !== 1) loops.push(tint(gCyl(0.012, 0.012, 0.05, [0.3 + i * 0.012, 3.185, 0.096], [0, 0, 0.4]), '#0f0f10'));
     });
     add(g, T(merge(loops, VC({ roughness: 0.5 })), 'service-drip-loop'));
-    add(g, T(hit(0.5, 0.4, 0.2, [0.15, 3.15, 0.1]), 'service-drip-loop'));
+    add(g, T(anchor(hit(0.5, 0.4, 0.2, [0.15, 3.15, 0.1])), 'service-drip-loop'));
     // Grounding electrode conductor + rod
     add(g, T(merge([gTube([[0.1, 1.3, 0.03], [0.1, 0.9, 0.012], [0.11, 0.4, 0.012], [0.12, 0.05, 0.03]], 0.0028, 20, 5), gCyl(0.008, 0.008, 0.08, [0.12, 0.0, 0.035]), gBox(0.025, 0.02, 0.025, [0.12, 0.035, 0.035])], C.copper, { metalness: 0.6, roughness: 0.4 }), 'meter-base'));
     // Tree limb resting on the drop, leaves swallowing the far end.
@@ -625,13 +632,14 @@ const ext = {
       for (let i = 0; i < 9; i++) ls.push(tint(gBox(0.02, 0.003, 0.012, [0.3 + rr() * 0.15, 0.075, 0.25 + rr() * 0.15], [0, rr() * 3, 0]), '#1c1c1c'));
     }
     add(g, T(merge(ls, VC({ roughness: 0.4, metalness: 0.3 })), 'condenser-line-insulation'));
-    add(g, T(hit(0.14, 0.32, 0.22, [0.46, 0.26, -0.34]), 'condenser-line-insulation'));
+    add(g, T(anchor(hit(0.16, 0.32, 0.24, [0.47, 0.26, -0.33])), 'condenser-line-insulation'));
     // Disconnect on the wall + liquidtight whip to the unit
     const DC = mat('#7f8589', { metalness: 0.4, roughness: 0.5 });
     add(g, T(merge([gBox(0.17, 0.26, 0.09, [-0.16, 0.95, wall + 0.045]), gBox(0.12, 0.05, 0.02, [-0.16, 0.97, wall + 0.1]), gCyl(0.012, 0.012, 0.12, [-0.16, 1.13, wall + 0.035])], DC), 'condenser-disconnect'));
     add(g, T(mesh(gTube([[-0.16, 0.82, wall + 0.05], [-0.12, 0.6, wall + 0.05], [0.1, 0.42, wall + 0.04], [inlet[0] - 0.05, inlet[1] + 0.03, inlet[2] - 0.03], inlet], 0.011, 50, 8, 0.12), '#6e7378', { roughness: 0.6 }), 'condenser-disconnect'));
     const lab = dmat('dclab', () => textTex(['A/C DISCONNECT', '30A  240V'], { w: 256, h: 96, bg: '#d33', fg: '#fff', font: 'bold 26px sans-serif' }), { opacity: 1 });
     add(g, T(tdecal(0.1, 0.035, lab, [-0.16, 1.03, wall + 0.0905]), 'condenser-disconnect'));
+    add(g, T(anchor(hit(0.2, 0.3, 0.05, [-0.16, 0.95, wall + 0.11])), 'condenser-disconnect'));
     return g;
   },
 
@@ -651,15 +659,15 @@ const ext = {
     }), { opacity: 1, roughness: 0.4 });
     add(g, T(tdecal(0.066, 0.104, gf, [0, 0.125, 0.0565]), 'ext-gfci'));
     add(g, T(merge([gBox(0.068, 0.106, 0.006, [0, 0.125, 0.053]), gBox(0.018, 0.009, 0.006, [-0.014, 0.125, 0.058]), gBox(0.018, 0.009, 0.006, [0.016, 0.125, 0.058])], '#f2f0e8', { roughness: 0.4 }), 'ext-gfci'));
-    add(g, T(hit(0.075, 0.11, 0.03, [0, 0.125, 0.06]), 'ext-gfci'));
+    add(g, T(anchor(hit(0.075, 0.11, 0.05, [0, 0.12, 0.07])), 'ext-gfci'));
     // The bubble lid, snapped at one hinge, hanging askew.
     const LID = mat('#9fa3a6', { transparent: true, opacity: 0.6, roughness: 0.3, side: THREE.DoubleSide });
-    const lid = group('lid'); lid.position.set(0.033, 0.214, 0.062); lid.rotation.set(0.5, 0.45, 0.62);
+    const lid = group('lid'); lid.position.set(0.04, 0.214, 0.062); lid.rotation.set(0.45, 1.25, 0.5);
     const sh = [gBox(0.11, 0.15, 0.003, [-0.033, -0.075, 0.064]), gBox(0.003, 0.15, 0.064, [-0.088, -0.075, 0.032]), gBox(0.003, 0.15, 0.064, [0.022, -0.075, 0.032]), gBox(0.11, 0.003, 0.064, [-0.033, 0.0, 0.032])];
     add(lid, T(merge(sh, LID), 'ext-receptacle-cover'));
     add(lid, T(tdecal(0.09, 0.12, crackMat('lidcrack', { color: '#e8e8e8', width: 1.6, branches: 4 }), [-0.04, -0.07, 0.0662]), 'ext-receptacle-cover'));
     add(g, lid);
-    add(g, T(hit(0.14, 0.12, 0.08, [0.06, 0.2, 0.11]), 'ext-receptacle-cover'));
+    add(g, T(anchor(hit(0.09, 0.05, 0.06, [0.09, 0.22, 0.13])), 'ext-receptacle-cover'));
     add(g, tdecal(0.02, 0.035, mat('#d8cdb3', { transparent: true, opacity: 0.8, depthWrite: false }), [0.031, 0.08, 0.0505]));
     return g;
   },
@@ -680,12 +688,15 @@ const ext = {
     const studs = [];
     for (const [x, y, z] of [[0.68, 0.75, -0.2], [0.68, R, 0.62]]) {
       studs.push(gCyl(0.006, 0.006, 0.022, [x - 0.025, y + 0.011, z - 0.025]), gCyl(0.006, 0.006, 0.018, [x + 0.025, y + 0.009, z + 0.025]), gCyl(0.006, 0.006, 0.02, [x + 0.025, y + 0.01, z - 0.025]));
-      add(g, T(tdecal(0.11, 0.11, stainMat('ghost' + z, '#d9cbb4', 1, 0.55), [x, y + 0.0015, z], [-PI / 2, 0, 0]), 'steps-handrail'));
+      add(g, noPick(tdecal(0.11, 0.11, stainMat('ghost' + z, '#d9cbb4', 1, 0.55), [x, y + 0.0015, z], [-PI / 2, 0, 0])));
     }
     add(g, T(merge(studs, RU), 'steps-handrail'));
-    add(g, T(tdecal(0.05, 0.22, streakMat('ruststreak', '#7a3f1d', 0.6), [0.69, 0.62, -0.099]), 'steps-handrail'));
+    add(g, noPick(tdecal(0.05, 0.22, streakMat('ruststreak', '#7a3f1d', 0.6), [0.69, 0.62, -0.099])));
+    // Sawn-off rail post stub on the landing (the visible anchor), and the click volume where the rail would run.
+    add(g, T(merge([gBox(0.1, 0.006, 0.1, [0.68, 0.753, -0.2]), gBox(0.038, 0.05, 0.038, [0.68, 0.781, -0.2]), gBox(0.04, 0.003, 0.04, [0.68, 0.806, -0.2])], RU), 'steps-handrail'));
+    add(g, T(mesh(gBox(0.032, 0.002, 0.032, [0.68, 0.8075, -0.2]), '#c9c3b6', { metalness: 0.6, roughness: 0.4 }), 'steps-handrail'));
     const L = Math.hypot(0.81, 0.5625), ang = Math.atan2(0.5625, 0.81);
-    for (const sx of [-1, 1]) add(g, T(hit(0.16, 0.45, L + 0.3, [sx * 0.72, (R + 0.75) / 2 + 0.75, 0.3], [ang, 0, 0]), 'steps-handrail'));
+    add(g, T(anchor(hit(0.18, 0.5, L + 0.3, [0.78, (R + 0.75) / 2 + 0.75, 0.3], [ang, 0, 0])), 'steps-handrail'));
     return g;
   },
 
@@ -803,6 +814,7 @@ const roof = {
     }), { opacity: 1, roughness: 0.55 });
     [[-0.9, -0.55, 0.9, 0], [0.6, 0.45, 1.0, 1], [-0.2, 0.75, 0.7, 2], [1.0, -0.6, 0.6, 0]].forEach(([x, z, s, k]) =>
       add(g, T(tdecal(s, s * 0.75, bald(k), [x, 0.0102, z], [-PI / 2, 0, x]), 'shingle-granule-loss')));
+    add(g, T(anchor(hit(0.7, 0.02, 0.5, [0.6, 0.012, 0.45])), 'shingle-granule-loss'));
     return g;
   },
 
@@ -819,6 +831,7 @@ const roof = {
     const CR = concreteMat('crown', '#a9a69f');
     add(U, T(tBox(w + 0.1, 0.07, d + 0.1, CR, [0, H + 0.035, 0]), 'chimney-crown'));
     add(U, T(tdecal(0.84, 0.84, crackMat('crown', { width: 5, branches: 6 }), [0, H + 0.0705, 0], [-PI / 2, 0, 0]), 'chimney-crown'));
+    add(U, T(anchor(hit(0.2, 0.06, 0.2, [0.25, H + 0.06, 0.25])), 'chimney-crown'));
     add(U, T(tdecal(0.3, 0.07, crackMat('crownside', { width: 4, branches: 2 }), [0.08, H + 0.035, d / 2 + 0.0505]), 'chimney-crown'));
     add(U, T(tdecal(0.16, 0.16, stainMat('spall', '#3b3a36', 2, 0.9), [-w / 2 + 0.02, H + 0.071, d / 2 + 0.02], [-PI / 2, 0, 0]), 'chimney-crown'));
     const chunk = mesh(xf(new THREE.DodecahedronGeometry(0.045, 0), [-0.22, 0.03, 0.58], [0.3, 0.8, 0.1], [1.3, 0.6, 1]), CR);
@@ -876,7 +889,7 @@ const roof = {
       add(g, T(merge(beads, RC, { roughness: 0.5 }), id));
       add(U, T(tdecal(w, 0.3, stainMat('chimwet', '#3e2a20', 2, 0.6), [0, -(d / 2) * t + 0.12, d / 2 + 0.002]), id));
     }
-    for (const sx of [-1, 1]) add(g, T(hit(0.1, 0.18, 2 * zf + 0.1, [sx * (w / 2 + 0.03), 0.06, 0]), id));
+    for (const sx of [-1, 1]) add(g, T(sx > 0 ? anchor(hit(0.1, 0.18, 2 * zf + 0.1, [sx * (w / 2 + 0.03), 0.06, 0])) : hit(0.1, 0.18, 2 * zf + 0.1, [sx * (w / 2 + 0.03), 0.06, 0]), id));
     add(g, T(hit(w + 0.15, 0.18, 0.12, [0, 0.06, zf + 0.05]), id));
     return g;
   },
@@ -1015,16 +1028,17 @@ const deck = {
     add(g, box(L, 0.3, 0.02, '#7d6a52', [0, 0.15, -0.01]));                                     // house rim behind
     const sid = []; for (let i = 0; i < 2; i++) sid.push(gBox(L, 0.11, 0.01, [0, 0.33 + i * 0.1, 0.006], [-0.11, 0, 0]));
     add(g, merge(sid, C.vinyl, { roughness: 0.6 }));
-    add(g, T(mesh(tint(gBox(L, lh, lt, [0, y0 + lh / 2, lt / 2]), PT, -0.02), PTV()), 'ledger-fasteners'));
+    add(g, T(mesh(tint(gBox(L, lh, lt, [0, y0 + lh / 2, lt / 2]), '#b8ad86', 0), PTV()), 'ledger-fasteners'));   // lighter than the joists so it reads in deck shade
     // 16d nails in pairs, no lags or through-bolts anywhere; two have backed out.
     const nails = [], shanks = [];
-    for (let x = -1.85; x < 1.9; x += 0.4) for (const dy of [0.05, 0.18]) {
+    // Nail rows kept in the lower 2/3 of the face; the top band belongs to the flashing checkpoint.
+    for (let x = -1.85; x < 1.9; x += 0.4) for (const dy of [0.045, 0.14]) {
       const pop = (Math.round(x * 10) === 5 && dy > 0.1) || (Math.round(x * 10) === -14 && dy < 0.1);
-      nails.push(gCyl(0.0045, 0.0045, 0.002, [x + (r() - 0.5) * 0.03, y0 + dy, lt + (pop ? 0.012 : 0.001)], [PI / 2, 0, 0], 8));
-      if (pop) shanks.push(gCyl(0.0017, 0.0017, 0.012, [x, y0 + dy, lt + 0.006], [PI / 2, 0, 0], 6));
+      nails.push(gCyl(0.0062, 0.0062, 0.0025, [x + (r() - 0.5) * 0.03, y0 + dy, lt + (pop ? 0.014 : 0.0012)], [PI / 2, 0, 0], 10));
+      if (pop) shanks.push(gCyl(0.0019, 0.0019, 0.014, [x, y0 + dy, lt + 0.007], [PI / 2, 0, 0], 6));
     }
-    add(g, T(merge([...nails, ...shanks], '#9aa0a3', { metalness: 0.6, roughness: 0.4 }), 'ledger-fasteners'));
-    add(g, T(hit(L, 0.19, 0.03, [0, y0 + 0.1, lt + 0.012]), 'ledger-fasteners'));
+    add(g, T(merge([...nails, ...shanks], '#d2d6d8', { metalness: 0.55, roughness: 0.3 }), 'ledger-fasteners'));
+    add(g, T(anchor(hit(L, 0.15, 0.03, [0, y0 + 0.09, lt + 0.012])), 'ledger-fasteners'));
     // Joist stubs + hangers (consistent with this inspection's hanger state).
     const jo = [], hg = [], hn = [], holes = [];
     for (let i = 0; i < 9; i++) {
@@ -1038,16 +1052,18 @@ const deck = {
     const dk = []; for (let z = 0.015; z < 0.33; z += 0.143) dk.push(ptBoard(L, 0.025, 0.14, [0, top + 0.0125, z + 0.07], null, r));
     add(g, merge(dk, PTV()));
     if (flOk) {
-      add(g, T(merge([gBox(L, 0.03, 0.0012, [0, top - 0.012, lt + 0.0008]), gBox(L, 0.0012, lt + 0.004, [0, top + 0.0008, lt / 2]), gBox(L, 0.05, 0.0012, [0, top + 0.03, 0.002])], C.galv, GALV), 'ledger-flashing'));
+      add(g, T(merge([gBox(L, 0.03, 0.0012, [0, top - 0.012, lt + 0.0008]), gBox(L, 0.0012, lt + 0.004, [0, top + 0.0008, lt / 2]), gBox(L, 0.05, 0.0012, [0, top + 0.03, 0.002])], '#c9cfd2', { metalness: 0.6, roughness: 0.3 }), 'ledger-flashing'));
     } else {
-      add(g, T(tdecal(L, 0.14, dmat('ledgerstreak', () => ctex('ledgerstreak', 512, 64, (c, W, H) => {
+      add(g, T(tdecal(L, 0.075, dmat('ledgerstreak', () => ctex('ledgerstreak', 512, 64, (c, W, H) => {
         const rr = rng('lstreak'); c.clearRect(0, 0, W, H);
         for (let i = 0; i < 60; i++) { const x = rr() * W, len = H * (0.3 + rr() * 0.7), gr = c.createLinearGradient(0, 0, 0, len); gr.addColorStop(0, 'rgba(40,28,16,0.85)'); gr.addColorStop(1, 'rgba(40,28,16,0)'); c.fillStyle = gr; c.fillRect(x, 0, 2 + rr() * 6, len); }
-      }), { opacity: 1 }), [0, top - 0.07, lt + 0.0015]), 'ledger-flashing'));
-      add(g, T(mesh(gBox(L, 0.012, lt + 0.002, [0, top - 0.006, lt / 2]), C.rot, { roughness: 1 }), 'ledger-flashing'));
-      add(g, T(tdecal(L, 0.12, ringMat('rimwet', '#2e2116', 3, 0.7), [0, top - 0.04, 0.0005]), 'ledger-flashing'));
+      }), { opacity: 1 }), [0, top - 0.0375, lt + 0.0015]), 'ledger-flashing'));
+      add(g, T(mesh(gBox(L, 0.014, lt + 0.003, [0, top - 0.007, lt / 2]), '#3a2817', { roughness: 1 }), 'ledger-flashing'));
+      // Bare joint where flashing should be: dark gap between siding and ledger top, no metal lip.
+      add(g, T(mesh(gBox(L, 0.03, 0.004, [0, top + 0.02, 0.003]), '#1d150d', { roughness: 1 }), 'ledger-flashing'));
+      add(g, noPick(tdecal(L, 0.12, ringMat('rimwet', '#2e2116', 3, 0.7), [0, top - 0.04, 0.0005])));
     }
-    add(g, T(hit(L, 0.05, 0.04, [0, top - 0.01, lt + 0.015]), 'ledger-flashing'));
+    add(g, T(anchor(hit(L, 0.06, 0.04, [0, top + 0.0, lt + 0.016])), 'ledger-flashing'));
     return g;
   },
 
@@ -1055,7 +1071,7 @@ const deck = {
   //    toe-nailed with no hanger, another hanger hung on two nails.
   'deck-framing': (states) => {
     const g = group('framing'); const ok = !isDef(states, 'joist-hangers'); const id = 'joist-hangers';
-    const r = rng('frm'), lt = 1.5 * IN, lh = 0.235, jh = 7.25 * IN, yb = lh - jh, JL = 2.4;
+    const r = rng('frm'), lt = 1.5 * IN, lh = 0.235, jh = 7.25 * IN, yb = lh - jh, JL = 1.8;
     add(g, mesh(tint(gBox(2.2, lh, lt, [0, lh / 2, lt / 2]), PT, -0.02), PTV()));
     const ln = []; for (let x = -1.0; x < 1.05; x += 0.4) for (const dy of [0.05, 0.18]) ln.push(gCyl(0.0045, 0.0045, 0.002, [x, dy, lt + 0.001], [PI / 2, 0, 0], 8));
     add(g, merge(ln, '#9aa0a3', { metalness: 0.6 }));
@@ -1105,6 +1121,7 @@ const deck = {
     }
     add(g, T(merge(bal, PTV()), 'baluster-spacing'));
     add(g, T(hit(2.9, y1 - y0 - 0.04, 0.08, [0, (y0 + y1) / 2, GZ]), 'baluster-spacing'));
+    add(g, T(anchor(hit(0.5, 0.3, 0.1, [-0.72, (y0 + y1) / 2, GZ + 0.01])), 'baluster-spacing'));
     return g;
   },
 
@@ -1147,7 +1164,7 @@ const deck = {
       for (const z of [zf(1) - 0.1, (zf(1) + zTop) / 2, zTop + 0.12]) rail.push(gBox(0.06, 0.012, 0.02, [x + 0.03, railY(z) - 0.03, z]), gCyl(0.004, 0.004, 0.04, [x + 0.01, railY(z) - 0.015, z]));
       add(g, T(merge(rail, '#a77f52', { roughness: 0.5 }), id));
     }
-    for (const sx of [-1, 1]) { const L = Math.hypot(zf(1) - zTop, (zf(1) - zTop) * slope); add(g, T(hit(0.22, 0.35, L, [sx * 0.5, railY((zf(1) + zTop) / 2) - 0.05, (zf(1) + zTop) / 2], [Math.atan(slope), 0, 0]), id)); }
+    for (const sx of [-1, 1]) { const L = Math.hypot(zf(1) - zTop, (zf(1) - zTop) * slope); const hb = hit(0.22, 0.35, L, [sx * 0.5, railY((zf(1) + zTop) / 2) - 0.05, (zf(1) + zTop) / 2], [Math.atan(slope), 0, 0]); add(g, T(sx > 0 ? anchor(hb) : hb, id)); }
     return g;
   },
 
@@ -1273,6 +1290,7 @@ const shed = {
     add(g, T(merge(field, TM), 'tile-broken'));
     add(g, T(merge(eaveRow, TM), 'tile-slipped'));
     add(g, T(merge(hipT, TM), 'tile-hip-mortar'), T(merge(mortar, '#cfc6b2', { roughness: 0.95 }), 'tile-hip-mortar'));
+    add(g, T(anchor(hit(0.3, 0.2, 0.3, [eave * 0.45, eaveY + (apexY - eaveY) * 0.55 + 0.1, eave * 0.45])), 'tile-hip-mortar'));
     add(g, T(mesh(gSph(0.09, [0, apexY + 0.08, 0], [1, 1.3, 1], 10, 8), C.tile), 'tile-hip-mortar'));
     // Bird-stop closures at the front eave (fill the arch openings).
     const bs = []; for (let k = -7; k <= 7; k++) bs.push(xf(new THREE.CircleGeometry(0.066, 10, 0, PI), [k * 0.2 + 0.1, 0.04, -0.005]).applyMatrix4(faceMat(0)));
@@ -1291,7 +1309,7 @@ const shed = {
       add(g, T(mesh(lower, VC({ roughness: 0.7, side: THREE.DoubleSide })), 'tile-broken'), T(mesh(hole, '#141210', { side: THREE.DoubleSide }), 'tile-broken'));
       add(g, T(mesh(edge, crackMat('tileedge', { color: '#5a2a16', width: 4, branches: 3 })), 'tile-broken'));
       const c = new THREE.Vector3(b.u, 0.06, -b.s - b.len * 0.4).applyMatrix4(b.M);
-      add(g, T(hit(0.22, 0.2, 0.36, c.toArray(), [-pitch, 0, 0]), 'tile-broken'));
+      add(g, T(anchor(hit(0.22, 0.2, 0.36, c.toArray(), [-pitch, 0, 0])), 'tile-broken'));
     }
     const shard = mesh(xf(new THREE.CylinderGeometry(0.07, 0.07, 0.14, 7, 1, true, PI - 0.9, 1.6), [0.45, 0.02, half + 0.55], [PI / 2 - 0.2, 0.7, 0.1]), C.tileDark, { side: THREE.DoubleSide });
     add(g, T(shard, 'tile-broken'));
@@ -1327,8 +1345,9 @@ const garage = {
       const span = (i === 0) ? 2 : 1; const [b, h] = brk(col, i, span); bodies.push(b); handles.push(h);
     }
     const main = [gBox(0.11, 0.1, 0.06, [0, 0.6, 0.04])];
-    add(g, T(merge([...bodies, ...main], '#1d1e21', { roughness: 0.5 }), 'panel-breaker-heat'));
-    add(g, T(merge([...handles, gBox(0.06, 0.03, 0.025, [0, 0.6, 0.083])], '#3a3c40', { roughness: 0.5 }), 'panel-breaker-heat'));
+    // Untagged on purpose: only the one loaded breaker carries panel-breaker-heat (it must not steal clicks).
+    add(g, merge([...bodies, ...main], '#1d1e21', { roughness: 0.5 }));
+    add(g, merge([...handles, gBox(0.06, 0.03, 0.025, [0, 0.6, 0.083])], '#3a3c40', { roughness: 0.5 }));
     const stab = []; for (const i of [12, 13]) stab.push(gBox(0.03, 0.012, 0.006, [0.015, rowY(i), 0.036]));
     add(g, merge(stab, TIN));
     const dtB = brk('L', 4), hB = brk('L', 7), wB = brk('R', 8, 2);
@@ -1336,6 +1355,7 @@ const garage = {
     const hM = T(merge(hB, '#1d1e21', { roughness: 0.5 }), 'panel-breaker-heat'); thermal(hM, hOk ? 'warm' : 'hot');
     const wM = T(merge(wB, '#1d1e21', { roughness: 0.5 }), 'panel-white-hot');
     add(g, dtM, hM, wM);
+    add(g, T(anchor(hit(0.07, 0.022, 0.03, [-0.04, rowY(7), 0.098])), 'panel-breaker-heat'));
     // Branch wiring: hots to gutters and out the top/bottom clamps; neutrals to the bar; grounds to the ground bar.
     const blk = [], red = [], wht = [], bare = [], sheaths = [];
     const termX = (col) => col === 'L' ? -0.077 : 0.077;
@@ -1356,13 +1376,18 @@ const garage = {
       bare.push(gTube([[end[0], end[1] + (up ? -0.025 : 0.025), 0.03], [0.12, up ? 0.55 : 0.1, 0.025], [0.145, gy, 0.03]], 0.0013, 14, 4));
     }
     add(g, merge(blk, '#151515', { roughness: 0.6 }), merge(red, '#b3221d', { roughness: 0.6 }), merge(wht, C.wireWhite, { roughness: 0.6 }), merge(bare, C.wireBare, { metalness: 0.6, roughness: 0.4 }), merge(sheaths, VC()));
-    // Double tap: two conductors under one single-pole terminal screw.
-    const dty = rowY(4);
-    const dtw = merge([gTube([[-0.077, dty, 0.088], [-0.1, dty + 0.01, 0.07], [-0.103, 0.64, 0.06], [-0.09, 0.705, 0.052]], 0.0028, 18, 5),
-      gTube([[-0.077, dty - 0.002, 0.09], [-0.108, dty - 0.01, 0.075], [-0.112, 0.08, 0.06], [-0.1, 0.012, 0.052]], 0.0024, 18, 5), gCyl(0.004, 0.004, 0.006, [-0.077, dty, 0.093], [PI / 2, 0, 0], 8)], '#151515', { roughness: 0.6 });
-    add(g, T(dtw, 'panel-double-tap'), T(hit(0.09, 0.04, 0.05, [-0.06, dty, 0.085]), 'panel-double-tap'));
+    // Double tap: a black 12 AWG and a red 14 AWG landing under ONE single-pole terminal screw.
+    // The pair runs side by side for the last few cm so both insulations read at inspect distance.
+    const dty = rowY(4), dtX = -0.077, dtBad = states?.['panel-double-tap'] !== 'ok';
+    const dtBlack = gTube([[dtX - 0.004, dty + 0.002, 0.092], [-0.093, dty + 0.006, 0.09], [-0.104, dty + 0.02, 0.08], [-0.105, 0.64, 0.062], [-0.09, 0.705, 0.052]], 0.0033, 24, 6);
+    add(g, T(mesh(dtBlack, '#121212', { roughness: 0.55 }), 'panel-double-tap'));
+    if (dtBad) add(g, T(mesh(gTube([[dtX - 0.004, dty - 0.003, 0.093], [-0.093, dty - 0.008, 0.091], [-0.112, dty - 0.02, 0.08], [-0.114, 0.08, 0.062], [-0.1, 0.012, 0.052]], 0.003, 24, 6), '#c0221b', { roughness: 0.5 }), 'panel-double-tap'));
+    // Terminal: tin saddle + bright screw head, a touch oversized so the lug reads.
+    add(g, T(merge([gBox(0.016, 0.016, 0.006, [dtX, dty, 0.094]), gCyl(0.0058, 0.0058, 0.004, [dtX, dty, 0.099], [PI / 2, 0, 0], 12)], '#d9dcdc', { metalness: 0.85, roughness: 0.2 }), 'panel-double-tap'));
+    add(g, T(mesh(gBox(0.009, 0.0012, 0.001, [dtX, dty, 0.1012]), '#3a3a3a'), 'panel-double-tap'));
+    add(g, T(anchor(hit(0.06, 0.036, 0.045, [dtX - 0.012, dty, 0.098])), 'panel-double-tap'));
     // The loaded circuit (thermal truth)
-    const hw = T(mesh(gTube([[-0.077, rowY(7), 0.088], [-0.115, rowY(7) - 0.004, 0.07], [-0.117, 0.08, 0.06], [-0.075, 0.012, 0.05]], 0.0028, 18, 5), '#151515', { roughness: 0.6 }), 'panel-breaker-heat');
+    const hw = mesh(gTube([[-0.077, rowY(7), 0.088], [-0.115, rowY(7) - 0.004, 0.07], [-0.117, 0.08, 0.06], [-0.075, 0.012, 0.05]], 0.0028, 18, 5), '#151515', { roughness: 0.6 });
     thermal(hw, hOk ? 'warm' : 'hot'); add(g, hw);
     // 240 V circuit on 10/2: black + white used as a hot.
     const y8 = rowY(8), y9 = rowY(9);
@@ -1370,11 +1395,12 @@ const garage = {
     add(g, T(mesh(gTube([[0.077, y9, 0.088], [0.104, y9 - 0.004, 0.07], [0.106, 0.08, 0.06], [0.082, 0.012, 0.052]], 0.003, 18, 5), C.wireWhite, { roughness: 0.6 }), 'panel-white-hot'));
     add(g, T(mesh(gCyl(0.008, 0.008, 0.03, [0.086, 0.018, 0.05]), '#e07b2a'), 'panel-white-hot'));
     if (wOk) { const tp = []; for (const y of [y9 - 0.008, y9 - 0.03, y9 - 0.05]) tp.push(gCyl(0.0042, 0.0042, 0.009, [0.104, y, 0.07], [0, 0, 0], 8)); add(g, T(merge(tp, '#0c0c0c', { roughness: 0.3 }), 'panel-white-hot')); }
-    add(g, T(hit(0.06, 0.08, 0.04, [0.095, (y8 + y9) / 2 - 0.02, 0.08]), 'panel-white-hot'));
+    add(g, T(anchor(hit(0.06, 0.06, 0.03, [0.098, (y8 + y9) / 2 - 0.015, 0.1])), 'panel-white-hot'));
     // Service entrance: aluminum conductors from the top hub to the main lugs and neutral lug.
     const se = [gTube([[-0.015, 0.73, 0.05], [-0.02, 0.69, 0.06], [-0.03, 0.665, 0.07]], 0.008, 12, 8), gTube([[0.015, 0.73, 0.05], [0.02, 0.69, 0.06], [0.03, 0.665, 0.07]], 0.008, 12, 8),
       gTube([[0.0, 0.73, 0.03], [-0.07, 0.66, 0.03], [-0.13, 0.58, 0.035], [-0.14, 0.53, 0.04]], 0.008, 16, 8)];
     add(g, T(merge(se, '#1a1a1a', { roughness: 0.5 }), 'panel-aluminum-sec'));
+    add(g, T(anchor(hit(0.1, 0.03, 0.03, [0, 0.668, 0.085])), 'panel-aluminum-sec'));
     add(g, T(merge([gCyl(0.006, 0.006, 0.014, [-0.03, 0.655, 0.072], [0, 0, 0], 8), gCyl(0.006, 0.006, 0.014, [0.03, 0.655, 0.072], [0, 0, 0], 8), gCyl(0.006, 0.006, 0.014, [-0.14, 0.525, 0.042], [0, 0, 0], 8),
       gBox(0.02, 0.016, 0.018, [-0.03, 0.645, 0.07]), gBox(0.02, 0.016, 0.018, [0.03, 0.645, 0.07])], '#c3c8cb', { metalness: 0.8, roughness: 0.3 }), 'panel-aluminum-sec'));
     add(g, T(merge([gSph(0.006, [-0.03, 0.662, 0.08], [1, 0.6, 1]), gSph(0.006, [0.03, 0.662, 0.08], [1, 0.6, 1])], '#6f7378', { roughness: 0.9 }), 'panel-aluminum-sec'));
@@ -1386,16 +1412,28 @@ const garage = {
         const rr = rng('prust'); c.clearRect(0, 0, w, h);
         for (let i = 0; i < 22; i++) { const x = w * 0.3 + rr() * w * 0.4, len = h * (0.3 + rr() * 0.7), gr = c.createLinearGradient(0, 0, 0, len); gr.addColorStop(0, 'rgba(130,62,20,0.9)'); gr.addColorStop(1, 'rgba(130,62,20,0)'); c.fillStyle = gr; c.fillRect(x, 0, 2 + rr() * 5, len); }
       }), { opacity: 1 }), [0.0, 0.57, 0.0045]), 'panel-rust'));
-      add(g, T(tdecal(0.12, 0.08, stainMat('panelrusttop', '#7b3c18', 3, 0.9), [0, 0.7175, 0.05], [PI / 2, 0, 0]), 'panel-rust'));
-      add(g, T(merge([gSph(0.007, [-0.033, 0.67, 0.08]), gSph(0.006, [0.035, 0.668, 0.079]), gSph(0.005, [0.02, 0.672, 0.074])], C.rust, { roughness: 1 }), 'panel-rust'));
+      add(g, T(merge([gSph(0.009, [-0.033, 0.668, 0.08], [1.2, 0.8, 1]), gSph(0.008, [0.035, 0.666, 0.079], [1.2, 0.8, 1]), gSph(0.006, [0.02, 0.674, 0.074]), gSph(0.006, [-0.015, 0.7, 0.05])], '#9a4a1c', { roughness: 1 }), 'panel-rust'));
+      for (const x of [-0.118, 0.122]) add(g, T(tdecal(0.045, 0.36, streakMat('pgut' + x, '#8a4416', 1), [x, 0.53, 0.0046]), 'panel-rust'));
+      // On the tub's inner side walls and the main breaker face: the surfaces the camera actually sees.
+      const wide = dmat('prustwide', () => ctex('prustwide', 64, 256, (c, w, h) => {
+        const rr = rng('pwide'); c.clearRect(0, 0, w, h);
+        const top = c.createLinearGradient(0, 0, 0, 40); top.addColorStop(0, 'rgba(120,52,14,0.95)'); top.addColorStop(1, 'rgba(120,52,14,0)'); c.fillStyle = top; c.fillRect(0, 0, w, 40);
+        for (let i = 0; i < 7; i++) { const x = rr() * (w - 12), len = h * (0.45 + rr() * 0.55), gr = c.createLinearGradient(0, 0, 0, len); gr.addColorStop(0, 'rgba(150,66,18,0.95)'); gr.addColorStop(1, 'rgba(150,66,18,0)'); c.fillStyle = gr; c.fillRect(x, 0, 6 + rr() * 10, len); }
+      }), { opacity: 1 });
+      add(g, T(tdecal(0.09, 0.36, wide, [-0.1755, 0.53, 0.05], [0, PI / 2, 0]), 'panel-rust'));
+      add(g, T(tdecal(0.09, 0.36, wide, [0.1755, 0.53, 0.05], [0, -PI / 2, 0]), 'panel-rust'));
+      add(g, T(tdecal(0.07, 0.25, wide, [-0.145, 0.58, 0.0047]), 'panel-rust'), T(tdecal(0.07, 0.25, wide, [0.15, 0.58, 0.0047]), 'panel-rust'));
+      add(g, T(mesh(gCyl(0.0305, 0.0305, 0.026, [0, 0.733, 0.04], [0, 0, 0], 16), '#7a3c16', { roughness: 1 }), 'panel-rust'));
+      add(g, T(tdecal(0.07, 0.09, streakMat('pmain', '#9a4f1a', 0.95), [0.02, 0.61, 0.0706]), 'panel-rust'));
+      add(g, T(tdecal(0.3, 0.07, stainMat('ptopwet', '#7b3c18', 3, 0.95), [0, 0.7178, 0.05], [PI / 2, 0, 0]), 'panel-rust'));
     }
-    add(g, T(hit(0.33, 0.13, 0.02, [0, 0.645, 0.012]), 'panel-rust'));
+    add(g, T(anchor(hit(0.05, 0.12, 0.02, [0.122, 0.64, 0.012])), 'panel-rust'), T(hit(0.05, 0.12, 0.02, [-0.122, 0.64, 0.012]), 'panel-rust'));
     // Knockouts in the tub walls: sealed / intact (ok) or open holes (defect).
     const kos = [[[-0.06, 0.0045, 0.05], [0, 0, 0], 0.014], [[0.1, 0.0045, 0.045], [0, 0, 0], 0.018], [[-0.1755, 0.3, 0.05], [0, 0, PI / 2], 0.014]];
     kos.forEach(([p, rot, rr]) => {
       if (kOk) add(g, T(merge([gCyl(rr, rr, 0.0015, p, rot, 16), xf(new THREE.TorusGeometry(rr * 0.7, 0.0008, 4, 16), p, [rot[0] + PI / 2, rot[1], rot[2]])], '#7e8387', { metalness: 0.3 }), 'panel-knockouts'));
       else add(g, T(mesh(gCyl(rr, rr, 0.0015, p, rot, 16), '#050505'), 'panel-knockouts'));
-      add(g, T(hit(0.05, 0.05, 0.05, [p[0] + (rot[2] ? 0.02 : 0), p[1] + (rot[2] ? 0 : 0.02), p[2]]), 'panel-knockouts'));
+      const kh = hit(0.05, 0.05, 0.05, [p[0] + (rot[2] ? 0.02 : 0), p[1] + (rot[2] ? 0 : 0.02), p[2] + (rot[2] ? 0 : 0.02)]); add(g, T(p[0] === -0.06 ? anchor(kh) : kh, 'panel-knockouts'));
     });
     // Door with the circuit directory, swung open ~115°.
     const door = group('door'); door.position.set(-W / 2, H / 2, D); door.rotation.y = -2.0;
@@ -1414,7 +1452,7 @@ const garage = {
     return g;
   },
 
-  // ── 50-gal atmospheric gas water heater. Data plate 09/2009, no FVIR listing. TPR has no
+  // ── 50-gal atmospheric gas water heater. Data plate 06/2001 (pre-FVIR), no FVIR listing. TPR has no
   //    discharge tube (always). Stand (variable). Drip leg (variable). Draft hood & vent fine.
   'gar-water-heater': (states) => {
     const g = group('wh'); const elevOk = !isDef(states, 'wh-elevation'); const trapOk = !isDef(states, 'wh-sediment-trap');
@@ -1439,7 +1477,7 @@ const garage = {
     add(g, mesh(gCyl(0.03, 0.03, 0.012, [0, h0 + 0.32, R + 0.07], [PI / 2, 0, 0], 20), tmat('whdial', () => textTex(['VAC  A  B  C', '   HOT'], { w: 128, h: 64, bg: '#d6d0c2', font: 'bold 18px sans-serif' }))));
     add(g, merge([gTube([[-0.03, h0 + 0.27, R + 0.04], [-0.04, h0 + 0.2, R + 0.02], [-0.04, h0 + 0.16, R]], 0.0025, 10, 5), gTube([[0.02, h0 + 0.27, R + 0.04], [0.03, h0 + 0.2, R + 0.02], [0.035, h0 + 0.16, R]], 0.0025, 10, 5)], C.copper, { metalness: 0.6 }));
     // Data plate
-    const plate = tmat('whplate', () => textTex(['MODEL G50-40N  NATURAL GAS', 'SERIAL 0909A417823', 'CAPACITY 50 U.S. GAL', 'INPUT 40,000 BTU/HR', 'RECOVERY 41 GPH @ 90°F', 'MFG DATE 09/2009', 'MAX WORKING PRESS 150 PSI'], { w: 512, h: 300, font: 'bold 30px monospace', bg: '#e8e3d3' }), { roughness: 0.6 });
+    const plate = tmat('whplate', () => textTex(['MODEL G50-40N  NATURAL GAS', 'SERIAL 0601A417823', 'CAPACITY 50 U.S. GAL', 'INPUT 40,000 BTU/HR', 'RECOVERY 41 GPH @ 90°F', 'MFG DATE 06/2001', 'MAX WORKING PRESS 150 PSI'], { w: 512, h: 300, font: 'bold 30px monospace', bg: '#e8e3d3' }), { roughness: 0.6 });
     const pl = mesh(new THREE.PlaneGeometry(0.2, 0.12), plate); pl.position.set(0, h0 + 0.95, R + 0.002); add(g, T(pl, 'wh-age'));
     add(g, T(hit(0.22, 0.14, 0.02, [0, h0 + 0.95, R + 0.01]), 'wh-age'));
     // Top: anode plug, cold/hot nipples with dielectric unions, copper risers, cold shutoff
@@ -1461,10 +1499,10 @@ const garage = {
     // TPR valve on the side, outlet open with nothing on it.
     const BR = mat(C.brass, { metalness: 0.65, roughness: 0.35 });
     const ty = h0 + 1.13;
-    add(g, T(merge([gCyl(0.016, 0.016, 0.06, [R + 0.02, ty, 0], [0, 0, PI / 2]), gCyl(0.02, 0.02, 0.04, [R + 0.05, ty, 0], [0, 0, 0], 8), gCyl(0.015, 0.015, 0.035, [R + 0.05, ty - 0.035, 0])], BR), 'wh-tpr-discharge'));
+    add(g, T(merge([gCyl(0.018, 0.018, 0.06, [R + 0.02, ty, 0], [0, 0, PI / 2]), gCyl(0.024, 0.024, 0.045, [R + 0.05, ty, 0], [0, 0, 0], 8), gCyl(0.019, 0.019, 0.04, [R + 0.05, ty - 0.04, 0], [0, 0, 0], 8)], BR), 'wh-tpr-discharge'));
     add(g, T(mesh(gBox(0.045, 0.006, 0.012, [R + 0.06, ty + 0.025, 0], [0, 0, -0.3]), '#a9a59a', { metalness: 0.6 }), 'wh-tpr-discharge'));
-    add(g, T(mesh(xf(new THREE.CircleGeometry(0.011, 12), [R + 0.05, ty - 0.0526, 0], [PI / 2, 0, 0]), '#090909'), 'wh-tpr-discharge'));
-    add(g, T(mesh(gSph(0.009, [R + 0.055, ty - 0.055, 0.008], [1, 0.6, 1], 6, 4), '#e7e1d2', { roughness: 1 }), 'wh-tpr-discharge'));
+    add(g, T(mesh(xf(new THREE.CircleGeometry(0.0145, 14), [R + 0.05, ty - 0.0605, 0], [PI / 2, 0, 0]), '#090909'), 'wh-tpr-discharge'));
+    add(g, T(merge([gSph(0.009, [R + 0.06, ty - 0.062, 0.01], [1, 0.6, 1], 6, 4), gSph(0.006, [R + 0.04, ty - 0.063, -0.008], [1, 0.6, 1], 6, 4)], '#e7e1d2', { roughness: 1 }), 'wh-tpr-discharge'));
     add(g, T(hit(0.14, 0.14, 0.1, [R + 0.05, ty - 0.01, 0]), 'wh-tpr-discharge'));
     // Gas supply
     const BI = mat('#2b2b2b', { roughness: 0.5, metalness: 0.4 });
@@ -1512,7 +1550,7 @@ const garage = {
       const holes = []; for (const [x, y] of [[-0.33, 1.95], [-0.33, 1.91], [-0.11, 1.95], [-0.11, 1.91], [0.08, 2.12], [0.12, 2.12]]) holes.push(gCyl(0.003, 0.003, 0.002, [x, y, y > 2.1 ? 0.1257 : 0.0827], [PI / 2, 0, 0], 8));
       add(g, T(merge(holes, '#151515'), 'fire-door-closer'));
     }
-    add(g, T(hit(0.45, 0.3, 0.12, [-0.2, 1.97, 0.12]), 'fire-door-closer'));
+    add(g, T(anchor(hit(0.45, 0.3, 0.12, [-0.2, 1.97, 0.12])), 'fire-door-closer'));
     return g;
   },
 
@@ -1558,7 +1596,7 @@ const garage = {
     add(g, T(mesh(tint(gBox(1.0, 1.5 * IN, 3.5 * IN, [0, 0.75 * IN, 0.03]), LUM), VC()), 'door-auto-reverse'));
     add(g, T(mesh(gBox(Wd, 0.018, 0.05, [0, lift + 0.009, 0.02]), '#1c1c1c', { roughness: 0.8 }), 'door-auto-reverse'));
     add(g, T(mesh(gBox(Wd, lift, 0.004, [0, lift / 2, -0.01]), mat('#fff6dd', { emissive: '#fff1c8', emissiveIntensity: 0.9 })), 'door-auto-reverse'));
-    add(g, T(hit(1.2, 0.18, 0.2, [0, 0.08, 0.06]), 'door-auto-reverse'));
+    add(g, T(anchor(hit(1.2, 0.18, 0.2, [0, 0.08, 0.1])), 'door-auto-reverse'));
     add(g, T(hit(0.25, 0.4, 0.5, [0, 2.15, 0.3]), 'door-auto-reverse'));
     // Photo-eyes: ≤ 6" off the floor (ok) or zip-tied ~3 ft up the track (defect, empty bracket below).
     const eyeY = eyesOk ? 0.13 : 0.9;
@@ -1572,7 +1610,7 @@ const garage = {
     add(g, T(merge(led, mat('#ffd060', { emissive: '#ffb020', emissiveIntensity: 1.2 })), 'door-photo-eyes'));
     add(g, merge([gPipe([-2.5, eyeY, 0.075], [-2.5, 2.1, 0.075], 0.002, 4), gPipe([2.5, eyeY, 0.075], [2.5, 2.1, 0.075], 0.002, 4)], '#f0f0ea'));
     if (!eyesOk) add(g, T(merge([gBox(0.004, 0.012, 0.075, [-2.53, eyeY + 0.02, 0.07]), gBox(0.004, 0.012, 0.075, [-2.53, eyeY - 0.03, 0.07]), gBox(0.004, 0.012, 0.075, [2.53, eyeY + 0.02, 0.07])], '#111'), 'door-photo-eyes'));
-    for (const sx of [-1, 1]) add(g, T(hit(0.14, 0.16, 0.14, [sx * 2.45, eyeY, 0.1]), 'door-photo-eyes'));
+    for (const sx of [-1, 1]) { const eh = hit(0.14, 0.16, 0.14, [sx * 2.43, eyeY, 0.12]); add(g, T(sx > 0 ? anchor(eh) : eh, 'door-photo-eyes')); }
     return g;
   },
 
@@ -1627,7 +1665,7 @@ const attic = {
     const [rest, patch] = splitFaces(ig, inPatch);
     add(g, T(mesh(rest, VC({ roughness: 1 })), 'insulation-depth'));
     const pm = T(mesh(patch, VC({ roughness: 1 })), 'insulation-void'); if (voidBad) thermal(pm, 'warm'); add(g, pm);
-    const vh = T(hit(1.0, 0.08, 0.8, [-0.95, 0.04, -0.55]), 'insulation-void'); add(g, vh);
+    const vh = T(anchor(hit(1.0, 0.1, 0.8, [-0.95, 0.06, -0.55])), 'insulation-void'); add(g, vh);
     // Depth ruler: 0–12" card on a stake.
     const rul = tmat('ruler', () => ctex('ruler', 64, 384, (c, w, h) => {
       c.fillStyle = '#f4d23c'; c.fillRect(0, 0, w, h); c.fillStyle = '#111'; c.font = 'bold 16px sans-serif';

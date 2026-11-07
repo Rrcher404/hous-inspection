@@ -115,3 +115,30 @@ Not verified in a browser: the print stylesheet (checked by reading only), and t
 4. **Engine and Esc.** The UI handles Esc in the capture phase and stops propagation when it acts. If the engine also binds Esc to exit inspect, it will simply not see the ones the UI consumed. Recommend the engine rely on `ui:inspect-exit` instead of its own Esc.
 5. **Taxonomy copy.** `SEVERITIES[4].label` is `'Acceptable — No Defect'` (em-dash). The UI uses its own display labels, but anyone else rendering taxonomy labels will leak it. Suggest `'Acceptable (no defect)'`.
 6. **Optional:** a `store.summary()` field for findings XP (`sum of logged points`). The report computes it itself today.
+
+## Round 2 (after Voss red-team)
+
+Files touched: `logcard.js`, `readouts.js`, `modals.js`, `inspect.js`, `minimap.js`, `hud.js`, `exam.js`, `onboarding.js`, `report.js`, `styles.css`. The orchestrator's edits are kept: the pop quiz still waits until every checkpoint in the component is logged, and the portal hover hint is unchanged.
+
+- **M1, the observation no longer gives the answer away.** Before you submit, the log card shows only the neutral label and "Look closely in the view. Drag to orbit and scroll to zoom; the orange ring marks the spot. What do you see, and how serious is it?" On tool checkpoints the instrument readout is the evidence, and the prompt says so. "Describe it for me (half points)" reveals the `observe` text and sends `hinted: true` to `logFinding`, on the first log only. After you submit, feedback always shows the text as "What a senior inspector saw". To make "look closely" possible, the log card is now a **pass-through modal**: it keeps focus, Esc and the Tab trap, but doesn't raise `ui:modal`, so the engine keeps orbit and zoom while the card is open. The card does block the engine while the note field has focus (`entry.setBlocking`). Its backdrop no longer catches clicks.
+- **sevAlt.** If an alternative severity earns full credit, feedback says "Accepted: pros differ here." and shows the primary answer, with "Also accepted" listed under it.
+- **Practice re-logs.** The submit button reads "Log practice run". Feedback says "Practice run. Your graded call stays [pill] with [referral]. Only your first log of an item counts toward the report." When you reopen a logged item, it shows your graded call plus your latest practice call. The inspect list and Logbook still show the graded pill. When a miss was later caught on a practice run, the report notes it.
+- **M7, thermal.** The new `thermalKind()` reads the anomaly from its verb phrase first ("reads warm", "reads about 38°F hotter"), then from a "cold patch"-style noun phrase, and only then from the first temperature word. Results: the insulation void reads warm, the hot breaker reads hot (shown as ΔT +38°F), and both ok states read even. I'd still prefer an explicit `thermalKind` field in the content, as Voss suggests.
+- **Minor 5.** A pop quiz is recorded as `popped` only when it actually opens. Coming back to a finished component whose quiz was never taken now offers it.
+- **Minor 10.** When you press Esc in Exam Mode, the "End the exam now?" dialog focuses "Keep going" (`confirmDialog({ focusCancel })`).
+- **Minor 11.** The mini-map starts collapsed as "Map: travel to a room". M or that button opens it, and the choice is remembered on this device. The last tour step mentions M.
+- **Copy sweep.** Nothing in `src/ui/` names `wh-age`. The only "log it again" copy (log card buttons) now says "Practice again" / "Log practice run". The finish dialog's "the grade is set when you finish" still holds.
+
+**Verified** with Playwright against the real engine at 1280×800. Other agents were editing files, so the dev server hot-reloaded mid-test, and another agent was navigating the shared Playwright tab. I tested a `vite build` snapshot served by `vite preview` on 5196 instead, in an isolated tab. Checked:
+- hidden observation, the hint flow (`hinted: true`, 7 points instead of 14), and feedback text;
+- a practice re-log kept the graded `ok` and stored `practice.severity = 'safety'`;
+- the log card is open with `ui:modal` false;
+- the insulation-void readout shows `ir-warm`;
+- the tool prompt is shown and the observation stays hidden;
+- Exam Esc focuses "Keep going";
+- the map starts collapsed.
+
+`npx vite build` passes.
+
+**For Kaz (engine):** the console logged `TypeError: b is not iterable` from the engine's hints `show()`, in the code that clears and re-adds ring sprites, once during a scripted `ui:goto-component` right after boot. It's in the engine, not `src/ui/`.
+- **Exam Mode now targets the NC Board exam** (HILB 905: 200 questions, 4 hours, closed book, 70% to pass; coordinator-verified against the Board study guide of 3/17/2026 and candidate bulletin rev. 7.0). The setup copy and comments in `exam.js` are updated, and the NHIE scaled-score note is gone. Results now show "Pass mark: 70%" next to the practice score, and colour the score against that mark. No "NHIE" or "National Home Inspector" text is left in `src/ui/`.

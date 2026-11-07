@@ -96,7 +96,7 @@ export function createHUD(ctx) {
   }
   bus.on('hover', (p) => {
     const name = p && (p.componentId || p.checkpointId || p.portal) ? p.name : null;
-    if (!name || ctx.modals.count > 0) { hoverOn = false; hover.hidden = true; return; }
+    if (!name || ctx.modals.blocking) { hoverOn = false; hover.hidden = true; return; }
     clear(hover);
     const logged = p.checkpointId && store.isLogged(p.checkpointId);
     append(hover, logged ? icon('check', { size: 14 }) : null, h('span', null, clean(name)));

@@ -6,13 +6,15 @@
 // a source listed in docs/reports/lindqvist-quizzes.md. Figures labelled "model IRC"
 // or "course standard" are national teaching numbers; NC amends some code numbers,
 // and NC inspectors do not cite code unless they follow G.S. 143-151.58(a2).
+// NC SOP citations follow the Board's compilation effective June 1, 2026. The NC licensing
+// exam is the Board's own HILB exam (study guide 3/17/2026, CIB rev. 7.0), not the NHIE.
 // `wobble` is a do-something check: if the player cannot do it in the house, they
 // have not learned it yet.
 
 export const LESSONS = {
   'sop-25': {
     oneLine: 'The Standards of Practice decide what you must inspect, what you may skip, and how you say it; the 25 building standards tell you what correct looks like.',
-    paragraph: "Every exam question about scope hides one prerequisite: vocabulary. 'Readily accessible', 'representative number', 'inspect' (a visual examination) and 'not technically exhaustive' are defined terms, and most scope answers fall out of them. In North Carolina the binding rules are 11 NCAC 08 .1101 to .1117 (amended effective June 1, 2026), which in places ask more than the InterNACHI SOP: NC requires you to operate the test function of smoke alarms and of CO alarms in homes with fireplaces, fuel-fired appliances, or attached garages, and to report garage door operators that do not reverse. Learn the definitions first, then the musts, then the exclusions. The 25 Standards course adds the physical benchmarks (TPR discharge, garage separation, egress sill height, service clearances) that let you recognize a defect when you see one.",
+    paragraph: "Every exam question about scope hides one prerequisite: vocabulary. 'Readily accessible', 'representative number', 'inspect' (a visual examination) and 'not technically exhaustive' are defined terms, and most scope answers fall out of them. In North Carolina the binding rules are 11 NCAC 08 .1101 to .1117 (amended effective June 1, 2026), which in places ask more than the InterNACHI SOP: NC requires you to operate the test function of smoke alarms and of CO alarms in homes with fireplaces, fuel-fired appliances, or attached garages, and to report garage door operators that do not reverse. Learn the definitions first, then the musts, then the exclusions. The 25 Standards course adds the physical benchmarks (TPR discharge, garage separation, egress sill height, service clearances) that let you recognize a defect when you see one. The NC licensing exam is the Board's own exam, not the NHIE, and its first block is the Standards of Practice, so the NC section numbers matter. The Board's study guide frames every finding as DDID: Describe, Determine, Implication, Direction.",
     lookFor: [
       'Smoke alarms: present where expected, test function operated, back-label date within 10 years',
       'CO alarm present (this house has a fireplace, a gas furnace and water heater, and an attached garage)',
@@ -32,6 +34,7 @@ export const LESSONS = {
       { k: 'NC renewal', v: 'Expires Sept 30 yearly; 12 CE hours (4-hr Board update course + 8 elective)' },
       { k: 'NC insurance', v: '$250,000 general liability + net assets, bond ($5k to $10k), or $250,000 E&O' },
       { k: 'NC records retention', v: 'At least 3 years' },
+      { k: 'NC licensing exam (Board, not NHIE)', v: '200 questions, 4 hours, closed book, 70% to pass; retake after 90 days' },
     ],
     wobble: 'Stand in the hallway and name every alarm this house needs, why each one is required by the NC SOP, and what you physically do to each one during the inspection.',
     mnemonic: "Must, May, Need-not: every SOP sentence is one of the three. Sort it before you answer.",
@@ -96,6 +99,7 @@ export const LESSONS = {
     ],
     keyNumbers: [
       { k: 'Dryer duct maximum (course standard)', v: '25 ft, minus 5 ft per 90 deg bend, 2-1/2 ft per 45 deg bend' },
+      { k: 'Dryer duct maximum (IRC since 2012, M1502.4.5.1)', v: '35 ft, minus fittings per the IRC table' },
       { k: 'Dishwasher test (NC)', v: 'Through a complete cycle' },
     ],
     wobble: 'At the range, find out whether the anti-tip device is engaged without pulling the range out, and say why it matters more in a house with children.',
@@ -184,7 +188,7 @@ export const LESSONS = {
 
   'water-heater': {
     oneLine: 'A tank water heater is a pressure vessel full of near-boiling water: confirm the relief valve can safely dump it, the gas is clean and controlled, and the exhaust leaves the house.',
-    paragraph: "The prerequisite is physics: water in a closed tank under pressure can be heated well above 212 F without boiling, and if the tank fails that water flashes to steam all at once. The temperature and pressure relief (TPR) valve prevents that, which is why its probe sits in the top 6 in of the tank where the hottest water stratifies, and why its discharge pipe must be full size, unvalved, untrapped, by gravity, and ending within 6 in of the floor where people can see it. In NC you describe fuel source, capacity, and location; you are not required to operate the TPR or other automatic safety controls, or to report on expansion tanks or life expectancy, though you may.",
+    paragraph: "The prerequisite is physics: water in a closed tank under pressure can be heated well above 212 F without boiling, and if the tank fails that water flashes to steam all at once. The temperature and pressure relief (TPR) valve prevents that, which is why its probe sits in the top 6 in of the tank where the hottest water stratifies, and why its discharge pipe must be full size, unvalved, untrapped, by gravity, and ending within 6 in of the floor where people can see it. In NC you describe fuel source, capacity, and location; you are not required to operate the TPR or other automatic safety controls, or to report on expansion tanks or life expectancy, though you may. Read the data plate date for two reasons: age is useful information for the client (not a defect by itself), and a gas tank made before July 2003 predates FVIR, so the 18 in garage elevation rule applies to it without exception.",
     lookFor: [
       'Data plate: fuel, capacity, manufacture date',
       'TPR discharge: full size, no threads, no valve, no trap, ends within 6 in of floor',
@@ -358,7 +362,7 @@ export const LESSONS = {
 
   'egress': {
     oneLine: 'Every sleeping room needs a way out that works in the dark, in smoke, without a key, and every stair needs a rail that stops a fall.',
-    paragraph: "The prerequisite is that egress is about a person, not a part: a window is an escape opening only if someone can reach the sill, open it fully, and fit through, and bars defeat all of it unless they release from inside without a key, tool, or special knowledge. Guards stop falls from heights over 30 in, handrails stop falls on stairs of 4 or more risers, and the 4 in sphere keeps children from slipping through. The NC Residential Code is the IRC with state amendments, so on the exam use the numbers taught, and in an NC report describe the condition and its implication rather than quoting code unless you meet G.S. 143-151.58(a2).",
+    paragraph: "The prerequisite is that egress is about a person, not a part: a window is an escape opening only if someone can reach the sill, open it fully, and fit through, and bars defeat all of it unless they release from inside without a key, tool, or special knowledge. Guards stop falls from heights over 30 in, handrails stop falls on stairs of 4 or more risers, and the 4 in sphere keeps children from slipping through. The NC Residential Code is the IRC with state amendments and the licensing exam is written by the NC Board, so where NC amends a dimension, learn the NC figure; this game teaches the widely used model figures and labels them. In an NC report, describe the condition and its implication rather than quoting code unless you meet G.S. 143-151.58(a2).",
     lookFor: [
       'Each bedroom window: sill height, opens fully, size reasonable for escape',
       'Security bars: inside release present and working',

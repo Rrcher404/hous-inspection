@@ -29,7 +29,11 @@ const QUICK = [
 
 export function createMiniMap(ctx) {
   const { bus, store } = ctx;
-  let expanded = window.innerWidth >= 1000;
+  // Starts collapsed so it never eats clicks in the lower-right of the view (Voss minor 11).
+  // M or the button opens it; the player's choice is remembered on this device.
+  const PREF = 'hous-inspection:ui:map-open';
+  let expanded = false;
+  try { expanded = localStorage.getItem(PREF) === '1'; } catch { /* ignore */ }
   let current = null;
 
   const el = h('nav', { class: 'card minimap', 'aria-label': 'Mini-map. Choose a room to travel there.' });
@@ -72,7 +76,8 @@ export function createMiniMap(ctx) {
   function render() {
     clear(head); clear(body);
     append(head, 
-      h('span', { class: 'mm-title' }, icon('map', { size: 16 }), ' Map'),
+      expanded ? h('span', { class: 'mm-title' }, icon('map', { size: 16 }), ' Map')
+        : h('button', { class: 'mm-title mm-open', type: 'button', onclick: () => toggle(true) }, icon('map', { size: 16 }), ' Map: travel to a room'),
       h('button', {
         class: 'icon-btn sm', type: 'button', 'aria-expanded': String(expanded),
         'aria-label': expanded ? 'Collapse map (M)' : 'Expand map (M)', title: expanded ? 'Collapse map (M)' : 'Expand map (M)',
@@ -111,7 +116,11 @@ export function createMiniMap(ctx) {
     append(body, quick);
   }
 
-  function toggle(v) { expanded = v ?? !expanded; render(); }
+  function toggle(v) {
+    expanded = v ?? !expanded;
+    try { localStorage.setItem(PREF, expanded ? '1' : '0'); } catch { /* ignore */ }
+    render();
+  }
   function setZone(z) { current = z; render(); }
 
   render();

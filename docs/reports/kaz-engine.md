@@ -155,3 +155,61 @@ code reuses scratch objects. Lights never change count. Rebuilding twice leaves 
   with 5-riser stairs and a landing pad. No Esc binding. No `markZone`/`markComponent`.
   `pri-window` is floor-referenced. The back door and bed2 door have real wall openings.
   Crawl ceiling origins are at the floor underside, except crawl-duct (see placements).
+
+---
+
+## Round 2 (Voss red-team: M4, M5/M6, minors 12, 14, 15)
+
+### M4: hint rings land on their own checkpoint
+- Ring anchors are now **raycast-validated surface points** (`interact.computeAnchors`). For each checkpoint the
+  candidates are: its explicit anchor mesh (`userData.anchor === true`, per Isolde's round 2; a point/array is also
+  accepted), each of its own meshes' centres, and sampled triangle centroids of its own meshes. These are tested from the arrival
+  camera, centre-most first. A candidate is accepted only if the engine's own picker, at that pixel, returns **that** checkpoint.
+  The ring sits on the hit surface point. If nothing resolves, a second denser pass (240 samples, 160 tests) runs before
+  falling back.
+- **Separation:** the most constrained checkpoints are placed first, and each ring is kept ≥ 26 px from the others when its own
+  geometry allows (this fixes the overlapping ledger rings in minor 14).
+- **Ring-first picking:** in inspect mode, hover and click within 16 px of a visible ring or badge resolve to that ring's
+  checkpoint before raycasting, so a ring can never select a neighbour.
+- Rings re-anchor 260 ms after an orbit or zoom settles. Anchor and hit meshes never change look in highlight or thermal.
+- Boot race (Yuki): `ui:teleport` and `ui:goto-component` now go through the ready-queue, and ring building is guarded
+  (with a bounding-box fallback inside try/catch).
+- **Verification** (all 74 components, every checkpoint, 1280×800, real models after Isolde's round 2). Each ring is
+  projected to the screen and raycast with the engine picker, ring priority disabled:
+
+  | state | rings placed | raycast → own checkpoint | final (ring-first) | inside free area |
+  |---|---|---|---|---|
+  | all-defect | 119 / 119 | **119 / 119** | 119 / 119 | 119 / 119 |
+  | all-ok | 119 / 119 | **119 / 119** | 119 / 119 | 119 / 119 |
+
+  The boot-race test (`ui:goto-component` emitted before the build) opened the panel with 7 rings and no errors. The console was clean.
+
+### M5/M6: framing shows the defect, large and lit
+- **Off-axis view offset** during inspect (`camera.setViewOffset`, animated with the tween). The image centre moves into the
+  area clear of the right panel (360 px) and the tool belt (110 px), so the framed object centres there. In the sweep, 0 of 74
+  components had their centre under the UI.
+- **Distance is fitted, not guessed.** I binary-search the distance at which the component's projected bounding box fills
+  **70%** of the free area. It is capped at `clamp(1.6 + 3 × second-largest dimension, 1.2, 3.0)` m, so long thin parts
+  (ledger, gutter) are shown up close rather than as a strip. Per-component `maxDist` applies only to the shed (5), overhead door (4.2),
+  service drop (4), ledger (2.3) and framing (2.4). Those three big exterior items are the only framings over 3.05 m.
+- **No camera behind walls:** I test the target-to-camera segment against the wall occluders. If it's blocked, I swing ±20°, ±40° and ±60°,
+  then pull in.
+- **Fill light** (`tools.setFill`): a camera-attached point light during inspect, scaled by distance² so the object
+  gets roughly constant light. It's dimmer in dark zones (unless the flashlight is on) so the flashlight still matters. The light count is unchanged.
+- **Zoom:** the wheel or pinch zooms **about the surface point under the cursor** (camera and target scale together, so the point
+  stays put), down to 0.15 m from that point. Verified: the double-tap terminal stayed at the cursor (456,323 → 460,322) and
+  ended 0.12 m away, with two conductors under one screw clearly legible. All 7 panel rings still resolved after re-anchoring.
+- View tweaks: dryer (look down behind the machine at the duct), vanity (low, slight oblique for the trap and stops),
+  half truss (from the cut side), ledger and framing (along the joists from the yard, under the beam). The bed2 wall paint now matches
+  the crack panel's drywall so the patch no longer flags itself.
+
+### Minors
+- **12:** `inspection:new` rebuilds the models and then fades the player to the exterior spawn (verified from the crawlspace).
+- **15:** `setPose` rejects an unknown level or non-finite x/z (it warns and returns `false`). `goToZone`/`openComponent` warn and ignore
+  unknown ids (verified: `setPose({level:'outside'})` → `false`, no error flood; `goToZone('nowhere')` is a no-op).
+- Log card without `ui:modal`: nothing to change. Orbit, zoom and checkpoint clicks work whenever no modal is open.
+
+### Still open (engine side)
+- The fill-to-70% rule shows the whole component. Voss's per-checkpoint "look" poses (snap the camera to a checkpoint from the
+  inspect panel) aren't built yet. A clean contract would be `engine.focusCheckpoint(cpId)`: orbit to the ring anchor's normal
+  at about 0.5 m. I can add it once the UI wants it.

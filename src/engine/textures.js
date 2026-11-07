@@ -306,7 +306,7 @@ export function initMaterials() {
   add('carpet2', std('#ffffff', { map: T.carpet2, roughness: 1 }));
   // paints
   add('p_kitchen', paint('#efe5cb')); add('p_living', paint('#e7ddcb')); add('p_hall', paint('#ece6da'));
-  add('p_bath', paint('#d6e2e3')); add('p_primary', paint('#dde2d3')); add('p_bed2', paint('#e2dde6'));
+  add('p_bath', paint('#d6e2e3')); add('p_primary', paint('#dde2d3')); add('p_bed2', paint('#ece7dc'));
   add('p_laundry', paint('#ecebe3')); add('p_garage', paint('#e6e3dc')); add('ceiling', paint('#f6f4ef'));
   add('trim', std('#f4f2ec', { roughness: 0.6 }));
   // exterior

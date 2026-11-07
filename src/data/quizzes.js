@@ -6,7 +6,9 @@
 // { id, course, components, difficulty, q, choices, answer, explain }.
 //
 // Difficulty: 1 = a prerequisite or a key number; 2 = application in the field;
-// 3 = NHIE-style scenario that needs two ideas at once.
+// 3 = exam-style scenario that needs two ideas at once.
+// NC SOP citations follow the Board's compilation effective June 1, 2026 (11 NCAC 08 .1101 to .1117).
+// The NC licensing exam is the Board's own HILB exam, not the NHIE (Board study guide 3/17/2026; CIB rev. 7.0).
 // Sources for every figure are listed in docs/reports/lindqvist-quizzes.md.
 
 let slot = 0;
@@ -150,6 +152,21 @@ export const QUIZZES = [
     'No sooner than 90 days later',
     ['The next day', 'After 30 days', 'After one year'],
     'G.S. 143-151.57(b) allows the exam only once every 90 days. A new application fee is not required, but the exam fee is.'),
+  q('q-sop-27', 'sop-25', [], 1,
+    'Which exam does a North Carolina home inspector applicant take?',
+    'The NC Home Inspector Licensure Board exam: 200 multiple-choice questions, 4 hours, closed book, 70 percent to pass',
+    ['The National Home Inspector Examination (NHIE), scaled-scored at a PSI test center', 'A 100-question open-book exam on the IRC', 'A field practical exam graded by a Board inspector'],
+    'The Board\'s study guide (3/17/2026) and candidate bulletin (rev. 7.0, 05/26/2026) describe the Board\'s own exam, delivered by remote proctoring. 11 NCAC 08 .1007 sets the 70 percent pass mark. Some third-party pages still say NHIE; the Board\'s documents control.'),
+  q('q-sop-28', 'sop-25', [], 2,
+    'Which content areas make up the NC Board\'s home inspector exam?',
+    'Standards of Practice, Building, Electrical, Mechanical, and Plumbing',
+    ['Building science, Business, and Report writing only', 'The IRC chapters 1 through 11, in order', 'Electrical and Plumbing only'],
+    'The candidate bulletin lists five blocks, with the Standards of Practice first. Board rule .1007 adds that the exam covers the Board\'s rules and G.S. 143, Article 9F, so NC SOP section numbers are fair game.'),
+  q('q-sop-29', 'sop-25', [], 2,
+    'The NC Board\'s study guide frames every reported defect with DDID. What does DDID stand for?',
+    'Describe, Determine, Implication, Direction',
+    ['Detect, Diagnose, Inform, Defer', 'Document, Date, Inspect, Disclose', 'Define, Deduce, Itemize, Decide'],
+    'Describe the component, determine what is wrong, explain what can happen if it is not addressed, and direct the client to repair, evaluation, or monitoring. It mirrors 11 NCAC 08 .1103(b)(3)(D).'),
 
   // ─────────────────────────── elec-adv ───────────────────────────
   q('q-ea-01', 'elec-adv', ['gar-panel'], 1,
@@ -163,10 +180,10 @@ export const QUIZZES = [
     ['Equipment grounds each need their own terminal; neutrals may share', 'Any two conductors may share a terminal if it is tight', 'Neither neutrals nor grounds may ever share a terminal'],
     'Two neutrals under one screw means loosening one circuit\'s neutral can disturb the other. Same-size grounds may share where the panel label permits.'),
   q('q-ea-03', 'elec-adv', ['gar-panel'], 1,
-    'Two breaker knockouts in the dead front are open with no filler plates. Why report it?',
-    'The openings expose energized parts to fingers and tools',
-    ['They reduce the panel\'s amperage rating', 'They let the panel overheat', 'They are cosmetic only'],
-    'Unused openings must be closed with listed filler plates. It is a simple, inexpensive fix with a real shock hazard behind it.'),
+    'With the dead front off, you see two unused knockouts open in the side wall of the panel cabinet. Why report it?',
+    'Open holes in the enclosure let fingers, tools, pests, and debris reach energized parts; they should be closed with listed knockout closures',
+    ['They reduce the panel\'s amperage rating', 'They are needed to ventilate the panel, so leave them', 'They are cosmetic only'],
+    'The 25 Standards course says all unused openings in the panel should be closed: knockouts in the cabinet and empty breaker slots in the dead front alike. It is a cheap fix with a real shock and fire hazard behind it.'),
   q('q-ea-04', 'elec-adv', ['gar-panel'], 2,
     'A white conductor is connected to a breaker. When is that acceptable?',
     'When it is part of a cable and re-identified as ungrounded (black or red tape) at its terminations',
@@ -265,7 +282,7 @@ export const QUIZZES = [
     ['They are two names for the same device', 'A GFCI protects against overloads; an AFCI against short circuits', 'A GFCI is for 240 V circuits; an AFCI for 120 V'],
     'GFCI compares current out and back and trips at a few milliamps. AFCI reads the electrical signature of an arc. NC does not require you to test AFCIs.'),
   q('q-er-08', 'elec-res', ['bath-gfci'], 1,
-    'A bathroom receptacle beside the lavatory is wired correctly but has no GFCI protection anywhere upstream. The house is from 1987. Best report?',
+    'In another house built in 1987, a bathroom receptacle beside the lavatory is wired correctly but has no GFCI protection anywhere upstream. Best report?',
     'Report the missing GFCI protection as a safety concern and refer to an electrician, noting it may predate current standards',
     ['Do not mention it; the house is grandfathered', 'Acceptable, because the polarity is correct', 'Recommend replacing the receptacle with a two-prong type'],
     'NC requires reporting the presence or absence of ground-fault protection near plumbing fixtures regardless of the house\'s age. Inspectors report safety, not grandfather status.'),
@@ -377,7 +394,7 @@ export const QUIZZES = [
     'A dryer duct has two 90 degree bends and the dryer model is unknown. Per the course standard, what is its maximum length?',
     '15 ft',
     ['25 ft', '20 ft', '10 ft'],
-    'Start at 25 ft and subtract 5 ft per 90 degree bend (2-1/2 ft per 45). Longer runs are allowed only with the manufacturer\'s data or a calculation.'),
+    'Start at 25 ft and subtract 5 ft per 90 degree bend (2-1/2 ft per 45), as the 25 Standards course teaches. Heads up: the IRC since 2012 (M1502.4.5.1) starts at 35 ft and deducts per its fittings table, and either limit can be exceeded only with the dryer manufacturer\'s data.'),
   q('q-ap-08', 'appliances', ['util-dryer'], 2,
     'Which dryer exhaust termination is correct?',
     'Outdoors, through a hood with a backdraft damper and no screen',
@@ -552,10 +569,10 @@ export const QUIZZES = [
 
   // ─────────────────────────── hvac ───────────────────────────
   q('q-hv-01', 'hvac', ['util-furnace'], 1,
-    'The furnace filter slot is empty. Why report it?',
-    'Unfiltered air dirties the blower and coil and reduces airflow and efficiency',
-    ['It is excluded from inspection', 'The furnace will not start', 'It causes carbon monoxide'],
-    'Filters are listed in NC\'s heating distribution items. A dirty coil is an expensive consequence of a cheap omission.'),
+    'The furnace filter slides out matted grey with dust. Why report it?',
+    'A clogged filter restricts airflow, cutting efficiency and stressing the blower and the cooling coil; recommend replacement',
+    ['Filters are excluded from inspection', 'The furnace will not start until it is changed', 'A dirty filter causes carbon monoxide'],
+    'Air filters are listed among NC\'s heating distribution items. It is a maintenance item, but a starved system costs far more than a filter.'),
   q('q-hv-02', 'hvac', ['util-furnace'], 2,
     'A gas furnace vent connector should slope:',
     'Upward toward the chimney at least 1/4 in per foot',
@@ -629,7 +646,7 @@ export const QUIZZES = [
     ['Gas collects in the tank and ignites', 'Sediment reacts with the steel and explodes', 'Cold water hitting hot steel cracks it'],
     'At 50 psi water does not boil until about 298 F. The TPR (150 psi, 210 F maximum) is what keeps the water out of that zone.'),
   q('q-wh-05', 'water-heater', ['gar-water-heater'], 1,
-    'The data plate shows a 2009 manufacture date. Under the NC SOP, what is correct?',
+    'The data plate shows a 06/2001 manufacture date. Under the NC SOP, what is correct?',
     'You are not required to report life expectancy, but you may note the age and suggest the client budget for replacement',
     ['You must state the exact remaining life in years', 'You must recommend immediate replacement', 'You may not mention the age at all'],
     'NC excludes life expectancy and predicting failure from required reporting, but useful context is allowed. Report age as information, not as a defect.'),
@@ -637,7 +654,7 @@ export const QUIZZES = [
     'In a garage, a gas water heater\'s ignition source should be at least how high above the floor?',
     '18 in',
     ['6 in', '12 in', '36 in'],
-    'Gasoline vapor is heavier than air and pools near the floor. FVIR (flammable vapor ignition resistant) heaters may not need elevation if the manufacturer and local code allow.'),
+    'Gasoline vapor is heavier than air and pools near the floor. FVIR (flammable vapor ignition resistant) design, required for most 30 to 50 gal atmospheric gas tanks made from July 2003, may remove the need for elevation where the manufacturer and local code allow; a 2001 tank has no such exception.'),
   q('q-wh-07', 'water-heater', ['gar-water-heater'], 2,
     'What is the drip leg (sediment trap) on the gas supply for?',
     'It catches debris and moisture in the gas line before they reach the appliance\'s gas control',
@@ -706,7 +723,7 @@ export const QUIZZES = [
     ['The duct is leaking water from the coil', 'The duct is too warm', 'It is rainwater entering through the vents'],
     'Dew point is the prerequisite for attic and crawlspace moisture. Torn or missing duct insulation exposes the cold surface.'),
   q('q-mo-10', 'moisture', ['att-sheathing'], 2,
-    'You find an active wet stain on the attic sheathing directly above the living room ceiling stain. What has the attic told you?',
+    'In another house, you find an active wet stain on the attic sheathing directly above a wet ceiling stain in the room below. What has the attic told you?',
     'The likely source is above the ceiling, at the roof or a penetration, rather than plumbing',
     ['The stain below is unrelated', 'The ceiling drywall must be replaced', 'Nothing; attic stains are excluded'],
     'Follow the water upward. Matching stains on both sides of the attic narrow the source to the roof system.'),
@@ -1119,10 +1136,10 @@ export const QUIZZES = [
     ['No larger than one-half of the depth, anywhere', 'Any size, if it is centered', 'At least 6 in from the edges'],
     'Holes near the edges cut the fibers carrying the most stress. Keep them centered and modest.'),
   q('q-st-04', 'structural', ['bed2-wall-crack'], 1,
-    'There is a hairline diagonal crack at the upper corner of the Bedroom 2 door. The door latches normally. Best call?',
-    'A typical stress crack at a corner; note and monitor, and escalate if it widens, offsets, or comes with sticking doors or sloped floors',
-    ['Structural failure; refer to an engineer immediately', 'Cosmetic, so never report it', 'Recommend foundation replacement'],
-    'Openings concentrate stress, so minor cracks there are common. The other symptoms are what turn a crack into a movement finding.'),
+    'There is a hairline crack along the taped joint at the upper corner of the Bedroom 2 door. No offset, and the door swings and latches normally. Best call?',
+    'Typical, not a structural defect; you may note it for monitoring, and it becomes a finding if it widens, offsets, or doors begin to bind',
+    ['Structural movement; refer to a structural engineer before closing', 'Foundation failure; recommend underpinning the piers below', 'Moisture damage; refer to a roofer to find the leak above'],
+    'Door and window corners concentrate stress, so hairline cracks there are common and NC treats cosmetic damage as excluded. Width, offset, binding doors, and sloped floors are what turn a crack into a movement finding.'),
   q('q-st-05', 'structural', [], 1,
     'Under NC rules, what is the difference between dead load and live load?',
     'Dead load is the weight of the building itself; live load is variable, such as people, furniture, and snow',

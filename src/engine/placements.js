@@ -22,7 +22,7 @@ export const PLACEMENTS = {
   'ext-siding':         { p: [21.7, G, 7.5], r: H },
   'ext-window':         { p: [3.5, 0.7, MAIN.z1], r: 0 },
   'ext-hose-bib':       { p: [6.3, -0.12, MAIN.z0], r: PI },
-  'ext-service-drop':   { p: [21.7, G, 2.5], r: H },
+  'ext-service-drop':   { p: [21.7, G, 2.5], r: H, maxDist: 4.0 },
   'ext-ac-condenser':   { p: [7.4, G, MAIN.z0 - 0.45], r: PI },  // model's back edge (z=-0.45) is the wall plane
   'ext-receptacle':     { p: [5.45, 0.05, MAIN.z1], r: 0 },
   'ext-front-steps':    { p: [7.0, -0.75, 11.0], r: 0 },
@@ -37,13 +37,13 @@ export const PLACEMENTS = {
   'roof-valley':        { roof: 'S', p: [5.875, 9.325], spin: 'valley', roll: -0.14, lift: 0.006 },  // roll its west (−X) half flat onto the main plane; the porch side tucks under our porch shingles
   'roof-ridge-vent':    { roof: 'flat', p: [11.0, 5.0] },
   // ── DECK ──
-  'deck-ledger':        { p: [3.0, DECK_TOP - 0.025 - 0.265, MAIN.z0 - 0.003], r: PI, view: [0.1, -0.15, -1], dist: 4.4 },  // look along the joists from the yard, under the beam  // ledger top = joist top
-  'deck-framing':       { p: [3.0, DECK_TOP - 0.26, MAIN.z0], r: PI, view: [0.1, -0.25, -1], dist: 3.2 },  // free mount: origin wall plane, joist bottom; carries decking
+  'deck-ledger':        { p: [3.0, DECK_TOP - 0.025 - 0.265, MAIN.z0 - 0.003], r: PI, view: [0.1, -0.15, -1], maxDist: 2.3 },  // look along the joists from the yard, under the beam  // ledger top = joist top
+  'deck-framing':       { p: [3.0, DECK_TOP - 0.26, MAIN.z0], r: PI, view: [0.1, -0.25, -1], maxDist: 2.4 },  // free mount: origin wall plane, joist bottom; carries decking
   'deck-guard':         { p: [2.2, DECK_TOP, -3.58], r: PI },  // +Z = outward (posts on the outer face)
   'deck-stairs':        { p: [4.6, STAIR_BASE, -4.4], r: PI },
   'deck-posts':         { p: [5.3, G, -3.45], r: 0, view: [0.35, 0.2, -1] },  // grade; the model's post (0.62) + beam (9.25 in) meets the joists
   // ── SHED ──
-  'shed-tile-roof':     { p: [-5.5, G, -5.5], r: 0 },
+  'shed-tile-roof':     { p: [-5.5, G, -5.5], r: 0, maxDist: 5.0 },
   // ── LIVING ──
   'liv-fireplace':      { p: [0, 0, 7.0], r: H },
   'liv-smoke-alarm':    { p: [3.4, CEIL, 6.1], r: 0 },
@@ -59,7 +59,7 @@ export const PLACEMENTS = {
   'kit-back-door':      { p: [5.05, 0, 0.0], r: 0 },
   // ── BATH ──
   'bath-toilet':        { p: [10.5, 0, 0.37], r: 0 },
-  'bath-vanity':        { p: [10.665, 0, 2.7], r: -H },
+  'bath-vanity':        { p: [10.665, 0, 2.7], r: -H, view: [-1, -0.04, 0.3] },  // low, slightly oblique: trap in profile under the rail, stops still visible
   'bath-tub':           { p: [9.31, 0, 0.41], r: 0 },
   'bath-gfci':          { p: [10.94, 1.0, 3.35], r: -H },
   'bath-fan':           { p: [9.7, CEIL, 2.4], r: 0 },
@@ -78,19 +78,19 @@ export const PLACEMENTS = {
   'hall-return':        { p: [13.9, 0.12, 4.56], r: 0 },
   // ── LAUNDRY ──
   'util-furnace':       { p: [8.12, 0, 0.48], r: 0 },
-  'util-dryer':         { p: [7.22, 0, 0.5], r: 0 },
+  'util-dryer':         { p: [7.22, 0, 0.5], r: 0, view: [0.3, 1, 0.55] },  // look down behind the machine: the duct is the checkpoint
   'util-washer':        { p: [6.47, 0, 0.45], r: 0 },
   // ── GARAGE ──
   'gar-panel':          { p: [21.5, 1.15, 3.0], r: -H },
   'gar-water-heater':   { p: [20.85, GARAGE_FLOOR, 0.55], r: 0 },
   'gar-fire-door':      { p: [15.15, 0, 5.1], r: H },
-  'gar-overhead-door':  { p: [18.33, GARAGE_FLOOR, 10.0], r: PI },
+  'gar-overhead-door':  { p: [18.33, GARAGE_FLOOR, 10.0], r: PI, maxDist: 4.2 },
   'gar-firewall':       { p: [15.15, GARAGE_FLOOR, 2.2], r: H },
   // ── ATTIC ──
   'att-insulation':     { p: [6.0, ATTIC_ITEM_Y, 7.2], r: 0 },
   'att-bath-duct':      { p: [9.7, ATTIC_ITEM_Y, 2.7], r: 0 },
   'att-sheathing':      { roof: 'underN', p: [0.3 + 0.61 * 10 - 0.305, 1.6] },  // its chords align with ours
-  'att-truss':          { p: [0.3 + 0.61 * 12, ATTIC_ITEM_Y, 1.14], r: -H },  // half truss: heel at the north eave, rising to +Z
+  'att-truss':          { p: [0.3 + 0.61 * 12, ATTIC_ITEM_Y, 1.14], r: -H, view: [-1, 0.3, 0.35] },  // half truss: heel at the north eave, rising to +Z
   'att-soffit-vent':    { p: [4.0, ATTIC_ITEM_Y, 9.85], r: PI },  // local -Z = eave
   'att-duct':           { p: [12.0, ATTIC_ITEM_Y, 7.4], r: 0 },
   'att-wiring':         { p: [3.5, ATTIC_ITEM_Y, 4.0], r: 0 },
@@ -155,6 +155,7 @@ export function poseFor(comp) {
   if (P.tiltX) out.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(Xax, P.tiltX));
   if (P.view) out.view = new THREE.Vector3(...P.view).normalize();
   if (P.dist) out.dist = P.dist;
+  if (P.maxDist) out.maxDist = P.maxDist;
   if (comp.mount === 'ceiling') out.normal.set(0, -1, 0);
   else if (comp.mount === 'wall') out.normal.copy(out.front);
   return out;

@@ -145,3 +145,47 @@ Note for Yuki (UI): if the pop-quiz and Exam Mode pickers sort by `difficulty` a
 
 - **Henny (checkpoint content):** quiz explanations recommend these referrals: electrician for panel, GFCI, open ground, disposal wiring, and splices; HVAC for ducts, vent connectors, and condenser; plumber for traps, leaks, and toilet; CSIA chimney sweep for firebox, creosote, and crown; structural engineer for truss cuts, pier cracks, horizontal or bowing walls, and shims; pest control for mud tubes; contractor for ledger, hangers, posts, attic ladder, and pet door. Stated outcomes: water heater age is information, not a defect; the recirculating hood is acceptable; hip mortar is OK; efflorescence is evidence of moisture, not structural damage. If any checkpoint content disagrees, one of us should change, so the player gets one answer.
 - **Yuki (UI):** `src/ui/content.js` imports `GLOSSARY` from `checkpoints.js`, which does not export it yet, and this breaks the build. Lesson fields used: `oneLine`, `paragraph`, `lookFor`, `keyNumbers[{k,v}]`, `wobble`, `mnemonic` (optional, present on 6 courses).
+
+---
+
+## Round 2 (after Voss red-team)
+
+`npm run check`: 0 ERR, 220 quizzes, answer spread 55/55/55/55. Every component that has checkpoints still has a linked quiz.
+`npx vite build`: passes; the only output is the chunk-size warning.
+I changed only `src/data/quizzes.js` and `src/data/lessons.js`.
+
+### Fixes
+1. **B1, q-st-04:** the stem now describes a hairline crack on the taped joint, with no offset and a door that latches. The keyed answer is "typical, not a structural defect; you may note it for monitoring, and it becomes a finding if it widens, offsets, or doors bind". That matches the checkpoint's ok state (graded OK, Monitor also accepted). I removed the "Cosmetic, never report it" distractor because it was half defensible. The new distractors are clearly wrong: an engineer referral, foundation underpinning, and a roofer.
+2. **q-ea-03:** the stem now matches the model: with the dead front off, two unused knockouts are open in the cabinet wall. The explanation keeps the course rule that all unused openings be closed, covering both cabinet knockouts and empty dead-front breaker slots. I replaced the old "overheat" distractor with "leave them open for ventilation", a real misconception.
+3. **Premises that didn't match the model:**
+   - q-hv-01 now describes a clogged filter caked with dust.
+   - q-er-08 is reworded "In another house built in 1987..." and stays linked to `bath-gfci` for its grandfathering lesson.
+   - q-mo-10 is reworded "In another house..." and stays linked to `att-sheathing`.
+4. **Dryer duct length:** I kept the 25 Standards figure (25 ft, minus 5 ft per 90-degree and 2-1/2 ft per 45-degree bend) and added that the IRC since 2012 (M1502.4.5.1) starts at 35 ft with deductions from its fittings table. This is in q-ap-07's explanation and in a second appliances key number. I did not re-fetch the IRC text; the 35 ft figure comes from Voss's web check, so I attribute it to the IRC and leave NC's adoption unstated.
+5. **Water heater plate now MFG 06/2001:**
+   - q-wh-05 now says 06/2001; the age is still treated as information, not a defect.
+   - q-wh-06's explanation adds that FVIR became mandatory for most 30 to 50 gal atmospheric gas tanks from July 2003, so a 2001 tank gets no FVIR exception to the 18 in rule.
+   - The water-heater lesson paragraph says the same.
+   - Neither file references 2009 or calls age a defect anywhere.
+6. **M9, which exam NC uses.** This is verified from primary sources, and it **corrects my Round 1 report**, which repeated InterNACHI's claim that it is the NHIE.
+   - NC applicants take the **NC Home Inspector Licensure Board's own exam**: 200 multiple-choice questions, 4 hours, closed book, 70% to pass. Candidates who pass are not told their score; candidates who fail get a Coaching Report. Retakes must be 90 days apart.
+     Source: NC HILB Study Guide dated 3/17/2026, https://www.ncosfm.gov/home-inspector-study-guide/open (text extracted with PDFKit and read).
+   - The Candidate Information Bulletin (rev. 7.0, 05/26/2026) names the exam "HILB 905 (2018 ed.)". It is remote proctored through Questionmark and Meazure Learning under OSFM QUEST. Test items are "the sole property of NC Code Officials Qualification Board". There are five blocks: Standards of Practice, Building, Electrical, Mechanical, and Plumbing.
+     Source: https://www.ncosfm.gov/nc-home-inspector-licensure-board-osfm-quest-exam-candidate-information-bulletinrules-conduct/open
+   - 11 NCAC 08 .1007 (June 2026 compilation) also says the exam covers the Board's rules and G.S. 143, Article 9F. The NHIE does not test those.
+   - The InterNACHI page (https://www.nachi.org/pre-licensing/us/north-carolina) says "NHIE administered for North Carolina". The Board's documents contradict it and control.
+   - **Added questions:** q-sop-27 (which exam, its format, and the 70% pass mark), q-sop-28 (the five content blocks), and q-sop-29 (DDID: Describe, Determine, Implication, Direction, the Board study guide's reporting framework, which mirrors .1103(b)(3)(D)).
+   - **Lessons:** sop-25 gained an exam key number and a paragraph line saying SOP section numbers matter because Block 1 is the SOP. The egress paragraph no longer says "on the exam use the numbers taught". It now says the Board writes the exam, so learn the NC figure wherever NC amends a dimension, and that the game teaches labelled model figures.
+   - **Headers:** both data files now state the edition (June 1, 2026 compilation, .1101 to .1117) and the exam identity. The `quizzes.js` comment "NHIE-style" now reads "exam-style".
+   - The 70% pass mark, which Round 1 left out to avoid confusion with NHIE scaled scoring, is now quoted because it is verified for the exam NC actually uses.
+
+### Still open for others
+- **M9 citation mismatch (Henny):** my NC SOP subsection letters follow the June 1, 2026 compilation, and I re-checked each one against the extracted text:
+  - automatic safety controls: .1109(d)(4)
+  - valves other than flush valves and faucets: .1109(d)(5)
+  - backflow devices: .1109(d)(3)
+  - anti-siphon devices: .1109(d)(1)
+
+  `checkpoints.js` cites the 2018 edition and should be re-cited to match.
+- **Edition of the exam itself:** the CIB names the exam "HILB 905 (2018 ed.)". That probably means it is keyed to the 2018 NC code editions, but the bulletin does not say so. Ask the Board before assuming which code edition the Building block uses.
+- **Held-out set (Voss's closing point):** there are 220 questions. If Yuki wants a held-out Exam Mode set, a natural split is the 35 general questions (`components: []`) plus any difficulty-3 questions, which never pop on components. That is a UI choice, so I did not mark anything.

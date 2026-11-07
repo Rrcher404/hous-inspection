@@ -329,7 +329,7 @@ export const COMPONENTS = [
   c({ id: 'gar-water-heater', zone: 'garage', name: 'Gas water heater (50 gal)', mount: 'floor', size: [0.6, 1.6, 0.6], courses: ['water-heater', 'plumbing'],
     checkpoints: [
       { id: 'wh-tpr-discharge', label: 'TPR valve discharge', kind: 'defect' },
-      { id: 'wh-age', label: 'Data plate', kind: 'defect' },
+      { id: 'wh-age', label: 'Data plate', kind: 'ok' },
       { id: 'wh-elevation', label: 'Ignition source height', kind: 'variable' },
       { id: 'wh-sediment-trap', label: 'Gas supply drip leg', kind: 'variable' },
       { id: 'wh-draft-hood', label: 'Draft hood & vent', kind: 'ok' },

@@ -354,8 +354,12 @@ B['liv-fireplace'] = (s) => {
   const creosote = s['flue-creosote'] === 'defect';
 
   // ── chimney breast (brick) ──
-  const front = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 2.4), tmat('fp-front', fireplaceFrontTex, { alphaTest: 0.5 }));
-  front.position.set(0, 1.2, D); front.receiveShadow = true; g.add(front);
+  // real hole for the opening (raycasts ignore alpha, so an alpha cut-out would swallow every click in the firebox)
+  const fs = rectShape(-0.9, 0, 0.9, 2.4); fs.holes.push(rectShape(-OW / 2, OB, OW / 2, OT));
+  const fgeo = new THREE.ShapeGeometry(fs), fp = fgeo.attributes.position, fuv = fgeo.attributes.uv;
+  for (let i = 0; i < fp.count; i++) fuv.setXY(i, (fp.getX(i) + 0.9) / 1.8, fp.getY(i) / 2.4);
+  const front = new THREE.Mesh(fgeo, tmat('fp-front', fireplaceFrontTex, { alphaTest: 0.5 }));
+  front.position.set(0, 0, D); front.receiveShadow = true; g.add(front);
   for (const sx of [-1, 1]) {
     const side = new THREE.Mesh(new THREE.PlaneGeometry(D, 2.4), tmat('fp-side', brickSideTex));
     side.position.set(sx * 0.9, 1.2, D / 2); side.rotation.y = sx * Math.PI / 2; g.add(side);
@@ -949,19 +953,19 @@ B['bath-toilet'] = (s) => {
   const sup = group('sup'); angleStop(sup, -0.12, 0.18, -0.35, [-0.12, 0.40, -0.25]); g.add(sup);
   add(g, cyl(0.016, 0.016, 0.02, mat('#d8d8d4'), [-0.12, 0.39, -0.25]));
   // floor at the base: faint discoloured grout halo (dry or wet: meter decides)
-  const halo = planeUp(0.62, 0.72, [0, 0.0012, 0.04], new THREE.MeshStandardMaterial({ map: memo('toilet-halo', () => canvasTex(256, 300, (c, w, h) => {
-    const grd = c.createRadialGradient(w / 2, h * 0.47, 40, w / 2, h * 0.47, 128); grd.addColorStop(0, 'rgba(120,96,60,0.55)'); grd.addColorStop(0.6, 'rgba(120,96,60,0.25)'); grd.addColorStop(1, 'rgba(120,96,60,0)');
-    c.fillStyle = grd; c.fillRect(0, 0, w, h);
-  })), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1 }));
-  g.add(halo); tag(halo, 'toilet-base-moisture');
-  if (s['toilet-base-moisture'] === 'defect') thermal(halo, 'wet');
+  // floor at the base: nothing to see by eye; a transparent tagged disc carries the checkpoint
+  // (the meter reads it, and the IR swap makes it show 'wet' in the defect state)
+  const disc = new THREE.Mesh(new THREE.CircleGeometry(0.26, 32), mat('#d9d6cc', { transparent: true, opacity: 0, depthWrite: false }));
+  disc.rotation.x = -Math.PI / 2; disc.scale.set(1, 1.25, 1); disc.position.set(0, 0.0015, 0.07); disc.receiveShadow = false; g.add(disc);
+  tag(disc, 'toilet-base-moisture');
+  if (s['toilet-base-moisture'] === 'defect') thermal(disc, 'wet');
   hit(g, 'toilet-base-moisture', 0.16, 0.012, 0.12, [0.0, 0.006, 0.36]);
   hit(g, 'toilet-base-moisture', 0.12, 0.012, 0.3, [0.24, 0.006, 0.05]);
   return g;
 };
 
 /** Sink-base style carcass with both doors swung open. W×H×D, front at +D/2. */
-function vanityCarcass(g, W, H, D, wood) {
+function vanityCarcass(g, W, H, D, wood, openDeg = 108) {
   const carcass = mat('#d7c7a8', { roughness: 0.8 });
   for (const x of [-W / 2 + 0.009, W / 2 - 0.009]) add(g, box(0.018, H - 0.03, D - 0.02, carcass, [x, (H - 0.03) / 2, -0.01]));
   const fl = add(g, box(W - 0.036, 0.018, D - 0.04, mat('#cdbb98'), [0, 0.109, -0.01]));
@@ -972,7 +976,7 @@ function vanityCarcass(g, W, H, D, wood) {
   add(g, box(W - 0.1, 0.1, 0.02, wood, [0, H - 0.08, D / 2 - 0.01]));
   const dh = H - 0.29, dw = (W - 0.1) / 2;
   for (const side of [-1, 1]) {
-    const pv = new THREE.Group(); pv.position.set(side * (W / 2 - 0.05), 0.14 + dh / 2, D / 2); pv.rotation.y = side * 108 * D2R;
+    const pv = new THREE.Group(); pv.position.set(side * (W / 2 - 0.05), 0.14 + dh / 2, D / 2); pv.rotation.y = side * openDeg * D2R;
     add(pv, box(dw, dh, 0.02, wood, [-side * dw / 2, 0, 0.01]));
     add(pv, box(dw - 0.09, dh - 0.1, 0.008, wood, [-side * dw / 2, 0, 0.022]));
     add(pv, rot(cyl(0.01, 0.01, 0.025, M.chrome(), [-side * (dw - 0.04), dh / 2 - 0.06, 0.035]), Math.PI / 2));
@@ -985,7 +989,7 @@ B['bath-vanity'] = () => {
   const g = group('bath-vanity');
   const wood = tmat('vanity-wood', () => T.wood('wood-vanity', '#c49a6c', 41));
   const W = 0.9, H = 0.85, D = 0.55;
-  vanityCarcass(g, W, 0.82, D, wood);
+  vanityCarcass(g, W, 0.82, D, wood, 150);
   // cultured-marble top with an integral oval bowl
   const marble = mat('#f1ede4', { roughness: 0.18 });
   const top = rectShape(-W / 2, -D / 2 - 0.01, W / 2, D / 2 + 0.01);
@@ -998,25 +1002,26 @@ B['bath-vanity'] = () => {
   add(g, box(0.16, 0.018, 0.055, M.chrome(), [0, 0.859, -0.21]));
   add(g, tube([[0, 0.87, -0.21], [0, 0.93, -0.18], [0, 0.92, -0.11]], 0.011, M.chrome()));
   for (const x of [-0.065, 0.065]) add(g, cyl(0.016, 0.02, 0.035, M.chrome(), [x, 0.885, -0.21]));
-  // S-trap: tailpiece, U, crown over, then straight DOWN through the cabinet floor (no vent, no trap arm)
-  const tr = group('s-trap'), pv = M.pvc();
-  add(tr, pipe([0, 0.7, 0.01], [0, 0.5, 0.01], 0.017, M.chrome()));
-  const u = new THREE.Mesh(new THREE.TorusGeometry(0.045, 0.019, 8, 14, Math.PI), pv); u.rotation.set(0, Math.PI / 2, Math.PI); u.position.set(0, 0.5, -0.035); tr.add(u);
-  add(tr, pipe([0, 0.5, -0.08], [0, 0.53, -0.08], 0.019, pv));
-  const crown = new THREE.Mesh(new THREE.TorusGeometry(0.045, 0.019, 8, 14, Math.PI), pv); crown.rotation.set(0, Math.PI / 2, 0); crown.position.set(0, 0.53, -0.125); tr.add(crown);
-  add(tr, pipe([0, 0.53, -0.17], [0, 0.09, -0.17], 0.019, pv));
-  for (const y of [0.505, 0.36]) add(tr, cyl(0.025, 0.025, 0.022, pv, [0, y, y > 0.4 ? 0.01 : -0.17]));
-  add(tr, cyl(0.036, 0.036, 0.005, M.chrome(), [0, 0.121, -0.17]));
+  // S-trap, laid out across the cabinet so it reads face-on: tailpiece, U, crown over, then a leg
+  // straight DOWN through the cabinet floor. No trap arm to the wall, no vent tee.
+  const tr = group('s-trap'), pv = M.pvc(), R = 0.055, r = 0.02, zt = 0.0;
+  add(tr, pipe([0, 0.7, 0.01], [0, 0.52, zt], 0.017, M.chrome()));
+  const u = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 18, Math.PI), pv); u.rotation.z = Math.PI; u.position.set(R, 0.52, zt); tr.add(u);
+  add(tr, pipe([2 * R, 0.52, zt], [2 * R, 0.57, zt], r, pv));
+  const crown = new THREE.Mesh(new THREE.TorusGeometry(R, r, 10, 18, Math.PI), pv); crown.position.set(3 * R, 0.57, zt); tr.add(crown);
+  add(tr, pipe([4 * R, 0.57, zt], [4 * R, 0.09, zt], r, pv));
+  for (const [x, y] of [[0, 0.525], [4 * R, 0.42]]) add(tr, cyl(0.026, 0.026, 0.024, pv, [x, y, zt]));
+  add(tr, cyl(0.038, 0.038, 0.005, M.chrome(), [4 * R, 0.121, zt]));
   tag(tr, 'vanity-s-trap'); g.add(tr);
-  hit(g, 'vanity-s-trap', 0.1, 0.5, 0.3, [0, 0.38, -0.08]);
+  hit(g, 'vanity-s-trap', 0.32, 0.5, 0.08, [0.1, 0.36, zt]);
   const sv = group('stops');
   angleStop(sv, -0.15, 0.36, -D / 2 + 0.016, [-0.065, 0.82, -0.21]);
   angleStop(sv, 0.15, 0.36, -D / 2 + 0.016, [0.065, 0.82, -0.21]);
   tag(sv, 'vanity-supply-valves'); g.add(sv);
   hit(g, 'vanity-supply-valves', 0.12, 0.1, 0.12, [-0.15, 0.36, -0.22]);
   hit(g, 'vanity-supply-valves', 0.12, 0.1, 0.12, [0.15, 0.36, -0.22]);
-  add(g, cyl(0.03, 0.035, 0.2, mat('#e9eef2', { roughness: 0.3 }), [0.3, 0.218, 0.1]));
-  add(g, box(0.03, 0.04, 0.05, mat('#2f6fd0'), [0.3, 0.338, 0.1]));
+  add(g, cyl(0.03, 0.035, 0.2, mat('#e9eef2', { roughness: 0.3 }), [-0.33, 0.218, 0.12]));
+  add(g, box(0.03, 0.04, 0.05, mat('#2f6fd0'), [-0.33, 0.338, 0.12]));
   return g;
 };
 
@@ -1242,7 +1247,6 @@ B['bed2-window'] = () => {
 
 const wallCrackTex = (defect) => memo('wallcrack-' + defect, () => canvasTex(768, 512, (g, w, h) => {
   const r = rng(defect ? 111 : 113); const ppm = 640;
-  g.fillStyle = C.drywall; g.fillRect(0, 0, w, h); noise(g, w, h, 7, r);
   const X = (m) => (m + 0.6) * ppm, Y = (m) => h - m * ppm;
   if (defect) {
     // diagonal crack off the head-casing corner, widest at the corner, plus drywall pulled off the head
@@ -1260,7 +1264,7 @@ const wallCrackTex = (defect) => memo('wallcrack-' + defect, () => canvasTex(768
 }));
 B['bed2-wall-crack'] = (s) => {
   const g = group('bed2-wall-crack');
-  const p = planeXY(1.2, 0.8, 0, 0.4, 0.006, new THREE.MeshStandardMaterial({ map: wallCrackTex(s['drywall-crack'] === 'defect'), roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -1 }));
+  const p = planeXY(1.2, 0.8, 0, 0.4, 0.006, new THREE.MeshStandardMaterial({ map: wallCrackTex(s['drywall-crack'] === 'defect'), transparent: true, depthWrite: false, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -1 }));
   const uv = p.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, i % 2 ? 1 : 0, i < 2 ? 1 : 0);
   g.add(p); tag(p, 'drywall-crack');
   return g;
@@ -1496,16 +1500,18 @@ B['util-dryer'] = () => {
   const duct = group('duct');
   add(duct, rot(cyl(0.052, 0.052, 0.04, M.steel(), [0, 0.16, zb - 0.02]), Math.PI / 2));
   const vin = { opacity: 0.8, roughness: 0.45 };
-  add(duct, ribTube([[0, 0.16, zb - 0.03], [0.15, 0.19, zb - 0.075], [0.3, 0.14, zb - 0.09]], 0.05, 'vinyl-duct', '#e8e6de', 'rgba(120,115,100,0.55)', 90, vin));
-  const crushed = ribTube([[0.3, 0.14, zb - 0.09], [0.4, 0.13, zb - 0.1], [0.45, 0.24, zb - 0.1]], 0.05, 'vinyl-duct', '#e8e6de', 'rgba(120,115,100,0.55)', 90, vin);
-  crushed.scale.set(1, 1, 0.5); crushed.position.z = (zb - 0.1) * 0.5; duct.add(crushed); // kinked flat where it was shoved back
-  add(duct, ribTube([[0.45, 0.24, zb - 0.1], [0.46, 0.33, -0.3], [0.46, 0.4, -0.31]], 0.05, 'vinyl-duct', '#e8e6de', 'rgba(120,115,100,0.55)', 90, vin));
-  add(duct, box(0.18, 0.18, 0.04, mat('#f4f4f0', { roughness: 0.6 }), [0.46, 0.42, -0.33]));
-  add(duct, rot(cyl(0.055, 0.055, 0.03, mat('#c9ced2', { metalness: 0.3 }), [0.46, 0.42, -0.31]), Math.PI / 2));
-  add(duct, decal(0.12, 0.05, '#c9ccce', [0.46, 0.47, -0.307], { opacity: 0.9 }));
-  const lr = rng(211); for (let i = 0; i < 6; i++) { const b = sphere(0.014 + lr() * 0.01, mat('#a7a39a', { roughness: 1 }), [0.39 + lr() * 0.15, 0.34 + lr() * 0.05, -0.3]); b.scale.set(1.5, 0.7, 0.6); duct.add(b); }
+  // out the right side at floor level, kinked flat at the turn, then sagging up the wall behind
+  // to a vent box above the dryer: in plain sight from the front, as these installs usually are
+  add(duct, ribTube([[0, 0.16, zb - 0.03], [0.18, 0.19, zb - 0.075], [0.36, 0.15, zb - 0.09]], 0.05, 'vinyl-duct', '#eeece4', 'rgba(120,115,100,0.5)', 90, vin));
+  const crushed = ribTube([[0.36, 0.15, zb - 0.09], [0.45, 0.14, zb - 0.1], [0.5, 0.26, zb - 0.1]], 0.05, 'vinyl-duct', '#eeece4', 'rgba(120,115,100,0.5)', 90, vin);
+  crushed.scale.set(1, 1, 0.5); crushed.position.z = (zb - 0.1) * 0.5; duct.add(crushed);
+  add(duct, ribTube([[0.5, 0.26, zb - 0.1], [0.53, 0.5, -0.3], [0.49, 0.78, -0.29], [0.52, 1.02, -0.3], [0.46, 1.16, -0.31]], 0.05, 'vinyl-duct', '#eeece4', 'rgba(120,115,100,0.5)', 90, vin));
+  add(duct, box(0.18, 0.18, 0.04, mat('#f4f4f0', { roughness: 0.6 }), [0.42, 1.2, -0.33]));
+  add(duct, rot(cyl(0.055, 0.055, 0.03, mat('#c9ced2', { metalness: 0.3 }), [0.44, 1.18, -0.31]), Math.PI / 2));
+  add(duct, decal(0.12, 0.05, '#c9ccce', [0.44, 1.235, -0.307], { opacity: 0.9 }));
+  const lr = rng(211); for (let i = 0; i < 6; i++) { const b = sphere(0.013 + lr() * 0.01, mat('#a7a39a', { roughness: 1 }), [0.36 + lr() * 0.15, 1.1 + lr() * 0.05, -0.3]); b.scale.set(1.5, 0.7, 0.6); duct.add(b); }
   tag(duct, 'dryer-duct'); g.add(duct);
-  hit(g, 'dryer-duct', 0.3, 0.4, 0.14, [0.42, 0.28, -0.3]);
+  hit(g, 'dryer-duct', 0.2, 1.0, 0.14, [0.5, 0.65, -0.3]);
   return g;
 };
 
@@ -1579,7 +1585,7 @@ B['crawl-vapor-barrier'] = (s) => {
   add(vb, sheet(1.1, 1.6, 1.35, 0.55, -0.12, 7));
   const flap = quad([0.42, 0.02, -0.2], [0.75, 0.02, -0.35], [0.66, 0.09, -0.05], [0.4, 0.06, 0.05], sm); vb.add(flap);
   tag(vb, 'vapor-barrier'); g.add(vb);
-  hit(g, 'vapor-barrier', 0.9, 0.04, 2.6, [0.5, 0.02, 0.0]);
+  hit(g, 'vapor-barrier', 0.9, 0.04, 1.9, [0.5, 0.02, 0.35]);
   // low area near the rear wall
   const low = group('low');
   if (s['standing-water'] === 'defect') {
@@ -1849,5 +1855,59 @@ B['crawl-duct'] = () => {
   tag(fl, 'crawl-duct-down'); g.add(fl);
   return g;
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hint-ring anchors (Voss M4). One small invisible tagged box per checkpoint, placed at the
+// point a player should look at and in front of the geometry, so a raycast from the framing
+// camera through it returns that checkpoint. Flagged userData.anchor = true; the engine can put
+// its ring at the anchor's world position instead of the union-bbox centre.
+// ─────────────────────────────────────────────────────────────────────────────
+const ANCHORS = {
+  'liv-fireplace': (s) => ({ 'firebox-brick': [-0.16, 0.29, 0.12], 'hearth-extension': [0.2, 0.065, 0.4 + (s['hearth-extension'] === 'defect' ? 0.12 : 0.32)],
+    'damper': [0.15, 0.66, 0.385], 'flue-creosote': [-0.05, 0.668, 0.372] }),
+  'liv-smoke-alarm': () => ({ 'smoke-alarm-age': [0.01, -0.13, 0.1] }),
+  'liv-receptacle': () => ({ 'liv-polarity': [0, 0.058, 0.02] }),
+  'liv-ceiling-stain': () => ({ 'ceiling-stain': [0, -0.01, 0] }),
+  'liv-window': () => ({ 'window-operation': [-0.39, 0.72, 0.08] }),
+  'kit-range': () => ({ 'range-burners': [0.19, 0.95, 0.12], 'range-anti-tip': [0.3, 0.07, 0.78] }),
+  'kit-dishwasher': () => ({ 'dw-operation': [0.2, 0.82, 0.32], 'dw-drain-loop': [-0.12, 0.05, 0.16] }),
+  'kit-sink': () => ({ 'sink-flex-drain': [0.205, 0.46, 0.03], 'sink-leak': [-0.05, 0.135, 0.12], 'disposal-wiring': [-0.205, 0.405, 0.135] }),
+  'kit-gfci': () => ({ 'kit-gfci-test': [0, 0.058, 0.02] }),
+  'kit-hood': () => ({ 'hood-recirc': [0, 0.27, 0.52] }),
+  'kit-back-door': () => ({ 'door-threshold': [0.38, 0.045, -0.04] }),
+  'bath-toilet': () => ({ 'toilet-loose': [-0.14, 0.045, 0.03], 'toilet-base-moisture': [0.05, 0.012, 0.38] }),
+  'bath-vanity': () => ({ 'vanity-s-trap': [0.165, 0.6, 0.04], 'vanity-supply-valves': [-0.15, 0.36, -0.19] }),
+  'bath-tub': () => ({ 'tub-caulk': [-0.3, 0.415, -0.36], 'tub-wall-moisture': [0.3, 0.79, -0.37] }),
+  'bath-gfci': () => ({ 'bath-gfci-test': [0, 0.058, 0.02] }),
+  'bath-fan': () => ({ 'bath-fan-operation': [0, -0.03, 0] }),
+  'pri-window': () => ({ 'egress-sill-height': [0, 1.31, 0.1] }),
+  'pri-smoke-alarm': () => ({ 'bedroom-smoke-alarm': [0, -0.03, 0] }),
+  'pri-receptacle': () => ({ 'open-ground': [0, 0.058, 0.02] }),
+  'pri-closet': () => ({ 'closet-light': [0, -0.08, 0] }),
+  'bed2-window': () => ({ 'security-bars': [0, 0.61, 0.2] }),
+  'bed2-wall-crack': () => ({ 'drywall-crack': [0.17, 0.4, 0.02] }),
+  'bed2-door': () => ({ 'door-latch': [0.39, 0.91, 0.01] }),
+  'hall-attic-ladder': () => ({ 'attic-ladder': [0.32, -0.1, -0.52] }),
+  'hall-co-alarm': () => ({ 'co-alarm': [0, -0.045, 0] }),
+  'hall-return': () => ({ 'return-grille': [0, 0.3, 0.02] }),
+  'util-furnace': (s) => ({ 'furnace-filter': [0, 0.13, 0.5], 'furnace-flue': [0.12, s['furnace-flue'] === 'defect' ? 1.77 : 1.78, 0.18], 'furnace-burners': [0, 1.075, 0.385] }),
+  'util-dryer': () => ({ 'dryer-duct': [0.53, 0.7, -0.24] }),
+  'util-washer': () => ({ 'washer-hoses': [-0.064, 1.06, -0.27] }),
+  'crawl-vapor-barrier': () => ({ 'vapor-barrier': [0.45, 0.035, 0.4], 'standing-water': [0.55, 0.025, -1.1] }),
+  'crawl-pier': () => ({ 'pier-crack': [0.0, 0.3, 0.215], 'pier-shims': [0.05, 0.55, 0.19] }),
+  'crawl-joists': () => ({ 'joist-notch': [0.35, -0.2, 0.85], 'joist-moisture': [-0.8, -0.262, 0.0] }),
+  'crawl-foundation-wall': () => ({ 'foundation-crack': [0.32, 0.3, 0.225], 'efflorescence': [-0.95, 0.15, 0.215] }),
+  'crawl-termite': () => ({ 'termite-tubes': [0.12, 0.15, 0.215] }),
+  'crawl-plumbing': () => ({ 'drain-leak': [0.1, -0.21, 0.045], 'pex-supply': [-0.5, -0.05, 0.15] }),
+  'crawl-duct': () => ({ 'crawl-duct-down': [0.2, -0.92, 0.58] }),
+};
+for (const [id, fn] of Object.entries(ANCHORS)) {
+  const build = B[id];
+  B[id] = (s, comp) => {
+    const g = build(s, comp);
+    for (const [cp, pos] of Object.entries(fn(s || {}))) { const m = hit(g, cp, 0.06, 0.06, 0.06, pos); m.userData.anchor = true; m.name = 'anchor:' + cp; }
+    return g;
+  };
+}
 
 export const builders = B;

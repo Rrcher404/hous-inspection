@@ -87,7 +87,7 @@ export function createReport(ctx) {
       return h('li', { class: 'rp-miss' },
         h('div', { class: 'rp-miss-main' },
           h('div', { class: 'rp-miss-title' }, cpTitle(cp), sc ? sevPill(SEV[sc.severity], 'sm') : null),
-          h('div', { class: 'muted small' }, `${ZONE_BY_ID[cp.zone]?.name} · ${clean(comp?.name)}${loggedOk ? ' · you logged it as acceptable' : ' · not logged'}`),
+          h('div', { class: 'muted small' }, `${ZONE_BY_ID[cp.zone]?.name} · ${clean(comp?.name)}${loggedOk ? ' · you logged it as acceptable' : ' · not logged'}${loggedOk && ins.logged[id].practice && ins.logged[id].practice.severity !== 'ok' ? ' (caught on a practice run, graded on your first call)' : ''}`),
           sc?.why ? (loggedOk ? h('p', { class: 'rp-why' }, clean(sc.why))
             : h('details', { class: 'rp-why-d' }, h('summary', null, 'Why it matters'), h('p', { class: 'rp-why' }, clean(sc.why)))) : null),
         h('button', { class: 'btn btn-ghost btn-sm no-print', type: 'button', onclick: () => showMe(cp.componentId) }, icon('pin', { size: 15 }), ' Show me'));

@@ -92,7 +92,10 @@ export function createEngine({ container, bus, store }) {
     exitInspect: () => (ready ? exitInspect() : undefined),
     rebuild: () => (ready ? rebuild() : undefined),
     getZone: () => zone || 'exterior',
-    debug: { camera, scene, renderer, componentObjects, get controls() { return controls; }, get house() { return house; }, recs, info: () => renderer.info, setPose: (p) => controls?.setPose(p), stats: {} },
+    debug: { camera, scene, renderer, componentObjects, get controls() { return controls; }, get house() { return house; }, recs, info: () => renderer.info,
+      ringCheck: () => (inspecting ? hints.items.map((it) => { const s = interact.toScreen(it.pos, { x: 0, y: 0, front: false }); const fa = freeArea();
+        return { cpId: it.cpId, x: Math.round(s.x), y: Math.round(s.y), inFree: s.x > fa.x0 && s.x < fa.x1 && s.y > fa.y0 && s.y < fa.y1,
+          ray: interact.pickCheckpoint(s.x, s.y, inspecting.rec.group)?.checkpointId || null, final: hints.pickAt(s.x, s.y, interact.toScreen) || null }; }) : []), setPose: (p) => controls?.setPose(p), stats: {} },
   };
 
   // ── components ─────────────────────────────────────────────────────────────
@@ -109,7 +112,7 @@ export function createEngine({ container, bus, store }) {
       g.updateMatrixWorld(true);
       const box = new THREE.Box3().setFromObject(g);
       const sphere = box.getBoundingSphere(new THREE.Sphere());
-      const rec = { id: comp.id, comp, group: g, box, sphere, zone: comp.zone, level: levelOfZone(comp.zone), front: pose?.front || new THREE.Vector3(0, 0, 1), normal: pose?.normal || new THREE.Vector3(0, 1, 0), view: pose?.view || null, dist: pose?.dist || 0 };
+      const rec = { id: comp.id, comp, group: g, box, sphere, zone: comp.zone, level: levelOfZone(comp.zone), front: pose?.front || new THREE.Vector3(0, 0, 1), normal: pose?.normal || new THREE.Vector3(0, 1, 0), view: pose?.view || null, dist: pose?.dist || 0, maxDist: pose?.maxDist || 0 };
       recs.set(comp.id, rec);
       componentObjects.set(comp.id, g);
     }
@@ -245,6 +248,45 @@ export function createEngine({ container, bus, store }) {
   }
 
   // ── inspect ─────────────────────────────────────────────────────────────────
+  // ── inspect framing ──────────────────────────────────────────────────────
+  // The UI keeps an inspect panel on the right (~360 px) and a tool belt at the bottom (~110 px).
+  // An off-axis view offset re-centres the image on the free area; framing fills ~60% of it.
+  const PANEL_W = 360, BELT_H = 110, FILL = 0.7;
+  function freeArea() {
+    const r = cv.getBoundingClientRect(), W = r.width || 1, H = r.height || 1;
+    const dx = Math.min(PANEL_W / 2, W * 0.15), dy = Math.min(BELT_H / 2, H * 0.07);
+    return { W, H, dx, dy, x0: r.left + 12, x1: r.left + W - 2 * dx - 12, y0: r.top + 12, y1: r.top + H - 2 * dy - 12 };
+  }
+  const _occ = new THREE.Ray(), _hitP = new THREE.Vector3();
+  function clearDistance(level, from, dir, maxD) {
+    if (level !== 'ground') return maxD;
+    _occ.origin.copy(from); _occ.direction.copy(dir);
+    let d = maxD;
+    for (const b of house.occluders) {
+      if (b.containsPoint(from)) continue;
+      if (_occ.intersectBox(b, _hitP)) { const t = from.distanceTo(_hitP); if (t > 0.02 && t < d) d = t; }
+    }
+    return d;
+  }
+  function fitDistance(box, c, dir, fa, dMin, dMax) {
+    const fwd = dir.clone().negate();
+    const upRef = Math.abs(fwd.y) > 0.97 ? new THREE.Vector3(0, 0, -1) : new THREE.Vector3(0, 1, 0);
+    const right = new THREE.Vector3().crossVectors(fwd, upRef).normalize(), up = new THREE.Vector3().crossVectors(right, fwd);
+    const tv = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const tanV = tv * (fa.H - 2 * fa.dy) / fa.H, tanH = tv * (fa.W / fa.H) * (fa.W - 2 * fa.dx) / fa.W;
+    const corners = [];
+    for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) corners.push(new THREE.Vector3(x, y, z).sub(c));
+    const frac = (d) => {
+      let f = 0;
+      for (const k of corners) { const depth = d + k.dot(fwd); if (depth < 0.05) return 9; f = Math.max(f, Math.abs(k.dot(right)) / (depth * tanH), Math.abs(k.dot(up)) / (depth * tanV)); }
+      return f;
+    };
+    let lo = dMin, hi = dMax;
+    if (frac(hi) > FILL) return hi;          // too big even at the cap: show the defect area up close
+    if (frac(lo) <= FILL) return lo;
+    for (let i = 0; i < 24; i++) { const m = (lo + hi) / 2; if (frac(m) > FILL) lo = m; else hi = m; }
+    return hi;
+  }
   function framing(rec) {
     const c = rec.box.getCenter(new THREE.Vector3());
     const size = rec.box.getSize(new THREE.Vector3());
@@ -259,11 +301,26 @@ export function createEngine({ container, bus, store }) {
     if (rec.level === 'crawl' && mount === 'ceiling') { dir.set(rec.front.x, -0.55, rec.front.z); }
     if (rec.view) { dir.copy(rec.view); lim = 1.3; phiMin = 0.3; phiMax = 2.6; }
     dir.normalize();
-    const half = THREE.MathUtils.degToRad(camera.fov / 2);
-    const dist = rec.dist || THREE.MathUtils.clamp((r / Math.sin(half)) * 0.8, 0.45, 6.5);
+    // distance: fit the projected box to ~60% of the free area, capped (long thin parts are shown up close)
+    const dims = [size.x, size.y, size.z].sort((p, q) => p - q);
+    const dMax = rec.maxDist || THREE.MathUtils.clamp(1.6 + 3 * dims[1], 1.2, 3.0);
+    const fa = freeArea();
+    let dist = fitDistance(rec.box, c, dir, fa, 0.35, dMax);
+    // never park the camera behind a wall: try swinging around the vertical axis first
+    const lvl = rec.level;
+    if (clearDistance(lvl, c, dir, dist + 0.15) < dist + 0.1) {
+      let best = { d: -1, dir: dir.clone() };
+      for (const ang of [0.35, -0.35, 0.7, -0.7, 1.05, -1.05]) {
+        const dd = dir.clone().applyAxisAngle(new THREE.Vector3(0, 1, 0), ang);
+        const cd = clearDistance(lvl, c, dd, dist + 0.15);
+        if (cd >= dist + 0.1) { best = { d: dist, dir: dd }; break; }
+        if (cd > best.d) best = { d: cd, dir: dd };
+      }
+      dir.copy(best.dir);
+      dist = Math.min(dist, Math.max(0.35, best.d - 0.12));
+    }
     const pos = c.clone().addScaledVector(dir, dist);
     // keep the camera inside the space the component lives in
-    const lvl = rec.level;
     if (lvl === 'attic' || lvl === 'crawl') {
       const B = BOUNDS[lvl];
       pos.x = THREE.MathUtils.clamp(pos.x, B.x0, B.x1);
@@ -276,7 +333,37 @@ export function createEngine({ container, bus, store }) {
     if (lvl === 'crawl') cap = JOIST_BOT - 0.04;
     pos.y = THREE.MathUtils.clamp(pos.y, Math.min(fl, cap), cap);
     if (lvl === 'crawl') pos.y = Math.max(pos.y, CRAWL_FLOOR + 0.12);
-    return { target: c, framePos: pos, lim, phiMin, phiMax, rMin: Math.max(0.12, r * 0.35), rMax: Math.max(1.5, dist * 2.4) };
+    const d = pos.distanceTo(c);
+    return { target: c, framePos: pos, box: rec.box, dist: d, lim, phiMin, phiMax, rMin: 0.15, rMax: Math.max(1.5, d * 2.4) };
+  }
+  // view offset follows the inspect transition so the target lands in the free area
+  let offK = 0, offW = 0, offH = 0;
+  function updateViewOffset() {
+    const m = controls.mode;
+    const sm = (t) => t * t * (3 - 2 * t);
+    const k = !inspecting && m === 'walk' ? 0 : m === 'inspect' ? 1 : m === 'toInspect' ? sm(controls.tweenT) : m === 'toWalk' ? 1 - sm(controls.tweenT) : 0;
+    const fa = freeArea();
+    if (Math.abs(k - offK) < 1e-4 && fa.W === offW && fa.H === offH) return;
+    offK = k; offW = fa.W; offH = fa.H;
+    if (k < 1e-4) camera.clearViewOffset();
+    else camera.setViewOffset(fa.W, fa.H, fa.dx * k, fa.dy * k, fa.W, fa.H);
+  }
+  function placeRings() {
+    if (!inspecting || !hints || !interact || !inspecting.rec?.group) return;
+    const rec = inspecting.rec;
+    camera.updateMatrixWorld();
+    let anchors;
+    try { anchors = interact.computeAnchors(rec.comp, inspecting.cpMeshes, rec.group, freeArea()); }
+    catch (err) {
+      console.warn('[engine] ring anchors fell back to bounding boxes', rec.id, err);
+      anchors = [];
+      for (const cp of rec.comp.checkpoints || []) {
+        const ms = inspecting.cpMeshes.get(cp.id); if (!ms?.length) continue;
+        const bb = new THREE.Box3(); for (const m of ms) bb.expandByObject(m);
+        anchors.push({ cpId: cp.id, pos: bb.getCenter(new THREE.Vector3()), resolved: false });
+      }
+    }
+    hints.show(Array.isArray(anchors) ? anchors : [], (id) => store.isLogged(id), !!store.settings.hints);
   }
   function openInspect(rec) {
     if (!rec || travelling) return;
@@ -293,9 +380,12 @@ export function createEngine({ container, bus, store }) {
     });
     inspecting = { rec, cpMeshes, hoverCp: null };
     bus.emit('component:open', { componentId: rec.id });
-    controls.beginInspect(framing(rec), () => {
+    const f = framing(rec);
+    tools.setFill(true, f.dist);
+    controls.beginInspect(f, () => {
       if (!inspecting || inspecting.rec !== rec) return;
-      hints.show(rec.group, rec.comp, (id) => store.isLogged(id), !!store.settings.hints);
+      updateViewOffset();
+      placeRings();
       bus.emit('inspect:entered', { componentId: rec.id });
     });
     updateCursor();
@@ -305,6 +395,7 @@ export function createEngine({ container, bus, store }) {
     const rec = inspecting.rec;
     if (inspecting.hoverCp) swapper.setHighlight(inspecting.cpMeshes.get(inspecting.hoverCp) || [], false);
     hints.clear();
+    tools.setFill(false);
     rec.group.traverse((o) => { if (o.isMesh) o.layers.disable(1); });
     inspecting = null;
     emitHover(null, null, null);
@@ -377,8 +468,7 @@ export function createEngine({ container, bus, store }) {
       else if (portal) emitHover(null, null, portal.name, portal.to);
       else emitHover(null, null, null);
     } else if (controls.mode === 'inspect' && inspecting) {
-      const hit = interact.pickCheckpoint(m.x, m.y, inspecting.rec.group);
-      const cp = hit?.checkpointId || null;
+      const cp = hints.pickAt(m.x, m.y, interact.toScreen) || interact.pickCheckpoint(m.x, m.y, inspecting.rec.group)?.checkpointId || null;
       if (cp !== inspecting.hoverCp) {
         if (inspecting.hoverCp) swapper.setHighlight(inspecting.cpMeshes.get(inspecting.hoverCp) || [], false);
         if (cp) swapper.setHighlight(inspecting.cpMeshes.get(cp) || [], true);
@@ -400,8 +490,8 @@ export function createEngine({ container, bus, store }) {
       if (PORTAL_COMPONENTS[rec.id] && !inspectInstead) { travel(PORTAL_COMPONENTS[rec.id]); return; }
       openInspect(rec);
     } else if (controls.mode === 'inspect' && inspecting) {
-      const hit = interact.pickCheckpoint(x, y, inspecting.rec.group);
-      if (hit) bus.emit('checkpoint:click', { checkpointId: hit.checkpointId, componentId: inspecting.rec.id, x, y });
+      const cp = hints.pickAt(x, y, interact.toScreen) || interact.pickCheckpoint(x, y, inspecting.rec.group)?.checkpointId;
+      if (cp) bus.emit('checkpoint:click', { checkpointId: cp, componentId: inspecting.rec.id, x, y });
     }
   }
   function onUseKey() {
@@ -446,6 +536,7 @@ export function createEngine({ container, bus, store }) {
     requestAnimationFrame(frame);
     const dt = Math.min(0.05, (now - last) / 1000); last = now;
     controls.update(dt);
+    updateViewOffset();
     if (controls.mode === 'walk' && !travelling) {
       const s = controls.state;
       setZone(zoneAt(s.level, s.x, s.z));
@@ -488,6 +579,8 @@ export function createEngine({ container, bus, store }) {
         onHoverLeave: () => interact.leave(),
         onClick, onUseKey,
         onDragState: (d) => { dragging = d; updateCursor(); },
+        pickPoint: (x, y) => (inspecting ? interact.pickPoint(x, y, inspecting.rec.group) : null),
+        onOrbitSettled: () => placeRings(),
       },
     });
     interact = createInteraction({ camera, dom: cv, swapper });
@@ -496,14 +589,14 @@ export function createEngine({ container, bus, store }) {
     setZone(zoneAt('ground', POSES.exterior.x, POSES.exterior.z), true);
     applyTool(store.tool || 'hand');
 
-    bus.on('ui:teleport', ({ zoneId }) => goToZone(zoneId));
-    bus.on('ui:goto-component', ({ componentId }) => openComponent(componentId));
+    bus.on('ui:teleport', (e) => api.goToZone(e?.zoneId));
+    bus.on('ui:goto-component', (e) => api.openComponent(e?.componentId));
     bus.on('ui:inspect-exit', () => exitInspect());
     bus.on('ui:modal', ({ open }) => { modalOpen = !!open; controls.setModal(modalOpen); if (modalOpen) clearHover(); });
     bus.on('tool:changed', ({ tool }) => applyTool(tool));
     bus.on('finding:logged', () => { if (inspecting) hints.update((id) => store.isLogged(id), !!store.settings.hints); });
     bus.on('settings:changed', ({ key }) => { if (key === 'hints' && inspecting) hints.update((id) => store.isLogged(id), !!store.settings.hints); });
-    bus.on('inspection:new', () => rebuild());
+    bus.on('inspection:new', () => { rebuild(); travel('exterior'); });
 
     new ResizeObserver(resize).observe(container);
     window.addEventListener('resize', resize);

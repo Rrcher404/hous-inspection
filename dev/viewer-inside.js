@@ -103,6 +103,23 @@ function audit() {
       if (mode === 'defect') rows.push(`${comp.id.padEnd(22)} ${String(meshes).padStart(3)}m  ${sz.x.toFixed(2)}×${sz.y.toFixed(2)}×${sz.z.toFixed(2)} (spec ${comp.size.join('×')})`);
     }
   }
+  // anchor raycast (Voss M4): from a framing camera through each anchor, the first mesh hit must carry that checkpoint
+  const anchorFails = [];
+  const rc = new THREE.Raycaster();
+  for (const comp of comps) for (const mode of ['defect', 'ok']) {
+    const g = builders[comp.id](statesFor(comp, mode), comp); g.updateMatrixWorld(true);
+    const anchors = []; g.traverse(o => { if (o.userData.anchor) anchors.push(o); });
+    for (const cp of comp.checkpoints) if (!anchors.find(a => a.userData.checkpointId === cp.id)) anchorFails.push(`${comp.id} [${mode}]: no anchor for ${cp.id}`);
+    const dir = comp.mount === 'ceiling' ? new THREE.Vector3(0, -1, 0.6).normalize() : new THREE.Vector3(0, 0.35, 1).normalize();
+    for (const a of anchors) {
+      const p = a.getWorldPosition(new THREE.Vector3()), cam = p.clone().addScaledVector(dir, 1.2);
+      rc.set(cam, p.clone().sub(cam).normalize());
+      const first = rc.intersectObject(g, true).find(h => h.object.visible);
+      const got = first?.object.userData.checkpointId;
+      if (got !== a.userData.checkpointId) anchorFails.push(`${comp.id} [${mode}]: ray to ${a.userData.checkpointId} hit ${got || 'untagged ' + (first ? first.object.geometry.type + '@' + first.point.toArray().map(v => v.toFixed(2)).join(',') : 'nothing')}`);
+    }
+  }
+  problems.push(...anchorFails);
   const el = document.getElementById('audit');
   el.innerHTML = (problems.length ? `<span class="bad">${problems.length} problems:\n${problems.join('\n')}</span>` : `<span class="good">✓ ${comps.length} components tag every checkpoint in defect + ok</span>`) + '\n\n' + rows.join('\n');
   window.__audit = { problems, rows };

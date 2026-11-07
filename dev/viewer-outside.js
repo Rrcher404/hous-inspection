@@ -125,6 +125,6 @@ renderer.domElement.addEventListener('dblclick', (e) => {
 addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); lr.setSize(innerWidth, innerHeight); });
 renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); lr.render(scene, camera); });
 
-window.__viewer = { focus, view, setMode, overview, slots, toggleLabels: (v) => { labelsOn = v; applyViews(); }, thermal: (v) => { thermalOn = v; applyViews(); }, hits: (v) => { hitsOn = v; applyViews(); } };
+window.__viewer = { THREE, camera, root, focus, view, setMode, overview, slots, toggleLabels: (v) => { labelsOn = v; applyViews(); }, thermal: (v) => { thermalOn = v; applyViews(); }, hits: (v) => { hitsOn = v; applyViews(); } };
 build();
 const f = params.get('focus'); if (f) focus(f); else overview();

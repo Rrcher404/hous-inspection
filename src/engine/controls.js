@@ -21,7 +21,9 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
   const keys = new Set();
   const ptr = { down: false, id: -1, x: 0, y: 0, sx: 0, sy: 0, t: 0, moved: 0, button: 0, lastX: 0, lastY: 0, inside: false };
   const tween = { active: false, t: 0, dur: 0.6, fromP: new THREE.Vector3(), toP: new THREE.Vector3(), fromQ: new THREE.Quaternion(), toQ: new THREE.Quaternion(), done: null };
-  const orbit = { target: new THREE.Vector3(), r: 1, theta: 0, phi: 1, theta0: 0, lim: 1.4, rMin: 0.25, rMax: 4, phiMin: 0.12, phiMax: 2.9 };
+  const orbit = { target: new THREE.Vector3(), target0: new THREE.Vector3(), box: new THREE.Box3(), r: 1, theta: 0, phi: 1, theta0: 0, lim: 1.4, rMin: 0.15, rMax: 4, phiMin: 0.12, phiMax: 2.9 };
+  let settleTimer = 0;
+  const settled = () => { clearTimeout(settleTimer); settleTimer = setTimeout(() => { if (st.mode === 'inspect') callbacks.onOrbitSettled?.(); }, 260); };
   const _e = new THREE.Euler(0, 0, 0, 'YXZ');
   const _v = new THREE.Vector3(), _p = { x: 0, z: 0 };
   let modal = false;
@@ -62,6 +64,7 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     ptr.down = false;
     try { dom.releasePointerCapture(e.pointerId); } catch { /* ignore */ }
     callbacks.onDragState?.(false);
+    if (ptr.moved >= 6 && st.mode === 'inspect') settled();
     if (modal) return;
     const dt = performance.now() - ptr.t;
     if (ptr.moved < 6 && dt < 700) callbacks.onClick?.(e.clientX, e.clientY, { button: ptr.button, alt: e.altKey, shift: e.shiftKey });
@@ -70,8 +73,15 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     e.preventDefault();
     if (modal) return;
     if (st.mode === 'inspect') {
-      const k = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015));
-      orbit.r = THREE.MathUtils.clamp(orbit.r * k, orbit.rMin, orbit.rMax);
+      let k = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015));
+      k = THREE.MathUtils.clamp(orbit.r * k, orbit.rMin, orbit.rMax) / orbit.r; // effective scale after limits
+      // zoom about the surface point under the cursor: scaling camera and target about P keeps P
+      // fixed on screen (read a lug, a nail, a date stamp). Zooming out drifts back to the framing.
+      if (k < 1) { const pt = callbacks.pickPoint?.(e.clientX, e.clientY); if (pt) orbit.target.lerp(pt, 1 - k); }
+      else if (k > 1) orbit.target.lerp(orbit.target0, Math.min(1, (k - 1) * 1.2));
+      orbit.box.clampPoint(orbit.target, orbit.target);
+      orbit.r *= k;
+      settled();
     } else if (st.mode === 'walk' && !st.frozen && !e.ctrlKey) {
       st.yaw -= e.deltaX * 0.0022 * sens();
       st.pitch = THREE.MathUtils.clamp(st.pitch - e.deltaY * 0.0016 * sens(), -1.35, 1.35);
@@ -186,10 +196,13 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
   const api = {
     state: st,
     get mode() { return st.mode; },
+    get tweenT() { return tween.active ? Math.min(1, tween.t) : 1; },
+    get tweening() { return tween.active; },
     get moving() { return Math.hypot(st.vx, st.vz) > 0.15; },
     moveDir,
     setModal(v) { modal = v; if (v) { keys.clear(); ptr.down = false; } },
     setPose(p) {
+      if (!p || (p.level && !(p.level in EYE)) || !Number.isFinite(p.x) || !Number.isFinite(p.z)) { console.warn('[engine] setPose ignored (bad pose)', p); return false; }
       st.level = p.level || st.level; st.x = p.x; st.z = p.z;
       st.yaw = p.yaw ?? st.yaw; st.pitch = p.pitch ?? 0; st.vx = st.vz = 0; st.bob = 0;
       st.eyeY = targetEye(st.level, st.x, st.z);
@@ -198,14 +211,15 @@ export function createControls({ camera, dom, store, colliders, reducedMotion, c
     getPose() { return { level: st.level, x: st.x, z: st.z, yaw: st.yaw, pitch: st.pitch, eyeY: st.eyeY }; },
     freeze(v) { st.frozen = v; if (v) { st.vx = st.vz = 0; } },
     /** Ease into an orbit around target, starting from camera pose `frame`. */
-    beginInspect({ target, framePos, lim, rMin, rMax, phiMin, phiMax }, onArrive) {
+    beginInspect({ target, framePos, lim, rMin, rMax, phiMin, phiMax, box }, onArrive) {
       st.mode = 'toInspect'; st.vx = st.vz = 0; keys.clear();
-      orbit.target.copy(target);
+      orbit.target.copy(target); orbit.target0.copy(target);
+      orbit.box.copy(box || new THREE.Box3(target, target)).expandByScalar(0.1);
       _v.subVectors(framePos, target);
       orbit.r = _v.length();
       orbit.theta = orbit.theta0 = Math.atan2(_v.x, _v.z);
       orbit.phi = Math.acos(THREE.MathUtils.clamp(_v.y / orbit.r, -1, 1));
-      orbit.lim = lim; orbit.rMin = rMin; orbit.rMax = rMax; orbit.phiMin = phiMin; orbit.phiMax = phiMax;
+      orbit.lim = lim; orbit.rMin = Math.min(rMin, 0.15); orbit.rMax = rMax; orbit.phiMin = phiMin; orbit.phiMax = phiMax;
       const q = new THREE.Quaternion(); lookQuat(framePos, target, q);
       startTween(framePos, q, 0.6, () => { st.mode = 'inspect'; onArrive?.(); });
     },

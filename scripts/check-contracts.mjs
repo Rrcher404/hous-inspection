@@ -24,6 +24,7 @@ for (const cp of CHECKPOINTS) {
     if (s.severity && !sev.has(s.severity)) errs.push(`${cp.id}.${st}: bad severity ${s.severity}`);
     if (s.rec && !rec.has(s.rec)) errs.push(`${cp.id}.${st}: bad rec ${s.rec}`);
     for (const a of s.recAlt || []) if (!rec.has(a)) errs.push(`${cp.id}.${st}: bad recAlt ${a}`);
+    for (const a of s.sevAlt || []) if (!sev.has(a)) errs.push(`${cp.id}.${st}: bad sevAlt ${a}`);
     if (cp.tool && !s.reading) warns.push(`${cp.id}.${st}: tool checkpoint without reading`);
     if (st === 'defect' && s.severity === 'ok') errs.push(`${cp.id}: defect state graded ok`);
   }

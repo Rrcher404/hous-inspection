@@ -88,13 +88,15 @@ export function createInspectPanel(ctx) {
       pick = fresh[0] || null;
     }
     if (!pick) return;
-    ctx.mem.add('popped', id);
+    // 'popped' is recorded in takeQuiz(), only when the quiz actually opens (Voss minor 5).
     pendingQuiz = pick;
     render();
     // Nothing to judge (portals): ask after a beat. Otherwise wait until every checkpoint
     // here is logged, so a question never gives away the answer to a finding.
     if (!COMPONENT_BY_ID[id].checkpoints.length) {
       popTimer = setTimeout(() => { if (compId === id && pendingQuiz === pick && ctx.modals.count === 0) takeQuiz(); }, 900);
+    } else if (COMPONENT_BY_ID[id].checkpoints.every(cp => store.isLogged(cp.id))) {
+      quizWhenFree(id); // came back to a finished component whose quiz was never taken
     }
   }
 
@@ -111,6 +113,7 @@ export function createInspectPanel(ctx) {
   function takeQuiz() {
     const q = pendingQuiz;
     if (!q) return;
+    if (compId) ctx.mem.add('popped', compId);
     ctx.quiz.run([q], {
       title: 'Pop quiz', allowSkip: true,
       onDone: ({ answered }) => { if (answered) pendingQuiz = null; render(); },

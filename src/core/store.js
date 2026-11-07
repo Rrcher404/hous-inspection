@@ -34,7 +34,7 @@ export function rollStates(seed) {
   for (const cp of CHECKPOINTS) {
     if (cp.kind === 'defect') states[cp.id] = 'defect';
     else if (cp.kind === 'ok') states[cp.id] = 'ok';
-    else states[cp.id] = rnd() < 0.55 ? 'defect' : 'ok';
+    else states[cp.id] = rnd() < 0.4 ? 'defect' : 'ok';
   }
   return states;
 }
@@ -126,8 +126,12 @@ export function createStore(bus) {
 
     /**
      * Grade a logged observation. `answer` = the correct answer object from checkpoint content:
-     *   { severity, rec, recAlt?: [] }
-     * Returns { sevScore: 'exact'|'near'|'wrong', recRight, points, falsePositive, missedDefect }
+     *   { severity, sevAlt?: [], rec, recAlt?: [] }
+     * `choice` = { severity, rec, note?, hinted? } (hinted = the player revealed the observation text)
+     * Returns { sevScore: 'exact'|'near'|'wrong', recRight, points, falsePositive, missedDefect, practice }
+     *
+     * The FIRST log of a checkpoint is the graded record. Re-logs are practice: they get feedback
+     * but never overwrite the grade, so reading the answer and re-logging can't game the report.
      */
     logFinding(cpId, choice, answer) {
       const truth = data.inspection.states[cpId];
@@ -135,27 +139,35 @@ export function createStore(bus) {
       const got = SEV_BY_ID[choice.severity];
       let sevScore = 'wrong';
       if (want && got) {
-        if (want.id === got.id) sevScore = 'exact';
+        if (want.id === got.id || (answer.sevAlt || []).includes(got.id)) sevScore = 'exact';
         else if (want.id !== 'ok' && got.id !== 'ok' && Math.abs(want.rank - got.rank) === 1) sevScore = 'near';
       }
-      const recOk = [answer.rec, ...(answer.recAlt || [])].includes(choice.rec);
+      // Referral only counts when the severity call is at least in the neighbourhood.
+      const recOk = sevScore !== 'wrong' && [answer.rec, ...(answer.recAlt || [])].includes(choice.rec);
       let points = (sevScore === 'exact' ? P.sevExact : sevScore === 'near' ? P.sevNear : 0) + (recOk ? P.recRight : 0);
       if (truth === 'defect' && choice.severity !== 'ok') points += P.findBonus;
+      if (choice.hinted) points = Math.floor(points / 2);
       const prev = data.inspection.logged[cpId];
       const entry = {
         severity: choice.severity, rec: choice.rec, note: choice.note || '',
-        sevScore, recRight: recOk, points, at: Date.now(),
-        falsePositive: answer.severity === 'ok' && choice.severity !== 'ok',
-        missedDefect: answer.severity !== 'ok' && choice.severity === 'ok',
+        sevScore, recRight: recOk, points, at: Date.now(), hinted: !!choice.hinted,
+        falsePositive: answer.severity === 'ok' && choice.severity !== 'ok' && sevScore !== 'exact',
+        missedDefect: answer.severity !== 'ok' && choice.severity === 'ok' && sevScore !== 'exact',
       };
+      if (prev) {
+        prev.practice = entry; // keep the graded record; remember the latest practice attempt
+        save();
+        const result = { ...entry, practice: true };
+        bus.emit('finding:logged', { checkpointId: cpId, entry: result, truth });
+        return result;
+      }
       data.inspection.logged[cpId] = entry;
-      // XP only on first log of a checkpoint (re-logging is for practice)
-      if (!prev) {
+      {
         const cp = CHECKPOINT_BY_ID[cpId];
         for (const course of cp.courses) data.coursesTouched[course] = (data.coursesTouched[course] || 0) + 1;
         save();
         api.addXP(points, 'finding');
-      } else save();
+      }
       bus.emit('finding:logged', { checkpointId: cpId, entry, truth });
       return entry;
     },
