@@ -18,6 +18,6 @@ Round 2's reader flagged 13 hints the round-1 reader passed, so reader disagreem
 **Not verified:**
 - Round I (10 hints) was written by the orchestrator and not re-read blind.
 - Some hints are now "reread section X" study prompts where any direct rebuttal leaked. They teach less than a targeted hint.
-- Readers flagged a few questions whose stem gives the answer regardless of hint (q-sop-? 2011 date item, "water tracks" stem, "Why report it?" stems, q-ca-? fireblocking "before it is concealed", q-ev glaze stage). Question rewrites, not hint fixes.
+- Readers flagged a few questions whose stem gives the answer regardless of hint (a 2011-date smoke alarm item, a "water tracks" stem, "Why report it?" stems, the fireblocking "before it is concealed" stem, the creosote "glaze" stem). Question rewrites, not hint fixes.
 - Field facts in the overcalls (utility, fire marshal, health dept. roles) and IRC R314.3 are from trade knowledge, not a fetched source. NC .1021, .1109, .1110(c) were checked against the June 2026 NCHILB rulebook text.
 - Not tested on a real phone.
