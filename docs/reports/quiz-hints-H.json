@@ -1,0 +1,111 @@
+{
+  "q-sop-04": {
+    "Not reportable, since alarm age is outside the inspection standards": "Before trusting an exclusion, find its wording. Reread the SOP's limitations list and ask whether it says what this option claims."
+  },
+  "q-sop-05": {
+    "In the hallway outside the bedrooms and on each story": "That pattern matches an older code edition. Open IRC section R314.3 and compare its location list with each remaining option.",
+    "In each bedroom and in the kitchen, but not in hallways": "IRC R314.3.3 keeps alarms a set distance from cooking appliances because of nuisance alarms. Ask how this option's kitchen alarm squares with that."
+  },
+  "q-sop-08": {
+    "Acceptable, provided the flap is rigid plastic and closes fully": "Rigid and self-closing describe how the flap moves. Reread the course's garage-to-house door standard for what that door must be, then judge.",
+    "Cosmetic damage to the door, which the SOP excludes": "Cosmetic covers marks that change only appearance. Ask whether an opening cut through the full thickness of a door fits that definition."
+  },
+  "q-sop-10": {
+    "Flexible duct with a foil jacket, sealed where it passes through": "Ask where your belief about foil-jacketed flex in garages came from. Which section of the course's garage standard covers ducts?",
+    "Ductboard or flex, provided the penetration is fire-caulked": "Fire caulk at a penetration is a real detail. Reread the course's garage separation standard in full and test each remaining option against it."
+  },
+  "q-sop-19": {
+    "200 hours: 80 classroom and 120 field, including 10 ride-alongs": "Ask yourself where that breakdown came from. Reread 11 NCAC 08 .1021 and write down its figures before comparing options."
+  },
+  "q-sop-29": {
+    "Describe, Diagnose, Implication, Disclose": "Ask yourself where that expansion came from. Find DDID in the NC Board's study guide and check each of the four words."
+  },
+  "q-ea-01": {
+    "Acceptable, as long as both conductors are the same wire gauge": "Ask where that same-gauge rule came from. Reread the course's electrical panel section on conductors at breaker terminals before choosing."
+  },
+  "q-ea-04": {
+    "When the panel is a subpanel, where white and black are interchangeable": "A subpanel still keeps its neutrals on their own isolated bar. Ask whether that makes white and black interchangeable there."
+  },
+  "q-ea-06": {
+    "Signs of a lightning strike or surge, and the seller's history of either": "Lightning damage usually shows as scorching, pitting, or melted parts. Ask whether the stem describes any of that before choosing among the rest."
+  },
+  "q-ea-14": {
+    "Combined on one bar, the same way as in the main panel": "Rules written for the main panel follow from its role as the service. Ask whether a subpanel shares that role, then reread the subpanel section."
+  },
+  "q-er-05": {
+    "Acceptable, because the receptacle still powers devices": "Ask yourself what result your tester actually showed, and whether 'it powers devices' answers that result or a different question.",
+    "Correct it yourself with a three-to-two adapter plug": "Ask yourself what an adapter plug changes inside the wall, then reread the course's section on ungrounded three-prong receptacles.",
+    "Acceptable if a surge protector is plugged in to absorb faults": "Ask where the belief that a surge strip offsets an open ground came from. Reread the course's receptacle testing section before choosing."
+  },
+  "q-er-10": {
+    "Fire hazard; recommend rewiring the attic circuits before closing": "Ask whether an inspector's report should prescribe a whole-attic rewire, or leave the repair scope to the trade. Then weigh the rest."
+  },
+  "q-er-11": {
+    "Stranded aluminum service entrance conductors at the main": "Ask yourself where that idea came from. Reread NC .1110(c) and note the exact wiring type it names."
+  },
+  "q-er-13": {
+    "Disposals are plug-in appliances, which the SOP excludes from inspection": "Ask where the plug-in exclusion idea came from. Reread the SOP's appliance and electrical limitations, and see what they actually exclude."
+  },
+  "q-ca-03": {
+    "Recommend a dehumidifier sized for the crawlspace, and nothing more": "Ask where the dehumidifier-only idea came from. Reread the course's crawlspace section on standing water before choosing."
+  },
+  "q-ca-06": {
+    "Leave it out of the report entirely, because the SOP excludes pests": "Ask where the leave-it-out idea came from. Find the NC SOP's pest wording and read it exactly before choosing."
+  },
+  "q-ca-07": {
+    "It is cosmetic, as long as the insulation jacket is still intact": "Ask whether the stem's condition is about appearance at all. Reread how the course defines cosmetic, then weigh the rest.",
+    "Flex duct is designed to rest on the soil in a crawlspace": "Ask where the idea of resting flex duct on soil came from. Check the manufacturer's installation guidance or the course's duct section."
+  },
+  "q-ap-05": {
+    "Not reportable, since the hood was working when tested": "A passing operation test settles one question. Ask whether a report also describes how a component is designed, then weigh the rest."
+  },
+  "q-ef-02": {
+    "Runoff will slowly erode the mulch beds along the east wall over time": "Ask yourself whether mulch erosion is the main stake, then reread the NC exterior section's wording on grading and drainage."
+  },
+  "q-eh-03": {
+    "Both standards require testing the seal on each insulated window": "Ask whether a visual home inspection tests seals on every window, then reread the window wording in the NC and InterNACHI SOPs."
+  },
+  "q-eh-04": {
+    "It slopes inward toward the sash so rain stays off the siding below": "Picture rain landing on that sill. Ask where gravity takes it on an inward slope, and whether the house wants water there."
+  },
+  "q-eh-05": {
+    "It is excluded, so you leave it out of the report entirely": "Ask where the leave-it-out idea came from. Reread the exact wording of NC .1109 on backflow before choosing."
+  },
+  "q-eh-07": {
+    "Acceptable; a handrail is required starting at 6 or more risers": "Ask yourself where the figure of 6 came from. Which course section covers handrails on stairs, and what riser count does it give?"
+  },
+  "q-fp-05": {
+    "A Level I visual inspection by the homeowner": "Ask yourself who is qualified to perform a chimney inspection under NFPA 211, and whether a homeowner fits that role."
+  },
+  "q-fp-08": {
+    "Nothing; caps are decorative and optional on masonry chimneys": "Ask where the idea that caps are only decorative came from. Reread the course's chimney section on caps before choosing."
+  },
+  "q-hv-02": {
+    "Upward toward the chimney at least 1 in per foot": "The 1 in per foot figure overstates the code minimum. Recheck the minimum slope figure in the course's vent connector section."
+  },
+  "q-mo-08": {
+    "As mold growth that needs remediation by a mold contractor": "Ask yourself where the mold call came from. Reread NC's limitations section and the course's moisture reporting guidance, then decide.",
+    "As acceptable, since crawlspace wood often reads that high": "Ask where the idea that 24 percent is normal came from. Check the course's moisture meter section for its framing thresholds."
+  },
+  "q-ai-01": {
+    "Its R-value and the year it was installed": "Ask where R-value and install year came from. Reread InterNACHI's attic and insulation section and list exactly what it says to describe."
+  },
+  "q-ai-10": {
+    "Repair item; recommend sanding and repainting the edge": "Ask where the repaint call came from. Reread the general limitations in the NC SOP, then judge the stem's details again."
+  },
+  "q-dk-01": {
+    "Monitor it, unless the ledger is visibly pulling away": "Ask where the monitor approach came from. Reread the course's deck section on ledger connections before choosing."
+  },
+  "q-dk-04": {
+    "Acceptable if most of the holes are filled with nails": "Ask where the idea that most holes is enough came from. Check a hanger maker's installation instructions before choosing."
+  },
+  "q-rt-02": {
+    "It matters on new roofs still under warranty, not older ones": "Ask whether a warranty changes what an inspector reports, or only who pays for the fix. Then reread the course's tile roof section."
+  },
+  "q-rt-04": {
+    "The tiles themselves, which are fully waterproof": "Ask where the idea that tile alone is waterproof came from. Reread the course's tile roof section on what each layer does."
+  },
+  "q-eg-07": {
+    "A door from the garage into an inside hallway": "Ask where the concern about hallway doors came from. Reread the 25 Standards garage section and what it says about each opening."
+  }
+}

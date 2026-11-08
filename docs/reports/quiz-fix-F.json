@@ -1,0 +1,128 @@
+{
+  "q-er-02": {
+    "wrong": [
+      "Acceptable if the receptacle tests GFCI protected and shows no corrosion",
+      "Cosmetic damage to the cover, which the SOP excludes",
+      "Shock hazard; turn off the circuit and refer to the power utility"
+    ],
+    "explain": "Outdoor receptacles need an intact weatherproof cover, and wet locations need an in-use (bubble) cover. GFCI protection reduces shock risk but does not keep water out of the box. Water in a receptacle corrodes contacts and trips or fails the device. A new cover is the fix; it is not a reason to shut off the circuit, and the power utility does not repair house wiring."
+  },
+  "q-er-08": {
+    "wrong": [
+      "Do not report it, because a 1987 house is grandfathered under older rules",
+      "Acceptable, because the receptacle's polarity tests correct",
+      "Cite a code violation and require the seller to rewire before closing"
+    ],
+    "explain": "NC requires reporting the presence or absence of ground-fault protection near plumbing fixtures regardless of the house's age. Inspectors report safety, not grandfather status; you may note that the condition may predate current standards. Do not cite it as a code violation or tell the seller what to repair: a home inspection is not a code inspection."
+  },
+  "q-er-10": {
+    "wrong": [
+      "Acceptable, as long as the tape is intact and the splice is off the joist",
+      "Acceptable in attics, since they are unoccupied and rarely entered",
+      "Fire hazard; recommend rewiring the attic circuits before closing"
+    ],
+    "explain": "The box contains sparks and heat from a failing splice and protects it from damage. Insulation and wood framing are right there. One open splice calls for a box and an electrician, not a rewire of every circuit."
+  },
+  "q-ap-06": {
+    "wrong": [
+      "Acceptable if the run is short and the duct does not sag anywhere",
+      "Acceptable as long as the lint filter is cleaned out after each load",
+      "Fire hazard; refer to the fire marshal before anyone uses the dryer"
+    ],
+    "explain": "Plastic duct is not suitable for dryer exhaust: it sags, traps lint, and burns. Smooth-wall metal duct is the standard. A clean lint filter does not stop lint from building up in the duct, and lint fires are a common dryer hazard. Refer it for a metal duct replacement; a fire marshal does not inspect appliance venting in a private house sale."
+  },
+  "q-ap-09": {
+    "wrong": [
+      "Acceptable while it is not leaking; note it as a monitor item",
+      "Not reportable, because a washer is not a built-in appliance",
+      "Shut off the main water valve until a plumber repipes"
+    ],
+    "explain": "A bulge means the reinforcement has failed, and a burst supply hose can flood the house quickly. You are not required to inspect a non built-in washer, but a visible hazard on its supply is worth reporting. The fix is a new hose, not a repipe, and shutting off the house main is not the inspector's call."
+  },
+  "q-eh-07": {
+    "wrong": [
+      "Acceptable; exterior entry steps are exempt from handrail rules",
+      "Acceptable; a handrail is required starting at 6 or more risers",
+      "Structural defect; refer to a structural engineer"
+    ],
+    "explain": "Four or more risers is the trigger. A fall on entry steps is a common, serious injury. Nothing in the stem says the steps are failing, so this is a safety item, not a structural engineer referral."
+  },
+  "q-hv-03": {
+    "wrong": [
+      "Acceptable; 2 in is the standard clearance for vent pipe",
+      "Acceptable as long as the joist shows no charring or scorch",
+      "Fire hazard; have the fire department inspect it before closing"
+    ]
+  },
+  "q-hv-11": {
+    "wrong": [
+      "Acceptable, because the vented attic will carry the air away",
+      "Major defect; replace the attic duct system before closing",
+      "Not reportable, since attic ductwork is outside the NC SOP"
+    ],
+    "explain": "The room below loses its supply, the attic gains moisture (cold air there can cause condensation), and the energy bill climbs. One separated boot is a reconnection, not a reason to replace the whole duct system."
+  },
+  "q-ai-03": {
+    "wrong": [
+      "Acceptable, because the attic itself is vented to outdoors",
+      "Refer to a structural engineer for moisture damage to the roof deck",
+      "Not reportable; exhaust fans are not in NC scope"
+    ],
+    "explain": "NC requires inspecting bathroom venting systems. Moist air dumped into the attic condenses on cold sheathing, and attic vents cannot carry it off fast enough. The dark sheathing near this duct is often the result. The fix is extending the duct outdoors; a structural engineer is for framing damage, which the stem does not describe."
+  },
+  "q-ai-07": {
+    "wrong": [
+      "Acceptable if the ladder holds your full weight when you test it",
+      "Refer to a structural engineer to evaluate the ceiling framing",
+      "Not reportable, because attic stairs are excluded"
+    ],
+    "explain": "The ladder may detach under load. Manufacturers specify fastener type and count, and drywall screws are brittle and snap under shear. Recommend correction per the manufacturer's installation instructions. The problem is the ladder's fasteners, not the ceiling framing, so a structural engineer is the wrong referral."
+  },
+  "q-dk-04": {
+    "wrong": [
+      "Acceptable if most of the holes are filled with nails",
+      "Acceptable, because screws are stronger than nails",
+      "Imminent collapse; tear down the deck and rebuild it"
+    ],
+    "explain": "Hangers need every hole filled with the manufacturer's specified fasteners. A hanger is only as strong as its fasteners, and drywall screws are brittle and snap under shear. Missing or wrong fasteners are corrected in place; nothing in the stem calls for tearing down the deck."
+  },
+  "q-dk-09": {
+    "wrong": [
+      "Acceptable, because ground-contact treated wood resists rot",
+      "Condemn the deck; recommend demolishing it and building new",
+      "Not reportable, since probing is an invasive test"
+    ],
+    "explain": "Refer to a qualified contractor. NC requires probing where deterioration is suspected: exterior wood under .1107(b)(7) and structural components under .1106(c)(1), even though the inspection is otherwise visual. A rotted post is a direct break in the load path. One decayed post is a repair for a contractor; it does not condemn the whole deck."
+  },
+  "q-fd-05": {
+    "wrong": [
+      "Acceptable; stacked shims are a normal way to level it",
+      "Foundation failure; refer for underpinning",
+      "Not reportable without first calculating the load"
+    ],
+    "explain": "The girder needs full, solid bearing on the pier. Crushed or loose shims let the floor settle and concentrate the load on a small area. Nothing says the pier or footing has moved, so underpinning is not the call; the bearing on top of the pier is."
+  },
+  "q-eg-04": {
+    "wrong": [
+      "Acceptable, since the bars improve the bedroom's security",
+      "Refer to the fire marshal to condemn the bedroom",
+      "Acceptable if the bedroom door leads to two exits"
+    ],
+    "explain": "Bars on an escape window must release from inside without a key, tool, or special knowledge. In a fire the window may be the only way out, and in the dark and smoke nobody can find a key. A fire marshal does not inspect private homes for a sale, and condemning a room is not the inspector's role."
+  },
+  "q-pl-05": {
+    "wrong": [
+      "Sewage hazard; refer to the health department",
+      "Not reportable, because the crawlspace is excluded",
+      "Monitor it and re-check at the final walkthrough"
+    ],
+    "explain": "Check the wood below with the moisture meter. A leak in the crawlspace runs unseen for years. Follow it to the framing. A drip at one joint in a private drain is a plumber's repair, not a health department matter."
+  },
+  "q-ra-02": {
+    "wrong": [
+      "They mean the roof has failed and needs replacing now",
+      "They matter in hurricane zones, not in normal weather",
+      "Exposed nails are normal along the ridge and hips"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+ "q-sop-05": {"In the hallway outside the bedrooms and on each story": "Ask where that list came from, then reread IRC R314.3 and check each remaining option against every location it names."},
+ "q-ea-04": {"When it is landed on a 15 A breaker serving a lighting circuit": "Ask what rule you are relying on for that breaker size, then reread the course's section on conductor colors."},
+ "q-er-10": {
+  "Acceptable, as long as the tape is intact and the splice is off the joist": "Ask what rule the tape-and-joist idea comes from, then reread the course's section on attic wiring splices.",
+  "Fire hazard; recommend rewiring the attic circuits before closing": "Ask whether one taped splice tells you enough to call for rewiring every attic circuit."
+ },
+ "q-ap-05": {"Not reportable, since the hood was working when tested": "Ask what the NC appliance section asks you to do with a range hood, then compare each remaining option with it."},
+ "q-ef-02": {"Runoff will slowly erode the mulch beds along the east wall over time": "Ask which consequences of grading a home inspector reports, then reread the NC exterior section before choosing."},
+ "q-eh-04": {"It slopes inward toward the sash so rain stays off the siding below": "Ask where the inward-slope idea came from, then reread the course's window and trim section before choosing."},
+ "q-fp-05": {"A Level I visual inspection by the homeowner": "Ask where the homeowner idea came from, then reread the course's chimney section on recommendations at sale."},
+ "q-hv-02": {"Upward toward the chimney at least 1 in per foot": "Ask where that 1 in figure came from, then reread the course's vent connector section before choosing."},
+ "q-ai-10": {"Repair item; recommend sanding and repainting the edge": "Ask where the repaint call came from, then reread the NC SOP and judge the stem's details again."}
+}

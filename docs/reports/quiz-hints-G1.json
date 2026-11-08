@@ -1,0 +1,195 @@
+{
+  "q-sop-02": {
+    "Perform a water test on suspected leaks": "Leaks matter, but the SOP does not ask an inspector to run water over a roof to recreate one."
+  },
+  "q-sop-03": {
+    "Verify each alarm is hardwired and interconnected, and test it with canned smoke": "Hardwiring and interconnection run inside walls and ceilings. Ask whether an inspector could confirm either without opening up the building."
+  },
+  "q-sop-04": {
+    "Acceptable, because the test button sounded when pressed": "A sounding horn feels like a clean pass. Ask whether a working horn tells you anything about how old the alarm is.",
+    "Not reportable, since alarm age is outside the inspection standards": "SOP limits set what you must check, not what you may write. Ask whether a limit like that makes anything unreportable."
+  },
+  "q-sop-05": {
+    "In the hallway outside the bedrooms and on each story": "That pattern matches an older rule. Ask whether a hallway alarm alone protects someone asleep behind a closed door."
+  },
+  "q-sop-06": {
+    "A basement, a crawlspace, or an open-air carport": "Below-grade spaces and carports describe the home's layout. Ask whether NC ties this duty to layout or to equipment.",
+    "Bedrooms on more than one story, or a finished basement": "Bedroom-by-story wording borrows from smoke alarm placement. Ask whether the NC carbon monoxide list follows that same placement logic.",
+    "An electric furnace, a heat pump, or a detached garage": "Review 11 NCAC 08 .1110(d)(2) and recall the home features it lists for carbon monoxide alarm reporting."
+  },
+  "q-sop-07": {
+    "Solid wood at least 2 in thick, or a 45-minute rated door": "Heavier and higher-rated sounds safer. Ask whether the course's residential garage rule actually demands a door this heavy."
+  },
+  "q-sop-08": {
+    "A concern when a bedroom opens directly into the garage": "A bedroom opening onto a garage is a separate issue. Check whether the stem mentions a bedroom at all."
+  },
+  "q-sop-10": {
+    "Thin aluminum duct, with a register to heat the garage": "Review the course's rule for ducts that pass through the garage-to-house separation, and why that wall matters."
+  },
+  "q-sop-14": {
+    "A six-foot stepladder": "Review 11 NCAC 08 .1101(28), the NC definition of a readily openable access panel, and the reach limit it sets."
+  },
+  "q-sop-19": {
+    "200 hours: 80 classroom and 120 field, including 10 ride-alongs": "Review rule .1021 and recall both the total hours and how NC divides them between academic and field instruction."
+  },
+  "q-sop-21": {
+    "$1,000,000 general liability, with no bond or other coverage": "A million-dollar policy sounds safe, but recall what G.S. 143-151.58 actually lists instead of a common commercial policy limit."
+  },
+  "q-sop-25": {
+    "Three per floor inside, and two per side of the building outside": "Those counts sound thorough. Ask whether NC measures the sample floor by floor, or by some other unit of the house."
+  },
+  "q-sop-28": {
+    "Building science, Business practices, Report writing, and Ethics": "Those are skills a business needs. Ask whether a licensing exam tests how you run a company.",
+    "Electrical, Plumbing, Mechanical, and Structural Pest Control": "Structural pest control is a separately licensed trade in NC. Ask whether the home inspector exam would test another profession's field."
+  },
+  "q-sop-29": {
+    "Describe, Diagnose, Implication, Disclose": "Inspectors are careful not to claim they diagnose causes. Ask whether the step after Describe would use that word."
+  },
+  "q-sop-30": {
+    "Yes, NC requires the garage-to-house door to self-close and self-latch": "A blanket yes assumes NC copied the national sentence word for word. Ask whether NC's door rule has conditions or differences."
+  },
+  "q-sop-31": {
+    "No contract, since the house is unoccupied and still being built": "Ask whether NC ties its pre-inspection requirements to whether anyone lives in the house yet.",
+    "A copy of the building permit and the builder's written permission": "Permits and builder permission concern the construction site. Ask whether the new NC rule was written about site access.",
+    "A verbal agreement with the builder covering the scope and the price": "Agreeing scope and price is sensible. Ask whether the builder is the party you are inspecting for."
+  },
+  "q-sop-33": {
+    "Whether you entered the space, and how long you spent inside": "Time inside sounds like diligence. Ask whether the amended rule measures your effort, or something else about the space."
+  },
+  "q-ea-01": {
+    "Acceptable, as long as both conductors are the same wire gauge": "Matching gauge sounds tidy. Ask what the breaker's listing says about how many conductors its terminal accepts."
+  },
+  "q-ea-02": {
+    "Each ground needs its own terminal; neutrals may share if they are the same size": "Same size sounds like a safe condition. Ask whether a matching wire size is enough to let two neutrals share a terminal."
+  },
+  "q-ea-03": {
+    "They ventilate the panel and should be left open for cooling": "Knockouts are made for cable and raceway entry. Ask whether a manufacturer would leave cooling to those holes.",
+    "They are cosmetic, since the dead front cover still keeps hands off live parts": "Cosmetic means appearance only. Ask whether an open hole in an electrical enclosure is only about appearance."
+  },
+  "q-ea-04": {
+    "When it is a separate white wire run in conduit, not in a cable": "Review the code exception that lets a white conductor serve as a hot, and the conditions it sets."
+  },
+  "q-ea-05": {
+    "The directory should list wire gauge and breaker size for each circuit": "Breaker size is already printed on each handle. Ask whether repeating it in the directory fixes these labels."
+  },
+  "q-ea-06": {
+    "The panel's manufacture date and the recall history for its brand": "Brand recalls matter for some panels. Ask whether recall research is part of a visual inspection's required scope.",
+    "Signs of a lightning strike or surge, and the seller's history of either": "A seller's story is something you cannot confirm. Ask whether a surge history is anything an inspector can verify on site.",
+    "Nothing more; rust inside a panel is cosmetic and can be noted": "Rust inside electrical equipment is more than appearance. Ask whether noting it and moving on fits a panel with corrosion."
+  },
+  "q-ea-07": {
+    "Safety hazard; the aluminum wiring should be replaced throughout": "Replacing wiring throughout goes well past what you saw at the main lugs. Ask how far one observation can stretch.",
+    "Major defect; refer for a derating calculation on the service": "A derating calculation is design work. Ask whether an inspector orders one from a look at the lugs.",
+    "Report it as single-strand aluminum branch wiring under NC rules": "Review exactly which aluminum wiring NC SOP .1110(c) names, then decide whether this stem describes it."
+  },
+  "q-ea-08": {
+    "An overloaded circuit; recommend a larger breaker for it": "A larger breaker lets more current through the same wire. Ask what that does to the wire's protection.",
+    "A failed breaker that the seller should replace before closing": "Deciding who fixes what before closing is a negotiation call. Ask whether that belongs in an inspector's report."
+  },
+  "q-ea-11": {
+    "It absorbs thermal expansion and contraction of the service conductors": "Review the parts of an overhead service entrance, from the service drop to the weatherhead, and what each part is for."
+  },
+  "q-ea-13": {
+    "Equipment ground": "Grounded and grounding are different terms. The equipment ground is a grounding conductor, so look past the similar sound."
+  },
+  "q-ea-14": {
+    "Separated, with the neutral bar bonded to the enclosure": "Review the neutral and ground rules for service equipment versus a downstream panel, then compare each option."
+  },
+  "q-er-01": {
+    "Kitchen countertops and bathrooms, by room name, regardless of fixture distance": "Room names are how older GFCI rules were often taught. Check whether NC .1110 defines its list the same way.",
+    "Bathrooms, kitchens, and garages, but not exterior receptacles": "That list reads like a room checklist. Ask whether NC .1110 builds its list from room names at all."
+  },
+  "q-er-03": {
+    "The receptacle will not power anything until it is rewired correctly": "Reversed means swapped, not disconnected. Ask whether a three-light tester would light at all on a dead receptacle."
+  },
+  "q-er-05": {
+    "Acceptable, because the receptacle still powers devices": "Power at the slots proves hot and neutral. Ask whether that tells you anything about the third prong.",
+    "Correct it yourself with a three-to-two adapter plug": "Inspectors report conditions; the SOP does not ask them to make repairs. Ask whether a field fix belongs in your role."
+  },
+  "q-er-06": {
+    "Reset it, retest once, and mark it acceptable if it resets": "Review what a GFCI test button is meant to show, and how the NC SOP expects you to handle the result."
+  },
+  "q-er-09": {
+    "It wastes energy; recommend an LED bulb as a repair item": "Energy use is a client preference, not a repair item. Ask what makes a closet fixture reportable in the first place.",
+    "Acceptable if the bulb is under 60 watts and has a pull chain": "Wattage and a pull chain sound like safeguards. Ask whether the course ties closet fixture rules to either one."
+  },
+  "q-er-11": {
+    "Stranded aluminum service entrance conductors at the main": "Large stranded feeders are common and accepted when properly terminated. Ask whether NC would single them out."
+  },
+  "q-er-13": {
+    "Disposals are plug-in appliances, which the SOP excludes from inspection": "Some disposals do plug in. Ask whether appliance limits in the SOP excuse a wiring connection you can see.",
+    "It is a concern if the disposal is noisy or vibrating badly": "Noise and vibration are about the motor. Ask whether this question is about the motor at all.",
+    "It is acceptable when the cable is a flexible appliance cord": "Calling it a flexible cord renames the wire. Ask whether renaming it changes the installation rules that apply."
+  },
+  "q-ca-02": {
+    "4-mil polyethylene, with seams butted and taped": "Tape on a butt joint tends to lift in a damp crawlspace. Ask how the code wants the seams joined."
+  },
+  "q-ca-03": {
+    "Recommend a dehumidifier sized for the crawlspace, and nothing more": "A dehumidifier treats damp air. Ask whether standing water on the soil is the same problem as damp air."
+  },
+  "q-ca-05": {
+    "1 sq ft per 50 sq ft, or 1 per 500 with a vapor retarder": "More venting sounds safer. Recall the model code's base ratio instead of assuming a tighter ratio is better."
+  },
+  "q-ca-06": {
+    "Identify the insect species in the report before referring": "Species identification goes beyond what the SOP asks of a home inspector. Ask what the SOP says about pests generally."
+  },
+  "q-ca-07": {
+    "It is cosmetic, as long as the insulation jacket is still intact": "An intact jacket is only one part of a duct run. Ask whether it covers everything the stem describes.",
+    "Flex duct is designed to rest on the soil in a crawlspace": "Flex duct is light and easy to lay down. Ask what manufacturers say about supporting it off the ground."
+  },
+  "q-ap-01": {
+    "The range sits unlevel, so the oven bakes unevenly and burns food": "Leveling is handled by the range's adjustable feet. Ask whether a cooking complaint makes this a safety question."
+  },
+  "q-ap-02": {
+    "Operating the cooktop burners": "Review the exclusions listed in NC SOP .1115, then check each option against that list rather than guessing.",
+    "Operating the range hood": "A range hood is built in above the cooktop. Ask whether NC lists built-in kitchen fans among its exclusions."
+  },
+  "q-ap-04": {
+    "Through the drain cycle": "Review the exact wording NC SOP .1115 uses for operating an installed dishwasher.",
+    "Through a short rinse cycle": "Review the exact wording NC SOP .1115 uses for the dishwasher, including whether it is operated at all."
+  },
+  "q-ap-05": {
+    "Not reportable, since the hood was working when tested": "A working fan is a good sign. Ask whether the client would want to know anything about where this hood sends air."
+  },
+  "q-ap-08": {
+    "Outdoors, through a hood with a fine screen to stop pests": "Review the dryer exhaust standard in the course, including where the duct is allowed to end."
+  },
+  "q-ap-10": {
+    "Required if it is a built-in model": "Built-in often means included. Ask whether NC's refrigerator rule turns on how the unit is installed."
+  },
+  "q-ef-02": {
+    "The slope makes the lawn look uneven, which hurts the curb appeal": "Curb appeal is a matter of taste. Ask whether a home inspection reports on how a yard looks.",
+    "Runoff will slowly erode the mulch beds along the east wall over time": "Mulch beds are landscaping, not part of the building. Ask whether mulch is really the main stake here."
+  },
+  "q-ef-05": {
+    "The crack is cosmetic, but buyers expect it to be noted anyway": "Buyer expectation is not a reason to report. Ask whether the crack affects anything besides looks.",
+    "Cracked vinyl gives off fumes in the sun that are harmful to breathe": "Vinyl siding is a common, stable exterior product. Ask whether a crack changes what the panel gives off in sunlight."
+  },
+  "q-ef-06": {
+    "Repair; recommend sealing or replacing the driveway now": "Review how the course sorts concrete cracks into normal, repair, and safety categories."
+  },
+  "q-ef-07": {
+    "Hairline cracks running across the full width of the driveway slab": "Full-width hairline cracks are common as concrete cures and shrinks. Ask whether that alone makes them a deficiency.",
+    "Oil and rust stains near the garage that have soaked into the concrete": "Stains are about appearance. Ask whether a home inspection reports how concrete looks.",
+    "Concrete that has darkened and weathered with age and exposure": "Darkening is about appearance. Ask whether color change with age is something the inspection reports."
+  },
+  "q-eh-02": {
+    "Recommend removing the downspout so water spreads along the eave": "Without a downspout, the gutter outlet still drops its water in one spot. Ask whether that spreads anything along the eave.",
+    "Not reportable, since the gutter system itself is working": "A working gutter is only part of roof drainage. Ask whether the SOP's interest stops at the gutter."
+  },
+  "q-eh-03": {
+    "Neither standard lets you mention fogged glass in the report": "Inspection standards rarely ban writing down something visible. Ask whether either SOP contains such a ban.",
+    "NC requires reporting it and recommending the sash be replaced": "Check the window exclusions in NC .1113 before giving NC this duty."
+  },
+  "q-eh-04": {
+    "It sits level so water can drain off both the inside and outside": "A level surface lets water sit. Ask whether a flat sill really drains water anywhere.",
+    "It slopes inward toward the sash so rain stays off the siding below": "Follow rain down that slope. Ask what it meets at the sash, and whether that joint is meant to take water.",
+    "It relies on paint alone, so no sealant is needed at the joints": "Review the course's description of a well-built window sill, including its slope and its trim details."
+  },
+  "q-eh-05": {
+    "It is excluded, so you leave it out of the report entirely": "Leaving it out entirely is a strong choice. Ask whether an SOP exclusion actually forbids mentioning something you noticed."
+  },
+  "q-eh-06": {
+    "A direct connection between the hot and cold water supply lines": "A hot to cold link is a real plumbing fault with its own name. Recall how NC defines a cross connection."
+  }
+}

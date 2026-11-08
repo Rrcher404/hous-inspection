@@ -1,0 +1,186 @@
+{
+  "q-eh-09": {
+    "Decks and appurtenant railings": "A deck can feel like optional outdoor furniture, yet NC lists decks, balconies, stoops, and their railings among required exterior items."
+  },
+  "q-fp-02": {
+    "It mainly weakens the draft, so smoke may roll into the room": "Draft is set mostly by the flue and damper above, not by small gaps in the firebox lining below."
+  },
+  "q-fp-03": {
+    "Leave it alone; dampers are outside the visual inspection": "InterNACHI's fireplace section does name the damper door. A visual inspection is not purely hands-off for every fireplace part."
+  },
+  "q-fp-05": {
+    "A Level I visual inspection by the homeowner": "A Level I look covers only easily reached chimney parts, the same limit your own SOP already has. Ask whether that fills any gap."
+  },
+  "q-fp-07": {
+    "It is decorative trim that hides the top course of brick": "Work at a chimney top is costly to build and maintain, so little up there exists only to hide brick. Ask what job it does."
+  },
+  "q-fp-08": {
+    "Nothing; caps are decorative and optional on masonry chimneys": "A cap may be optional, but optional does not mean useless. Ask whether the client gains anything from knowing it is missing."
+  },
+  "q-hv-02": {
+    "Upward toward the chimney at least 1 in per foot": "The figure in this option is larger than the usual code minimum. Recheck the number, and separately recheck which way the pipe should run."
+  },
+  "q-hv-06": {
+    "The smaller liquid line, since it carries the coldest refrigerant": "The liquid line leaves the condenser after it has shed its heat, so it usually feels warm rather than cold."
+  },
+  "q-hv-07": {
+    "It is cosmetic, though the pad should be leveled at the next service call": "Cosmetic means appearance only. A machine that runs for years at a tilt raises a function question, so ask what the tilt affects."
+  },
+  "q-hv-10": {
+    "Returns are mostly decorative grilles that balance the look": "Each return grille connects through ductwork to the air handler. A grille meant just for looks would not need a duct behind it."
+  },
+  "q-wh-01": {
+    "12 in": "Recall the exact figure your plumbing sources give for TPR discharge termination height, rather than estimating from what seems like a sensible height."
+  },
+  "q-wh-03": {
+    "The cold water inlet is at the top of the tank": "The cold inlet fitting is often on top, but a dip tube carries that incoming water down near the bottom of the tank."
+  },
+  "q-wh-04": {
+    "Cold water hitting the hot steel cracks it open like glass": "Steel bends and tears rather than shattering, and cold water already enters a hot tank through the dip tube every time a tap runs."
+  },
+  "q-wh-05": {
+    "You are required to estimate the remaining service life in years": "Estimating years left would be a prediction. Ask whether NC lists that among the items it obliges you to report.",
+    "You are required to recommend replacing it before the closing": "A 2001 date tells you age, not condition. Ask whether NC makes age by itself a reason you must call for replacement.",
+    "You may not mention the age, since that would predict failure": "Stating a manufacture date is a fact read off a label, not a forecast of when the heater will fail."
+  },
+  "q-wh-09": {
+    "Yes, if the client is present to watch the discharge": "Ask whether the client's presence appears anywhere in NC's plumbing rules as a condition for testing a valve."
+  },
+  "q-mo-02": {
+    "That the insulation above that spot is missing or thin": "Missing insulation reads warm, not cool, on a ceiling under a hot summer attic. Ask what season and conditions this image came from."
+  },
+  "q-mo-05": {
+    "It mainly affects how the grout looks along the tub edge": "Caulk and grout are separate materials, and a gap in the caulk does not change how the neighboring grout looks."
+  },
+  "q-mo-07": {
+    "Condensation from the tank on a humid day": "Condensation forms on the outside of the porcelain, so you would expect beads of water on the tank and bowl, not only at the base.",
+    "A clogged vent stack forcing water back up": "A blocked vent usually shows up as slow drains, gurgling, or traps losing water, not as a wet floor at a single fixture."
+  },
+  "q-mo-08": {
+    "As mold growth that needs remediation by a mold contractor": "Dark staining on crawlspace wood can come from water, tannins, or growth, and only lab sampling identifies a growth.",
+    "As acceptable, since crawlspace wood often reads that high": "Typical crawlspace framing reads well under 20 percent. Ask whether 24 percent is typical, and what sustained dampness does to wood."
+  },
+  "q-mo-10": {
+    "The two stains are unrelated, and each one has its own separate source": "Review what NC and InterNACHI say about attic inspection, and what a report should do with active water stains."
+  },
+  "q-ai-01": {
+    "Its chemical composition and fire rating": "Chemical makeup and fire ratings come from lab testing. Ask whether the SOP's insulation wording asks you for test results."
+  },
+  "q-ai-02": {
+    "Nothing, because NC excludes measuring R-values": "The R-value exclusion stops you from measuring or calculating thermal resistance. It does not tell you to stay silent about the attic."
+  },
+  "q-ai-04": {
+    "Hold the insulation tight against the roof deck": "Attic insulation rests on the ceiling by gravity at the eaves; it does not need a part to press it up against the roof deck."
+  },
+  "q-ai-10": {
+    "Repair item; recommend sanding and repainting the edge": "Edge paint wears where a door brushes its frame in daily use. Ask whether NC expects you to recommend paint touch-ups."
+  },
+  "q-ai-11": {
+    "Nothing more; a fan that pulls air is working": "One passing test seldom finishes an inspection item. Ask what else about a bath fan you would still want to check."
+  },
+  "q-dk-01": {
+    "Monitor it, unless the ledger is visibly pulling away": "Nailed ledgers often look snug until they let go, so visible pulling is a poor early warning sign."
+  },
+  "q-dk-02": {
+    "To keep termites and carpenter ants out of the ledger": "Insects reach wood from the soil and through cracks. A strip along the ledger top is a poor place for a pest barrier.",
+    "To stop the ledger from swelling and expanding in heat": "A thin strip lapped over the ledger cannot restrain wood movement, and heat expansion in lumber is minor anyway."
+  },
+  "q-dk-03": {
+    "Brick is acceptable as long as the through-bolts are galvanized": "Galvanizing addresses rust on the bolt. Ask whether corrosion is really the concern this question raises.",
+    "Bolts through brick hold better than lag screws in wood": "How well a fastener holds depends on more than its type. Comparing bolts with lags does not explain why this setup is a problem.",
+    "It is a cosmetic concern, since the mortar may crack": "Cosmetic means appearance only. Ask whether a question about how a deck is attached is mainly about looks."
+  },
+  "q-dk-06": {
+    "Above 48 in, measured at the deck's outer edge": "48 in is a figure some people carry over from other rules. The deck guard trigger is a lower height."
+  },
+  "q-rf-06": {
+    "Extend 1 ft above the landing, 1 ft out per 2 ft of rise": "One foot above the landing leaves almost nothing to hold on to while stepping on or off the ladder."
+  },
+  "q-rf-08": {
+    "Antennae, satellite dishes, and their roof mounts": "Reread InterNACHI 3.1 twice: once for what you shall inspect, once for what you are not required to inspect.",
+    "Lightning arrestors and their ground wiring": "Compare each option against the two lists in InterNACHI 3.1: the items you shall inspect and the items set aside.",
+    "De-icing cables along the eaves and gutters": "Recall the InterNACHI 3.1 roof section as two lists, required and not required, and place each option on one."
+  },
+  "q-ra-01": {
+    "Bond the shingles together into one sealed layer": "Shingles bond to each other through a factory sealant strip, not through the loose granules on their faces.",
+    "Make the shingle waterproof, so underlayment is optional": "The asphalt itself is the water-shedding part of a shingle, and underlayment is called for under shingles regardless."
+  },
+  "q-ra-08": {
+    "A third layer is fine if longer nails reach the deck": "Review the rules for roofing over existing shingles taught in the 25 Standards course before choosing among the remaining options.",
+    "Re-covering is better, since the old layers add insulation": "Asphalt shingles add very little insulating value; a layer of them insulates about as much as thin plywood.",
+    "Layer count does not matter for asphalt shingles": "Review what the 25 Standards course teaches about roofing over an existing asphalt roof before choosing again."
+  },
+  "q-fd-02": {
+    "It is typical shrinkage of block walls as mortar cures": "Curing shrinkage happens in the first months after construction and leaves fine hairline cracks, usually in the mortar joints."
+  },
+  "q-fd-03": {
+    "Mold growth on the block; recommend professional remediation": "Mold needs organic food, and bare concrete block offers very little. Also recall that NC excludes determining mold."
+  },
+  "q-fd-04": {
+    "Monitor it, since the pier is not leaning": "Leaning is a late sign. A crack through the blocks themselves, not just the mortar joints, tells you something before any lean."
+  },
+  "q-fd-07": {
+    "The depth and width of the footings below grade": "Footings sit below grade, and NC does not require you to dig or move soil to reach hidden parts.",
+    "The compressive strength of the foundation concrete": "Concrete strength comes from lab tests on cylinders or cores, and the SOP excludes calculating strength or adequacy.",
+    "The soil type and its bearing capacity below the footings": "Soil bearing capacity comes from geotechnical testing, and NC also excludes geological and soil conditions."
+  },
+  "q-fd-08": {
+    "Calculate the load on the pier to judge its adequacy": "NC lists calculating the strength or adequacy of a system among the things inspectors are not required to do."
+  },
+  "q-rt-01": {
+    "Lift a few tiles to see the condition of the underlayment": "Seeing the underlayment means removing roof covering, which goes beyond what NC asks an inspector to expose."
+  },
+  "q-rt-02": {
+    "It is cosmetic, since tile is mostly there for looks": "Clay tile is costly and heavy. Few owners would carry that load on their framing for appearance alone.",
+    "Cracked tile still sheds water; replace it at resale": "Replacing at resale ties the repair to a sale date. Ask whether the roof's condition follows that schedule."
+  },
+  "q-rt-03": {
+    "The roof slope is too steep to hold the tile in place": "Tile is routinely installed on steep slopes, and a slope problem would affect the whole roof, not just the eave tiles."
+  },
+  "q-rt-04": {
+    "The mortar packed between the tiles at the laps": "Mortar is porous and cracks with movement, and it is used mainly to bed hip and ridge tiles, not to seal field laps."
+  },
+  "q-rt-06": {
+    "Major defect; mortar fails over time": "Even when mortar needs attention, the label major is kept for serious conditions such as structural or safety issues."
+  },
+  "q-rt-07": {
+    "It may not be inspected, even if the client asks": "An SOP sets a minimum for an inspection. Ask whether a minimum also forbids doing anything beyond it."
+  },
+  "q-rt-08": {
+    "The underlayment needs upgrading, but not the framing": "Review what the 25 Standards course says about changing roof covering types on existing framing before choosing again.",
+    "Tile is lighter than asphalt, so framing is fine": "Look up typical installed weights per square for clay tile and asphalt shingles, then reread the remaining options."
+  },
+  "q-eg-07": {
+    "A door from the garage into an inside hallway": "Garage doors into hallways are common and allowed when the door meets the fire-separation rules for that opening."
+  },
+  "q-pl-01": {
+    "It wastes water each time the fixture is used": "Water use is set by the faucet and how long it runs, not by the shape of the trap below."
+  },
+  "q-pl-03": {
+    "Yes, cycle each stop to prove it shuts off": "Thoroughness is good, but ask whether your SOP's plumbing section lists stop valves among the things you operate.",
+    "Yes, but just the hot side, where scale builds up": "Scale does build on hot lines, but that makes an old hot stop more likely to stick or leak, not less.",
+    "Yes, if the client asks you to check them": "Ask whether your SOP ties what you operate to client requests, or to a fixed list in its plumbing section."
+  },
+  "q-pl-04": {
+    "It matters at bathroom sinks, not at the kitchen sink": "Ask whether drain material rules in model plumbing codes change from one room's sink to another's."
+  },
+  "q-pl-06": {
+    "Report it as polybutylene, a known failure-prone pipe": "Polybutylene and PEX are both flexible plastic, but they are different materials with different markings and track records.",
+    "Recommend replacing it with galvanized steel piping": "Galvanized steel corrodes inside over time. It is the material many older houses are replacing, not a modern upgrade."
+  },
+  "q-pl-08": {
+    "Acceptable, since toilets can rock a little": "Toilets are designed to sit firm on the floor. Ask whether any rocking at all is a normal design condition.",
+    "Cosmetic, once the caulk at the base is redone": "Caulk at the base holds nothing down. Ask whether fresh caulk would stop the movement you felt.",
+    "Tighten the flange bolts yourself and move on": "Tightening bolts is a repair. Ask whether repairs are part of a home inspector's role during an inspection."
+  },
+  "q-st-01": {
+    "Repair it by nailing a scrap board over the cut": "Repairs are outside a home inspector's role, and you would own whatever your fix did to the house."
+  },
+  "q-st-06": {
+    "Joists to piers to girder to footings to soil": "Sketch the crawlspace framing from the floor surface downward, drawing each member where it sits, before choosing again."
+  },
+  "q-st-08": {
+    "The adequacy of the foundation anchor bolting": "Reread InterNACHI 3.3 and list what it says you shall report, then compare each option to that list.",
+    "The load capacity of each floor joist and girder": "Recall the exact items InterNACHI 3.3 tells you to report, and check each remaining option against them."
+  }
+}

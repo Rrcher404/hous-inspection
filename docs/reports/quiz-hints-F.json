@@ -1,0 +1,82 @@
+{
+  "q-er-02": {
+    "Acceptable if the receptacle tests GFCI protected and shows no corrosion": "Ask what GFCI protection actually does. Does it keep rain from getting into the box?",
+    "Cosmetic damage to the cover, which the SOP excludes": "Ask what that cover is for. Is its job about looks, or about keeping something out?",
+    "Shock hazard; turn off the circuit and refer to the power utility": "Ask where the utility's equipment ends. Does it repair wiring devices on the house side of the meter?"
+  },
+  "q-er-08": {
+    "Do not report it, because a 1987 house is grandfathered under older rules": "Ask whether NC ties what you report to the year a house was built, or to what you find.",
+    "Acceptable, because the receptacle's polarity tests correct": "Ask whether correct polarity protects a person at a wet sink from a ground fault.",
+    "Cite a code violation and require the seller to rewire before closing": "Ask whether a home inspection checks code compliance, and whether the inspector decides what a seller must fix."
+  },
+  "q-er-10": {
+    "Acceptable, as long as the tape is intact and the splice is off the joist": "Ask whether intact tape does anything to contain heat or sparks if that splice ever fails.",
+    "Acceptable in attics, since they are unoccupied and rarely entered": "Ask whether a failing splice needs a person nearby to start a fire in insulation and framing.",
+    "Fire hazard; recommend rewiring the attic circuits before closing": "Ask how many problems the stem actually shows. Does one splice tell you about every circuit up there?"
+  },
+  "q-ap-06": {
+    "Acceptable if the run is short and the duct does not sag anywhere": "Ask whether a short, straight run changes what the duct is made of, or how that material handles heat.",
+    "Acceptable as long as the lint filter is cleaned out after each load": "Ask whether the lint filter catches everything, or whether some lint still reaches the duct.",
+    "Fire hazard; refer to the fire marshal before anyone uses the dryer": "Ask whether a fire marshal inspects appliance venting in a private home, and whether that referral fits a house sale."
+  },
+  "q-ap-09": {
+    "Acceptable while it is not leaking; note it as a monitor item": "Ask what a bulge says about the hose's inner strength. Does no leak today mean it will hold?",
+    "Not reportable, because a washer is not a built-in appliance": "Ask whether not having to inspect the washer stops you from reporting a hazard you can already see.",
+    "Shut off the main water valve until a plumber repipes": "Ask whether the bulge is in the building's supply piping, or in the hose that links the washer to it."
+  },
+  "q-eh-07": {
+    "Acceptable; exterior entry steps are exempt from handrail rules": "Ask whether a fall down entry steps is any less serious because the steps are outdoors.",
+    "Acceptable; a handrail is required starting at 6 or more risers": "Ask whether 6 is the riser count you studied for handrails, or a number borrowed from a different rule for steps.",
+    "Structural defect; refer to a structural engineer": "Ask whether the stem says the steps are cracked, moving, or failing to carry weight."
+  },
+  "q-hv-03": {
+    "Acceptable; 2 in is the standard clearance for vent pipe": "Ask whether you are thinking of a double-wall vent. Does a pipe with only one metal layer run cooler or hotter?",
+    "Acceptable as long as the joist shows no charring or scorch": "Ask whether clearance rules are written around visible damage, or around what years of heat do to wood.",
+    "Fire hazard; have the fire department inspect it before closing": "Ask whether a fire department inspects private homes for a sale, and who actually works on furnace venting."
+  },
+  "q-hv-11": {
+    "Acceptable, because the vented attic will carry the air away": "Ask whether attic vents are meant to handle a duct's full airflow, cold and damp, all season long.",
+    "Major defect; replace the attic duct system before closing": "Ask how much of the duct system the stem describes. Does one loose joint condemn every run?",
+    "Not reportable, since attic ductwork is outside the NC SOP": "Ask whether NC treats ducts in the attic differently from ducts anywhere else in the house."
+  },
+  "q-ai-03": {
+    "Acceptable, because the attic itself is vented to outdoors": "Ask whether attic vents can clear a shower's worth of moist air before it reaches cold sheathing.",
+    "Refer to a structural engineer for moisture damage to the roof deck": "Ask whether the stem describes damage to the roof framing, and what a structural engineer would assess here.",
+    "Not reportable; exhaust fans are not in NC scope": "Ask whether NC lists bathroom venting among the systems you are required to inspect."
+  },
+  "q-ai-07": {
+    "Acceptable if the ladder holds your full weight when you test it": "Ask whether one test load today tells you how brittle screws behave after years of use.",
+    "Refer to a structural engineer to evaluate the ceiling framing": "Ask what in the stem points at the ceiling framing. Is a structural engineer the trade for ladder hardware?",
+    "Not reportable, because attic stairs are excluded": "Ask whether the SOP exclusions you studied actually name attic stairs, or a ladder you can see and use."
+  },
+  "q-dk-04": {
+    "Acceptable if most of the holes are filled with nails": "Ask whether a hanger's rated strength assumes that some of its holes are left empty.",
+    "Acceptable, because screws are stronger than nails": "Ask whether stronger in one direction means stronger in shear, which is how a hanger is loaded.",
+    "Imminent collapse; tear down the deck and rebuild it": "Ask whether the stem describes broken or rotted framing. Does tearing down the deck match what you see?"
+  },
+  "q-dk-09": {
+    "Acceptable, because ground-contact treated wood resists rot": "Ask whether treated wood is rot-proof or only rot-resistant. What did the probe just tell you?",
+    "Condemn the deck; recommend demolishing it and building new": "Ask how much of the deck the stem says has failed. Does one soft post decide the whole structure?",
+    "Not reportable, since probing is an invasive test": "Ask whether NC requires probing where you suspect deterioration, even in a visual inspection."
+  },
+  "q-fd-05": {
+    "Acceptable; stacked shims are a normal way to level it": "Ask whether shims being allowed means that loose, crushed shims are allowed too.",
+    "Foundation failure; refer for underpinning": "Ask whether anything in the stem says the pier or its footing has sunk or cracked.",
+    "Not reportable without first calculating the load": "Ask whether reporting a support problem you can see requires any calculation under NC rules."
+  },
+  "q-eg-04": {
+    "Acceptable, since the bars improve the bedroom's security": "Ask whether security is the only job a bedroom window has under the rules you studied.",
+    "Refer to the fire marshal to condemn the bedroom": "Ask whether a fire marshal inspects private homes for a sale, and whether closing off a room is your call.",
+    "Acceptable if the bedroom door leads to two exits": "Ask whether the escape rule counts exits through the door, or treats the window on its own."
+  },
+  "q-pl-05": {
+    "Sewage hazard; refer to the health department": "Ask what a county health department oversees, and whether one joint in a private drain line is theirs.",
+    "Not reportable, because the crawlspace is excluded": "Ask whether NC excludes the crawlspace, or asks you to inspect the plumbing you can reach and see there.",
+    "Monitor it and re-check at the final walkthrough": "Ask whether an active drip you can see today is something to wait on, and who attends a final walkthrough."
+  },
+  "q-ra-02": {
+    "They mean the roof has failed and needs replacing now": "Ask whether the stem describes a roof-wide failure or several nails. Does that add up to a new roof?",
+    "They matter in hurricane zones, not in normal weather": "Ask whether the concern with an exposed nail head depends on wind at all.",
+    "Exposed nails are normal along the ridge and hips": "Ask what covers the nails at ridge and hip caps on a correct install. Should heads show anywhere?"
+  }
+}
