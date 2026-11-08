@@ -1,0 +1,62 @@
+{
+ "q-sop-04": {
+  "q": "Pressing the test button on a living room smoke alarm makes it sound. What else should you check before you write it up?",
+  "right": "Its label date, since alarms are replaced at 10 years",
+  "wrong": [
+   "Nothing more; a sounding horn is a pass",
+   "The expiry date printed on the battery",
+   "Its smoke sensitivity, using a can of aerosol test smoke"
+  ],
+  "explain": "Smoke alarms are replaced 10 years from the manufacture date on the label because the sensor degrades. The test button proves the horn and power, not that the sensor still detects smoke. NC asks you to operate the test function, not to smoke-test with aerosol. A label older than 10 years means recommend replacement."
+ },
+ "q-sop-32": {
+  "q": "Under 11 NCAC 08 .1117, which of these must a pre-drywall inspection report on?",
+  "right": "Presence or absence of fireblocking and draftstopping",
+  "wrong": [
+   "Whether framing matches the construction plans",
+   "Wiring pulled for low-voltage and future EV charging",
+   "Whether the framing is strong enough for its design"
+  ],
+  "explain": "Paragraph (d) lists the presence or absence of fireblocking and draftstopping under structural framing. The rule's exclusions say inspectors are not required to check work against construction plans, report on preparation for future installations such as EV charging or low-voltage wiring, or calculate the strength or adequacy of a system."
+ },
+ "q-ea-06": {
+  "q": "Rust is visible on the breakers and the floor of the main panel cabinet. What else should you look for?",
+  "right": "Where the water came in: service cable, mast, weatherhead, drip loop",
+  "wrong": [
+   "The panel's manufacture date and the recall history for its brand",
+   "Signs of a lightning strike or surge, and the seller's history of either",
+   "Moisture readings, with your meter pressed on parts inside the panel"
+  ],
+  "explain": "Rust in a panel means water has been getting in, and it usually arrives along the service conductors. Trace the likely entry point from outside, report the rust and its source, and refer to an electrician. Never press a tool against parts inside an energized panel."
+ },
+ "q-er-13": {
+  "q": "Under the sink, the disposal cable enters the unit with no clamp or connector at the knockout. Best report?",
+  "right": "No strain relief; cable can chafe or pull out. Refer to an electrician",
+  "wrong": [
+   "Acceptable, because the cable is a flexible appliance cord",
+   "Not reportable; a disposal is an appliance outside the SOP",
+   "Shock hazard; recommend replacing the disposal and its circuit wiring"
+  ],
+  "explain": "Without a clamp, the cable can pull loose or chafe on the sharp knockout edge and expose conductors. Cables and cords entering a box or appliance need strain relief and protection from the knockout edge. Under a sink, a nicked conductor sits next to water. Nothing in the stem shows the disposal or the circuit has failed, so the fix is a connector, not new wiring. Refer to an electrician."
+ },
+ "q-ca-07": {
+  "q": "A flex duct in the crawlspace has dropped onto the soil and come apart at a joint. Best report?",
+  "right": "Disconnected duct; refer to HVAC to reconnect, seal, and support it",
+  "wrong": [
+   "Not reportable; crawlspace ducts are outside the inspection",
+   "Cosmetic, as long as the insulation jacket is still intact",
+   "Duct system failure; recommend replacing all ductwork in the house"
+  ],
+  "explain": "A disconnected duct wastes energy and dumps conditioned air into the crawlspace. Cold supply air into a humid crawlspace also means condensation on framing. Ducts should be connected, sealed, and supported off the ground. One failed joint calls for repair of that run, not new ductwork; refer to an HVAC contractor."
+ },
+ "q-fp-04": {
+  "q": "With a flashlight, you see a shiny black coating in the smoke chamber. It is hard, and a scraper barely marks it. Which creosote stage is this?",
+  "right": "Stage 3",
+  "wrong": [
+   "Stage 1",
+   "Stage 2",
+   "Not creosote, just heat discoloration"
+  ],
+  "explain": "Stage 3 creosote is glazed: shiny, hard, and tar-like, and a scraper barely marks it. It is the hardest to remove and fuels the hottest chimney fires. Refer to a CSIA-certified chimney sweep."
+ }
+}

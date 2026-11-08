@@ -18,9 +18,9 @@ export const QUIZ_HINTS = {
     "Report the battery type and replace each alarm with a low battery": "Would an inspector be servicing equipment on the job? Recall whether NC asks you to repair anything at all."
   },
   "q-sop-04": {
-    "Acceptable, because the test button sounded when pressed": "A sounding horn feels like a clean pass. Ask whether a working horn tells you anything about how old the alarm is.",
-    "Not reportable, since alarm age is outside the inspection standards": "Before trusting an exclusion, find its wording. Reread the SOP's limitations list and ask whether it says what this option claims.",
-    "Recommend replacing the battery and retesting the alarm": "The horn already sounded on test. Ask what problem a new battery would actually solve here."
+    "Nothing more; a sounding horn is a pass": "A sounding horn proves the horn and the power. Ask what else on the unit, besides the button, tells you about its condition.",
+    "The expiry date printed on the battery": "The horn already sounded, so power is fine. Ask what wears out in the alarm itself, not in the battery.",
+    "Its smoke sensitivity, using a can of aerosol test smoke": "Reread what NC asks you to do with smoke alarms: operate the test function. Ask whether spraying test smoke goes beyond that."
   },
   "q-sop-05": {
     "In the hallway outside the bedrooms and on each story": "Ask where that list came from, then reread IRC R314.3 and check each remaining option against every location it names.",
@@ -158,9 +158,9 @@ export const QUIZ_HINTS = {
     "A verbal agreement with the builder covering the scope and the price": "Agreeing scope and price is sensible. Ask whether the builder is the party you are inspecting for."
   },
   "q-sop-32": {
-    "Interior paint and trim finish": "Ask what a pre-drywall visit is racing against. Is paint even on the walls yet?",
-    "Appliance operation": "Are appliances installed and running while the walls are still open? Think about what is about to be hidden.",
-    "Landscape irrigation": "Ask whether landscape systems get covered up by drywall, which is what this rule is built around."
+    "Whether framing matches the construction plans": "Plans show what was designed. Reread the exclusions at the end of .1117 and ask whether checking work against drawings is on that list.",
+    "Wiring pulled for low-voltage and future EV charging": "Reread the pre-drywall exclusions near the end of .1117. Ask what they say about preparation for future installations.",
+    "Whether the framing is strong enough for its design": "Ask whether a visual inspector calculates strength or design adequacy. Reread what .1117 says inspectors are not required to do."
   },
   "q-sop-33": {
     "Whether you entered the space, and how long you spent inside": "Time inside sounds like diligence. Ask whether the amended rule measures your effort, or something else about the space.",
@@ -194,8 +194,8 @@ export const QUIZ_HINTS = {
   },
   "q-ea-06": {
     "The panel's manufacture date and the recall history for its brand": "Brand recalls matter for some panels. Ask whether recall research is part of a visual inspection's required scope.",
-    "Signs of a lightning strike or surge, and the seller's history of either": "Lightning damage usually shows as scorching, pitting, or melted parts. Ask whether the stem describes any of that before choosing among the rest.",
-    "Nothing more; rust inside a panel is cosmetic and can be noted": "Rust inside electrical equipment is more than appearance. Ask whether noting it and moving on fits a panel with corrosion."
+    "Signs of a lightning strike or surge, and the seller's history of either": "Lightning damage usually shows as scorching, pitting, or melted parts. Ask whether the stem describes any of that.",
+    "Moisture readings, with your meter pressed on parts inside the panel": "Ask whether you press any tool against parts inside a live panel. Reread the course's dead-front safety rules."
   },
   "q-ea-07": {
     "Safety hazard; the aluminum wiring should be replaced throughout": "Replacing wiring throughout goes well past what you saw at the main lugs. Ask how far one observation can stretch.",
@@ -303,9 +303,9 @@ export const QUIZ_HINTS = {
     "Describe the service amperage and voltage": "Ask whether describing the service size is basic information every electrical section starts with."
   },
   "q-er-13": {
-    "Disposals are plug-in appliances, which the SOP excludes from inspection": "Ask where the plug-in exclusion idea came from. Reread the SOP's appliance and electrical limitations, and see what they actually exclude.",
-    "It is a concern if the disposal is noisy or vibrating badly": "Noise and vibration are about the motor. Ask whether this question is about the motor at all.",
-    "It is acceptable when the cable is a flexible appliance cord": "Calling it a flexible cord renames the wire. Ask whether renaming it changes the installation rules that apply."
+    "Acceptable, because the cable is a flexible appliance cord": "Calling it a flexible cord renames the wire. Ask whether renaming it changes the installation rules that apply.",
+    "Not reportable; a disposal is an appliance outside the SOP": "Ask where the appliance exclusion idea came from. Reread the SOP's limitations and see whether a visible wiring connection is excluded.",
+    "Shock hazard; recommend replacing the disposal and its circuit wiring": "Ask whether anything in the stem says the disposal or the circuit wiring has failed. Reread how the course sizes a recommendation."
   },
   "q-ca-01": {
     "To insulate the floor framing above from the cold ground below": "Ask whether a thin plastic sheet lying on the soil could do much insulating.",
@@ -338,9 +338,9 @@ export const QUIZ_HINTS = {
     "Leave it out of the report entirely, because the SOP excludes pests": "Ask where the leave-it-out idea came from. Find the NC SOP's pest wording and read it exactly before choosing."
   },
   "q-ca-07": {
-    "Ducts in crawlspaces are excluded from the inspection": "Ask whether ductwork you can see in a crawlspace falls outside the HVAC part of the inspection.",
-    "It is cosmetic, as long as the insulation jacket is still intact": "Ask whether the stem's condition is about appearance at all. Reread how the course defines cosmetic, then weigh the rest.",
-    "Flex duct is designed to rest on the soil in a crawlspace": "Ask where the idea of resting flex duct on soil came from. Check the manufacturer's installation guidance or the course's duct section."
+    "Not reportable; crawlspace ducts are outside the inspection": "Ask whether ductwork you can see in a crawlspace falls outside the HVAC part of the inspection.",
+    "Cosmetic, as long as the insulation jacket is still intact": "Ask whether the stem's condition is about appearance at all. Reread how the course defines cosmetic, then weigh the rest.",
+    "Duct system failure; recommend replacing all ductwork in the house": "Ask how many joints the stem says have failed. Does one dropped run tell you about every duct in the house?"
   },
   "q-ca-08": {
     "6 in": "Think about how damp wood gets that close to soil. Recall the code figure for joists.",
@@ -513,9 +513,9 @@ export const QUIZ_HINTS = {
     "Close it and tape it shut for safety until a sweep visits": "Think about what happens if someone lights a fire under a damper that has been sealed shut. Is that safer?"
   },
   "q-fp-04": {
-    "Stage 1, sooty and brushable": "Sooty deposits are soft and powdery. Ask whether shiny and hard describes something a brush would sweep off.",
-    "Stage 2, crunchy and flaky": "Crunchy flakes break apart under a tool. Does the stem's description sound like that texture?",
-    "It is not creosote, just heat discoloration": "Discoloration is a color change in the surface. Ask whether a tar-like deposit you can see is just color."
+    "Stage 1": "Stage 1 is soft and sooty and brushes off. Ask whether a coating a scraper barely marks fits that.",
+    "Stage 2": "Stage 2 is crunchy and flaky and breaks apart under a tool. Ask whether that fits what the scraper did.",
+    "Not creosote, just heat discoloration": "Discoloration is a color change in the masonry itself. Ask whether a coating you can scrape at is just color."
   },
   "q-fp-05": {
     "A Level I visual inspection by the homeowner": "Ask where the homeowner idea came from, then reread the course's chimney section on recommendations at sale.",

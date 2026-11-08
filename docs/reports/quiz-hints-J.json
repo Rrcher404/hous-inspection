@@ -1,0 +1,32 @@
+{
+ "q-sop-04": {
+  "Nothing more; a sounding horn is a pass": "A sounding horn proves the horn and the power. Ask what else on the unit, besides the button, tells you about its condition.",
+  "The expiry date printed on the battery": "The horn already sounded, so power is fine. Ask what wears out in the alarm itself, not in the battery.",
+  "Its smoke sensitivity, using a can of aerosol test smoke": "Reread what NC asks you to do with smoke alarms: operate the test function. Ask whether spraying test smoke goes beyond that."
+ },
+ "q-sop-32": {
+  "Whether framing matches the construction plans": "Plans show what was designed. Reread the exclusions at the end of .1117 and ask whether checking work against drawings is on that list.",
+  "Wiring pulled for low-voltage and future EV charging": "Reread the pre-drywall exclusions near the end of .1117. Ask what they say about preparation for future installations.",
+  "Whether the framing is strong enough for its design": "Ask whether a visual inspector calculates strength or design adequacy. Reread what .1117 says inspectors are not required to do."
+ },
+ "q-ea-06": {
+  "The panel's manufacture date and the recall history for its brand": "Brand recalls matter for some panels. Ask whether recall research is part of a visual inspection's required scope.",
+  "Signs of a lightning strike or surge, and the seller's history of either": "Lightning damage usually shows as scorching, pitting, or melted parts. Ask whether the stem describes any of that.",
+  "Moisture readings, with your meter pressed on parts inside the panel": "Ask whether you press any tool against parts inside a live panel. Reread the course's dead-front safety rules."
+ },
+ "q-er-13": {
+  "Acceptable, because the cable is a flexible appliance cord": "Calling it a flexible cord renames the wire. Ask whether renaming it changes the installation rules that apply.",
+  "Not reportable; a disposal is an appliance outside the SOP": "Ask where the appliance exclusion idea came from. Reread the SOP's limitations and see whether a visible wiring connection is excluded.",
+  "Shock hazard; recommend replacing the disposal and its circuit wiring": "Ask whether anything in the stem says the disposal or the circuit wiring has failed. Reread how the course sizes a recommendation."
+ },
+ "q-ca-07": {
+  "Not reportable; crawlspace ducts are outside the inspection": "Ask whether ductwork you can see in a crawlspace falls outside the HVAC part of the inspection.",
+  "Cosmetic, as long as the insulation jacket is still intact": "Ask whether the stem's condition is about appearance at all. Reread how the course defines cosmetic, then weigh the rest.",
+  "Duct system failure; recommend replacing all ductwork in the house": "Ask how many joints the stem says have failed. Does one dropped run tell you about every duct in the house?"
+ },
+ "q-fp-04": {
+  "Stage 1": "Stage 1 is soft and sooty and brushes off. Ask whether a coating a scraper barely marks fits that.",
+  "Stage 2": "Stage 2 is crunchy and flaky and breaks apart under a tool. Ask whether that fits what the scraper did.",
+  "Not creosote, just heat discoloration": "Discoloration is a color change in the masonry itself. Ask whether a coating you can scrape at is just color."
+ }
+}
